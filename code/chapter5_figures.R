@@ -1,5 +1,5 @@
 # example 1
-pdf("example_lc.pdf", width = 16, height = 9)
+pdf("../figures/example_lc.pdf", width = 16, height = 9)
 par(mfrow = c(1,3))
 
 v <- c(0, .05, .2, .4, .65, 1)
@@ -42,7 +42,7 @@ dev.off()
 
 
 # example 2
-pdf("example_lc2.pdf", width = 4, height = 3)
+pdf("../figures/example_lc2.pdf", width = 4, height = 3)
 par(mfrow = c(1,1))
 # Daten einlesen a)
 u <- c(0, .1, .5, .7, 1)

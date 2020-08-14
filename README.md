@@ -15,7 +15,7 @@ Für Fehler wird keine Haftung übernommen.
 - Erweiterung der Aufgabenblöcke um offene Fragen
 - Vervollständigung der Hinweise auf die R-Funktion um kleine Anwendungen/Code-Beispiele
 
- (Nicht notwendigerweisein der abgebildeten Reihenfolge, sondern eher nach Lust, Laune & Zeit :wink:)
+ (Nicht notwendigerweise in der abgebildeten Reihenfolge, sondern eher nach Lust, Laune & Zeit :wink:)
 
 ## Kontakt
 Bei Anmerkungen oder Interesse an Zusammenarbeit, gerne einfach Kontakt aufnehmen:  

@@ -3,7 +3,8 @@
 ## Allgemeines
 Dieses Dokument soll als kleine Verständnishilfe für Studierende der Wirtschaftswissenschaften angesehen werden.
 Wir versuchen explizit auf mathematische Genauigkeit und Vollständigkeit, zu verzichten, wenig auf Formeln und viel auf Inution & Verständnis einzugehen. 
-Außerdem wird jedes Thema durch einen Block an Multiple-Choice Aufgaben und Hinweisen auf die passenden R-Funktionen für die behandelten Methoden ergänzt. 
+Außerdem wird jedes Thema durch einen Block an Multiple-Choice Aufgaben und Hinweisen auf die passenden R-Funktionen für die behandelten Methoden ergänzt.  
+Das Manuskript ist in der Datei `statwiwi.pdf` enthalten, der Source-Code in `statwiwi.tex`.  
 
 ## Disclaimer
 Dieses Manuskript ist explizit __kein__ Teil der offiziellen Vorlesungsunterlagen für dieses Fach.  

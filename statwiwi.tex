@@ -920,7 +920,7 @@ Beim Gini kann man relativ einfach pauschale Aussagen über Veränderungen treff
 
 \newpage
 
-\section{Zusammenhangsmaße}
+\section{Zusammenhangsmaße}\label{chap:zshg}
 Bis jetzt haben wir stets lediglich eine Variable (bzw. Merkmal) $X$ und dessen Ausprägungen $x_1, x_2,.., x_i$ betrachtet. Auf diese Art und Weise war es uns möglich, Aussagen über dessen Lage, Streuung und Konzentration zu treffen.\\
 Da in diesem Kapitel Aussagen über Zusammenhänge getroffen werden sollen bzw. Zusammenhänge quantifiziert werden sollen, werden nun stets \textbf{zwei} Variablen/Merkmale $X$ \& $Y$ gleichzeitig betrachtet. Dies führt dazu, dass die beobachteten Ausprägungen der Merkmale nun folgendermaßen vorliegen: $(x_1; y_1), (x_2; y_2), .., (x_n; y_n)$
 
@@ -1262,35 +1262,66 @@ Liegen keine Bindungen vor, so passieren zwei Dinge: Alle $b_j$ und alle $c_k$ n
 \clearpage
 
 \subsection{Zusammenhangsmaße für metrische Merkmale}\label{sec:zshg-metr}
+
 \subsubsection{Kovarianz}
-Die Kovarianz ist ein Maß für den Zusammenhang zweier metrischer Merkmale und ist abhängig von der Varianz.\\
-\paragraph{Berechnung} 
-\begin{enumerate}
-    \item Die einzelnen Beobachtungspaare werden multipliziert und aufsummiert $\sum_{i=1}^nx_iy_i$
-    \item Von der Summe wird das Produkt aus n und der Mittelwerte von x und y subtrahiert$\sum_{i=1}^nx_iy_i-n\bar{x}\bar{y}$
-    \item zuletzt wird die Differenz mit $\frac{1}{n}$ multipliziert $Cov(X;Y)=\frac{1}{n}\sum_{i=1}^nx_iy_i-n\bar{x}\bar{y}$
-\end{enumerate}
-Ist die Kovarianz positiv bzw. negativ, so liegt ein positiver bzw. negativer Zusammenhang zwischen den beiden Merkmalen vor. Ein Sonderfall ist die Kovarianz des gleichen Merkmals X, denn diese ist dann wieder die Varianz von X $Cov(X;X)=Var(X)$
-Wie oben genannt, hängt die Kovarianz nicht nur vom Zusammenhang der beiden Merkmale ab sondern auch von der Streuung. Um das Zusammenhangsmaß von der Streuung loszulösen, braucht man ein anderes Maß, nämlich den Korrelationskoeffizient nach Bravais-Pearson.
+Die Kovarianz ist ein Maß für den Zusammenhang zweier metrischer Merkmale. Sie misst die gemeinsame Streuung zweier Merkmale, weshalb die Varianz lediglich ein Spezialfall der Kovarianz ist, nämlich die gemeinsame Streuung einer Variable mit sich selbst.
+
+\paragraph{Die Berechnung} kann als Verallgemeinerung der Varianz angesehen werden:
+$$Cov (X,Y) = \frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y}) = \frac{1}{n}\sum_{i=1}^nx_iy_i-n\bar{x}\bar{y}$$
+
+\noindent zieht man den Vergleich zur Formel der Varianz aus Kapitel \ref{sec:Varianz}, so fällt auf, dass $Cov(X,X) = Var(X)$. Des weiteren ist die Kovarianz symmetrisch, d.h. $Cov(X,Y) = Cov(X,Y)$, was man eigentlich recht gut an obiger Formel sieht.\\
+Ist die Kovarianz positiv bzw. negativ, so liegt ein positiver bzw. negativer Zusammenhang zwischen den beiden Merkmalen vor.
+Die Kovarianz hat einen Wertebereich von $-\infty$ bis $\infty$ und hängt von zwei Faktoren ab:
+\begin{itemize}
+    \item Zusammenhang der beiden Merkmale
+    \item Streuung der beiden Merkmale
+\end{itemize}
+wobei der Einfluss von Letzterem die Quantifizierung des reinen Zusammenhangs behindert.\\
+
+\noindent \dangersign[3ex] \textbf{Aufpassen:} Es kann passieren, dass eine Merkmal $X$ (mit hoher Streuung) eine höhere Kovarianz mit Merkmal $Y$ besitzt als das Merkmal $Z$ (mit niedriger Streuung), obwohl $Z$ stärker mit $Y$ zusammenhängt als $X$.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für $Cov(X,Y)$: > cov(data\$x, data\$y)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor}{Dokumentation}}\\
 
 \subsubsection{Korrelationskoeffizient nach Bravais-Pearson}\label{sec:cor-bp}
-Der Korrelationskoeffizient nach Bravais-Pearson standardisiert die Kovarianz und hängt somit nicht mehr von der Streuung sondern nur noch vom Zusammenhang der beiden Merkmale ab. Bei diesem Zusammenhangsmaß werden die \textit{Abstände} zwischen den Beobachtungen beider Merkmale und deren arithmetischen Mittel in Beziehung gesetzt. Da der Korrelationskoeffizient nach Bravais-Pearson die standardisierte Kovarianz ist, hängt dieser nicht mehr von der Streuung, sondern nur noch vom Zusammenhang der beiden Merkmale ab. Daher berechnet man diesen auch mit der Kovarianz dividiert durch die Wurzel aus dem Produkt der beiden Varianzen. 
+Der Korrelationskoeffizient nach Bravais-Pearson bereinigt Die Kovarianz um den Einfluss der Streuung und kann somit zur reinen Quantifizierung des Zusammenhangs verwendet werden. Dies erreicht man, indem man die Kovarianz durch die Wurzel aus dem Produkt der beiden Varianzen dividiert.
+
 \begin{align*}
     r_{BP}&=\frac{Cov(X;Y)}{\sqrt{Var(X)Var(Y)}} \\
-    \mbox{und daher eingesetzt:}\quad
-   r_{BP}&=\frac{\sum_{i=1}^n(x_i-\bar{x}((y_i-\bar{y}}{\sqrt{(\sum_{i=1}^nx_i^2-n\bar{x^2})(\sum_{i=1}^ny_i^2-n\bar{y^2})}}
+    \mbox{bzw. mit $\frac{1}{n}$ rausgekürzt:}\quad
+   r_{BP}&=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{(\sum_{i=1}^nx_i^2-n\bar{x^2})(\sum_{i=1}^ny_i^2-n\bar{y^2})}}
 \end{align*}
-Dies ist nun auch wieder ein symmetrisches Maß.
-Hier geht der Wertebereich nun wieder von -1 bis 1, da es ein standardisiertes, dimensionsloses Konzentrationsmaß ist. Ist $r_BP>0$, dann sind die beiden Merkmale X und Y positiv linear abhängig, ist $r_BP<0$ sind die beiden Merkmale negativ abhängig und bei $r_BP=0$ sind die beiden Merkmale unabhängig voneinander.\\
-Um nun alle Skalenniveaus und deren passenden Zusammenhangsmaße auf einen Blick. Hier wird auch nochmals deutlich, dass es kein Problem ist, wenn ein ordinales Merkmal mit einem nominalen Zusammenhangsmaß gemessen wird. Ein Zusammenhangsmaß eines weniger aussagekräftigen Merkmals zu benutzen ist möglich, jedoch andersherum nicht.\\
 
-\begin{tabular}{c|c|c|c}
+\noindent Dies ist auch wieder ein symmetrisches Maß, allerdings mit einem Wertebereich von -1 bis 1, da $r_{BP}$ standardisiert \& dimensionslos ist. Ist $r_{BP} > 0$, so spricht man von einem positiven linearen Zusammenhang, ist $r_{BP} < 0$ so hängen die beiden Merkmale negativ linear zusammen. Bei $r_BP = 0$ sind die beiden Merkmale unkorreliert.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für $r_{BP}$: > cor(data\$x, data\$y, method = "pearson")} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor}{Dokumentation}}\\
+
+\subsection{Wrap-Up}
+
+Der Übersichtlichkeit halber hier nochmal alle Skalenniveaus und die passenden Zusammenhangsmaße auf einen Blick.
+
+\begin{table}[htbp]
+    \centering
+\begin{tabular}{c||c|c|c}
 &Nominal & Ordinal & metrisch\\
-\hline
-Nominal& $\chi^2$& & \\
-Ordinal&$\chi^2$&$\tau$-und$\gamma$-Maße/ Rangkorrelation& \\
-Metrisch &$\chi^2$& Rangkorrelation & Korrelation (Kovarianz) \\
+\hline\hline
+Nominal& $\chi^2$-basiert & & \\
+Ordinal&$\chi^2$-basiert &$\tau$-und$\gamma$-Maße/ Rangkorrelation& \\
+Metrisch &$\chi^2$-basiert & Rangkorrelation & Korrelation (Kovarianz) \\
 \end{tabular}
+    \caption{Übersicht über verschiedene Zusammenhangsmaße}
+    \label{tab:my_label}
+\end{table}
+
+\noindent Diese Tabelle verdeutlicht drei zentrale Punkte:
+
+\begin{itemize}
+    \item Interessiert man sich für den Zusammenhang von zwei Merkmalen, die auf \textit{unterschiedlichen} Skalenniveaus gemessen werden, kann man nur Zusammenhangsmaße verwenden, die dem \textit{niedrigeren} Skalenniveau genügen.\\
+    \textbf{Beispiel:} Den Zusammenhang zwischen Studienfach (\textit{nominal}) \& Statistik-Note (\textit{ordinal}) kann man lediglich mit $\chi^2$-basierten Maßen quantifizieren.
+    \item Es ist immer \textit{möglich} Zusammenhangsmaße zu verwenden, die für niedrigere Skalenniveaus geeignet sind. Ob das \textit{sinnvoll} ist, ist eine andere Frage, da man dadurch nicht den vollen Informationsgehalt des vorliegenden Skalenniveaus ausschöpft.\\
+    \textbf{Beispiel:} Den Zusammenhang zwischen Größe (\textit{metrisch}) \& Gewicht (\textit{metrisch}) könnte man auch (unter Inkaufnahme von Informationsverlust) mit $r_{SP}$ quantifizieren.
+    \item Es ist \textit{nicht möglich} Zusammenhangsmaße zu verwenden, die ausschließlich für höhere Skalenniveaus geeignet sind.\\
+    \textbf{Beispiel:} Den Zusammenhang zwischen Studienfach (\textit{nominal}) \& Statistik-Note (\textit{ordinal}) könnte man nicht mit $r_{SP}$ oder gar $r_{BP}$ quantifizieren.
+\end{itemize}
 
 \clearpage
 
@@ -1341,76 +1372,241 @@ Metrisch &$\chi^2$& Rangkorrelation & Korrelation (Kovarianz) \\
     \item[d)] .. haben einen Einfluss auf den Wert von Kendalls/Stuarts $\tau_c$. \hfill $\square$
 \end{itemize}
 
+
 \newpage
 
 
-\section{Lineare Einfachregression}\label{sec:lineare Einfachregression}
+\section{Lineare Einfachregression}\label{chap:linreg}
 \subsection{Einführung}
-Das Ziel der Regression ist es herauszufinden, welchen Einfluss ein Merkmal X (Einflussgröße) auf ein Merkmal Y (Zielgröße) hat und somit aus einem oder mehreren Werten ein Wert vorhersagen zu können, da zwischen diesen ein Zusammenhang besteht. Die Einflussgröße X wird auch Regressor oder unabhängige Variable genannt. Das Merkmal Y wird daher abhängige Variable, da sie abhängig von X ist, Response oder Regressand genannt.
-Um eine Regressionsanalyse sinnvoll erstellen zu können, benötigt man Beobachtungspaare, mit unterschiedlichen Merkmalsausprägungen von X und Y. Damit kann man dann die Merkmale auf einen (linearen) Zusammenhang prüfen und versuchen, diesen mit einem Modell zu schätzen.\\
-Eine Voraussetzung, um ein Modell anzuwenden ist, dass das Merkmal X die unabhängige Variable ist, welche gegeben oder beeinflussbar ist und das Merkmal Y als Reaktion auf X (abhängige Variable).\\
-Der einfachste Zusammenhang zwischen zwei Merkmalen ist der lineare Zusammenhang, welcher durch den Ansatz $Y=a+bX$ angegeben werden kann. Kann man X und Y durch diesen Ansatz abbilden, dann spricht man von einer \textit{linearen Regression}.\\
-Da normalerweise aufgrund von Abweichung bzw. Streuung nicht alle Merkmalsausprägungen auf einer Gerade liegen, ergänzt man das vorige Modell mit dem \textit{Fehlerglied (bzw. -term)}oder \textit{Residuum e}. Somit wird die Abweichung von der Geraden in das Modell miteinbezogen und es entsteht das Modell: $Y=a+bX+e$
+Das Ziel der Regression ist es herauszufinden, den Einfluss von einem Merkmal X (Einflussgröße) auf ein Merkmal Y (Zielgröße) zu quantifizieren. Die Einflussgröße X wird auch Regressor oder unabhängige Variable genannt. Das Merkmal Y wird daher abhängige Variable, da sie abhängig von X ist, Response oder Regressand genannt. Um eine Regressionsanalyse sinnvoll durchführen zu können, benötigt man Beobachtungspaare (wie bereits in Kap. \ref{chap:zshg}), mit unterschiedlichen Merkmalsausprägungen von X und Y. Damit kann man dann die Merkmale auf einen (linearen) Zusammenhang prüfen und versuchen, diesen mit einem Modell zu schätzen.\\
 
-\subsection{Plots und Annahmen}
-Da man bei zwei Merkmalen nicht direkt von einem linearen Zusammenhang bzw. einem Ursachen-Wirkung-Beziehung ausgehen kann, ist es ratsam, zuerst einmal durch eine \textit{graphische Darstellung} zu überprüfen, ob ein linearer Zusammenhang überhaupt absehbar ist. Hierbei ist ein \textit{Streudiagramm} oder \textit{Scatter-Plot} hilfreich.\\
-Hierbei trägt man auf die X-Achse die Einflussgröße X und die Zielgröße auf der y-Achse abgetragen. Danach werden Merkmalsausprägungen als ein Punk $(x_i;y_i)$ in das Koordinatensystem eingetragen. Liegt ein Zusammenhang zwischen den Merkmalen vor, kann man das oft schon hier erkennen. Es gibt jedoch nicht nur einen linearen, sondern unter anderem auch einen zyklischen, exponentiellen, logarithmischen und polynomischen Zusammenhang. Im Folgenden werden jedoch hauptsächlich die linearen Zusammenhänge thematisiert. \\
-Häufig wird ein Zusammenhang durch ein nicht dazu passender Wert,\textit{Ausreißer}, gestört. Diese müssen gesondert betrachtet werden und gegebenenfalls unter Rechtfertigung entfernt werden, da diese sogar die Richtung des Zusammenhangs ändern können. 
+\noindent \dangersign[3ex] Zusammenhangsmaße geben (im best case) lediglich Stärke \& Richtunng des Zusammenhangs an. Die lineare Regression geht \textit{zwei} Schritte weiter: Es wird (1) eine Wirkungskette angenommen ($X$ beeinflusst $Y$ und nicht andersherum) \& (2) der Zusammenhang quantifiziert ("\textit{Wenn X um eine Einheit steigt, erwarten wir eine Änderung von Y um ...}")\\
 
-\subsection{Kleinste-Quadrate-Schätzer}\label{sec:KQS}
-Kann man nun davon ausgehen, dass es sich bei den vorliegenden Merkmalen um einen linearen Zusammenhang handelt, muss man die \textit{optimale Gerade} aus den Merkmalsausprägungen gewinnen. Somit liegt hier ein Optimierungsprozess vor, bei dem die Parameter der linearen Gleichung b, als Steigung und a als y-Achsenabschnitt optimiert werden müssen. \\
-Jedem Beobachtungspunkt $P_i0(x_i;y_i)$ wird ein angepasster Punkt $\hat{P}_i=(x_i;\hat{y}_i)$ zugeordnet, der nun auf der Geraden liegt. An dem "Dach" über dem y sieht man, dass die x-Werte dieselben bleiben, jedoch die y-Werte an die Gerade angepasst werden. Daraus ergibt sich dann die Gerade: $\hat{y}_i=a+bx_i$.\\
-Die Differenz zwischen dem Beobachtungspunkt $P_i$ und dem geschätzten Punkt $\hat{P}_i$ auf der Geraden ist das vorher angesprochene \textit{Residuum} oder \textit{Fehlerglied}, also die Abweichung der real beobachteten Werten von der linearen geschätzten Geraden.\\
-Um nun zu optimieren besteht die Möglichkeit, die Gesamtheit der Residuen zu minimieren. Da sich diese jedoch ausgleichen könnten, wenn wir sie einfach nur aufsummieren, sollten wir die Residuen entweder in Betrag setzen, mit denen jedoch umständlich zu rechnen ist oder diese quadrieren. Da dies die einfachste Lösung ist, wird im Folgenden die Summe der quadrierten Residuen minimiert. Daher kommt auch der Name, Kleinste-Quadrate-Schätzer, zustande. Um die Gesamtheit der quadrierten Residuen zu minimieren, löst man die quadrierte lineare Gleichung nach $\sum_{i=1}^ne_i^{2}$ auf und erhält $\sum_{i=1}^n(y_i-a-bx_i)^{2}$. Diese Summe muss nun minimiert werden.
-\paragraph{Vorgehensweise der Schätzung:} Um ein Minimum, also eine Extremstelle zu finden, leitet man die Gleichung jeweils nach a und nach b ab. Anschließend sucht man die Nullstellen durch gleichsetzen mit 0. Danach setz man $\hat{a}$ in die Gleichung für b ein und erhält: 
+\noindent Der einfachste Zusammenhang zwischen zwei Merkmalen ist der lineare Zusammenhang, welcher durch den Ansatz $Y=a+b \cdot X$ angegeben wird. Bildet man den Zusammenhang zwischen $X$ und $Y$ durch dieses Modell ab, so spricht man von einer \textit{linearen (Einfach-)Regression}.\\
+Da nicht alle Beobachtungspaare zwingend auf einer Gerade liegen, wird der obige Ansatz durch ein \textit{Fehlerglied (bzw. -term)} oder \textit{Residuum} $e$ ergänzt. Dadurch werden zufällige Abweichungen von der Geraden mit in das Modell einbezogen und es wir erhalten $Y=a+b \cdot X+e$ als Modellgleichung.
+
+\subsection{Plots und Annahmen}\label{sec:scatter}
+Da man bei zwei Merkmalen nicht automatisch von einem linearen Zusammenhang bzw. einer Ursachen-Wirkung-Beziehung ausgehen kann, ist es ratsam, zuerst einmal durch eine \textit{graphische Darstellung} zu überprüfen, ob die Annahme eines linearen Zusammenhang überhaupt zu rechtfetigen ist. Hierbei ist ein \textit{Streudiagramm} oder \textit{Scatter-Plot} hilfreich.\\
+Hierbei trägt man auf die x-Achse die Einflussgröße $X$ und auf der y-Achse die Zielgröße $Y$ ab und jedes Beobachtungspaar $(x_i;y_i)$ wird als ein Punkt in das Koordinatensystem eingezeichnet. Liegt ein Zusammenhang zwischen den Merkmalen vor, kann man das oft schon hier erkennen. Es gibt jedoch nicht nur lineare, sondern u.a. auch zyklische, exponentiell wachsende/fallende oder logarithmische Zusammenhänge. Wir fokussieren uns hier ausschließlich auf lineare Zusammenhänge.\\
+Oft kommt es vor, dass zwar ein grober Zusammenhang zu erkennen ist, dieser jedoch durch nicht dazu passende Beobachtungspaare, sogenannte \textit{Ausreißer}, gestört wird. Diese müssen gesondert betrachtet werden und gegebenenfalls (mit guter Rechtfertigung) aus dem Datensatz entfernt werden, da diese (teils großen) Einfluss auf die Schätzung (vgl Kap. \ref{sec:kq}) haben können.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für Scatter-Plots: > plot(data\$x, data\$y, ...)} \hfill \href{https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot}{Dokumentation}}
+
+\subsection{Kleinste-Quadrate-Schätzer}\label{sec:kq}
+\paragraph{Motivation} Angenommen die Modellparameter wären mit $\hat a = 4$ und $\hat b = 2$ bestimmt und wir betrachten das Beobachtungspaar $(x_1; y_1) = (5; 10)$ aus dem Datensatz. Für dieses Beobachtungspaar wäre der (durch das Modell) \textit{vorhergesagte Wert} 
+$$\hat y_1 = a + b \cdot x_1 = 4 + 2 \cdot 5 = 14\;,$$
+\noindent was keine besonders akkurate Vorhersage wäre (das wahre $y_1$ ist 10). Den daraus resultierenden Fehler $\hat e_1$ könnte man wie folgt berechnen:
+$$y_1 = \underbrace{a + b \cdot x_1}_{\hat y_1} + e_1 \quad \Leftrightarrow \quad \hat e_1 = y_1 - \hat y_1 = 5$$
+\noindent Genauso könnte man für das zweite, dritte, .., $n$-te Beobachtungspaar den Fehler bestimmen. Je besser das Modell, desto kleine wäre die Summe der \textit{Beträge der Fehler}. Das Wort \textit{Betrag} ist hier wichtig, da sowohl Abweichungen nach oben als auch nach unten schlecht sind.\\
+
+\noindent \dangersign[3ex] \textbf{Notation:} \textit{Geschätzte} Werte werden stets mit einem \textit{Dach} versehen (z.B. $\hat a$ oder $\hat y$).\\
+
+\noindent Diese Fehler spielen eine zentrale Rolle in dem Optimierungsproblem zur Bestimmung der Werte für $a$ und $b$. Bei diesem Optimierungsproblem wird die \textbf{Summe der quadrierten Fehler} minimiert:
 \begin{align*}
-    \hat{b}=\frac{\sum_{i=1}^nx_iy_i-n\bar{y}\bar{x}}{\sum_{i=1}^nx_i^{2}-n\bar{x}^{2}}
+    \mbox{Fehler für ein Beobachtungspaar:} &\quad e_i = y_i - \hat y_i = y_i - a + b \cdot x_i\\
+    \mbox{Quadrierter Fehler für ein Beobachtungspaar:} &\quad e_i^2 = (y_i - \hat y_i)^2 = (y_i - a + b \cdot x_i)^2\\
+    \mbox{Summe der quadrierten Fehler:} &\quad \sum_{i=1}^n e_i^2 = \sum_{i=1}^n (y_i - \hat y_i)^2 = \sum_{i=1}^n (y_i - a + b \cdot x_i)^2\\
 \end{align*}
-Um nun zu prüfen, ob an dieser Extremstelle wirklich ein Minimum liegt, bildet man die 2. Ableitung von a und b nach der Hesse-Matrix und setzt die Lösung der 1. Ableitung ein. Ist das Ergebnis der 2.Ableitung nun größer als 0 ist bestätigt, dass an der Herausgefundenen Extremstelle ein Minimum vorliegt. Da dies hier der Fall ist, ist $\hat{b}=\frac{\sum_{i=1}^nx_iy_i-n\bar{y}\bar{x}}{\sum_{i=1}^nx_i^{2}-n\bar{x}^{2}}$ die Lösung des Optimierungsproblems und eingesetzt in die lineare Gleichung ergibt sich für das optimierte $\hat{a}$:
+
+\noindent Man verwendet die quadrierten statt betragsmäßigen Fehler, da sich diese besser optimieren lassen.
+
+\paragraph{Vorgehensweise der Schätzung:} Um diesen Ausdruck zu minimieren, also $\min_{a,b} \sum_{i=1}^n e_i^2$, bildet man die partiellen Ableitungen nach $a$ und $b$ ab und setzt diese jeweils gleich Null. Durch Auflösen der zweiten Gleichung erhält man: 
+$$\hat{b}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^{2}}=\frac{\sum_{i=1}^nx_iy_i-n\bar{y}\bar{x}}{\sum_{i=1}^nx_i^{2}-n\bar{x}^{2}}$$
+
+\noindent Eingesetzt in die erste Gleichung ergibt sich:
+$$\hat{a}=\bar{y}-\hat{b}\bar{x}$$
+
+\noindent Würde man den Schätzer für $b$ mit $\frac{1}{n}$ erweitern, so stünde im Zähler die Kovarianz und im Nenner die Varianz der Einflussgröße, d.h. $\hat{b}=\frac{Cov(X,Y)}{Var(X)}$.\\
+
+\noindent \dangersign[3ex] $\hat b$ muss immer vor $\hat a$ berechnet werden, da es Teil der Formel zur Berechnung von $\hat a$ ist.
+
+\subsection{Besonderheiten der Regressionsgerade}\label{sec:obacht}
+\paragraph{Sinnvoller Wertebereich} Da nur die Beobachtungspaar $(x_1;y_1)$, .., $(x_n;y_n)$ in die Schätzung einfließen, können wir nur über deren Wertebereich eine sinnvolle Aussage treffen.\\
+\textit{Beispiel:} Schätzt man ein Regressionsmodell mit Gewicht als Ziel- und Körpergröße als Einflussgröße basierend auf Daten von Erwachsenen, so sollten basierend darauf keine Aussagen/Progno\-sen für Kleinkinder getroffen werden.
+
+\paragraph{Arithmetisches Mittel} Da im vorigen Kapitel zur Berechnung von $\hat{a}$ die Mittelwerte verwendet wurden, liegt der Punkt mit den Mittelwerten $(\bar{x},\bar{y})$ auch auf der Regressionsgeraden.\\
+\textit{Kleiner Tipp:} Wenn man die Regressionsgerade zeichnen muss, dann kann man diesen Punkt immer verwenden, da die arithmetischen Mittel meist schon bekannt sind.
+
+\paragraph{Bedeutung des Korrelationskoeffizient} Für die Berechnung von $\hat{b}$ spielt die Kovarianz eine entscheidende Rolle. Daher gibt das Vorzeichen von $Cov(X;Y)$ (bzw. $r_{BP}$) Auskunft über das Vorzeichen von $\hat b$. Eine höheren Kovarianz/Korrelation bedeutet jedoch nicht automatisch größeres $\hat b$, da nicht nur diese eine Rolle bei der Berechnung von $\hat{b}$ spielt, sondern auch die Streuung von $X$.
+
+\subsection{Güte der Anpassung}\label{sec:goodness-of-fit}
+Die Frage "\textit{Wie gut repräsentiert unser Modell die Originaldaten?}" lässt sich durch eine Varianzanalyse beantworten. Dabei wird die Gesamtstreuung der Daten zerlegt in die Streuung der vorhergesagten Werte und die Streuung der Fehler:
 \begin{align*}
-    \hat{a}=\bar{y}-\hat{b}\bar{x}
+    \sum_{i=1}^n(y_i-\bar{y})^2&=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2 + \underbrace{\sum_{i=1}^n(y_i-\hat{y}_i)^2}_{\sum_{i=1}^n e_i^2}\\
+    SQ_{Total}&=SQ_{Regression}+SQ_{Residual}
 \end{align*}
-Dabei sind die Werte $\bar{x}$ und $\bar{y}$ die Mittelwerte aus den Beobachtungen.
-Man kann $\hat{b}$ auch umschreiben in $\hat{b}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^{2}}$, was einem wieder bekannter vorkommen wird, da im Zähler die Summe über die Produkte der Abweichungen von x und y von ihrem jeweiligen Mittelwert steht. Dies kann man auch schreiben als $S_{xy}$. Teilt man dies durch n, würde man die Kovarianz. Der Nenner des Quotienten ist die Summe über die quadrierten Abweichungen von x von seinem Mittelwert, dies schreibt man auch als $S_{xx}$. Teilt man dies auch durch n, so haben wir die Varianz von x. Da nun Zähler und Nenner jeweils geteilt durch n, Kovarianz und Varianz ergibt, kann man n heraus kürzen und man erhält $\hat{b}=\frac{Cov(X;Y)}{Var(X)}$. Zudem kann man $\hat{b}$ auch mit dem Rangkorrelationskoeffizient nach Bravais-Pearson berechnen: $\hat{b}=r_{BP}\sqrt{\frac{S_{yy}}{S_{xx}}}$. Dabei ist $S_{yy}$ die Summe über die quadrierten Abweichungen von y von seinem Mittelwert und geteilt durch n, würde man die Varianz von y erhalten.
 
-\subsection{Eigenschaften der Regressionsgerade}
-\paragraph{Sinnvoller Wertebereich} Da wir nur in einem Wertebereich von 1 bis n Merkmalsausprägungen haben, können wir nur über diesen Bereich eine sinnvolle Aussage treffen, da es außerhalb des Bereichs auch möglich wäre ein ganz anderen Zusammenhang zu haben. Deshalb können wir nur über den uns bekannten Bereich eine Aussage treffen. 
-\paragraph{"arithmetisches Mittel"} Da im vorigen Kapitel zur Berechnung von $\hat{a}$ die Mittelwerte verwendet wurden, liegt der Punkt mit den Mittelwerten $(\bar{x},\bar{y}$ auch auf der Regressionsgeraden. Kleiner Tipp: Wenn man die Regressionsgerade zeichnen muss, dann kann man diesen Punkt immer beim einzeichnen verwenden, da die arithmetischen Mittel meistens schon bekannt sind.
+\noindent Die erste der drei Summen ($SQ_{Total}$) ist die Gesamtstreuung von $Y$. Die zweite ($SQ_{Regression}$) ist die Streuung der \textit{vorhergesagten} y-Werte. Daher spricht man hier von der Streuung, die durch das Regressionsmodell erklärt wird. Das heißt je größer $SQ_{Regression}$ im Verhältnis zu $SQ_{Total}$ ist, desto besser passt das Regressionsmodell zu den Originaldaten. Diese dritte Summe ($SQ_{Residual}$) entspricht den quadrierten Fehlern und sollte daher im Verhältnis zu $SQ_{Total}$ möglichst klein sein.\\
 
-\paragraph{Fehlerausgleich}Wie zuvor in Kapitel \ref{sec:KQS} erläutert wollten wir die Gerade optimieren und dabei möglichst kleine Residuen erhalten. In der optimierten Gerade sind dann schlussendlich die Summer der positiven und negativen Residuen ausgeglichen. Deshalb ist dann auch das arithmetische Mittel der angepassten Daten $\bar\hat{y}$ gleich dem arithmetischen Mittel aus den Originaldaten $\bar{y}$.
+\noindent \dangersign[3ex] Da die $\hat y_i$ basierend auf den $x_i$ vorhergesagt werden, kennen wir den Grund (nämlich die unterschiedlichen x-Werte) für die Abweichung von $\bar y$. Daher spricht man vom der \textit{erklärten Streuung}.
 
-\paragraph{Bedeutung des Korrelationskoeffizient} Wie weiter oben bereits gezeigt, kann man $\hat{b}$ mit Hilfe des Korrelationskoeffizient nach Pravais-Pearson berechnen. Dabei gibt dieser Auskunft über den positiven bzw. negativen Zusammenhang der beiden Merkmale. Jedoch kann man nicht direkt von einer höheren Korrelation auf einen größeren Anstieg der Regressionsgerade schließen, da nicht nur die Korrelation eine Rolle bei der Berechnung von $\hat{b}$ spielt sondern auch $S_{XX}$ und $S_{YY}$.
+\paragraph{Bestimmtheitsmaß $R^2$} Dieses Maß gibt den Anteil der erklärten Streuung ($SQ_{Regression}$) an der gesamten Streuung ($SQ_{Total}$) an. Analog könnte man auch den Anteil der nicht erklärten Streuung ($SQ_{Residual}$) von 1 subtrahieren:
+$$R^2 = \frac{SQ_{Regression}}{SQ_{Total}} = 1 - \frac{SQ_{Residual}}{SQ_{Total}}$$
 
-\subsection{Güte der Anpassung}
-Nun haben wir in den vorigen Unterkapiteln gelernt, wie man ein Regressionsmodell aufstellen und berechnen kann. Nun ist jedoch die Frage \textit{Wie gut} repräsentiert unser Modell die Originaldaten? Über die Varianzanalyse kann man ein Maß gewinnen, welches schließlich eine Aussage machen kann, inwiefern unser Modell mit den Originaldaten übereinstimmt. \\
-Um auf das gesuchte Maß der Anpassung zu kommen, geht man von den geschätzten Residuen, der Differenz von den beobachteten Werten und deren geschätzten Werten: $\hat{e}_i=y_i-\hat{y}_i$. Um auf die Varianz zu kommen, baut man in die Differenz den Mittelwert ein und quadriert und nummeriert über alle Beobachtungswerte. Schlussendlich erhält man die Gleichung:
-\begin{align*}
-    \sum_{i=1}^n(y_i-\bar{y})^2=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2-\sum_{i=1}^n(y_i-\hat{y}_i)^2
-\end{align*}
-Die erste der drei Summen $\sum_{i=1}^n(y_i-\hat{y}_i)^2$ ist die aufsummierte Varianz der gesamten y-Messreihe und wird mit $SQ_{Total}$ bezeichnet. Die zweite Summe $\sum_{i=1}^n(y_i-\bar{y})^2$ misst den Anteil an der gesamten Varianz, der durch das Regressionsmodell erklärt wird. Das heißt je größer dieser im Verhältnis zur Gesamtvarianz ist, desto besser passt das Regressionsmodell zu den Originaldaten. Diese Summe wird als $SQ_{Rest}$ oder $SQ_{Residual}$ bezeichnet. Und die letzte Summe misst die Abweichung der durch die Regressionsgerade vorhergesagten Werten von den Originaldaten und gibt den Anteil an der Varianz an, der nicht von dem Modell erklärt wird. Um eine gute Repräsentation der Originaldaten durch das Modell zu erhalten, sollte diese Summe möglichst klein sein. Diese Summe bezeichnet man auch als $SQ_{Rest}$ oder $SQ_{Residual}$.\\
-Somit erhält man schließlich die Formel der Streuungszerlegung \begin{align*}
-    SQ_{Total}=SQ_{Regression}+SQ_{Residual}
-\end{align*}
-\paragraph{Bestimmtheitsmaß $R^2$}Das Maß, welches angibt inwiefern das Modell die Originaldaten widerspiegelt, wird \textit{Bestimmtheitsmaß $R^2$} genannt und gibt den Anteil der erklärten Varianz $SQ_{Regression}$ an der gesamten Varianz an. Gleichzeitig kann man es auch durch den Anteil der nicht vom Modell erklärten Varianz subtrahiert von 1 berechnen.$R^2$ hängt von der Abweichung der Regressionsgeraden und der Streuung der X-Werte ab.
-Da es sich hier um Anteile handelt, geht der Wertebereich von $R^2$ von 0 bis 1.
-Man sollte bei einer Regression immer das Bestimmtheitsmaß $R^2$ mit angeben, um zu sehen, wie gut das Modell wirklich die Wahrheit widerspiegelt. 
-\paragraph{Grenzwerte von $R^2$} Da sich die Anteile von $SQ_{Rest}$ und $SQ_{Residual}$ zu 1 aufsummieren, ist bei einem Bestimmtheitsmaß von 1, $SQ_{Rest}=0$. In diesem Fall liegen sämtliche beobachteten Werte auf der Regressionsgerade. Somit kann das Regressionsmodell den linearen Zusammenhang zwischen Einflussgröße und Zielgröße optimal wiedergeben.\\
-Wenn jedoch das Bestimmtheitsmaß 0 beträgt, dann wird keine Varianz der Originaldaten durch das Modell erklärt. Dabei verläuft die Regressionsgerade dann parallel zur x-Achse, da $\hat{b}=0$ ist und somit erhält jeder x-Wert den gleichen geschätzten $\hat{y}$-Schätzwert. Bei diesem Grenzwert hat das Merkmal X dann \textit{keinen} Einfluss auf das Merkmal Y. Somit hat das Modell keine Aussagekraft. Man spricht auch von \textit{Nullanpassung}\\
-Ein anderer Sonderfall haben wir im Übungsblatt 9 besprochen. Dabei ist $SQ_{Total}=0$. Wie kann das zustande kommen. Wir haben vorhergesehen, dass $SQ_{Total}$ die aufsummierte Varianz der y-Messreihe ist, also die aufsummierte quadrierte Differenz von wahren y-Wert und dem Mittelwert von y. Somit müssen die Differenzen 0 sein, damit $SQ_{Total}=0$ ist. Damit dies der Fall ist, darf es keine Streuung bzw. Varianz zwischen den y-Werten liegen und somit liegen alle y-Werte auf einer Geraden. In diesem Fall ist dann $R^2$ auch nicht definiert, da man durch 0 nicht teilen darf und das Bestimmtheitsmaß den Anteil der erklärten Variabilität von y angibt, welche jedoch überhaupt nicht vorhanden ist.
-\paragraph{Zusammenhang von $R^2$ und der Korrelation}
-Schlussendlich ist das Bestimmtheitsmaß $R^2$ die quadrierte Korrelationskoeffizient nach Bravais-Pearson. Daher kann man bei gegebenen oder berechnetem Bravais-Pearson einfach das Bestimmtheitsmaß berechnen und andersherum.
+\noindent Da es sich hier um einen Anteilswert handelt, geht der Wertebereich von $R^2$ von 0 bis 1.
+Liegen sämtliche Beobachtungspaare exakt auf der Regressionsgerade, so ist $SQ_{Regression} = SQ_{Total}$ und $R^2$ nimmt folglich den Wert 1 an. Man spricht hier von \textit{perfekter Anpassung}.\\
+Wenn jedoch das Bestimmtheitsmaß 0 beträgt, dann wird kein Teil der Streuuung in den Originaldaten durch das Modell erklärt. Dies erkennt man grafisch an einer Regressionsgerade die parallel zur x-Achse verläuft, da $\hat{b}=0$ und somit für jedes $x_i$ das gleiche $\hat{y_i} = \bar y$ vorhergesagt wird. Man spricht hier von \textit{Nullanpassung}.\\
+
+\noindent \dangersign[3ex] Für die lineare Regression mit einer Einflussgröße ergibt sich ein Spezialfall: Hier kann $R^2$ auch durch Quadrierung von $r_{BP}$ berechnet werden.
 
 \subsection{Kategoriale Regression} \label{sec:Kategoriale Regression}
-Bis jetzt haben wir die lineare Regression kennengelernt, bei der wir diese für metrische Merkmale berechnen. Was machen wir jedoch, wenn wir keine metrischen Merkmale vorliegen haben, welche nicht quantitative stetig sind, sondern ein kategoriales bzw. nominales Skalenniveau haben? Hierzu gibt es eine andere Vorgehensweise, die \textit{kategoriale} Regression, welche wir im Folgenden näher betrachten.\\
-Wir können nicht einfach die verschiedenen Merkmale kodieren, indem wir dem ersten Merkmal die eins und dem zweiten Merkmale die zwei zuordnen und dann normal die Berechnung der Parameterschätzung $\hat{a}$ und $\hat{b}$ ausführen, da nicht unbedingt eine Ordnung zugrunde liegt und die Abstände nicht definiert sind. Deshalb gibt es zwei Möglichkeiten die Merkmale \textit{umzukodieren}: \textbf{Dummykodierueng} und \textbf{Effektkodierung}.\\
-Diese beiden Möglichkeiten sind sehr ähnlich in ihrer Vorgehensweise. Bei beiden werden aus k Merkmalsausprägungen k-1 Merkmalsausprägungen. Das heißt, es gibt ein Regressor (Dummy) weniger, da eine beliebige Merkmalsausprägung zur \textit{Referenzkategorie} wird.
-Der Unterschied zwischen den Kodierungen ist, dass es bei der Dummykodierung nur zwei mögliche Varianten gibt entweder 0 oder 1 und bei der Effektkodierung 0, 1 oder -1.
-Bei der Dummykodierung erhält die Merkmalsausprägung i eine 1, die gerade vorliegt und alle anderen eine 0. Liegt die Referenzkategorie vor, dann sind alle Dummys 0. Das ist auch der Unterschied zur Effektkodierung, da beim Vorliegen der Referenzkategorie alle Dummys den Wert -1 erhalten, ansonsten ist es genau gleich, dass bei vorliegen eines Dummys i, diese den Wert 1 bekommt und alle anderen eine 0.
-Hat man allen Merkmalsausprägungen umkodiert und eine Zahl zugeordnet, dann kann man $\hat{b}$ und $\hat{a}$ wieder normal berechnen. \\
-Bei der Interpretation der Ergebnisse kommt es dann auch noch einmal zu Unterschieden.\\
-\textbf{Dummykodierung:} Da man eine Referenzkategorie eingeführt hat, beziehen sich die Parameterschätzer auf die Referenzkategorie. $\hat{a}$ ist dabei der Mittelwert der Referenzkategorie und $\hat{b}_1\hat{b}_2$ bilden dann jeweils die Abweichungen der Mittelwerte der anderen Kategorien (Dummys) von der Referenzkategorie ab. Das heißt man interpretiert bspw. zu $\hat{b}$: Die Kategorie $X_1$ ist im Mittel um XY teurer als die Referenzkategorie.\\
-\textbf{Effektkodierung}: Hier beziehen sich die Parameterschätzungen nicht auf die Referenzkategorie, sondern auf die durchschnittliche Kategorie, in die die Ergebnisse aller Klassen  mit eingehen. Dies liegt daran, dass die Referenzkategorie als Wert -1 erhalten hat.
-Somit ist $\hat{a}$ der Mittelwert der durchschnittlichen Kategorie, in die alle Kategorien mit einfließen und $\hat{b}_1,\hat{b}_2$ sind die Abweichungen der Mittelwerte der einzelnen Kategorien von der durchschnittlichen Kategorie. Das heißt man interpretiert bspw. zu $\hat{b}$: Das Merkmal Z ist im Mittel um XY teurer als der Durchschnitt.
+Alle bisherigen Ausführung bezogen sich auf den Fall eines metrischen Merkmals als Einflussgröße. Besitzt $X$ jedoch nur kategoriales bzw. nominales Skalenniveau, erfordert dies eine andere Vorgehensweise. Um auch solche Merkmale als Einflussgröße verwenden zu können, müssen diese entsprechend \textit{umzukodiert} werden. Dies kann mit Hilfe der \textbf{Dummykodierueng} oder der \textbf{Effektkodierung} geschehen, welche im Folgenden anhand eine Beispiels erläutert werden:\\
+
+\noindent Hierfür betrachten wir das Merkmal $X:$ "\textit{Parteizugehörigkeit eines Bundestagsabgeordneten}" mit den möglichen Ausprägungen \{\textit{Union, SPD, Grüne, Linke, AfD, FDP}\} als Einflussgröße. Die Zielgröße $Y$ ist die "\textit{Höhe der Nebeneinkünfte des Abgeordneten}".\\
+
+\noindent Dummy- und Effektkodierung haben folgende Schritte gemeinsam:
+\begin{itemize}
+    \item[] \textbf{Schritt 1}: \textit{Auswahl einer Referenzkategorie}\\
+            Eine der möglich Merkmalsausprägungen muss als Referenz ausgewählt werden. Für diese Kategorie wird keine Dummyvariable gebildet. Was als Referenz gewählt wird ist prinzipiell egal, muss allerdings bei der anschließenden Interpretation berücksichtigt werden.\\
+            \textbf{Beispiel: Wir entscheiden uns für die \textit{Union} als Referenzkategorie.}
+    \item[] \textbf{Schritt 2}: \textit{Bildung von k-1 Dummyvariablen}\\
+            Anschließend wir die \textit{Anzahl} der Dummys bestimmt. Wir benötigen eine Dummyvariable weniger als es mögliche Merkmalsausprägungen gibt. Es wird für jede mögl. Merkmalsausprägung eine Dummyvariable kreiert.\\
+            \textbf{Beispiel: Wir benötigen hier 6 - 1 = 5 Dummyvariablen, konkret:}\\$x_{SPD}$,\; $x_{\mbox{\it \scriptsize Grüne}}$,\; $x_{Linke}$,\; $x_{AfD}$,\; $x_{FDP}$
+    \item[] \textbf{Schritt 3}: \textit{Aufstellen der Regressionsgleichung}\\
+            Da wir hier nun technisch gesehen mehrere Einflussgröße haben, sieht auch die Gleichung anders aus.\\
+            \textbf{Beispiel}: $y_i = a + b_1 \cdot x_{SPD} + b_2 \cdot x_{\mbox{\it \scriptsize Grüne}} + b_1 \cdot x_{Linke} + b_1 \cdot x_{AfD} + b_1 \cdot x_{FDP} + e_i$
+\end{itemize}
+
+\clearpage
+
+\noindent Sie unterscheiden sich in folgenden Schritten:
+\begin{itemize}
+    \item[] \textbf{Schritt 4 [Dummykodierung]}: \textit{Definition der Ausprägungen der Dummyvariablen}\\
+            Die $i$-te Dummyvariable nimmt den Wert 1 an, falls die $i$-te Kategorie vorliegt und Null sonst.\\
+            \textbf{Beispiel:} $x_{SPD} = \begin{cases} 1,\quad \mbox{falls X = SPD}\\ 0,\quad sonst\end{cases};\qquad x_{\mbox{\it \scriptsize Grüne}} = \begin{cases} 1,\quad \mbox{falls X = Grüne}\\ 0,\quad sonst\end{cases}; \mbox{usw.}$
+    \item[] \textbf{Schritt 4 [Effektkodierung]}: \textit{Definition der Ausprägungen der Dummyvariablen}\\
+            Die $i$-te Dummyvariable nimmt weiterhin den Wert 1 an, falls die $i$-te Kategorie vorliegt. Sie nimmt den Wert -1 an, falls die Referenz vorliegt und Null bei jeder anderen Kategorie.\\
+            \textbf{Beispiel:} $x_{SPD} = \begin{cases} 1,\quad \mbox{falls X = SPD}\\-1,\quad \mbox{falls X = Union}\\ 0,\quad sonst\end{cases};\qquad x_{\mbox{\it \scriptsize Grüne}} = \begin{cases} 1,\quad \mbox{falls X = Grüne}\\-1,\quad \mbox{falls X = Union}\\ 0,\quad sonst\end{cases}; \mbox{usw.}$
+    \item[] \textbf{Schritt 5 [Dummykodierung]}: \textbf{Berechnung der Parameter}
+            \begin{enumerate}
+                \item Berechnung der Mittelwerte von $Y$ für jede Kategorie
+                \item Der Mittelwert der Referenz ist der Intercept $\hat a$
+                \item Die Differenz des Mittelwerts der $i$-ten Kategorien zu $\hat a$ ergeben die $\hat b_i$
+            \end{enumerate}
+            \textbf{Beispiel}: $\hat a = \bar y_{Union}$;\quad $\hat b_1 = \bar y_{SPD} - \hat a = \bar y_{SPD} - \bar y_{Union}$, usw.
+    \item[] \textbf{Schritt 5 [Effektkodierung]}: \textbf{Berechnung der Parameter}
+            \begin{enumerate}
+                \item Berechnung der Mittelwerte von $Y$ für jede Kategorie
+                \item Der \textit{Mittelwert aller Mittelwerte} ist der Intercept $\hat a$
+                \item Die Differenz des Mittelwerts der $i$-ten Kategorien zu $\hat a$ ergeben die $\hat b_i$
+            \end{enumerate}
+            \textbf{Beispiel}: $\hat a = \frac{1}{6}\cdot(\bar y_{Union} + \bar y_{SPD} + \hdots + \bar y_{FDP})$;\quad $\hat b_1 = \bar y_{SPD} - \hat a$, usw.
+\end{itemize}
+
+\noindent Der Unterschied besteht als allein darin, welche Ausprägung die Dummys annehmen, falls die Referenzkategorie vorliegt. Dies hat jedoch weitreichende Implikationen für die Interpretation:
+
+\paragraph{Interpretation Dummykodierung:}
+$\hat{a}$ ist der Mittelwert der Referenzkategorie und $\hat{b}_1, \hdots, \hat{b}_{k-1}$ entsprechen jeweils den Abweichungen der Mittelwerte der anderen Kategorien zur Referenz.\\ 
+\textbf{Beispiel}: Für einen SPD-Agebordneten erwarten man um $\hat{b}_1$ höhere/niedrigere Nebeneinkünfte als für einen Abgeordneten der Union.
+
+\paragraph{Interpretation Effektkodierung}: Hier bezieht sich $\hat a$ nicht auf die Referenz, sondern auf eine fiktive "\textit{durchschnittliche Kategorie}". Die $\hat{b}_1, \hdots, \hat{b}_{k-1}$ entsprechen jeweils den Abweichungen der Mittelwerte der anderen Kategorien zu dieser "\textit{Durchschnittskategorie}". Für die Abweichung der Referenz zum Intercept multipliziert man jedes $\hat b_i$ mit -1 und summiert die Produkte dann auf.\\ 
+\textbf{Beispiel}: Für einen SPD-Agebordneten erwarten man um $\hat{b}_1$ höhere/niedrigere Nebeneinkünfte als für den fiktiven "\textit{Durchschnittsabgeordneten}".
+
+\clearpage
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für lineare Regression: > lm(formula = .., data = ..)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/lm}{Dokumentation}}\\
+
+\noindent Für die folgenden Erläuterungen wird der Datensatz \href{https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars}{\texttt{mtcars}} aus dem \texttt{datasets}-Paket verwendet.\\Für das Verständnis der Beispiele sollte man sich die Dokumentation kurz ansehen.
+
+\noindent \dangersign[3ex] In dem \texttt{formula}-Argument wird die Modellgleichung übergeben. Dabei wird der Intercept \textbf{nicht} mit angegeben, da diese per default mitgeschätzt wird. Anstatt dem Ist-Gleich-Zeichen muss hier eine Tilde ($\sim$) eingegeben werden.\\
+Eine typische Eingabe sähe hier in etwa so aus:
+\texttt{formula = mpg $\sim$ wt}\\
+
+\noindent \dangersign[3ex] In dem \texttt{data}-Argument wird der Datensatz übergeben, in dem die Variablen aus der Modellgleichung zu finden sind. Der vollständige Befehl sähe hier in etwa so aus:\\
+\texttt{lm(formula = mpg $\sim$ wt, data = mtcars)}\\
+
+\noindent \dangersign[3ex] Mit dem \texttt{summary}-Befehl kann der Output eines geschätzten Modell angezeigt werden. Man weist dem Modell typischerweise einen Namen zu und gibt diesen dann als Argument in den \texttt{summary}-Befehl (s.u.). Ein typischer Output sähe wie folgt aus:\\
+
+\begin{small}
+\begin{Verbatim}[frame=single]
+modell <- lm(formula = mpg ~ wt, data = mtcars)
+summary(modell)
+
+Call:
+lm(formula = mpg ~ wt, data = mtcars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.5432 -2.3647 -0.1252  1.4096  6.8727 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
+wt           -5.3445     0.5591  -9.559 1.29e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.046 on 30 degrees of freedom
+Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
+\end{Verbatim}
+\end{small}
+In der \texttt{Coefficients}-Tabelle kann man in der ersten Spalte ("\texttt{Estimate}") $\hat a$ in der Zeile \texttt{Intercept} und $\hat b$ in der Zeile \texttt{wt} ablesen. Unter \texttt{Multiple R-squared} findet man den Wert für $R^2$.\\
+
+\noindent \dangersign[3ex] Wurde bereits ein Scatter-Plot der Daten mit \texttt{plot(data\$x, data\$y)} erstellt, so kann mit \texttt{abline(modell)} relativ unkompliziert die geschätzte Regressionsgerade eingezeichnet werden:\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl fürs Einzeichnen von Geraden: > abline(modell)} \hfill \href{https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/abline}{Dokumentation}}\\
+
+\noindent \dangersign[3ex] Kategoriale Variablen erkennt man in \texttt{R} daran, dass sie den Variablentyp \texttt{factor} aufweisen. Den Variablentyp kann man mit dem \texttt{str()}-Befehl abfragen. Übergibt man dem \texttt{lm()}-Befehl im \texttt{formula}-Argument auf der rechten Seite der Tilde eine Variable von Typ \texttt{factor}, so bildet \texttt{R} automatisch $k-1$ Dummyvariablen und nimmt diese mit ins Modell auf. Ist eine Variable nicht vom Typ \texttt{factor}, so kann man sie mit dem \texttt{factor()}-Befehl umwandeln (so wie hier notwendig, s.u.). Ein typischer Output sähe wie folgt aus:\\
+
+\begin{small}
+\begin{Verbatim}[frame=single]
+modell2 <- lm(formula = mpg ~ factor(cyl), data = mtcars)
+summary(modell2)
+
+Call:
+lm(formula = mpg ~ factor(cyl), data = mtcars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.2636 -1.8357  0.0286  1.3893  7.2364 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   26.6636     0.9718  27.437  < 2e-16 ***
+factor(cyl)6  -6.9208     1.5583  -4.441 0.000119 ***
+factor(cyl)8 -11.5636     1.2986  -8.905 8.57e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.223 on 29 degrees of freedom
+Multiple R-squared:  0.7325,	Adjusted R-squared:  0.714 
+F-statistic:  39.7 on 2 and 29 DF,  p-value: 4.979e-09
+\end{Verbatim}
+\end{small}
+\textit{Nötiges Hintergrundwissen zu den Daten:} Die Variable \texttt{cyl} steht für die Anzahl der Zylinder und nimmt lediglich die Ausprägungen 4, 6 und 8 an. Daher machte es auch Sinn, sie hier als kategorialen Regressor in das Modell mit aufzunehmen.\\
+Wieder liegt unser Fokus auf der ersten Spalte ("\texttt{Estimate}") der \texttt{Coefficients}-Tabelle: Zunächst fällt auf, dass es zwei Dummyvariabeln für die Ausprägungen 6 und 8 gibt. Daran erkennen wir, dass \texttt{R} die Ausprägung 4 als Referenz geählt hat. $\hat a$ in der Zeile \texttt{Intercept} ist somit der Mittelwert dieser Referenz. Die Parameter $\hat b_1$ \& $\hat b_2$ in den Zeilen \texttt{factor(cyl)6} und \texttt{factor(cyl)8} geben die Abweichungen der Mittelwerte für die jeweiligen Kategorien an. Unter \texttt{Multiple R-squared} findet man erneut den Wert für $R^2$.\\
+
+\noindent \dangersign[3ex] Per default verwendet \texttt{R} stets die Dummy-Kodierung. Um auf die Effektkodierung umzustellen muss man auf das \texttt{contrasts}-Argument zurückgreifen. Um das adäquat tun zu können, sollte man sich \texttt{cyl} zunächst als \texttt{factor}-Variable definieren, und dies nicht erst in der \texttt{lm}-Funktion tun:\\
+
+\begin{small}
+\begin{Verbatim}[frame=single]
+mtcars$fac_cyl <- factor(mtcars$cyl)
+modell3 <- lm(mpg ~ fac_cyl, data = mtcars, contrasts = list(fac_cyl = "contr.sum"))
+summary(modell3)
+
+Call:
+lm(formula = mpg ~ fac_cyl, data = mtcars, contrasts = list(fac_cyl = "contr.sum"))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.2636 -1.8357  0.0286  1.3893  7.2364 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  20.5022     0.5935  34.543  < 2e-16 ***
+fac_cyl1      6.1615     0.8167   7.544 2.57e-08 ***
+fac_cyl2     -0.7593     0.9203  -0.825    0.416    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.223 on 29 degrees of freedom
+Multiple R-squared:  0.7325,	Adjusted R-squared:  0.714 
+F-statistic:  39.7 on 2 and 29 DF,  p-value: 4.979e-09
+\end{Verbatim}
+\end{small}
+Hier ist zunächst ein bisschen undurchsichtig, was passiert ist. \texttt{R} benennt nun die Dummyvariablen anders, wodurch auf den ersten Blick nicht mehr klar ersichtlich ist, was als Referenz gewählt wurde und welcher Dummy zu welcher Kategorie gehört. Rechnet man jedoch $\hat a + \hat b_1 = 20,5022 + 6,1615 = 26,6637$ so wird (durch Vergleich mit dem dummykodierten Model) klar, dass \texttt{fac\_cyl1} sich auf die Kategorie \textit{4 Zylinder} bezieht. Rechnet man $\hat a + \hat b_2 = 20,5022 - 0,7593 = 19,7429$ so erhält man dasselbe Ergebnis wie bei $\hat a + \hat b_1 = 26,6636 - 6,9208 = 19,7428$ aus dem dummykodierten Modell. Somit ist klar, dass sich \texttt{fac\_cyl2} auf die Kategorie \textit{6 Zylinder} bezieht \& die Kategorie \textit{8 Zylinder} damit die Referenz sein muss.\\
+Zur Kontrolle: $\hat a + \hat b_1 \cdot (-1) + \hat b_2 \cdot (-1) = 20,5022 - 6,1615 + 0,7593 = 15,1$ ergibt im effektkodierten Modell dasselbe Ergebnis für die Kategorie \textit{8 Zylinder} wie $\hat a + \hat b_2 = 26,6636 - 11,5636 = 15,1$ im dummykodierten Modell. 
 
 \clearpage
 
@@ -1463,101 +1659,123 @@ Somit ist $\hat{a}$ der Mittelwert der durchschnittlichen Kategorie, in die alle
     \item[d)] Die Referenzkategorie ist immer auf natürliche Art \& Weise vorgegeben. \hfill $\square$
 \end{itemize}
 
+
 \newpage
 
-\section{Indizes}
+
+\section{Indizes}\label{chap:index}
 \subsection{Verhältniszahlen}
-Verhältniszahlen oder Indizes sind Quotienten, die aus zwei Maßzahlen bestehen und bei denen es Sinn macht, diese im Zähler und Nenner zu summieren. Man kann diese in Gliederungszahlen, Beziehungszahlen und einfache Index-/Messzahlen unterteilen.
+Verhältniszahlen (Indizes) sind Quotienten aus zwei Maßzahlen, welche grob in Gliederungszahlen, Beziehungszahlen und einfache Index-/Messzahlen zu unterteilen sind.
+
 \subsubsection{Gliederungszahlen}
-Gliederungszahlen sind Quotienten, bei denen im Zähler eine Teilmenge und im Nenner die dazugehörige Gesamtmenge befindet. Die Zahlen können als Quotient oder als Quotient multipliziert mit 100 in Prozent geschrieben werden. Beispiel hierzu ist die Erwerbsquote oder die Arbeitslosenquote.
+Gliederungszahlen sind Quotienten, bei denen der Zähler eine Teilmenge des Nenners ist, z.B. die Erwerbs- oder die Arbeitslosenquote.
+
 \subsubsection{Beziehungszahlen}
-Bei \textit{Beziehungszahlen} gehören Zähler und Nenner nicht zur gleichen Grundgesamtheit, also werden nicht gleich gemessen, jedoch stehen sie in sachlich sinnvollem Zusammenhang zueinander. Dabei wird noch unterschieden zwischen Verursachungszahlen und Entsprechungszahlen. Bei \textit{Verursachungszahlen} stehen Bewegungsmasse und Bestandsmasse im Verhältnis, wie bspw. bei der Geburtenziffer, bei der die Bewegungsmasse "Lebendgeborene" im Verhältnis zur Bestandsmasse "Bevölkerung" steht.
-Die \textit{Entsprechungszahlen} haben keinen Bezug auf einen Bestand wie bspw. die Bevölkerungsdichte bei der der Quotient aus Einwohnerzahl und Fläche in $km^2$ besteht.
+Bei \textit{Beziehungszahlen} ist dies nicht der Fall, jedoch stehen Zähler \& Nenner in sachlich sinnvollem Zusammenhang. Ein Beispielist die Bevölkerungsdichte (Quotient aus Einwohnerzahl \& Fläche).
+
 \subsubsection{Indexzahlen}
-Einfache Indexzahlen beschreiben den Zusammenhang zwischen Maßzahlen, die zu verschiedenen Zeitpunkten gemessen wurden. Somit sieht man eine Entwicklung einer Grundgesamtheit, also eine Zeitreihe von Maßzahlen. 
-Dabei ist $x_0$ der Wert der Basiszahl in der Basisperiode, worauf sich dann $x_1$, der Wert derselben Maßzahl, jedoch in einer späteren \textit{Berichtsperiode} bezieht. Somit berechnet sich die Indexzahl aus dem Quotienten der Maßzahl der Basisperiode zur Basiszahl der Berichtsperiode.
+Einfache Indexzahlen beschreiben den Zusammenhang zwischen einer Maßzahl, die zu verschiedenen Zeitpunkten gemessen wurde. Somit sieht man die zeitliche Entwicklung einer Größe, bezogen auf einen Basiszeitpunkt.
+Dabei bezeichnet $x_0$ den Wert der Maßzahl in der Basisperiode, $x_t$ den Wert derselben Maßzahl in einer \textit{Berichtsperiode} $t$. Die Indexzahl ist der Quotient aus dem Wert der Maßzahl in der Bericht- und der Basissperiode.
 \begin{align*}
     I_{0t}=\frac{x_t}{x_0}
 \end{align*}
-Da im Zähler und im Nenner die gleiche Maßzahl befindet, die die gleiche Einheit hat, kürzt sich diese raus und somit hat ein Index keine Einheit.\\
-Einfache Indexzahlen sind beispielsweise die Preismesszahlen, auch Preisindex genannt oder der Mengenindex. 
+
+\noindent Da Zähler und Nenner die gleiche Einheit haben, kürzt sich diese raus und der Index hat keine Einheit. Einfache Indexzahlen werden häufig für Preise (Preismesszahl/Preisindex) oder Mengen (Mengenmesszahl/Mengenindex) berechnet, um deren zeitliche Entwicklung nachzuvollziehen: 
+
 \begin{align*}
-    P_{0t}=\frac{p_t}{p_0} (Preisindex)\\
-    Q_{0t}=\frac{q_t}{q_0} (Mengenindex)
+    P_{0t}=\frac{p_t}{p_0} (Preismesszahl);\qquad
+    Q_{0t}=\frac{q_t}{q_0} (Mengenmesszahl)
 \end{align*}
-Dabei ist $p_t$ der Preis eines Produkts und $q_t$ die Menge eines Produkts zur Berichtsperiode t und $p_0$ bzw. $q_0$ der Preis bzw. die Menge eines Produkts zur Basisperiode 0. Hierbei wird sozusagen eine Zeitreihe von Messungen standardisiert, in dem sie auf die Basisperiode bezogen wird.
 
-\paragraph{Veränderungen des Basisjahres} Bei langen Zeitreihen kann es vorkommen, dass es Sinn macht, irgendwann ein neues Basisjahr festzulegen, da es bspw. zu strukturellen Umbrüchen kam oder sich anderes gravierend verändert hat. Um dieses Problem zu lösen und ein neues Basisjahr einzuführen bildet man den Index $I_{kt}$. Dieser wird durch den Quotienten aus Index der Berichtsperiode zur alten Basisperiode und dem Index aus neuer Basisperiode zur alten Basisperiode berechnet. \\
-Durch Umformung der dieses Quotienten, erhält man die Verkettungsregel$I_{0t}=I_{0k}\cdot I_{kt}$. Dabei kann man zwei Indexzahlen mit aufeinander folgenden Zeitabschnitte multiplizieren und erhält so den Index über den gesamten Zeitabschnitt.
+\noindent \dangersign[3ex] Preise ($p_t$) und Mengen ($q_t$) werden mit Kleinbuchstaben und nur einer Zahl im Index bezeichnet, Indexzahlen für Preise ($P_{0,t}$) und Mengen ($Q_{0t}$) mit Großbuchstaben und zwei Zahlen im Index (Basis- und Berechtszeitpunkt).
 
-\subsection{Preisindizes}
-Im Folgenden schauen wir uns \textit{zusammengesetzte Indexzahlen} genauer an, die n verschiedene Güter miteinander verknüpft. Um diese auch wirklich wahrheitsgetreu verknüpfen zu können, werden von den Gütern gleichartige Indexreihen verwendet, das heißt, die Güter werden zur gleichen Basis -und Berichtsperiode miteinander verknüpft. Dabei werden die Vektoren der Preise p und Mengen q zur Basis-/ und Berichtsperiode mit einem Strich rechts oben dargestellt.\\
-Der erste Ansatz, den man vermuten könnte, mit dem man eine Preismesszahl, also die Entwicklung der Preise verschiedener Güter im Zeitverlauf, messen kann, wäre das arithmetische Mittel zu bilden. Jedoch ist das Problem beim arithmetischen Mittel, dass alle Preise der Güter zu gleichen Anteilen in die Messzahl mit eingehen würden. Dies wäre jedoch nicht repräsentativ, da man nicht von jedem Produkt die gleiche Menge kauft. Deshalb ist es besser, wenn man jedes Produkt einzeln gewichtet. Daraus erhält man dann die Formel \begin{align*}
+\paragraph{Veränderungen des Basisjahres} Bei langen Zeitreihen macht es möglicherweise Sinn, irgendwann ein neues Basisjahr festzulegen (bspw. wegen strukturellen Umbrüchen). Man führt ein neues Basisjahr $k$ ein und berechnet den Index $I_{kt}$ als Quotienten aus Index der Berichtsperiode zur alten Basisperiode ($I_{0t}$) und dem Index der neuen Basisperiode zur alten Basisperiode ($I_{0k}$):
+
+\begin{align*}
+    I_{kt}=\frac{I_{0t}}{I_{0k}}
+\end{align*}
+
+\noindent Um die Zeitreihe komplett umzubasieren führt man dies für jeden vorliegenden Zeitpunkt $t$ durch.
+
+\clearpage
+
+\subsection{Preisindizes}\label{sec:preis}
+\textit{Zusammengesetzte Indexzahlen} verknüpfen  einfache Indexzahlen für $n$ verschiedene Güter miteiander. Der naive Ansatz, das Mitteln der Preismesszahlen verschiedener Güter für die verschiedenen Zeitpunkte im Zeitverlauf, wäre problematisch, da alle Güter mit gleicher Gewichtung eingehen würden. Dies wäre jedoch nicht repräsentativ, da nicht für alle Güter die gleichen Mengen angenommen werden. 
+Deshalb wird ein sogenannter repräsentativer \href{https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2015.pdf;jsessionid=8FB8106A47EAAE26AF0095FEDD152C69.internet8721?__blob=publicationFile}{Warenkorb} gebildet, in dem jedes Produkt einzeln, proportional zur jeweiligen Menge, gewichtet wird:
+
+\begin{align*}
     P_{0t}=I_{0t}^P(1) \tilde w(1)+....+I_{0t}^P(n)\tilde w (n)
 \end{align*}
-bei der die Indexzahlen mit den relativen Gewichten $\tilde w(i)$ gewichtet werden.\\
-Es gibt zwei Arten, wie man den Preisindex berechnen kann, den Preisindex nach Laspeyres und den Preisindex nach Paasche
 
-\subsubsection{nach Laspeyres}\label{PI nach Laspeyres}
-Im Zähler des Preisindex steht das aufsummierte Produkt aus dem Preis der Berichtsperiode und der Menge aus der Basisperiode und im Nenner das aufsummierte Produkt aus Preis und Menge zur Basisperiode.
+\noindent Für die Gewichtung existieren zwei Ansätze, der Preisindex nach Laspeyres und der nach Paasche
+
+\subsubsection{nach Laspeyres}\label{sec:p-laspeyres}
+Der Preisindex nach Laspeyres verwendet für die Gewichtung die Menge aus der \textit{Basisperiode}:
+Im Zähler steht die Summe der Preise in der Berichtsperiode, jeweils multipliziert mit den Menge aus der Basisperiode, im Nenner dasselbe für die Preise der Basisperiode:
+
 \begin{align*}
-    P_{0t}^L =\frac{\sum_{i=1}^n p_t(i)q_0(i)}{\sum_{i=1}^n p_0(i)q_0(i)} =\frac{p_t'q_0}{p_0'q_0}
+    P_{0t}^L =\frac{\sum_{i=1}^n p_t(i)q_0(i)}{\sum_{i=1}^n p_0(i)q_0(i)}
 \end{align*}
-Der Preisindex nach Laspeyres gibt an, wie sich der der Preis im Vergleich zur Basisperiode bei gleicher Menge (Menge zur Basisperiode) verändert hat. \\
-Der Vorteil dieses Preisindex ist, dass man nach Erheben einer neuen Berichtsperiode sofort den Preisindex mit früher ermittelten Indizes ausrechnen kann. Zudem ist dieser leicht ermittelbar, da der Inhalt, also die Menge der jeweiligen Güter des Warenkorbs schon von früheren Untersuchungen bekannt sind, da man die Menge zur Basisperiode und nicht zur Berichtsperiode heranzieht.\\
-Der Nachteil ist jedoch, dass sich der Warenkorb mit der Zeit veraltet, es kommen neue Produkte dazu und alte werden außen vorgelassen. Daher muss man immer wieder den Warenkorb in regelmäßigen Abständen aktualisieren.
 
-\subsubsection{nach Paasche}
-Im Vergleich zum Preisindex nach Laspeyres werden im Preisindex von Paasche die Mengen zur Berichtsperiode verwendet. Somit steht im Zähler des das aufsummierte Produkt aus Preis und Menge zur Berichtsperiode. Im Nenner steht das aufsummierte Produkt aus Preis zur Basisperiode und der Menge zur Berichtsperiode. 
+\noindent Der Preisindex nach Laspeyres gibt an, wie sich der der Wert des Warenkorbs aus Basisperiode in der Berichtsperiode (verglichen mit der Basisperiode) verändert hat.\\
+Der Vorteil dieses Preisindex ist, dass man nach Erheben der Daten für eine neue Berichtsperiode sofort den Preisindex mit früheren Indexwerten vergleichen kann. Der Nachteil ist jedoch, dass der Warenkorb mit der Zeit veraltet, neue Produkte dazukommen und alte außen vorgelassen werden. Daher muss der Warenkorb in regelmäßigen Abständen aktualisiert werden.
+
+\subsubsection{nach Paasche}\label{sec:p-paasche}
+Im Vergleich zum Preisindex nach Laspeyres werden im Preisindex von Paasche die Mengen der Berichtsperiode zur Gewichtung verwendet:
+
 \begin{align*}
-    P_{0t}^P =\frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_t(i)} =\frac{p_t'q_t}{p_0'q_t}
+    P_{0t}^P =\frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_t(i)}
 \end{align*}
-Der Preisindex nach Paasche gibt die Veränderung des Preises an, wenn man den Warenkorb aus der Berichtsperiode heranzieht. \\
-Der Vorteil ist, dass der Warenkorb immer aktuell ist, da die Mengen durch jährliche Anpassung nie veralten. Es ist nicht so einfach den Preisindex mit alten Preisindizes zu vergleichen, da man unterschiedliche Warenkörbe benutzt hat. Somit kann man die Preisindizes nur vergleichen, wenn diese auf die neuen Warenkörbe umgestellt werden. Zudem muss man für jedes neue Berichtsjahr auch einen neuen Warenkorb zusammenstellen.
 
-\subsection{Mengenindizes}
-Man erhält den Mengenindize durch Vertauschen von Preis und Menge, dabei vergleicht man die Menge von Berichtsperiode zu Basisperiode bei gleichbleibendem Preis. Diese können zudem wieder nach Laspeyres und nach Paasche berechnet werden.\\
+\noindent Der Preisindex nach Paasche gibt an, wie sich der der Wert des Warenkorbs aus Berichtsperiode in der Berichtsperiode (verglichen mit der Basisperiode) verändert hat.\\
+Der Vorteil ist, dass der Warenkorb immer aktuell ist, da die Güter und deren Mengen durch jährliche Anpassung nie veralten. Es ist allerdings nicht so einfach diesen Preisindex mit alten Preisindizes zu vergleichen, da man jede Berichtsperiode unterschiedliche Warenkörbe benutzt.
 
-\subsubsection{nach Laspeyres}
+\subsection{Mengenindizes}\label{sec:menge}
+Man erhält den Mengenindizes durch Vertauschen von Preis und Menge, dabei vergleicht man die Mengen von Berichtsperiode \& Basisperiode bei gleichbleibendem Preis. Es kann entweder der Preis aus der Basis- (Laspeyres) oder Berichtsperiode (Paasche) herangezogen werden.
+
+\subsubsection{nach Laspeyres}\label{sec:q-laspeyres}
 Der Mengenindex von Laspeyres wird mit dem konstanten Preis der Basisperiode berechnet.
-\begin{align*}
-    Q_{0t}^L = \frac{p_0'q_t}{p_0'q_0}
-\end{align*}
-Der Mengenindex gibt an, wie sich der Wert des Warenkorbs verändert hat, bei gleichbleibenden Preisen aus der \textit{Basisperiode} und Veränderung der Mengen.
 
-\subsubsection{nach Paasche}
-Der Mengenindex nach Paasche wird mit konstanten Preisen aus der Berichtsperiode berechnet.
 \begin{align*}
-    Q_{0t}^P = \frac{p_t'q_t}{p_t'q_0}
+    Q_{0t}^L = \frac{\sum_{i=1}^n p_0(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_0(i)}
 \end{align*}
-Der Mengenindex gibt an, wie sich der Wert des Warenkorbs verändert hat, bei gleichbleibenden Preisen aus der \textit{Berichtsperiode} und Veränderung der Mengen.
+
+\noindent Der Mengenindex nach Laspeyres gibt an, wie sich der Wert des Warenkorbs durch Mengenänderungen verändert hat, bewertet mit gleichbleibenden Preisen aus der \textit{Basisperiode}.
+
+\subsubsection{nach Paasche}\label{sec:q-paasche}
+Der Mengenindex nach Paasche wird mit konstanten Preisen aus der Berichtsperiode berechnet.
+
+\begin{align*}
+    Q_{0t}^P = \frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_t(i)q_0(i)}
+\end{align*}
+
+\noindent Der Mengenindex nach Paasche gibt an, wie sich der Wert des Warenkorbs durch Mengenänderungen verändert hat, bewertet mit gleichbleibenden Preisen aus der \textit{Berichtsperiode}.
 
 \subsection{Umsatzindex}
 Beim Umsatzindex berechnet man im Zähler das Produkt aus Preis und Menge der Berichtsperiode und im Nenner das Produkt aus Preis und Menge zur Basisperiode.
 \begin{align*}
-    W_{0t}=\frac{p_t'q_t}{p_0'q_0}
+    W_{0t} = \frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_0(i)}
 \end{align*}
-Der Umsatzindex gibt die Veränderung des Wertes des Warenkorbs in der Berichtsperiode im Verhältnis zum Wert des Warenkorbs aus der Basisperiode an.
-Somit kann man direkt die Entwicklung des Umsatzes betrachten.
+Der Umsatzindex gibt die Veränderung des Wertes des Warenkorbs in der Berichtsperiode im Verhältnis zum Wert des Warenkorbs aus der Basisperiode an, ohne dabei nach Preis- oder Mengendänderung als Ursache zu differenzieren.
 
-\subsection{Verknüpfung von Indizes}
-Verknüpft man den Lespeyres-Preisindex mit dem Paasche-Mengenindex oder den Paasche-Preisindex mit dem Laspeyres-Mengenindex, so ergibt sich durch kürzen der Umsatzindex.
 
 \subsection{Spezielle Probleme}
 \subsubsection{Erweiterung des Warenkorbs}
-In Kapitel \ref{PI nach Laspeyres} haben wir den Nachteil des Preisindex nach Laspeyres betrachtet, dass man den Warenkorb immer wieder aktualisieren muss.  Im Folgenden werden wir nun sehen, wie wir beim Preisindex von Laspeyres den Warenkorb erweitern können. \\
-Die neue Ware, um die der Warenkorb erweitert werden soll, hat natürlich keinen so alten Preis zur Basisperiode wie die anderen Produkte, da es jetzt erst mit in den Warenkorb aufgenommen wird. Somit kann man den Preis im Basisjahr nicht mehr auf die alte Preise der Basisperiode beziehen, sondern verwendet den Preis zu dem Basisjahr, in dem die neue Ware zum ersten Mal gemessen wurde. Damit die neue Ware aufgenommen werden kann, braucht es somit zwei Preisindizes, einen zur Berichtsperiode $(p_{t'+1}(n+1))$ und einen zu Basisperiode $(p_{t'}(n+1))$, also muss die neue Ware schon mindestens zwei Jahre lang gemessen worden sein.
+In Kapitel \ref{sec:p-laspeyres} wurde der Nachteil des Preisindex nach Laspeyres betrachtet, dass man den Warenkorb immer wieder aktualisieren muss. Im Folgenden wird erläutert, wie mit diesem Problem neu hinzukommender Waren umgegangen werden kann:\\
+Für die neue Ware liegt üblicherweise kein Preis zur ursprünglichen Basisperiode vor. Man integriert diese dadurch, dass man \textit{nur} für diese Ware die Periode $t'$, in der sie zum ersten Mal betrachtet wurde, als Basisjahr betrachtet.\\ 
+Für alle "alten" Güter berechnet man $P_{0t'}^L$ wie gehabt, allerdings nur bis zur Periode $t'$ in der das neue Gut hinzukommt. Ab der Periode $t'$ berechnet man den Index für den erweiterten Warenkorb, allerdings mit der Besonderheit, dass für alle "alten" Güter weiterhin Periode 0 als Basisperiode dient. Dies führt zu einer Zweiteilung von Zähler \& Nenner:
+$$P_{t',t'+1}^L =\frac{\sum_{i=1}^n p_{t'+1}(i)q_0(i) + p_{t'+1}(n+1)q_{t'}(n+1)}{\sum_{i=1}^n p_{t'}(i)q_0(i) + p_{t'}(n+1)q_{t'}(n+1)}$$
 
-Somit berechnet man den erweiterten Preisindex zum einen für die alten Waren im Zähler mit dem Produkt aus dem Preis des neuen Berichtsjahres $(p_{t'+1})$ und den Mengen zur Basisperiode $q_0$  und addiert dieses mit dem Produkt aus dem Preis der neuen Ware zur Berichtsperiode $(p_{t'+1}(n+1))$ und der dazugehörigen Menge aus der Basisperiode der neuen Ware $(q_{t'}(n+1))$.
-Im Nenner steht nun für die alten Waren das Produkt aus dem Preis zur neuen Basisperiode $(p'_{t'})$ und der Menge aus der alten Basisperiode $(q_0)$ und dieses Produkt wird erweitert durch das Produkt der neuen Ware aus dem Preis  $(p_{t'}(n+1))$ und der Menge $(q_{t'}(n+1))$ jeweils zur neuen Basisperiode.\\
-Um nun den verketteten Preisindex nach Laspeyres $(P^L_{0,t'+1)})$ zu erhalten multipliziert man den Index des kleineren Warenkorbs $(P^L_{0,t'})$ mit dem Preisindex mit dem erweiterten Warenkorb $(P^L_{t',t'+1})$.
+\noindent Um nun $(P^L_{0,t'+1)})$ zu erhalten verkettet man den Index des kleineren Warenkorbs $(P^L_{0,t'})$ mit dem Preisindex mit dem erweiterten Warenkorb $(P^L_{t',t'+1})$ durch Multiplikation.
 
 \subsubsection{Substitution einer Ware}
-Man muss eine Substitution durchführen, wenn ein Produkt, das veraltet ist, durch ein neues ersetzen lässt. Ein Beispiel hierfür ist die Substitution des Schwarz-Weiß-Fernsehgerätes durch das Farbfernsehgerät.\\
-\noindent Bei der Substitution nimmt man an, dass die gleiche Anzahl von Waren wie davor gekauft werden, jedoch kann sich der Preis ändern, weshalb man dann Stück für Stück den neuen Preis einführt. Nachdem man mindestens zweimal den Preisindex des Substituts gemessen hat, kann man den angepassten Preisindex hierfür berechnen. Man bildet den Quotienten aus der zweiten Messung und der vorangegangenen. Somit erhält man die Preisveränderung und multipliziert diesen mit dem Preis des alten, zu ersetzenden Produkts.
+Man muss eine Substitution durchführen, wenn ein Produkt veraltet und durch eine Innovation ersetzt wird. Ein Beispiel hierfür ist die Substitution des Schwarz-Weiß-Fernsehgerätes durch das Farbfernsehgerät. Bei der Substitution nimmt man an, dass die Mengen bei der Substitution konstant bleiben, sich jedoch die Preise ändern können. Voraussetzung für die Substitution ist, dass für beide Güter in \textit{mindestens einer Periode $t'$} gleichzeitig die Preise gemessen werden. Dann ist man nämlich in der Lage den Preis des alten Gutes mit der Preissteigerung des neuen Gutes fortzuschreiben:
+$$p_t(altes\; Gut) = p_{t'}(altes\; Gut) \cdot \frac{p_{t}(neues\; Gut)}{p_{t'}(neues\; Gut)} = p_{t'}(altes\; Gut) \cdot P_{t't}(neues\; Gut)$$
+
+\noindent Diese Fortschreibung wird dann so lange verwendet, bis der Warenkorb wieder aktualisiert wird und das neue Gut mit aufgenommen werden kann.
 
 \subsubsection{Subindizes}
-Große Warenkörbe bestehen oft aus kleineren Subkörben. Dies hilft dabei den Überblick über große Warenkörbe zu behalten. Da die Subkörbe unterschiedlich groß sein können, gehen diese gewichtet in den Preisindex ein. Dafür berechnet man zuerst den Gesamtumsatz aller Warenkörbe $U=\sum_{i=1}^n p_0(i)q_0(i)$ und berechnet dann jeweils den Anteil eines Subwarenkorbes am Gesamtumsatz. Dieser Anteil wird dann bei der Berechnung des Preisindex nach Laspeyres jeweils zu den Werten der Subkörbe multipliziert und die einzelnen Subkörbe addiert. So erhält man dann schlussendlich den Preisindex eines Warenkorbes mit mehreren Subkörben.
+Große Warenkörbe bestehen oft aus kleineren Sub-Warenkörben. Dies hilft dabei den Überblick über große Warenkörbe zu behalten. Da die Subkörbe unterschiedlich groß sein können, gehen diese gewichtet in den gesamten Preisindex ein. Dafür berechnet man zuerst den Gesamtumsatz aller Warenkörbe $U=\sum_{i=1}^n p_0(i)q_0(i)$ und berechnet dann jeweils den Anteil eines Sub-Warenkorbes am Gesamtumsatz. Dieser Anteil wird dann bei der Berechnung des Preisindex nach Laspeyres jeweils zu den Werten der Subkörbe multipliziert und die einzelnen Subkörbe addiert. So erhält man dann schlussendlich den Preisindex eines Warenkorbes mit mehreren Subkörben.
 
 \clearpage
 
@@ -1627,7 +1845,7 @@ Bildet man schlussendlich die Differenz aus der ursprünglichen Reihe $y_t$ und 
 
 \subsubsection{Trend und Saisonkomponente mit Regression}
 Es gibt nicht nur lineare Trends, sondern beispielsweise auch quadratische Trends und exponentielles Wachstum, welches man mit der Regression berechnen kann.
-In Kapitel \ref{sec:lineare Einfachregression} haben wir schon die lineare Einfachregression kennengelernt, mit der man hier die Trendkomponente der Form $g(t)=\hat{y}_t=\hat{a}+\hat{b}\cdot t$ schätzen kann.\\
+In Kapitel \ref{chap:linreg} haben wir schon die lineare Einfachregression kennengelernt, mit der man hier die Trendkomponente der Form $g(t)=\hat{y}_t=\hat{a}+\hat{b}\cdot t$ schätzen kann.\\
 
 \noindent Die Saisonkomponente kann man mit der KQ-Methode in der Form $y_t=\gamma_1s_1(t)+...+\gamma_{i}s_{i}(t)+e_t$ schreiben. Dabei wird die Regression verwendet um die $\gamma$'s zu schätzen. $s_j(t)$ ist eine Dummyvariable, um jeweils den Monat oder das Quartal berechnen zu können, welches gerade gefragt ist. Dies funktioniert wie in Kapitel \ref{sec:Kategoriale Regression}: für die Saisonkomponente die man berechnen möchte setzt man 1 ein und bei allen anderen 0.\\
 
@@ -1660,7 +1878,7 @@ Es gibt noch viele weitere Ansätze wie man die Zeitreihen bestimmen kann unter 
     \item[d)] Bei einem gl. Durchschnitt gerader Ordnung gehen (bei gleichem k) mehr Werte\\in die Berechnung mit ein als bei ungerader Ordnung. \hfill $\square$
 \end{itemize}
 
-\paragraph{2. Welche Aussagen bzgl. Zeitreihenmodellen sind wahr?}
+\paragraph{2. Welche Aussagen bzgl. des Zeitreihenmodells sind wahr?}
 
 \begin{itemize}
     \item[a)] Mit gleitenden Durchschnitten kann die Trendkomponente geschätzt werden. \hfill $\square$
@@ -1692,7 +1910,7 @@ Die Permutation gibt an, wie viele verschiedene Möglichkeiten es gibt die Eleme
 Man kann die Permutation unterteilen in \textit{mit Wiederholungen} und \textit{ohne Wiederholungen}.
 
 \subsubsection{Permutation ohne Wiederholungen}
-Bei Permutationen ohne Wiederholungen gibt es nur unterschiedliche Elemente, die der Reihenfolge nach angeordnet werden. Dabei gibt es auf dem erste Platz der Reihenfolge n verschiedene Möglichkeiten diesen zu besetzen, auf dem zweiten Platz nur noch n-1, da schon eines der Elemente auf dem ersten Platz sitzt und dieses nun nicht mehr auf dem zweiten Platz sein kann. So geht es weiter bis am Ende nur noch auf dem letzten Platz eine Möglichkeit noch besteht, nämlich das letzte noch übrige Element.\\
+Bei Permutationen ohne Wiederholungen gibt es nur unterschiedliche Elemente, die der Reihenfolge nach angeordnet werden. Dabei gibt es auf dem ersten Platz der Reihenfolge n verschiedene Möglichkeiten diesen zu besetzen, auf dem zweiten Platz nur noch n-1, da schon eines der Elemente auf dem ersten Platz sitzt und dieses nun nicht mehr auf dem zweiten Platz sein kann. So geht es weiter bis am Ende nur noch auf dem letzten Platz eine Möglichkeit noch besteht, nämlich das letzte noch übrige Element.\\
 Wenn man diese verschiedenen Möglichkeiten auf den Plätzen multipliziert, dann erhält man schlussendlich die Anzahl verschiedener Anordnungen. Dies schreibt man dann als n! (ausgesprochen: n \textit{Fakultät}
 
 
@@ -1765,22 +1983,22 @@ Hier gibt es nun die größte Anzahl an möglichen Kombinationen, da die Reihenf
 \section{Wahrscheinlichkeitsrechnung}
 Als Erstes sollte man über ein paar Begriffe im Klaren sein, damit es im Folgenden verständlicher ist.\\
 Ein \textit{Elementarereignis} ist ein Ereignis, deren Menge nur aus einem Element besteht. Bei einem Münzwurf ist somit das Werfen von zum Beispiel Kopf ein Elementarereignis {Kopf}\\
-Ein \textit{zufälliges Ereignis} sind mehrere Elementarereignisse eines Zufallsexpermiments zusammen, also eine Menge von Elementarereignissen. Ein zufälliges Ereignis tritt dann ein, wenn mindestens ein Elementarereignis, das in der Menge enthalten ist, zutrifft. Beim Münzwurf wäre das {Kopf, Zahl}\\
-Der \textit{Ereignisraum} bzw. der \textit{Grundraum} $\omega$ ist die Menge aller Elementarereignissen. Bei einem Münzwurf wäre das 2, da es die möglichen Elementarereignisse Kopf und Zahl gibt.\\
+Ein \textit{zufälliges Ereignis} sind mehrere Elementarereignisse eines Zufallsexperiments zusammen, also eine Menge von Elementarereignissen. Ein zufälliges Ereignis tritt dann ein, wenn mindestens ein Elementarereignis, das in der Menge enthalten ist, zutrifft. Beim Münzwurf wäre das {Kopf, Zahl}\\
+Der \textit{Ereignisraum} bzw. der \textit{Grundraum} $\Omega$ ist die Menge aller Elementarereignissen. Bei einem Münzwurf wäre das 2, da es die möglichen Elementarereignisse Kopf und Zahl gibt.\\
 Ein \textit{unmögliches Ereignis} tritt dann auf, wenn keines der in der Menge enthaltenen Elementarereignissen zutrifft. Es kann daher bei keinem Zufallsexperiment auftreten.\\
 Das \textit{sichere Ereignis} tritt immer ein, da alle möglichen Elementarereignisse in der Menge $\omega$ enthalten sind. Somit tritt das Ereignis eins Zufallsexperiments bei jeder Wiederholung ein. Beim Münzwurf wäre das sichere Ereignis, "entweder Kopf oder Zahl würfeln".
-Ein \textit{Komplementärereignis} $\bar A$ tritt dann ein, wenn A nicht eintritt. Also $\bar A$ ist genau das Gegenteil oder "LKomplementär". Beim Münzwurf wäre "Zahl" das Komplementärereignis, wenn das zufällige Ereignis, {Kopf} wäre. Oder "ungerade" Zahlen sind das Komplementärereignis, wenn "gerade" Zahlen das zufällige Ereignis wären.\\
+Ein \textit{Komplementärereignis} $\bar A$ tritt dann ein, wenn A nicht eintritt. Also $\bar A$ ist genau das Gegenteil oder "Komplementär". Beim Münzwurf wäre "Zahl" das Komplementärereignis, wenn das zufällige Ereignis, {Kopf} wäre. Oder "ungerade" Zahlen sind das Komplementärereignis, wenn "gerade" Zahlen das zufällige Ereignis wären.\\
+\noindent Zufällige Ereignisse können nicht nur alleine auftreten und da diese Mengen von Elementarereignissen sind, benötigt man Mengenoperation.
 
-Zufällige Ereignisse können nicht nur alleine auftreten und da diese Mengen von Elementarereignisse sind, benötigt man Menegenoperation.
+\paragraph{A geschnitten B} [$A\cap B$] Dies ist die Schnittmenge der beiden Mengen A und B. Das heißt die Elementarereignisse, die in A \textit{und} auch in B auftreten.
 
-\textbf{$A\cap B$} Dies ist die Schnittmenge der beiden Mengen A und B. Das heißt die Elementarereignisse, die in A \textit{und} auch in B auftreten.\\
-\textbf{$A\cup B$} Dies ist die Vereinigungsmenge. Das heißt tritt das Ereignis A \textit{oder} B oder beide auf, dann tritt die Vereinigungsmenge auf. Es werden sozusagen beide Mengen addiert, wobei Elementarereignisse, die in  beiden Mengen vorkommen, nur einmal gezählt werden dürfen.\\
+\paragraph{A vereinigt B} [$A \cup B$] Dies ist die Vereinigungsmenge. Das heißt tritt das Ereignis A \textit{oder} B oder beide auf, dann tritt die Vereinigungsmenge auf. Es werden sozusagen beide Mengen addiert, wobei Elementarereignisse, die in beiden Mengen vorkommen, nur einmal gezählt werden dürfen.
 
-\textbf{$\bar A$} Das zufällige Ereignis \textit{A quer} tritt genau dann auf, wenn ein Elementarereignis nicht in der Menge der Elemtentarereignissen des zufälligen Ereignisses A liegt.\\
+\paragraph{Nicht A} [$\bar A$] Das zufällige Ereignis \textit{A quer} tritt genau dann auf, wenn ein Elementarereignis nicht in der Menge der Elementarereignissen des zufälligen Ereignisses A liegt.
 
-\textbf{A \ B}Das Ereignis \textit{A ohne B} tritt dann auf, wenn ein Elementarereignis in A liegt, jedoch nicht in B.
+\paragraph{A ohne B} [$A\setminus B$] Die Ereignis tritt dann auf, wenn ein Elementarereignis in A liegt, jedoch nicht in B.
 
-\textbf{disjunktes Ereignis} Ein disjunktes Ereignis sind zwei Mengen, die keine gleichen Elementarereignisse haben, das heißt sie können niemals gleichzeitig auftreten. Somit gibt es keine Schnittmenge der beiden Mengen, daher ist $A\cup B=\emptyset$.
+\paragraph{disjunktes Ereignis} Ein disjunktes Ereignis sind zwei Mengen, die keine gleichen Elementarereignisse haben, das heißt sie können niemals gleichzeitig auftreten. Somit gibt es keine Schnittmenge der beiden Mengen, daher ist $A\cup B=\emptyset$.
 
 
 \subsection{Relative Häufigkeit}
@@ -1788,10 +2006,10 @@ Um eine Quantifizierung vorzunehmen, wie häufig ein Ergebnis zu erwarten ist bz
 Betrachtet man ausreichend viele Wiederholungen des zufälligen Ereignisses A, dann nähert sich die relative Wahrscheinlichkeit dem typischen Wert von A. Dies wird als \textit{Wahrscheinlichkeit} des Ereignisses A bezeichnet und wird als P(A) geschrieben.
 
 \subsection{Laplacesche Wahrscheinlichkeit}
-Damit ein Laplacesche Wahrscheinlichkeit vorliegt, müssen zwei Voraussetzungen erfüllt sein, zum einen muss die Ergebnismenge endlich sein und zum anderen müssen die Ereignisse die gleiche Wahrscheinlichkeit besitzen. Wenn dies der Fall ist, dann bildet der Quotient aus der Anzahl der für A günstigen Fälle, also in den Fällen, in denen A zutrifft und der Anzahl aller möglichen Fälle die Laplace-Wahrscheinlichkeit $\frac{|A|}{|\omega|}=P(A)$.
+Damit ein Laplacesche Wahrscheinlichkeit vorliegt, müssen zwei Voraussetzungen erfüllt sein, zum einen muss die Ergebnismenge endlich sein und zum anderen müssen die Ereignisse die gleiche Wahrscheinlichkeit besitzen. Wenn dies der Fall ist, dann bildet der Quotient aus der Anzahl der für A günstigen Fälle, also in den Fällen, in denen A zutrifft und der Anzahl aller möglichen Fälle die Laplace-Wahrscheinlichkeit $\frac{|A|}{|\Omega|}=P(A)$.
 Der Würfelwurf hat beispielsweise eine Laplacesche Wahrscheinlichkeit, da jede Zahl die gleiche Wahrscheinlichkeit von $\dfrac{1}{6}$ hat und die Ergebnismenge auf die Zahlen von 1-6 beschränkt ist.
 
-\subsection{Wahrscheinlichkeitsrechnung}
+\subsection{Wahrscheinlichkeitsrechnung} \label{sec:W'keitsrechnung}
 A.N.Kolmogorov hat das Axiomensystem der Wahrscheinlichkeitsrechnung erfunden. Dieses bietet die formale Grundlage für die Wahrscheinlichkeit und besteht aus drei Axiomen.
 Das erste Axiom besagt, dass jedem zufälligen Ereignis eines zufälligen Versuchs eine Wahrscheinlichkeit zwischen 0 und 1 zugeordnet wird.\\
 Das zweite Axiom besagt, dass das sichere Ereignis, welches wir zuvor schon kennen gelernt haben, immer die Wahrscheinlichkeit von 1 hat.\\
@@ -1804,9 +2022,83 @@ Die vierte Folgerung besagt, wenn A eine Teilmenge von B ist, dann ist die Wahrs
 Als letzte Schlussfolgerung ergibt sich, wenn man ein Ereignisraum vollständig in mehrere disjunkte Teile $A_1,....,A_n$ zerlegt, und ein Ereignis B innerhalb des Ereignisraumes liegt, dann berechnet sich ein beliebiges Ereignis als Summe aller Schnittmengen zwischen B und einem zerlegten Teil $A_i$.
 
 \subsection{Bedingte Wahrscheinlichkeit}
+Bei der bedingten Wahrscheinlichkeit handelt es sich um eine Wahrscheinlichkeit eines Ereignisses B, bei der schon als Vorinformation bekannt ist, dass ein Ereignis A bereits eingetreten ist. Nun ist die Frage, ob das eingetretene Ereignis eine Wirkung auf B hat und wie man diese Wirkung berechnet. Formal schreibt man die bedingte Wahrscheinlichkeit P(B|A).\\
+Um die bedingte Wahrscheinlichkeit eines Ereignisses B unter der Bedingung, dass A eingetreten ist, muss zuerst einmal, die Wahrscheinlichkeit von A größer 0 sein, da sie sonst als Vorinformation keinen Sinn macht. Anschließend berechnet man die bedingte Wahrscheinlichkeit aus dem Quotient der Schnittmenge in unserem Fall von A und B und der Wahrscheinlichkeit für die  "Vorinformation", also hier von A.
+\begin{align*}
+    P(B|A)=\frac{P(A\cap B}{P(A)}
+\end{align*}
+
+
+\subsubsection{Multiplikationssatz}
+Durch Umformen der obigen Formel, kann man die Schnittmenge ganz einfach aus dem Produkt der bedingten Wahrscheinlichkeit und der Wahrscheinlichkeit für die Vorinformation, dem schon bekannten eingetretenen Ereignis, berechnen. Dabei kann ich die Rollen von A und B tauschen. Das heißt die Schnittmenge aus A und B kann ich zum Einen aus dem Produkt der bedingten Wahrscheinlichkeit von A und der Wahrscheinlichkeit des Ereignisses von B berechnen und zum Anderen aus dem Produkt der bedingten Wahrscheinlichkeit von B mit der Wahrscheinlichkeit des Ereignisses A.
+
+\subsubsection{Satz von der totalen Wahrscheinlichkeit}
+Möchte man eine Wahrscheinlichkeit eines Ereignisses berechnen, dann verwendet man den Satz der totalen Wahrscheinlichkeit. Diese Wahrscheinlichkeit kann ich mit Hilfe der 5. Folgerung \ref{sec:W'keitsrechnung} herleiten. Bei Folgerung 5 berechnet man die Wahrscheinlichkeit des Ereignisses B aus der Summe der Wahrscheinlichkeiten der Schnittmengen von B mit jedem zerlegten Teil $A_i$ des Ereignisraumes $\Omega$. \\
+Da wir soeben bei dem Multiplikationssatz gelernt haben, dass wir die Schnittmenge auch mit der bedingten Wahrscheinlichkeit berechnen können, setzten wir diese Berechnung einfach anstelle der Schnittmenge in die Summe für die Berechnung der Wahrscheinlichkeit ein. Dabei wird das Produkt aus jeder bedingten Wahrscheinlichkeit von B unter der Bedingung, dass ein Teil der Zerlegung $A_i$ eingetreten ist und der Wahrscheinlichkeit für die Vorinformation $A_i$ berechnet und anschließend aufsummiert, um so die Wahrscheinlichkeit für das Ereignis B zu erhalten.
+
+\subsubsection{Der Satz von Bayes}
+Den Satz von Bayes wird verwendet, um eine bedingte Wahrscheinlichkeit zu berechnen. Dabei sollte die Wahrscheinlichkeit wird zweier beliebiger Ereignisse größer 0 sein. Wir verwenden im Folgenden die Ereignisse A und B. Um auf die Formel zu kommen, kann man einfach den Multiplikationssatz nach der bedingten Wahrscheinlichkeit auflösen. $P(A|B)=\frac{P(A\cap B)}{P(B)}$. Anschließend setzt man in die Schnittmenge das Ergebnis des Multiplikationssatzes ein, jedoch verwendet man diesmal die andere Variante der bedingten Wahrscheinlichkeit, sonst würde man zu keinem Ergebnis kommen. Somit erhält man schlussendlich:
+\begin{align*}
+    P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}
+\end{align*}
+
+\subsection{Stochastische Unabhängigkeit}
+Eine stochastische Unabhängigkeit liegt vor, wenn die bedingte Wahrscheinlichkeit, also das Eintreten eines Ereignisses A kein Einfluss auf die Wahrscheinlichkeit eines Ereignisses B hat, das heißt P(B)=P(B|A). Grob gesagt heißt das, egal ob das Ereignis A eintritt oder nicht, weiß ich immer noch nichts über das Eintreten des Ereignisses B.\\
+Durch Herleitung ergibt sich schlussendlich auch, dass bei stochastisch unabhängigen Ereignissen bzw. disjunkten Ereignissen die Schnittmenge das Produkt aus den Einzelwahrscheinlichkeiten der Ereignisse A und B ist.\\
+Somit kann man immer überprüfen ob zwei Ereignisse stochastisch unabhängig sind, in dem die Wahrscheinlichkeit der gegebenen Schnittmenge gleich dem Produkt der beiden Einzelwahrscheinlichkeiten entspricht.
+
+\clearpage
+\subsection{Aufgaben}
+\paragraph{1. Eine Mutter kauft für den Kindergeburtstag 20 Luftballons, 10 blaue und 10 rote. Welche Aussagen sind richtig?}
+\begin{itemize}
+    \item[a)] Ein sicheres Ereignis wäre entweder die Farbe blau oder rot als erstes aufzublasen.\hfill $\square$
+    \item[b)]Ein unmögliches Ereignis wäre die Farbe gelb als erstes auszublasen.\hfill $\square$
+    \item[c)]Das Komplementärereignis $\bar A$ von Ereignis A "Einen blaue Luftballon als erstes \\aufblasen" ist keine Luftballon aufblasen.\hfill $\square$
+    \item[d)]Bei der Frage welchen Luftballon die Mutter als erstes aufbläst, gibt es hier zwei\\ Elementarereignisse.\hfill $\square$
+    \item[e)]Das Ereignis "Blauen Luftballon als erstes aufzublasen" ist ein Elementarereignis. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen zur Laplaceschen Wahrscheinlichkeit sind richtig?}
+\begin{itemize}
+    \item [a)] Bei der Laplaceschen Wahrscheinlichkeit kann die Ergebnismenge unendlich sein,\\ solange die Ereignisse gleich wahrscheinlich sind.\hfill $\square$
+    \item[b)] Die Einzige Voraussetzung für ein Laplacesche Wahrscheinlichkeit ist, dass \\die Ereignisse gleich wahrscheinlich sind.\hfill $\square$
+    \item[c)]Mit der Mächtigkeit der für A günstigen Fälle und der Mächtigkeit aller möglichen\\ Fälle berechnet man die Laplacesche Wahrscheinlichkeit.\hfill $\square$
+    \item[d)]Bei der Laplaceschen Wahrscheinlichkeit muss ein Zufallsexperiment zugrunde liegen.\hfill $\square$
+\end{itemize}
+\paragraph{3. Welche Aussagen zur Wahrscheinlichkeitsrechnung sind wahr?} 
+\begin{itemize}
+    \item [a)]Die Wahrscheinlichkeit eines unmöglichen Ereignisses ist die leere Menge.\hfill $\square$
+    \item[b)]Die Wahrscheinlichkeit einer disjunkten Schnittmenge ist die Summe der\\ Einzelwahrscheinlichkeiten abzüglich der doppelt gezählten Schnittmenge der beiden \\Ereignissen.\hfill $\square$
+    \item[c)]Wenn man die Wahrscheinlichkeit des Ereignisses A hat, kann man auch die\\ Wahrscheinlichkeit des Komplementärereignisses berechnen.\hfill $\square$
+    \item[d)] Die Wahrscheinlichkeit eines Ereignisses A kann Zahlen zwischen -1 und 1 annehmen.\hfill $\square$
+    \item[e)]Ist B eine Teilmenge von A, so ist die Wahrscheinlichkeit von B größer oder \\gleich der Wahrscheinlichkeit von A.\hfill $\square$
+\end{itemize}
+
+\paragraph{4. Welche Aussagen zur bedingten Wahrscheinlichkeit sind wahr?}
+\begin{itemize}
+    \item[a)]Zur Berechnung einer bedingten Wahrscheinlichkeit benutzt man den\\ Multiplikationssatz.\hfill $\square$
+    \item[b)]Den Satz der totalen Wahrscheinlichkeit verwendet man, wenn man die \\Wahrscheinlichkeit eines Ereignisses berechnen möchte.  \hfill $\square$
+    \item[c)]Man kann den Satz von Bayes verwenden, um eine bedingte Wahrscheinlichkeit\\ zu berechnen.\hfill $\square$
+    \item[d)]Die bedingte Wahrscheinlichkeit $P(E|G)$ berechnet die Wahrscheinlichkeit des\\ Ereignisses E, unter der Bedingung, dass das Ereignis G nicht eintreten wird.\hfill $\square$
+    \item[e)]Wenn die Wahrscheinlichkeit, der Vorinformation größer 0 ist, spricht man von \\der bedingten Wahrscheinlichkeit, da sie dann   einen Einfluss auf das Eintreten \\des zu berechnenden Ereignisses hat.\hfill $\square$
+\end{itemize}
+
+\paragraph{5.Welche Aussagen zur stochastischen Unabhängigkeit sind wahr?}
+\begin{itemize}
+    \item[a)]Die stochastische Unabhängigkeit zwischen zwei Ereignissen entspricht \\ zweier nicht disjunkter Ereignisse. \hfill $\square$
+    \item[b)]Man berechnet die stochastische Unabhängigkeit aus den 4 Ereignissen E,F,G und H\\ mit dem Produkt der Einzelwahrscheinlichkeiten von E,F,G und H. \hfill $\square$
+    \item[c)]Ist die bedingte Wahrscheinlichkeit P(B|G) ungleich der Wahrscheinlichkeit P(B), \\dann liegt keine stochastische Unabhängigkeit zwischen B und G vor.\hfill $\square$
+    \item[d)]Man berechnet die stochastische Unabhängigkeit zweier zufälliger Ereignisse durch \\die Summe der beiden Einzelwahrscheinlichkeiten. \hfill $\square$
+\end{itemize}
+
+
+
+
+
+
 
 \newpage
-\section{Zufallsexpermieent}
+\section{Zufallsexperiment}
 
 In der deskriptiven Statistik (Statistik I) haben wir fest vorgegebenes Datenmaterial beschrieben. Im Gegensatz dazu gehen wir in der induktiven Statistik (Statistik II) von Zufallsexperimenten mit sogenannten Zufallsvariablen aus. Mit Zufallsvariablen können Ergebnisse eines noch nicht durchgeführten Zufallsexperiments beschrieben werden.\\
 \noindent \textbf{Beispiel}:\\
@@ -1830,6 +2122,15 @@ Geschwindigkeit von Autos bei einer Radarkontrolle. Hier sind theoretisch unendl
 
 Der Träger einer Zufallsvariablen bezeichnet alle möglichen Ergebnisse einer Zufallsvariablen. Beim Roulette-Spiel wäre der Träger z.B. $ T = 0,1,2,...,36$. Für die Geschwindigkeit bei der Radarkontrolle kommen theoretisch alle positiven reellen Zahlen in Frage, hier wäre der Träger also die Menge der reellen Zahlen $\R^+$.
 
+\clearpage
+\subsection{Aufgaben}
+\paragraph{Welche Aussagen zu den Zufallsvariablen sind richtig?}
+\begin{itemize}
+    \item [a)]Der fünffache Münzwurf ist eine diskrete Zufallsvariable.
+    \item[b)]Mit Zufallsvariablen können Ergebnisse von Zufallsexperimenten beschrieben werden, die noch nicht durchgeführt wurden.
+    \item[c)]Der Träger der Zufallsvariable Würfelwurf eines 24-seitigen Würfels ist T = 1,2,3,...,24
+    \item[d)] Eine stetige Zufallsvariable hat abzählbar endliche Ergebnisse.
+\end{itemize}
 \newpage
 
 \section{Spezielle Verteilungen} \label{sec:Distr}
@@ -1992,6 +2293,61 @@ Der Träger einer Zufallsvariablen bezeichnet alle möglichen Ergebnisse einer Z
 \noindent \textbf{Bemerkung}: 
 
 
+\clearpage
+\subsubsection{Aufgaben}
+\paragraph{1. Welche Aussagen bzgl. der Gleichverteilung sind richtig? }
+\begin{itemize}
+    \item[a)]Bei der diskreten Gleichverteilung muss es immer zwei mögliche Ausgänge geben, die\\ die gleiche Wahrscheinlichkeit haben.\hfill $\square$
+    \item[b)]Ein Würfelwurf mit 88 Seiten ist gleichverteilt.\hfill $\square$
+    \item[c)]Ein unfairer Münzwurf mit Kopf und Zahl ist gleichverteilt.\hfill $\square$
+    \item[d)]In einem Bällebad sind 500 rote, 300 blaue, 450 gelbe und 350 grüne Bälle. \\Zur Berechnung des Erwartungswertes eines gezogenen Balles der ZV: Anzahl der\\ blauen und roten Bälle kann man die diskrete Gleichverteilung verwenden.\hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen bzgl. der Bernoulliverteilung und Binomialverteilung sind wahr?}
+\begin{itemize}
+    \item[a)]Die Binomialverteilung besteht aus n abhängige und identische Bernoulliexperimente.\hfill $\square$
+    \item[b)]Der Erwartungswert der Bernoulliverteilung ist die Wahrscheinlichkeit, dass das\\ Ereignis eintritt, selbst.\hfill $\square$
+    \item[c)]Bei der Bernoulliverteilung und bei der Binomialverteilung gibt es jeweils nur zwei\\ mögliche Ergebnisse.\hfill $\square$
+    \item[d)]Die Verteilungsfunktion der Binomialverteilung geht von 0 bis 1.\hfill $\square$
+\end{itemize}
+
+\paragraph{3. Gegeben ist die Gleichung $P(X=4)=0,30,7^(3)$ Welche Aussagen dazu sind wahr?}
+\begin{itemize}
+    \item[a)]Hierbei handelt es sich um die geometrische Verteilung.\hfill $\square$
+    \item[b)]Der Erwartungswert beträgt hier ca. 3,33\hfill $\square$
+    \item[c)] Mit dieser Gleichung berechnet man die Wahrscheinlichkeit, dass das gewünschte\\ Ereignis bei der dritten Wiederholung eintritt.\hfill $\square$
+    \item[d)]Die Wahrscheinlichkeit für das gewünschten Ereignisses liegt bei 0,7.\hfill $\square$
+    \item[e)]Die Varianz beträgt ca. 0,6122.\hfill $\square$
+\end{itemize}
+    
+\paragraph{4. Welche Aussagen bezüglich der geometrischen und hypergeometrischen Verteilung sind wahr?}
+\begin{itemize}
+    \item[a)]Je größer die Wahrscheinlichkeit eines Ereignisses ist, desto länger braucht es, \\ bis es zum ersten Mal auftritt.\hfill $\square$
+    \item[b)]Die hypergeometrische Verteilung verwendet man, wenn man wissen will, wie oft \\man ein Experiment wiederholen muss, bis man das gewünschte Ereignis erhält.\hfill $\square$
+    \item[c)] Um eine Wahrscheinlichkeit mit der geometrischen Verteilung zu berechnen benötigt\\ man 4 Variable, N Einheiten unter denen M Elemente mit dem einem bestimmten\\ Merkmal sind, man wählt n Elemente aus den N aus und man berechnet die\\ Wahrscheinlichkeit, dass man x Elemente mit dem bestimmten Merkmal gezogen hat.\hfill $\square$
+    \item[d)]Die hypergeometrische Verteilung berechnet die Wahrscheinlichkeit unter der \\Voraussetzung, dass die gezogenen bzw. ausgewählten Elemente wieder \\zurückgelegt werden.\hfill $\square$
+\end{itemize}
+    
+\paragraph{5. Welche Aussagen zur Poissonverteilung sind richtig?}
+\begin{itemize}
+    \item[a)]Die Poissonverteilung gibt die Wahrscheinlichkeit für das Eintreffen eines \\Ereignisses wieder.\hfill $\square$
+    \item[b)]Das $\lambda$ muss größer gleich 0 sein.\hfill $\square$
+    \item[c)]Die Varianz und der Erwartungswert sind immer gleich groß.\hfill $\square$
+    \item[d)]Das $\lambda$ gibt die Intensitätsrate an, das heißt je größer $\lambda$ ist, desto häufiger wird \\das Ereignis vorkommen.\hfill $\square$
+    \item[e)]Sind zwei Zufallsvariable unabhängig, dann kann man bei der Poissonverteilung die $\lambda$\\ addieren und damit die Wahrscheinlichkeit eines Ereignisses berechnen.\hfill $\square$
+\end{itemize}
+
+\paragraph{6. Welche Aussagen zur Multinomialverteilung sind richtig?}
+\begin{itemize}
+    \item[a)] Bei der Multinomialverteilung ist es wichtig zu wissen, wie viele Einheiten insgesamt\\ vorhanden sind. Also wie groß n ist, da wir nicht mit zurücklegen ziehen.\hfill $\square$
+    \item[b)]Die Multinomialverteilung ist die Verallgemeinerung der Bernoulliverteilung mit\\ mind. 2 Ereignissen.\hfill $\square$
+    \item[c)]k gibt die verschiedenen Sorten die vorhanden sind an.\hfill $\square$
+    \item[d)]Man benötigt die Gesamtheit aller Einheiten nicht, da mit Zurücklegen gezogen\\ wird und hierbei die bekannten relativen Häufigkeiten gleich bleiben.\hfill $\square$
+    \item[e)]Die Form der Wahrscheinlichkeitsfunktion gleicht der Permutation ohne Wiederholung.\hfill $\square$
+\end{itemize}
+\clearpage
+
+
 \subsection{Stetige Verteilungen} \label{sec:contdistr}
 \textbf{Stetig} heißt grob gesagt, dass ein Experiment unendliche viele Zahlen an möglichen Ergebnissen hat. Beispiele aus der Vorlesung sind die stetige Gleichverteilung, Exponentialverteilung, Normalverteilung, $\chi^2$-Verteilung, t-Verteilung und die F-Verteilung. Diese basieren auf stetigen Zufallsvariablen. Die Menge der Werte, die diese stetigen ZV annehmen können ist unendlich und nicht zählbar (Beispiel: das Intervall [1,6]). 
 
@@ -2113,6 +2469,43 @@ Gründe für die Verwendung und Wichtigkeit in der Statistik:
 \noindent \dangersign[3ex] Die F-Verteilung hat zwei Freiheitsgrade. Bitte denkt immer an beide (z.B. bei einem Overall-F-test für die Betakoeffizienten eines multiplen Regressionsmodells)!
 
 
+\clearpage
+\subsubsection{Aufgaben}
+\paragraph{1.Welche Aussagen zur stetigen Gleichverteilung sind richtig?}
+\begin{itemize}
+    \item[a)]Jede einzelne Ausprägung kommt mit einer Wahrscheinlichkeit von 0 vor, also eine\\ Punktwahrscheinlichkeit von 0.\hfill $\square$
+    \item[b)]Der Unterschied zwischen der stetigen und diskreten Gleichverteilung ist, dass die\\ stetige Gleichverteilung unendlich verschiedene Werte annehmen kann.\hfill $\square$
+    \item[c)]Die Dichtefunktion ist das Pendant zur Verteilungsfunktion.
+    \item[d)]Die Dichtefunktion bei der stetigen Gleichverteilung ist eine monoton steigende Gerade.\hfill $\square$
+    \item[e)]Eine stetig gleichverteilte Dichtefunktion hat einen Ereignisraum von [2,6]. \\Die Linie in diesem Intervall ist auf der Höhe 0.25.\hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen zur Exponentialverteilung sind richtig?}
+\begin{itemize}
+    \item[a)]Die Wartezeit ist abhängig von der davor schon verstrichenen Zeit.\hfill $\square$
+    \item[b)]Bei der exponential wie auch der geometrischen Verteilung geht es darum, wann das\\ gewünschte Ereignis zum ersten Mal auftritt, bei der Exponentialverteilung ist es eine\\ stetige Spanne und bei der Geometrischen Verteilung sind es diskrete Schritte.\hfill $\square$
+    \item[c)]Die Verteilungsfunktion hat ein exponentielles Wachstum.\hfill $\square$
+    \item[d)]Ein zentraler Begriff bei der Exponentialverteilung ist die Gedächtnislosigkeit.\hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche Aussagen zur Normalverteilung / Chi-Quadrat-Verteilung sind wahr?}
+\begin{itemize}
+    \item[a)]Die Dichtefunktion ist symmetrisch um den Erwartungswert verteilt.\hfill $\square$
+    \item[b)]Nur der Durchschnitt von normalverteilten Zufallsvariablen berechnet man mit\\ der Normalverteilung.\hfill $\square$ 
+    \item[c)]Um die Dichtefunktion der Normalverteilung aufzustellen benötigt man nur$\sigma$ und $\mu$.\hfill $\square$
+    \item[d)]Die Normalverteilung hat bei $\mu$ ihr Maximum.\hfill $\square$
+    \item[e)]Bei der Chi-Quadrat-Verteilung werden die QUadrate von mehreren\\ standardnormalverteilten Zufallsvariablen gebildet und aufsummiert.\hfill $\square$
+\end{itemize}
+
+\paragraph{4. Welche Aussagen über die t-Verteilung sind richtig?}
+\begin{itemize}
+    \item[a)]Die t-Verteilung kann immer durch die Standardnormalverteilung approximiert werden.\hfill $\square$
+    \item[b)]Je größer die Stichprobenzahl, desto näher kommt sie der Normalverteilung.\hfill $\square$
+    \item[c)]Die Wahrscheinlichkeitsmasse die nach außen verteilt ist ist bei der t-Verteilung geringer \\als bei der Normalverteilung.\hfill $\square$
+    \item[d)]Je weniger Freiheitsgrade, desto ähnlicher ist die t-Verteilung der Normalverteilung.\hfill $\square$
+\end{itemize}
+\clearpage
+
 \subsection{Wichtige Schlüsselbegriffe und "Konzepte" anhand der diskreten Gleichverteilung} \label{sec:concept}
 
 \subsubsection{Parameter von Verteilungen}\label{sec:Param}
@@ -2132,7 +2525,7 @@ F: x \rightarrow P(X \leq x_i)
  
 \noindent Sowohl die \textbf{Wahrscheinlichkeitsfunktion}\footnote{Die Wahrscheinlichkeitsfunktion wird häufig auch Dichte genannt und mit $f(x)$ notiert} für diskrete ZVs als auch die \textbf{Dichtefunktion} für stetige ZVS dienen als Beschreibung von Wahrscheinlichkeitsverteilungen. Sie beschreiben Wahrscheinlichkeiten für jedes mögliche Ergebnis $x_i$ eines Zufallsexperiments (mathematisch einfach $P(X=x_i)$). Oftmals wird sie aber einfach als $f(x)$ definiert. Liegt eine \textbf{stetige ZV} zugrunde, besitzt die Dichtefunktion folgende Eigenschaften:
 
-%\newpage
+\newpage
 
 \begin{enumerate}
     \item Die Funktion besitzt keinen negativen Wert: also $f(x)\geq 0$ für alle $x_i \in \mathbb{R}$
@@ -2147,7 +2540,7 @@ F: x \rightarrow P(X \leq x_i)
 \begin{enumerate}
     \item $f(x)= \frac{d}{dx} F(x)$, d.h. die Dichte ist also einfach die Ableitung der Verteilungsfunktion.
     \item $F(x)= \int_{-\infty}^{x} f(t)dt$, d.h. die Verteilungsfunktion ist die Fläche unter der Dichte (also das Integral der Dichte).
-    \item $Q(x)= F^{-1}(x)$, d.h. die Quantilsfunktion ist die Umkehrfunktion der Verteilungsfunktion. (Rückblick Statistik I: Quantile sind einfach nur bestimmte Schwellenwerte, d.h. ein bestimmter Anteil der Werte ist kleiner doer gleich dem Quantil, der Rest ist größer -- Beispiel: Median).
+    \item $Q(x)= F^{-1}(x)$, d.h. die Quantilsfunktion ist die Umkehrfunktion der Verteilungsfunktion. (Rückblick Statistik I: Quantile sind einfach nur bestimmte Schwellenwerte, d.h. ein bestimmter Anteil der Werte ist kleiner oder gleich dem Quantil, der Rest ist größer -- Beispiel: Median).
     \item $F(x) = Q^{-1}(x)$, d.h. die Verteilungsfunktion ist die Umkehrfunktion der Quantilsfunktion.
 \end{enumerate}
 
@@ -2185,7 +2578,33 @@ Die Wahrscheinlichkeitsfunktion sieht folgendermaßen aus:
 \subsubsection{Erwartungswert und Varianz} \label{sec:Expec}
 Der \textbf{Erwartungswert} der diskreten Gleichverteilung ist definiert als $E(X) = \frac{a+b}{2}$ und die Varianz ist definiert als $Var(X) = \frac{(b-a+1)^2-1}{12}$. Vorsicht: Dies sind etwas allgemeinere Formeln als der Spezialfall in der Formelsammlung, im Prinzip stellt es aber das Gleiche dar.
 
+\clearpage
+\subsubsection{Aufgaben}
+\paragraph{1. Welche Aussagen sind richtig?}
+\begin{itemize}
+    \item[a)]Die Träger der diskreten Gleichverteilung eines Münzwurfs sind Kopf und Zahl.\hfill $\square$
+    \item[b)]Eine Verteilungsfunktion geht immer von -1 bis 1.\hfill $\square$
+    \item[c)]Der Wert einer Verteilungsfunktion an der Stelle $x=5$ ist die Wahrscheinlichkeit \\für $X\leq 5$.\hfill $\square$
+    \item[d)]Die Werte der Verteilungsfunktion sind die kumulierten Wahrscheinlichkeiten.\hfill $\square$
+    \item[e]Die Wahrscheinlichkeitsfunktion der diskreten Zufallsvariablen ist das gleiche wie \\die Verteilungsfunktion der stetigen Zufallsvariablen.\hfill $\square$
+\end{itemize}
 
+\paragraph{2. Welche Aussagen sind richtig?}
+\begin{itemize}
+    \item[a)]Die Verteilungsfunktion ist monoton steigend.\hfill $\square$
+    \item[b)]Die Verteilungsfunktionen von stetigen Zufallsvariablen sind Treppenfunktionen \\im Gegensatz zu den diskreten Zufallsvariablen.\hfill $\square$
+    \item[c)] Eine Eigenschaft der diskreten Verteilungsfunktion ist, dass die Fläche unterhalb \\der Funktion immer 1 ergibt.\hfill $\square$
+    \item[d)]Die Summe aller Einzelwahrscheinlichkeiten bei einer stetigen Zufallsvariable geben 1.\hfill $\square$
+    \item[e)]Eine Eigenschaft der Dichtefunktion einer stetigen ZV ist, dass die Werte immer \\größer gleich 0 sind.\hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche Aussagen sind richtig?}
+\begin{itemize}
+    \item[a)]Um die Verteilungsfunktion zu erhalten, leite ich die Dichtefunktion ab.\hfill $\square$
+    \item[b)]Die Fläche unter der Dichtefunktion ist die Quantilsfunktion.\hfill $\square$
+    \item[c)]Die Quantilsfunktion ist die Umkehrfunktion der Verteilungsfunktion und umgekehrt.\hfill $\square$
+    \item[d)]Bei der Verteilungsfunktion gibt es immer mind. 3 Stellen die seperat definiert\\ werden müssen.\hfill $\square$
+\end{itemize}
 
 
 \newpage
@@ -2259,9 +2678,23 @@ Zur Veranschaulichung könnt ihr ein ähnliches Tool wie für die Binomialvertei
 \item[] \textbf{Intuition}: Hinter dieser Approximation steckt, dass jedes Ziehen (insgesamt $n$--mal) mit der hypergeometrischen Verteilung ein Bernoulli-Experiment ist, ob das gewünschte Merkmal gezogen wird oder nicht. Beim ersten Ziehen ist noch sehr offensichtlich, dass die Wahrscheinlichkeit, das gewünschte Merkmal zu ziehen, $p=\frac{M}{N}$ ist. Nach jedem Zug reduzieren sich aber $N$ bzw. $N$ und $M$, d.h. $p$ im einfachen Bernoulli-Experiment verändert sich. Bei erfüllten Faustregeln hingegen ist die Anzahl der Züge im Vergleich zur Anzahl der Objekte mit dem gewünschten Merkmal ($M$) bzw. ohne das gewünschte Merkmal ($N-M$) so gering, dass angenommen werden kann, dass sich $p$ nicht ändert. D.h. wir nehmen $p=\frac{M}{N}$ als konstant an. Dann sind die $n$ Züge unabhängige Bernoulli-Experimente und daher ist die Approximation durch die Binomialverteilung zulässig.
 \end{itemize}
 
+\clearpage
+\subsection{Aufgaben}
+\paragraph{1.Welche Aussagen bzgl.den Grenzwertsätzen ist wahr?}
+\begin{itemize}
+    \item[a)]Je größer der Stichprobenumfang, desto größer wird der Einfluss von Ausreißern.\hfill $\square$
+    \item[b)]Mit zunehmendem Stichprobenumfang nähert sich die beobachtete relative Häufigkeit\\ der theoretischen Wahrscheinlichkeit an.\hfill $\square$
+    \item[c)]$N=25$ liegt näher an der theoretischen Wahrscheinlichkeit als $N=26$\hfill $\square$
+    \item[d)]Egal welche Verteilung vorliegt, nähert sich der Mittelwert von iid Zufallsvariablen\\ bei zunehmenden Stichprobenumfang der Normalverteilung an.\hfill $\square$
+\end{itemize}
 
-
-
+\paragraph{2. Welche Aussagen bzgl. Approximationen sind richtig?}
+\begin{itemize}
+    \item[a)]Die hypergeometrische Verteilung kann durch die Normalverteilung approximiert werden.\hfill $\square$
+    \item[b)]Bei der Approximation der Poissonverteilung durch die Normalverteilung wird das $\lambda$\\ für das $\mu$ und das $\sigma$ einfach übernommen.\hfill $\square$
+    \item[c)]Die Poissonverteilung darf zu jeder Zeit durch die Normalverteilung approximiert werden.\hfill $\square$
+    \item[d)] Die hypergeometrische Verteilung H(9,120,40) darf durch die Binomialverteilung \\approximiert werden.\hfill $\square$
+\end{itemize}
 \newpage
 
 
@@ -2284,8 +2717,6 @@ Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern 
 
 \noindent Beispiele der ML-Schätzung für Normalverteilung, Binomialverteilung, Poissonverteilung und Exponentialverteilung:\\
 \url{https://mars.wiwi.hu-berlin.de/mediawiki/mmstat3/index.php/Maximum-Likelihood-Methode}
-
-
 
 
 \newpage
@@ -2328,7 +2759,15 @@ Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern 
     \item Um diese Punktschätzer bildet man dann ein (meistens) symmetrisches Intervall, das abhängig von der Varianz in der Stichprobe und des gewünschten Konfidenzniveaus $1-\alpha$ enger oder breiter wird.
 \end{enumerate}
 
-
+\subsection{Aufgabe}
+\paragraph{Welche Aussagen ist bzgl. der Konfidenzintervalle richtig?}
+\begin{itemize}
+    \item[a)]Die Punktschätzer sind immer richtig und wahrheitsgetreu.\hfill $\square$
+    \item[b)]Ein Konfidenzintervall gibt den Bereich vor, in dem der wahre Parameter immer \\zu finden ist.\hfill $\square$
+    \item[c)]Man kann die Länge eines Intervalls variieren, je nach dem mit welcher\\ Wahrscheinlichkeit der wahre Parameter innerhalb des Intervalls liegen soll.\hfill $\square$
+    \item[d)]Die Länge eines Intervalls hängt von $\alpha$, $\sigma^2$, der Verteilung und dem Stichproben-\\umfang ab.\hfill $\square$
+    \item[e)]Ein 99$\%$-KI besagt, dass zu 99$\%$ mein Schätzer richtig ist.\hfill $\square$
+\end{itemize}
 
 
 \newpage
@@ -2443,22 +2882,146 @@ Der Unterschied zwischen Gauss-Tests und t-Tests besteht darin, dass bei Gauss-T
 \subsubsection{Unterschied zwischen doppeltem t-Test und Welch-Test}\label{sec:t2vsWelch}
 Eine ähnliche Intuition wie für den Unterschied zwischen Gauss-Tests und t-Tests gibt es auch für den doppelten t-Test und den Welch-Test. Die Anzahl der Freiheitsgrade der Teststatistik vom doppelten t-Test ist größer als die beim Welch-Test. D.h. wir haben beim doppelten t-Test einen größeren Ablehnbereich als beim Welch-Test und wir sind uns somit "etwas eher mit der Entscheidung sicher", $H_0$ zu verwerfen, falls es denn dazu kommt. Das liegt daran, dass man beim doppelten t-Test zwei Stichproben hat, mit denen man eine unbekannte Varianz schätzt. Beim Welch-Test hingegen hat man zwei Stichproben, mit Hilfe derer man zwei unbekannte Varianzen schätzen muss. Deshalb ist beim letzteren etwas mehr Ungewissheit im Spiel.
 
-\newpage
-\section{Das Multiple Regressionsmodell}\label{sec:Reg}
+\clearpage
+\subsection{Aufgaben}
+\paragraph{1. Welche Aussagen zum p-Wert sind richtig?}
+\begin{itemize}
+    \item[a)]Der p-Wert gibt die Wahrscheinlichkeit an, mit der mein beobachteter Wert richtig ist.\hfill $\square$
+    \item[b)]Der p-Wert gibt $P(X)$ an.\hfill $\square$
+    \item[c)]Die Hypothese, die man Beweisen will befindet sich in der Alternativhypothese $H_1$.\hfill $\square$
+    \item[d)]Wenn der p-Wert kleiner als mein $\alpha$ ist, dann lehne ich die Nullhypothese ab.\hfill $\square$
+    \item[e)]Bei einem beidseitigen Test gibt es immer zwei Ablehnbereiche.\hfill $\square$
+    \item[f)]Der p-Wert gibt uns darüber Auskunft, mit welcher Wahrscheinlichkeit unser Wert \\oder ein Wert, der noch weiter von der Nullhypothese entfernt ist, auftritt, wenn ich\\ daran festhalte, dass die Nullhypothese stimmt.\hfill $\square$
+\end{itemize}
 
-...folgt bald...
+\paragraph{2. Welche Aussagen über die Hypothesentests sind wahr?}
+\begin{itemize}
+    \item[a)]Mit Hypothesentest kann man entscheiden, ob eine Nullhypothese richtig ist.\hfill $\square$
+    \item[b)]Bei einem einfachen t-Test gibt es immer nur ein Ablehnbereich.\hfill $\square$
+    \item[c)]Der Unterschied zwischen dem einfachen Gauss-Test und einfachen t-Test ist die\\ unbekannte Varianz beim t-Test.\hfill $\square$
+    \item[d)]Mit dem approximativen einfachen Binomialtest überprüft man, ob ein $\mu$ signifikant\\ von $\mu_0$ abweicht, also im Ablehnbereich liegt oder nicht.\hfill $\square$
+    \item[e)]Der Gauss-Test ist im Gegensatz zum t-Test normalverteilt.
+\end{itemize}
+
+\paragraph{3. Welche Aussagen über die Hypothesentests sind wahr? }
+\begin{itemize}
+    \item[a)]Mit dem F-Test kann man das Verhältnis von Varianzen zweier unabhängigen\\ Zufallsvariablen testen.\hfill $\square$
+    \item[b)]Beim doppelten Gauss-Test handelt es sich im Gegensatz zum einfachen Gauss-Test\\ um das Verhältnis der Varianzen zweier unabhängiger, normalverteilter ZV.\hfill $\square$
+    \item[c)]Beim doppelten Gauss-Test sind ebenfalls die Varianzen unbekannt.\hfill $\square$
+    \item[d)]Der Unterschied zwischen des doppelten t-Test und des Welch-Test ist, dass beim\\ doppelten t-Test die Varianzen bekannt sind und beim Welch-Test diese unbekannt sind.\hfill $\square$
+    \item[e)]Die Besonderheit beim Paired t-Test ist, dass es sich hierbei um einen Test mit zwei\\ abhängige normalverteilte ZV handelt.\hfill $\square$
+ \end{itemize}
+    
+\paragraph{4. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
+    \item[a)]Mit dem Chi-Quadrat-Anpassungstest kann ist testen, ob die Verteilung zweier ZV \\ungleich ist.\hfill $\square$
+    \item[b)]Beim Approximativen Doppelten Binomialtest handelt es sich um den Vergleich von\\ Wahrscheinlichkeiten und somit nicht mehr um den Vergleich von Erwartungswerten.\hfill $\square$
+    \item[c)]Der Vorteil beim Mann-Whitney-U-Test ist, dass die ZV nicht mehr unbedingt\\ normalverteilt sein müssen.\hfill $\square$
+    \item[d)]Der Kolmogorov-Smirnov-Anpassungstest prüft, ob sich zwei ZV in ihrer Verteilung\\ unterscheiden. \hfill $\square$
+    \item[e)]Beim Chi-Quadrat-Unabhängigkeitstest wird die Unabhängigkeit zweier Stichproben\\ überprüft, indem die beobachteten Häufigkeiten mit den zu erwarteten Häufigkeiten \\ohne Abhängigkeit unter $H_0$ vergleicht.\hfill $\square$
+    \item[f)]Der Odds-Ration-Test testet die Unabhängigkeit von zwei beliebigen Variablen ohne\\ Ausnahme.\hfill $\square$
+\end{itemize}   
+  
+ \paragraph{5. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
+    \item[a)]Der Ablehnbereich ist  beim Gauss-Test größer als beim t-Test.\hfill $\square$
+    \item[b)]Der Gauss-Test ist etwas unsicherer als der t-Test.\hfill $\square$
+    \item[c)]Bei größeren Stichproben nähern sich die Ergebnisse des t-Tests und des Gauss-Tests an.\hfill $\square$
+    \item[d)] Beim Welch-Test sind wir mit unserer Entscheidung ein wenig sicherer als beim \\doppelten t-Test, da wir nur eine unbekannte Varianz schätzen müssen.\hfill $\square$
+ \end{itemize}  
+
+
+
+\newpage
+\section{Lineare Regression}
+Die Lineare Regression ist bereits aus Kapitel \ref{chap:linreg} bekannt. Im Folgenden werden wir das aus Statistik I schon gelernte wiederholen und weiter vertiefen.\\
+Bei der linearen Regression benötigt man zwei Variable die abhängige und die unabhängige. Die Annahme ist, dass zwischen diesen beiden eine lineare Beziehung herrscht. Die lineare Regression wird mit der Formel: $Y=\beta_0+\beta_1X+\epsilon$, wobei $\epsilon$ der unbeobachtete Fehlerterm ist. In Statistik II sind nun die Daten Realisationen von Zufallsvariablen, durch die Schlüsse auf die Grundgesamtheit geschlossen werden, im Gegensatz zu Statistik I. Durch die Regression kann man nun nicht mehr nur Aussagen übe die erklärte Streuung machen, sondern auch über Verteilungsannahmen und die statistische Signifikanz. \\
+Der Fehlerterm $\epsilon$ ist nun eine Zufallsvariable und für jede Beobachtung gibt es ein Fehlerterm, welche jedoch unabhängig voneinander sind und deren Erwartungswert 0 ist. Die Varianz der $\epsilon$ ist $\sigma^2$, da durch den Verschiebungssatz schlussendlich nur noch der Erwartungswert der quadrierten Epsilons übrigbleibt. Zudem wird die Annahme getroffen, dass sie Fehlerterme unabhängig voneinander sind, daher ist die Kovarianz bei gleicher Beobachtung $\sigma
+^2$ und bei ungleicher Beobachtung 0 und somit unkorreliert.\\
+Wenn die Varianz $\sigma^2$ ist und somit konstant ist, dann ist der Fehlerterm unabhängig von dem Wert der Einflussgröße. Ist dies der Fall, dann spricht man von \textbf{Homoskedastizität}. Oftmals werden diese Annahmen jedoch verletzt und die Varianz der Fehlerterme nimmt mit steigendem x-Wert zu. Dies nennt man dann \textbf{Heteroskedastizität} was man gut in einem Residualplot oder oftmals auch schon in einem Scatterplot sehen kann.\\
+Nun überträgt man die Verteilung der Epsilons auf die Zufallsvariable Y. Das heißt, wenn die Epsilons unabhängig sind, dann sind das auch die Zufallsvariablem. Eine weiter Annahme ist der Erwartungswert, dabei setzt man den Ansatz des Regressionsmodells ein und da der Erwartungswert von Epsilon gleich 0 ist, ist der Erwartungswert schlussendlich $\beta_0+\beta_1x_1$. Da dies als eine Konstante gesehen wird ist die Varianz der Zufallsvariable auch $\sigma
+^2$. Wie auch bei den Annahmen der Epsilons ist die Kovarianz bei gleichen Beobachtungen $\sigma^2$ und bei ungleichen Beobachtungen 0. Somit sind die Zufallsvariablen auch normalverteilt, die Varianz bleibt die gleiche nur der Erwartungswert erfährt eine Verschiebung und liegt bei $\beta_0+\beta_1x_i$.
+
+\paragraph{Matrixschreibweise}Man kann das Regressionsmodell auch in der Matrixschreibweise schreiben, was bei vielen Beobachtungen einer Zufallsvariablen praktisch und übersichtlich sein kann. Dabei ist in jeder Zeile eine Regressionsgleichung einer Zufallsvariablen abgetragen. $I_n$ ist die nxn Einheitsmatrix. Ein Element in der Einheitsmatrix ist 1, wenn die i-te Zeile gleich der j-ten Spalte ist. Ist dies nicht der Fall, dann ist das Element in der Einheitsmatrix 0\\
+
+\noindent Wie bei Statistik I in Kapitel \ref{sec:Kategoriale Regression}, kann auch hier die Dummy und Effektkodierung angewendet werden. Als kleine Wiederholung, man wählt eine Referenzkategorie aus, welche bei der Dummyvariablen durch Nullsetzen der anderen Variablen entsteht und bei der Effektcodierung durch das -1 setzten aller anderen Variablen. Die Regressionsgleichungen der einzelnen Merkmalsausprägungen kann dann schlussendlich durch einsetzten von 0, 1 und bei Effektkodierung von -1 in die allgemeine Regressionsgleichung gebildet werden.
+\subsection{Kleinste-Quadrate-Schätzer}
+Auch das Thema der Kleinsten-Quadraten-Schätzer haben wir schon in Statistik I \ref{sec:kq} besprochen. Hier ist nun zu beachten, dass wir nicht mehr a und b als Schreibweise benutzen sondern nun $\beta_0, \beta_1, \beta_2,....$\\
+Somit ergibt sich als Schätzer für $\hat{\beta}_1$: $\hat{\beta}_1=\frac{\sum_{i=1}^n x_iy_i-n\bar y\bar x}{\sum_{i=1}^n x^2_i-n\cdot \bar x^2}$ und für den Intercept bzw. y-Achsenabschnitt: $\hat\beta_0=\bar y-\hat\beta_1\bar x$.
+Da $\sigma^2$ unbekannt ist und auch geschätzt werden muss, ergibt sich als Verteilungsannahme für die standardisierten Parameterschätzer eine t-Verteilung mit 2 Freiheitsgraden.
+
+
+\subsection{Multiple lineare Regression}\label{sec:Reg}
+Bei der multiplen linearen Regression haben wir nun nicht mehr eine Einflussgröße X, sondern p verschiedene Einflussgrößen. Die verschiedenen Beobachtungen einer kann man dann wieder in eine Matrix übertragen.\\
+Die Annahmen für die lineare Regression sind soweit wieder die gleichen wie bei der einfachen linearen Regression und die Schätzung kann man wieder mit der Kleinste-Quadrate-Methode bestimmen.
+Daraus ergeben sich dann die Eigenschaften des KQ-Schätzers für $\beta$. $\hat\beta$ ist erwartungstreu, da dessen Erwartungswert $\beta$ ist. Der $\beta$-Schätzer lässt sich berechnen als X transponiert mal X, woraus sich eine p+1 x p+1-Matrix ergibt, daraus die Inverse und multipliziert dies mit X transponiert y. Zwei weitere Eigenschaften sind, dass $\hat\beta$ unter den linearen Schätzern der bestmögliche unverzerrte Schätzer und normalverteilt ist. Die Kovarianz ist $\sigma^2(X'X)^{-1}$. Da $\sigma^2$ ein Schätz ist, ist die Kovarianz auch nur ein Schätzer.
+Bei der Berechnung des geschätzten $\sigma^2$ ist nun die Besonderheit, dass nicht mehr durch n-2 Freiheitsgrade geteilt wird, wie bei der einfachen linearen Regression, sondern durch n-(p+1). P ist dabei die Anzahl der Kovariablen im Modell und +1 bezieht sich auf den Intercept, der zusätzlich noch abgezogen wird, da er nicht in p enthalten ist. \\
+Dies spiegelt sich auch in der Verteilungsannahme für die standardisierte Parameterschätzung wider, da die Verteilung eine t-Verteilung mit n-p-1 Freiheitsgraden ist. Die standardisierte Parameterschätzung berechnet man mit der Differenz aus $\hat\beta_p$ und dessen Erwartungswert und teilt durch die geschätzten Standardfehler von $\hat\beta_p$.\\
+\textbf{Bemerkung:} Lineare Modelle sind möglicherweise allgemeiner als man denkt, da nur die Parameter $\beta$ linear sein müssen.
+
+\subsection{Signifikanztests und Konfidenzintervalle}
+Mit dem Signifikanztest soll überprüft werden, ob eine j-te Einflussgröße einen signifikanten Erklärungswert auf die Zielgröße besitzt. Dabei kommt in die Alternativhypothese die Eigenschaft die wir nachweisen wollen, dass $\beta_j$ einen statistisch signifikanten Einfluss hat. Somit ist die Alternativhypothese $H_1:\beta_j\neq0$ und damit die Nullhypothese $H_O:\beta_j=0$. Die Teststatistik mit ihrem Ablehnungsbereich findet man in der Formelsammlung unter \textit{Test für Regressionskoeffizienten} auf Seite 9. Man kann die komplette t-Statistik auch quadrieren, was dann der F-Verteilung mit 1,(n-p-1) Freiheitsgraden entspricht. Zudem findet man auch die Konstruktion des Konfidenzintervalls für $\beta_j$.
+
+\subsection{Bestimmtheitsmaß und Overall F-Test}
+\subsubsection{Bestimmtheitsmaß}
+Bereits aus Statistik I ist das Bestimmtheitsmaß $R^2$ zur Beurteilung der Güte der Regression bekannt. Die Berechnung von $R^2$ ist auch beim multiplen Regressionsmodell möglich. $R^2$ berechnet sich wieder aus dem Quotienten der erklärten Streuung SSReg und der Gesamtvarianz von Y SSY. Die erklärte Streuung entspricht dabei dem Produkt aus Zeilen und Spaltenvektor $(\hat Y-\bar Y)'(\hat Y-\bar Y)$ und SSY berechnet sich aus $(Y-\bar Y)'(Y-\bar Y)$.  $R^2$ kann man auch mit der Reststreuung RSS berechnen, wobei RSS die Residuuen Streuung $\hat\epsilon'\hat\epsilon$ ist.\\
+Die perfekte Anpassung ist wenn $\hat\epsilon$ gleich 0 ist und $R^2=1$ ist. Erklärt das Regressionsmodell gar keine Streuung, dann ist die Gesamtstreuung gleich der Residuenstreuung und $R^2=1$. Man spricht von Nullanpassung.
+
+\subsubsection{Overall F-Test}
+Mit dem Overall F-Test kann man testen, ob die Regressoren überhaupt einen statistisch signifikanten Erklärungswert für die anhängige Variable Y liefert. Dabei steht in der Nullhypothese die Annahme, dass kein Regressor ein signifikanten Erklärungswert über die abhängige Variable Y liefert: $H_0:\beta_1=\beta_2=...=\beta_p=0$. In der Alternativhypothese steht dann: $H_1:\beta_j\neq0$ für mind. ein j. Das heißt, die Nullhypothese wird abgelehnt, wenn mindestens einer der Regressoren eine signifikante Erklärung für die unabhängige Variable liefert. Somit testet man das Modell mit allen Regressoren gegen das Modell nur mit Intercept, da alle Betas null sind.\\
+Die Teststatistik berechnet man mit $F=\frac{R^2}{1-R^2}\cdot \frac{n-(p+1)}{p}$. Somit verwendet man bei der Teststatistik das Bestimmtheitsmaß $R^2$. Wie der Name schon sagt, handelt es sich hier um eine F-Verteilung. Um die Nullhypothese ablehnen zu können, muss mein berechnetes F größer sein, als $F_{1-\alpha}$ mit p und n-(p+1) Freiheitsgraden. Hier liegt anders wie beim t-Test nur ein Ablehnungsbereich vor. Die Nullhypothese kann somit nur bei positiven Werten angelehnt werden.\\
+\textbf{Bemerkung:} Hat man einen R-Output gegeben, dann befindet sich meistens am Ende schon das berechnete Bestimmtheitsmaß.\\
+Mit einem Scatterplot kann man den Zusammenhang eines Regressors mit der abhängigen variablen Y graphisch darstellen. Dabei kann man eine Regressionsgleichung mit hineinlegen, um zu sehen, in wie fern diese den Daten entspricht. Somit kann man mehr oder weniger graphisch sehen, wie gut ein Regressor die unabhängige Variable erklärt. Zudem gibt es auch Multivariate Analysen wie die Modellzusammenfassung oder die ANOVA Tabelle, um schnell einen Überblick über den Erklärungswert der Regressoren über die unabhängige Variable zu bekommen.\\
 
 \noindent Eine gute Übersicht zu den Annahmen und den diversen Plots (Residualplot, QQ-Plot, etc.) findet ihr unter folgendem Link:\\
 \url{https://wikis.fu-berlin.de/display/fustat/Residuenplots}
 
+\clearpage
+\subsection{Aufgaben}
+\paragraph{1. Welche Aussagen }
+\begin{itemize}
+    \item[a)]Der Erwartungswert der Residuen sollte immer 1 sein.\hfill $\square$
+    \item[b)]Bei der Homoskedastizität geht man von einer konstanten Varianz der Fehlertermen aus.\hfill $\square$
+    \item[c)]In Statistik II trifft man die Annahme, dass die Fehlerterme eine Zufallsvariable sind.\hfill $\square$
+    \item[d)]In Statistik II kann man keine Schlüsse über die Grundgesamtheit ziehen, da schlussendlich alles nur Annahmen sind und nichts sicher ist.\hfill $\square$
+\end{itemize}
 
+\paragraph{2. Welche Aussagen über die einfache lineare Regression sind wahr?}
+\begin{itemize}
+    \item[a)]Mit steigenden x-Werten, sollte auch die Varianz der Residuen steigen.\hfill $\square$
+    \item[b)]Die Normalverteilung der Zufallsvariablen lautet N(0,$\sigma^2)$\hfill $\square$
+    \item[c)]Bei der Effektkodierung wählt man im Gegensatz zur Dummykodierung keine Referenzkategorie.\hfill $\square$
+    \item[d)]Bei der Effektkodierung wird die Referenzkategorie mit -1 setzen aller Effektvariablen gebildet.\hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche Aussagen bezüglich der multiplen linearen Regression sind richtig?}
+\begin{itemize}
+    \item[a)]Eine Eigenschaft des KQ-Schätzers ist, dass er erwartungstreu ist.\hfill $\square$
+    \item[b)]$\hat\beta$ ist der allgemein beste Schätzer für $\beta$.\hfill $\square$
+    \item[c)]$Y_i=\beta_0+\beta_1x{i1}+\beta_2x_{i2}+\beta_3x_{i3}+\beta_4x{i4}$ hat 5 Freiheitsgrade.\hfill $\square$
+    \item[d)]$y=\beta_0+\beta_1\sqrt{x}^2+\beta_2+\beta_3x^{3,75}$ ist eine lineares Modell.\hfill $\square$
+    \item[e)]Die Freiheitsgrade der t-Statistik werden mit n-2 berechnet.
+\end{itemize}
+
+\paragraph{4. Welche Aussagen bezüglich des Signifikanztest und der KI-Intervalle sind richtig?}
+\begin{itemize}
+    \item[a)]Mit dem Signifikanztest für einen Parameter kann man überprüfen, ob die Nullhypothese signifikant richtig ist.\hfill $\square$
+    \item[b)]Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen nicht in der Teststatistik nicht weiter beachten.\hfill $\square$
+    \item[c)]Das Konfidenzintervall liegt symmetrisch um den Schätzer.\hfill $\square$
+    \item[d)]Wenn t=-4,8 ist und $t_{n-p-1),1-\alpha}=4,5$, dann kann ich die Nullhypothese nicht ablehnen.\hfill $\square$
+    \item[e)]Eine Teststatistik mit $t_{194}$ Freiheitsgraden und n=200 hat ein p=6.\hfill $\square$
+\end{itemize}
+
+\paragraph{5. Welche Aussagen über das Bestimmtheitsmaß und den Overall F-Test sind richtig?}
+\begin{itemize}
+    \item[a)]Wenn die Nullhypothese abgelehnt wird, dann haben alle Regressoren einen statistisch signifikanten Erklärungswert für die Zielvariable Y.  \hfill $\square$
+    \item[b)]Bei $R^2=1$spricht man von einer Nullanpassung.\hfill $\square$
+    \item[c)]Bei $R^2=0$ wird die Streuung vom Regressionsmodell komplett erklärt. \hfill $\square$
+    \item[d)]$R^2=\frac{RSS}{SSY}$\hfill $\square$
+    \item[e)]Ist $R^2=0$, dann wird $H_0$ nicht abgelehnt.\hfill $\square$
+    \item[f]Ist mein berechneter Wert F negativ, dann wird die $H_0$-Hypothese abgelehnt.\hfill $\square$
+\end{itemize}
 
 
 \newpage
-
-
-
-
 \section*{References}
 
 \begin{itemize}

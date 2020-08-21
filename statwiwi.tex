@@ -1449,7 +1449,7 @@ Wenn jedoch das Bestimmtheitsmaß 0 beträgt, dann wird kein Teil der Streuuung 
 
 \noindent \dangersign[3ex] Für die lineare Regression mit einer Einflussgröße ergibt sich ein Spezialfall: Hier kann $R^2$ auch durch Quadrierung von $r_{BP}$ berechnet werden.
 
-\subsection{Kategoriale Regression} \label{sec:Kategoriale Regression}
+\subsection{Kategoriale Regression} \label{sec:kat-reg}
 Alle bisherigen Ausführung bezogen sich auf den Fall eines metrischen Merkmals als Einflussgröße. Besitzt $X$ jedoch nur kategoriales bzw. nominales Skalenniveau, erfordert dies eine andere Vorgehensweise. Um auch solche Merkmale als Einflussgröße verwenden zu können, müssen diese entsprechend \textit{umzukodiert} werden. Dies kann mit Hilfe der \textbf{Dummykodierueng} oder der \textbf{Effektkodierung} geschehen, welche im Folgenden anhand eine Beispiels erläutert werden:\\
 
 \noindent Hierfür betrachten wir das Merkmal $X:$ "\textit{Parteizugehörigkeit eines Bundestagsabgeordneten}" mit den möglichen Ausprägungen \{\textit{Union, SPD, Grüne, Linke, AfD, FDP}\} als Einflussgröße. Die Zielgröße $Y$ ist die "\textit{Höhe der Nebeneinkünfte des Abgeordneten}".\\
@@ -1811,59 +1811,85 @@ Große Warenkörbe bestehen oft aus kleineren Sub-Warenkörben. Dies hilft dabei
 \newpage
 
 \section{Zeitreihen}
-Bei Zeitreihen beobachtet man ein Merkmal über einen längerer Zeit wiederholt und schaut, wie dieses Merkmal sich im Zeitverlauf entwickelt. Diese Entwicklung kann man in \textit{Kurvendiagrammen} darstellen. Dabei befindet sich auf der x-Achse die Zeit (bspw. Tageswerte, Monatswerte, Quartals -/oder Jahreswerte) und auf der y-Achse die Merkmalsausprägungen. Im Folgenden werden Methoden vorgestellt, wie man solche Kurvendiagramme analysieren kann. Dabei geht man von \textit{äquidistanten} Zeitreihen aus, was bedeutet, dass die Zeit zwischen zwei Messungen immer dieselbe ist.
-
+Bei Zeitreihen misst man ein Merkmal wiederholt über die Zeit hinweg und betrachtet wie es sich im Zeitverlauf entwickelt. Diese Entwicklung kann man in \textit{Kurvendiagrammen} darstellen. Dabei befindet sich auf der x-Achse die Zeit (bspw. Tageswerte, Monatswerte, Quartals -/oder Jahreswerte) und auf der y-Achse die Merkmalsausprägungen. Im Folgenden werden einige simple Methoden vorgestellt, mit denen man Zeitreihendaten analysieren kann. Dabei geht man stets von \textit{äquidistanten} Zeitreihen aus, was bedeutet dass die Zeit die zwischen zwei Messungen immer dieselbe ist.
 
 \subsection{Zerlegung von Zeitreihen, Komponentenmodell}
-Zeitreihen kann man in drei verschiedene Komponenten zerlegen, in die glatte Komponente $g_t$, die saisonale Komponente $s_t$ und die irreguläre oder Restkomponente $r_t$.
-Die glatte Komponente $g_t$ gibt den Trend, also die langfristige Entwicklung an. Die saisonale Komponente $s_t$ beschreibt die saisonalen Schwankungen bspw. pro Quartal oder Monat und die Restkomponente gibt den Anteil an $y_t$ an, der nicht durch die saisonale und die glatte Komponente erklärt beschrieben wird. Diese sollte jedoch im Mittel 0 sein.\\
-Somit kann das Komponentenmodell unter der Bedingung, dass die Summe von $r_t$ gleich 0 ist so dargestellt werden: $y_t=g_t+s_t+r_t$ . Dies wird additives Modell genannt. Da es oft besser ist einen multiplikativen Ansatz zu verfolgen erhält man diesen durch Logarithmieren: $\tilde{y_t}=\tilde{g_t}\cdot \tilde{s_t}\cdot\tilde{r_t}$, dabei ist dann wichtig, dass der Erwartungswert von $\tilde{r_t}$ 1 sein soll.
+Zeitreihen eines Merkmals $y_t$ kann man in der Theorie in drei verschiedene Komponenten zerlegen: In die glatte Komponente $g_t$, die saisonale Komponente $s_t$ und die irreguläre oder Restkomponente $r_t$. Die glatte Komponente $g_t$ spiegelt den Trend, also die langfristige Entwicklung der Reihe, wieder. Die saisonale Komponente $s_t$ beschreibt die saisonalen Schwankungen (bspw. pro Quartal oder Monat) und erklärt somit wiederkehrende Muster in der Reihe. Die Restkomponente gibt den Anteil an $y_t$ an, der nicht durch die saisonale und die glatte Komponente erklärt beschrieben wird. Diese irregulären Abweichungen sollten jedoch im Mittel 0 sein.\\
+Somit kann die Zeitreihe durch dieses Komponentenmodell (unter der Bedingung, dass die Summe von $r_t$ gleich 0 ist) wie folgt dargestellt werden: 
+$$y_t=g_t+s_t+r_t\;.$$
+\noindent Dies Modell wird als additives Modell bezeichnet, da die Komponenten additiv zusammenhängen. Da es jedoch je nach Datenlage auch zu erforderlich sein kann, einen multiplikativen Ansatz
+$$y_t = \tilde g_t \cdot \tilde s_t \cdot \tilde r_t\;$$
+zu verfolgen, wird nachfolgend erläutert wie man unterscheiden kann, welcher Ansatz benötigt wird.\\
 
+\noindent \dangersign[3ex] Es ist möglich, dass multiplikative Modell durch Logarithmieren in additive Schreibweise zu überführen, was mathematisch angenehmer zu handhaben ist.\\
+
+\noindent Um zu unterscheiden welcher Ansatz (additiv vs. multiplikativ) erforderlich ist, sollten die Daten grafisch dargestellt werden um festzustellen ob es im vorliegenden Fall Trend- \& Saisonkomponente additiv oder multiplikativ zusammenhängen. In Abbildung \ref{fig:add_mult} sind zwei beispielhafte Szenarien für einen additiven (links) bzw. multiplikativen (rechts) Zusammenhang dargestellt. Von einem additiven Zusammenhang von Trend und Saison kann ausgegangen werden, wenn die saisonalen Schwankungen konstant zu bleiben scheinen, völlig egal ob ein steigender oder fallender Trend vorliegt. Ein multiplikativer Zusammenhang liegt vermutlich vor, falls bei steigendem (fallenden) Trend, die saisonalen Schwankungen im Zeitverlauf entsprechend größer (kleiner) werden. In diesem Fall sollte man die Daten logarithmieren und die nachfolgend vorgestellten Methoden auf die logarithmierten Daten anwenden. 
+
+\begin{figure}
+    \centering
+        \includegraphics[width = .45\textwidth]{figures/additiv.pdf}
+        \includegraphics[width = .45\textwidth]{figures/multiplikativ.pdf}
+    \caption{Schaubild für einen additiven (links) bzw. multiplikativen (rechts) Zusammenhang von Trend- und Saisonkomponente}
+    \label{fig:add_mult}
+\end{figure}
 
 \subsection{Gleitende Durchschnitte}
-Gleitende Durchschnitte benötigt man um den Trend, also die glatte Komponente zu berechnen. Durch die Glättung erhält man eine geringere Variabilität da man die saisonalen Schwankungen herausfiltert.
-Man unterscheidet zwischen gerader und ungerader Ordnung.\\ 
-Bei der ungeraden Ordnung mittelt man immer k Werte vor, k Werte nach einem speziellen Wert $y_t$ und den Wert $y_t$ selbst um einen glättenden Durchschnitt des Wertes $y_t$ zu erhalten. K gibt an wie viele Werte vor und nach dem Wert $y_t$ in den gleitenden Durchschnitt aufgenommen werden. Mit 2k+1 kann man dann die Ordnung bestimmen.
-\\
-Bei gerader Ordnung ist es ein klein wenig komplizierter, da man nun die Randwerte nur mit halbem Gewicht in den Durschnitt miteinberechnet, damit man auf eine gerade Zahl kommt. So hat man beispielsweise bei k=2 zum Schluss fünf Werte, die in den glatten Durchschnitt mit einberechnet werden. Jeweils die Randhäufigkeiten zur Hälfte, dann die jeweils direkten "Nachbarn" des Wertes $y_t$ und der Wert $y_t$ selbst. Somit kommt man schließlich auf 4 "ganze" Werte, also Rang 4. Um nun den gleitenden Durchschnitt zu berechnen muss man wie bei der ungeraden Ordnung das arithmetische Mittel aus den Werten bilden.\\
-Je höher ein Rang ist, desto weniger gleitende Durchschnitte einer Zeitreihe kann man machen, da man jeweils an den Enden einer Zeitreihe keinen Durchschnitt bilden kann, da die vorigen bzw. folgenden Werte an den Enden fehlen.
+Gleitende Durchschnitte sind eine Methode um den Trend, also die glatte Komponente $g_t$, zu schätzen. Durch die Glättung filtert man dabei die saisonalen Schwankungen heraus.
+
+\paragraph{Gleitende Durchschnitte ungerader Ordnung:} Um den Wert des gleitenden Durchschnitts für einen bestimmten Zeitpunkt $t$ zu berechnen, berechnet man das arithmetische Mittel (vgl. Kap. \ref{sec:arithm}) über $k$ Werte vor und $k$ Werte nach diesem Zeitpunkt $t$, sowie dem Wert $y_t$ selbst. Der Parameter $k$ gibt dabei an wie viele Werte vor und nach dem Wert $y_t$ jeweils in den gleitenden Durchschnitt Mit einfließen sollen. Da insgesamt $2 \cdot k + 1$ Werte mit einfließen, spricht man vom gleitenden Durchschnitt $(2k + 1)$-ter Ordnung.\\
+\textbf{Beispiel:} Würde man jeweils $k = 3$ vor und nach dem Zeitpunkt $t$ mit einfließen lassen, so spräche man von einem gleitenden Durchschnitt 7. Ordnung. 
+
+\paragraph{Gleitende Durchschnitte gerader Ordnung:} Soll eine gerade Anzahl $k$ an Werten in den gleitenden Durchschnitt mit einfließen, gestaltet sich die Berechnung ein klein wenig komplizierter, da man nun nicht mehr auf natürliche Art und Weise einen mittleren Wert hat wie oben. Daher bedient man sich hier des "Tricks", die Werte am Rand des gewählten Fensters nur mit halbem Gewicht in den Durchschnitt mit einfließen zu lassen. Somit kommt man auf eine gerade Zahl an "ganzen" Werten. Man berechnet also das arithmetische Mittel über je $k$ Werte vor und nach diesem Zeitpunkt $t$, sowie dem Wert $y_t$ selbst und gewichtet die äußersten Werte mit $\frac{1}{2}$.\\
+\textbf{Beispiel:} Für $k = 2$ fließen fünf Werte in den Durchschnitt mit ein: Die äußersten Werte nur zur Hälfte, die jeweils direkten "Nachbarn" des Wertes $y_t$ ganz und der Wert $y_t$ selbst ebenfalls ganz. Somit kommt man schließlich auf 4 "ganze" Werte, daher gleitender Durchschnitt 4. Ordnung.\\
+
+\noindent \dangersign[3ex] Obwohl bei obigem Beispiel tatsächlich fünf Werte mit einfließen, wird bei der Berechnung des airthm. Mittels nur durch vier geteilt, da zwei Werte nur jeweils mit Gewicht $\frac{1}{2}$ einfließen.\\
+
+\noindent Diese Berechnung führt man  für jeden Zeitpunkt $t$ der Zeitreihe durch und erhält damit eine geglättete Zeitreihe als Schätzung für die Trendkomponente. Wie man sich für eine Ordnung entscheidet, wird in den nachfolgenden Kapiteln erläutert.\\
+
+\noindent \dangersign[3ex] Je höher der gewählte Ordnung, für desto mehr Werte am Rand der Zeitreihe lässt sich kein gleitender Durchschnitt berechnen, da man immer $k$ Werte links \& rechts von dem Zeitpunkt $t$, für den man den gleitenden Durchschnitt berechnen will, braucht.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für den gl. Durchschnitt: > runmean(data, k, ..)} \hfill \href{https://www.rdocumentation.org/packages/caTools/versions/1.17.1/topics/runmean}{Dokumentation}}
+
+\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{caTools}. Dieses muss zunächst installiert (\texttt{install.packages("caTools")}) und anschließend importiert werden\\(\texttt{library(caTools)}).
 
 
 \subsection{Saisonale Komponente, konstante Saisonfigur}
-Gilt $s_t=s_{t+p}$, dann spricht man von einer konstanten Saisonfigur mit Periode p, da nach einer Periode p die Saisonfigur wieder den gleichen Wert wie den Anfangswert annimmt. Summiert man somit alle Werte einer Periode auf, sollte 0 herauskommen.
+Gilt $s_t = s_{t+p}$, dann spricht man von einer konstanten Saisonfigur mit Periode $p$, da nach $p$ Zeitpunkten die Saisonkomponente wieder in etwa den gleichen Wert annimmt. Summiert man alle Werte dazwischenliegenden Werte dieser Periode auf, so sollte 0 herauskommen.\\
+
+\noindent \dangersign[3ex] Auch die Periodendauer $p$ ist etwas, das man durch grafische Darstellung der Zeitreihe herausfinden kann. Man überprüft visuell, ob es saisonale Muster gibt, die sich in regelmäßigen Zeitabständen wiederholen.
 
 \subsection{Zerlegung in Trend und Saison}
-Die saisionale Komponente ist eine regelmäßige Wiederholende Schwankung um die glatte Komponente. Wenn man daher die Ordnung des gleitenden Durchschnitts so wählt, dass sie einem Vielfachen der Periode entspricht ($2k=l\cdotp p (l=1,2,...))$, kann man die Saisonkomponente sozusagen "glätten", also herausrechnen.
-Die kleinste mögliche Ordnung enstpricht somit der Periode, um die Saisonkomponente zu eliminieren.
+Die saisonale Komponente ist "\textit{eine regelmäßige Wiederholende Schwankung um die glatte Komponente}". Wenn man daher die Ordnung des gleitenden Durchschnitts so wählt, dass sie einem Vielfachen $l$ der Periodendauer entspricht ($2k = l \cdotp p$, kann man die Zeitreihe "glätten", also die Saisonkomponente herausrechnen. Übrig bleibt dadurch eine Schätzung für die Trendkomponente $g_t$.
+Die kleinste mögliche Ordnung um die Saisonkomponente zu eliminieren enstpricht somit der Periodendauer $p$.\\
 
-Die Differenz zwischen dem vorigen Wert $y_t$ und dem durch den gleitenden Durchschnitt berechneten $y*_t$ mit also mit der bereinigten Saisonkomponente ist dann die Saisonkomponente selbst, jedoch mit zusätzlichem Fehler.
-Denn bis jetzt ist $d_t\approx d_{t+p}$. 
-Um den Fehler herausrechnen zu können, bildet man mit den berechneten Saisonkomponenten $d_t$ den Mittelwert pro Saisonteil. Also beispielsweise der Mittelwert von allen Werten im ersten Quartal, im zweiten Quartal, im dritten und vierten Quartal $(\bar{d}_1...\bar{d}_p)$ \\
-Anschließend wird der Mittelwert von den soeben berechneten Mittelwerten berechnet, da man so schlussendlich den Fehler erhält, um den man die Saisonkomponente $(\bar{d}_1...\bar{d}_p)$ bereinigen muss. Nach dem man den Fehler von $\bar{d}$ subtrahiert hat, erhält man die Saisonkomponente $\hat{s}$.
+\noindent \dangersign[3ex] Höhere Ordnungen $l \cdot p$ sind theoretisch auch möglich (s.o.), würden jedoch dazu führen, dass man für mehr Zeitpunkte am Rand der Reihe keinen gleitenden Durchschnitt berechnen könnte.\\
 
-Bildet man schlussendlich die Differenz aus der ursprünglichen Reihe $y_t$ und der geschätzten Saisonkomponente $\hat{s}$, so erhält man die saisonbereinigte Reihe, also nur noch den Trend.
+\noindent Die Differenz $d_t$ zwischen dem urspr. Wert $y_t$ und geschätzten Trendkomponente $g_t$ entspricht bereits grob den saisonale Abweichungen, allerdings noch mit zusätzlichem Fehler.\\
+Durch diese Berechnung der Differenzen erhalten wir nun für jeden Teil der Saisonfigur (bspw. für jedes Quartal) \textit{mehrere} Abweichungen (da in der Zeitreihe z.B. 8 mal ein erstes Quartal auftaucht) für die gilt, dass $d_t\approx d_{t+p}$. Daher mitteln wir für jeden Teil des Saisonfigur alle berechneten Abweichungen, die diesem Teil zuzuordnen sind (bspw. alle $d_t$ die für ein erster Quartal berechnet wurden). Dies führt zu Mittelwerten für jeden der $p$ Teile der Saisonkomponente: $(\bar{d}_1, \hdots, \bar{d}_p)$\\
+Da die Summe über alle Teile der Saisonkomponente gleich Null sein muss, müssen diese Mittelwerte noch um die Null zentriert werden: Der Mittelwert der Teile $\bar{d}_1, \hdots, \bar{d}_p$, wird von allen Teilen $(\bar{d}_1, \hdots, \bar{d}_p)$ subtrahiert. Übrig bleibt dadurch die geschätzte Saisonkomponente $\hat{s}$.
 
 \subsubsection{Trend und Saisonkomponente mit Regression}
-Es gibt nicht nur lineare Trends, sondern beispielsweise auch quadratische Trends und exponentielles Wachstum, welches man mit der Regression berechnen kann.
-In Kapitel \ref{chap:linreg} haben wir schon die lineare Einfachregression kennengelernt, mit der man hier die Trendkomponente der Form $g(t)=\hat{y}_t=\hat{a}+\hat{b}\cdot t$ schätzen kann.\\
-
-\noindent Die Saisonkomponente kann man mit der KQ-Methode in der Form $y_t=\gamma_1s_1(t)+...+\gamma_{i}s_{i}(t)+e_t$ schreiben. Dabei wird die Regression verwendet um die $\gamma$'s zu schätzen. $s_j(t)$ ist eine Dummyvariable, um jeweils den Monat oder das Quartal berechnen zu können, welches gerade gefragt ist. Dies funktioniert wie in Kapitel \ref{sec:Kategoriale Regression}: für die Saisonkomponente die man berechnen möchte setzt man 1 ein und bei allen anderen 0.\\
-
-\noindent Schlussendlich kann man die Trend -/und Saisonkomponente in der Form wie wir sie gerade besprochen haben in ein Modell zusammen bringen, das nennt sich dann Trend-Saison-Modell. 
-\begin{align*}
-    y_t=a+b\cdot t+\gamma_1s_1(t)+...+\gamma_{i}s_{i}(t)+e_t
-\end{align*}
-Je nachdem welche y man berechnen möchte kann man nun auf den linearen Trend noch die jeweilige Saisonkomponente dazu addieren oder abgezogen werden.
+Eine andere Möglichkeit der Trendschätzung ist die lineaere Regression (vgl. Kap. \ref{chap:linreg}). Nimmt man die Zeit $t$ als Einfluss- und die Zeitreihe $y_t$ als Zielgröße können hierdurch z.B. lineare quadratische Trends geschätzt werden. Ein Modell für die Trendkomponente könnte z.B. folgende Form haben: 
+$$y_t=\hat{a}+\hat{b}\cdot t + e_t$$
+\noindent Mittels eines multiplen Regressionsmodells (vgl. Kap. \ref{sec:mult-reg}, Statistik II) könnte simultan auch die Saisonkomponente geschätzt werden. Man nimmt dabei zusätzlich zu der Zeit $t$ Dummyvariablen (vgl. Kap. \ref{sec:kat-reg}) für jeden der $p$ Teile der Saisonfigur mit in das Modell auf. Dies führt schlussendlich zu folgendem Trend-Saison-Modell:
+$$y_t=a + b \cdot t + \gamma_1 s_1(t) + \hdots + \gamma_{p} s_{p}(t) + e_t$$
 
 \subsection{Alternative Ansätze}
-Es gibt noch viele weitere Ansätze wie man die Zeitreihen bestimmen kann unter anderem das lokale lineare Trendmodell, eine Einbeziehung von trigonometrische Funktionen, Census X-11 ARIMA, Census X-12 ARIMA, BV 4.1,.....
+Es gibt noch viele weitere (fortgeschrittenere) Ansätze wie Zeitreihen analysiert \& modelliert werden können, die jedoch den Umfang \& Schwierigkeitsgrad dieser Veranstaltung sprengen würden. Daher nur ein bisschen Name-Dropping:
+\begin{itemize}
+    \item Das lokale lineare Trendmodell
+    \item Einbeziehung von trigonometrische Funktionen
+    \item Census X-11 ARIMA
+    \item Census X-12 ARIMA
+    \item BV 4.1
+\end{itemize}
 
+Zu Zeitreihen gibt es eigene ganze Vorlesungen, siehe z.B.:
 
-
-
-
-
-
+\begin{itemize}
+    \item \href{https://www.finmetrics.statistik.uni-muenchen.de/studium_lehre/sommersemester-2020/tsa_19/index.html}{Time series analysis}
+    \item \href{https://www.finmetrics.statistik.uni-muenchen.de/studium_lehre/sommersemester-2020/mtsa_2020/index.html}{Multivariate time series analysis}
+\end{itemize}
 
 \clearpage
 
@@ -1886,6 +1912,14 @@ Es gibt noch viele weitere Ansätze wie man die Zeitreihen bestimmen kann unter 
     \item[c)] Jede Zeitreihe besitzt eine Trend- und eine Saisonkomponente. \hfill $\square$
     \item[d)] Welche Ordnung für die gleitenden Durchschnitte gewählt wird, hängt von der\\Saisonkomponente ab. \hfill $\square$
 \end{itemize}
+
+
+\clearpage
+
+
+\section{R-Einführung Teil I}
+
+Teil der Veranstaltung ist eine Einführung in \texttt{R} sowie eine Computervorlesung. Dieses Kapitel dient als Platzhalter, falls in diesem Skript in Zukunft der Inhalt aus diesem Vorlesungskapitel vertieft werden sollte. Bis dahin wird empfohlen mit den vorhandenen Vorlesungsmaterialiel zu arbeiten, da diese bereits sehr ausführlich und weitestgehend selbsterklärend sind.
 
 \clearpage
 
@@ -2091,32 +2125,26 @@ Somit kann man immer überprüfen ob zwei Ereignisse stochastisch unabhängig si
     \item[d)]Man berechnet die stochastische Unabhängigkeit zweier zufälliger Ereignisse durch \\die Summe der beiden Einzelwahrscheinlichkeiten. \hfill $\square$
 \end{itemize}
 
+\clearpage
 
-
-
-
-
-
-\newpage
 \section{Zufallsexperiment}
 
-In der deskriptiven Statistik (Statistik I) haben wir fest vorgegebenes Datenmaterial beschrieben. Im Gegensatz dazu gehen wir in der induktiven Statistik (Statistik II) von Zufallsexperimenten mit sogenannten Zufallsvariablen aus. Mit Zufallsvariablen können Ergebnisse eines noch nicht durchgeführten Zufallsexperiments beschrieben werden.\\
-\noindent \textbf{Beispiel}:\\
-Roulette Spiel mit der Zufallsvariable Z ("groß Z"): Bevor wir das Roulette drehen, ist der Wert von Z nicht bekannt. Nach einer Runde nimmt die Variable Z aber einen Wert zwischen $0,1,2,...,36$ an. Dieser Wert heißt auch Realisierung der Zufallsvariable und wird mit z ("klein z") beschrieben.
+In der deskriptiven Statistik (Statistik I) haben wir fest vorgegebenes Datenmaterial beschrieben. Im Gegensatz dazu gehen wir in der induktiven Statistik (Statistik II) von Zufallsexperimenten mit sogenannten Zufallsvariablen aus. Mit Zufallsvariablen können Ergebnisse eines noch nicht durchgeführten Zufallsexperiments beschrieben werden.
+
+\paragraph{Beispiel:} Roulette Spiel mit der Zufallsvariable $Z$ ("groß Z"): Bevor wir das Roulette drehen, ist der Wert von Z nicht bekannt, sondern nur Wahrscheinlichkeiten über die möglichen Ausprägungen. Nach einer Runde nimmt die Variable Z aber einen Wert zwischen $0,1,2,...,36$ an. Dieser Wert heißt auch Realisierung der Zufallsvariable und wird mit z ("klein z") beschrieben.
 
 \noindent Grundsätzlich gibt es zwei verschiedene Arten von Zufallsvariablen -- \textbf{diskrete} und \textbf{stetige}. 
 
 \subsection{Diskrete Zufallsvariablen} \label{sec:DZV}
-Wenn Zufallsvariablen nur eine endliche oder abzählbar unendliche Menge an Werten annehmen, spricht man von diskreten Zufallsvariablen. Das bedeutet grob, dass es z.B. eine fixe Anzahl an Werten gibt (wie z.B. beim Roulette-Spiel oder Würfelwurf), oder dass es sich um sogennante Zähldaten handelt, wie etwa die Anzahl an Versicherungsschäden an einem bestimmten Tag. Beachtet jedoch, dass theoretisch beliebig hohe Werte möglich sind, diese jedoch abzählbar sein müssen. 
+Wenn Zufallsvariablen nur eine endliche oder abzählbar unendliche Menge an Werten annehmen, spricht man von diskreten Zufallsvariablen. Das bedeutet grob, dass es z.B. eine fixe Anzahl an Werten gibt (wie z.B. beim Roulette-Spiel oder Würfelwurf), oder dass es sich um sogennante Zähldaten handelt, wie etwa die Anzahl an Versicherungsschäden an einem bestimmten Tag. Jedoch ist zu beachten, dass theoretisch beliebig hohe Werte möglich sind, diese jedoch abzählbar sein müssen. 
 
-\subsubsection{Abzählbarkeit: Mächtigkeit von Mengen} \label{sec:Mengen}
-Für Interessierte gibt es hier einen kleinen Ausflug in die Mathematik:\\ \url{https://de.wikibooks.org/wiki/Mathe_f\%C3\%BCr_Nicht-Freaks:_M\%C3\%A4chtigkeit_von_Mengen}
+\paragraph{Abzählbarkeit: Mächtigkeit von Mengen} Für Interessierte gibt es hier einen kleinen  \href{https://de.wikibooks.org/wiki/Mathe_f\%C3\%BCr_Nicht-Freaks:_M\%C3\%A4chtigkeit_von_Mengen}{Ausflug in die Mathematik}
 
 
 \subsection{Stetige Zufallsvariablen} \label{sec:SZV}
-Stetige Zufallsvariablen sind innerhalb eines beliebigen Intervalls definiert und können unendlich viele Werte annehmen. Man nennt diesen Wertebereich überabzählbar unendlich.\\
-\noindent \textbf{Beispiel}:\\
-Geschwindigkeit von Autos bei einer Radarkontrolle. Hier sind theoretisch unendlich viele Werte zwischen z.B. 50km/h und 60km/h möglich. Obwohl natürlich die Messgenauigkeit durch das verwendete Messgerät beschränkt ist (z.B. auf 1km/h genau), werden solche Variablen in der Statistik also meist als stetige Variablen behandelt.
+Stetige Zufallsvariablen sind innerhalb eines beliebigen Intervalls definiert und können unendlich viele verschiedene Werte annehmen. Man nennt diesen Wertebereich überabzählbar unendlich.
+
+\paragraph{Beispiel:} Geschwindigkeit von Autos bei einer Radarkontrolle. Hier sind theoretisch unendlich viele Werte zwischen z.B. 50km/h und 60km/h möglich. Obwohl natürlich die Messgenauigkeit durch das verwendete Messgerät beschränkt ist (z.B. auf 1km/h genau), werden solche Variablen in der Statistik also meist als stetige Variablen behandelt.
 
 \subsection{Träger einer Zufallsvariablen} \label{sec:Traeger}
 
@@ -2698,9 +2726,9 @@ Zur Veranschaulichung könnt ihr ein ähnliches Tool wie für die Binomialvertei
 \newpage
 
 
+\section{Schätzen}\label{chap:schaetzen}
 
-
-\section{Die Maximum Likelihood Schätzung}\label{sec:ML}
+\subsection{Die Maximum Likelihood Schätzung}\label{sec:ML}
 
 Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern bei gegebener Verteilung einer Zufallsvariable.\\
 
@@ -2721,10 +2749,7 @@ Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern 
 
 \newpage
 
-
-
-
-\section{Konfidenzintervalle (KI)}\label{sec:KI}
+\subsection{Konfidenzintervalle (KI)}\label{sec:KI}
 
 \textbf{Wozu braucht man eigentlich Konfidenzintervalle?} Im Bereich der induktiven Statistik wird mit Hilfe einer Stichprobe versucht, allgemeine Aussagen über die Grundgesamtheit zu machen. Mit Hilfe der ML-Schätzung haben wir dafür schon eine Methode kennengelernt um Punktschätzer zu "generieren". Die erhobenen Daten einer Stichprobe werden dann in einem Punktschätzer zusammengefasst (z.B. Mittelwert oder Varianz), um damit auf die wahren Werte in der Grundgesamtheit zu schließen.\\
 
@@ -2875,7 +2900,7 @@ Der Unterschied zwischen Gauss-Tests und t-Tests besteht darin, dass bei Gauss-T
 
 \noindent \textbf{Was genau hat das jetzt mit der Testentscheidung zu tun?} Dazu schauen wir uns erst einmal Fig. \ref{Fig:a} an. Wir sehen, dass (vor allem für wenig Freiheitsgrade) die t-Verteilung breitere Enden hat als die Standardnormalverteilung, was wiederum bedeutet, dass alle $\alpha$--Quantile für $\alpha < 0,5$ bei der t-Verteilung kleiner (also weiter im negativen Bereich) sind als die der Standardnormalverteilung. Alle $\alpha$--Quantile für $\alpha > 0,5$ sind bei der t-Verteilung hingegen größer (also weiter im positiven Bereich) als bei der Standardnormalverteilung\footnote{Der Median, also $\tilde{x}_{0,5}$, ist bei beiden Verteilungen der Wert 0, da sie um 0 zentriert sind}. Das gilt dann insbesondere auch für die Quantile, die wir als kritische Werte für die Testentscheidung heranziehen. Somit verkleinert sich der Ablehnbereich bei t-Tests im Vergleich zu Gauss-Tests. \\
 
-\noindent Dafür gibt es auch eine Intuitive Begründung: Bei t-Tests müssen wir nicht nur den interessierenden statistischen Parameter (meistens $\mu$) schätzen, sondern auch $\sigma^2$ mittels der Stichprobenvarianz $S^2$. Da wir mehr Parameter schätzen, wollen wir $H_0$ nicht so bereitwillig ablehnen wie bei Gauss-Tests. Dementsprechend ist der Ablehnbereich bei t-Tests kleiner. \\
+\noindent Dafür gibt es auch eine intuitive Begründung: Bei t-Tests müssen wir nicht nur den interessierenden statistischen Parameter (meistens $\mu$) schätzen, sondern auch $\sigma^2$ mittels der Stichprobenvarianz $S^2$. Da wir mehr Parameter schätzen, wollen wir $H_0$ nicht so bereitwillig ablehnen wie bei Gauss-Tests. Dementsprechend ist der Ablehnbereich bei t-Tests kleiner. \\
 
 \noindent Aber auch dafür gibt es Abhilfe: Je größer der Stichprobenumfang $n$, desto größer die Anzahl der Freiheitsgrade und desto ähnlicher sind sich Standardnormal- und t-Verteilung. D.h. dann, dass wir für einen großen Stichprobenumfang (annähernd) dieselben kritischen Werte für Gauss- und t-Tests benutzen. Die zusätzliche Ungewissheit durch die Schätzung der Varianz (im Vergleich zu bekannter Varianz) wird also durch mehr Beobachtungen gemildert. Das ist natürlich ein intuitives Ergebnis: Je mehr Beobachtungen wir haben, desto "sicherer" sind wir uns mit unserer Schlussfolgerung.
 
@@ -2942,14 +2967,14 @@ Nun überträgt man die Verteilung der Epsilons auf die Zufallsvariable Y. Das h
 
 \paragraph{Matrixschreibweise}Man kann das Regressionsmodell auch in der Matrixschreibweise schreiben, was bei vielen Beobachtungen einer Zufallsvariablen praktisch und übersichtlich sein kann. Dabei ist in jeder Zeile eine Regressionsgleichung einer Zufallsvariablen abgetragen. $I_n$ ist die nxn Einheitsmatrix. Ein Element in der Einheitsmatrix ist 1, wenn die i-te Zeile gleich der j-ten Spalte ist. Ist dies nicht der Fall, dann ist das Element in der Einheitsmatrix 0\\
 
-\noindent Wie bei Statistik I in Kapitel \ref{sec:Kategoriale Regression}, kann auch hier die Dummy und Effektkodierung angewendet werden. Als kleine Wiederholung, man wählt eine Referenzkategorie aus, welche bei der Dummyvariablen durch Nullsetzen der anderen Variablen entsteht und bei der Effektcodierung durch das -1 setzten aller anderen Variablen. Die Regressionsgleichungen der einzelnen Merkmalsausprägungen kann dann schlussendlich durch einsetzten von 0, 1 und bei Effektkodierung von -1 in die allgemeine Regressionsgleichung gebildet werden.
+\noindent Wie bei Statistik I in Kapitel \ref{sec:kat-reg}, kann auch hier die Dummy und Effektkodierung angewendet werden. Als kleine Wiederholung, man wählt eine Referenzkategorie aus, welche bei der Dummyvariablen durch Nullsetzen der anderen Variablen entsteht und bei der Effektcodierung durch das -1 setzten aller anderen Variablen. Die Regressionsgleichungen der einzelnen Merkmalsausprägungen kann dann schlussendlich durch einsetzten von 0, 1 und bei Effektkodierung von -1 in die allgemeine Regressionsgleichung gebildet werden.
 \subsection{Kleinste-Quadrate-Schätzer}
 Auch das Thema der Kleinsten-Quadraten-Schätzer haben wir schon in Statistik I \ref{sec:kq} besprochen. Hier ist nun zu beachten, dass wir nicht mehr a und b als Schreibweise benutzen sondern nun $\beta_0, \beta_1, \beta_2,....$\\
 Somit ergibt sich als Schätzer für $\hat{\beta}_1$: $\hat{\beta}_1=\frac{\sum_{i=1}^n x_iy_i-n\bar y\bar x}{\sum_{i=1}^n x^2_i-n\cdot \bar x^2}$ und für den Intercept bzw. y-Achsenabschnitt: $\hat\beta_0=\bar y-\hat\beta_1\bar x$.
 Da $\sigma^2$ unbekannt ist und auch geschätzt werden muss, ergibt sich als Verteilungsannahme für die standardisierten Parameterschätzer eine t-Verteilung mit 2 Freiheitsgraden.
 
 
-\subsection{Multiple lineare Regression}\label{sec:Reg}
+\subsection{Multiple lineare Regression}\label{sec:mult-reg}
 Bei der multiplen linearen Regression haben wir nun nicht mehr eine Einflussgröße X, sondern p verschiedene Einflussgrößen. Die verschiedenen Beobachtungen einer kann man dann wieder in eine Matrix übertragen.\\
 Die Annahmen für die lineare Regression sind soweit wieder die gleichen wie bei der einfachen linearen Regression und die Schätzung kann man wieder mit der Kleinste-Quadrate-Methode bestimmen.
 Daraus ergeben sich dann die Eigenschaften des KQ-Schätzers für $\beta$. $\hat\beta$ ist erwartungstreu, da dessen Erwartungswert $\beta$ ist. Der $\beta$-Schätzer lässt sich berechnen als X transponiert mal X, woraus sich eine p+1 x p+1-Matrix ergibt, daraus die Inverse und multipliziert dies mit X transponiert y. Zwei weitere Eigenschaften sind, dass $\hat\beta$ unter den linearen Schätzern der bestmögliche unverzerrte Schätzer und normalverteilt ist. Die Kovarianz ist $\sigma^2(X'X)^{-1}$. Da $\sigma^2$ ein Schätz ist, ist die Kovarianz auch nur ein Schätzer.
@@ -2976,20 +3001,20 @@ Mit einem Scatterplot kann man den Zusammenhang eines Regressors mit der abhäng
 
 \clearpage
 \subsection{Aufgaben}
-\paragraph{1. Welche Aussagen }
+\paragraph{1. Welche Aussagen über die einfache lineare Regression sind wahr?}
 \begin{itemize}
     \item[a)]Der Erwartungswert der Residuen sollte immer 1 sein.\hfill $\square$
     \item[b)]Bei der Homoskedastizität geht man von einer konstanten Varianz der Fehlertermen aus.\hfill $\square$
     \item[c)]In Statistik II trifft man die Annahme, dass die Fehlerterme eine Zufallsvariable sind.\hfill $\square$
-    \item[d)]In Statistik II kann man keine Schlüsse über die Grundgesamtheit ziehen, da schlussendlich alles nur Annahmen sind und nichts sicher ist.\hfill $\square$
+    \item[d)]In Statistik II kann man keine Schlüsse über die Grundgesamtheit ziehen, da\\ schlussendlich alles nur Annahmen sind und nichts sicher ist.\hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen über die einfache lineare Regression sind wahr?}
 \begin{itemize}
     \item[a)]Mit steigenden x-Werten, sollte auch die Varianz der Residuen steigen.\hfill $\square$
     \item[b)]Die Normalverteilung der Zufallsvariablen lautet N(0,$\sigma^2)$\hfill $\square$
-    \item[c)]Bei der Effektkodierung wählt man im Gegensatz zur Dummykodierung keine Referenzkategorie.\hfill $\square$
-    \item[d)]Bei der Effektkodierung wird die Referenzkategorie mit -1 setzen aller Effektvariablen gebildet.\hfill $\square$
+    \item[c)]Bei der Effektkodierung wählt man im Gegensatz zur Dummykodierung keine\\ Referenzkategorie.\hfill $\square$
+    \item[d)]Bei der Effektkodierung wird die Referenzkategorie mit -1 setzen aller Effektvariablen \\gebildet.\hfill $\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen bezüglich der multiplen linearen Regression sind richtig?}
@@ -3003,8 +3028,8 @@ Mit einem Scatterplot kann man den Zusammenhang eines Regressors mit der abhäng
 
 \paragraph{4. Welche Aussagen bezüglich des Signifikanztest und der KI-Intervalle sind richtig?}
 \begin{itemize}
-    \item[a)]Mit dem Signifikanztest für einen Parameter kann man überprüfen, ob die Nullhypothese signifikant richtig ist.\hfill $\square$
-    \item[b)]Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen nicht in der Teststatistik nicht weiter beachten.\hfill $\square$
+    \item[a)]Mit dem Signifikanztest für einen Parameter kann man überprüfen, ob die\\ Nullhypothese signifikant richtig ist.\hfill $\square$
+    \item[b)]Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen\\ nicht in der Teststatistik nicht weiter beachten.\hfill $\square$
     \item[c)]Das Konfidenzintervall liegt symmetrisch um den Schätzer.\hfill $\square$
     \item[d)]Wenn t=-4,8 ist und $t_{n-p-1),1-\alpha}=4,5$, dann kann ich die Nullhypothese nicht ablehnen.\hfill $\square$
     \item[e)]Eine Teststatistik mit $t_{194}$ Freiheitsgraden und n=200 hat ein p=6.\hfill $\square$
@@ -3012,7 +3037,7 @@ Mit einem Scatterplot kann man den Zusammenhang eines Regressors mit der abhäng
 
 \paragraph{5. Welche Aussagen über das Bestimmtheitsmaß und den Overall F-Test sind richtig?}
 \begin{itemize}
-    \item[a)]Wenn die Nullhypothese abgelehnt wird, dann haben alle Regressoren einen statistisch signifikanten Erklärungswert für die Zielvariable Y.  \hfill $\square$
+    \item[a)]Wenn die Nullhypothese abgelehnt wird, dann haben alle Regressoren einen\\ statistisch signifikanten Erklärungswert für die Zielvariable Y.  \hfill $\square$
     \item[b)]Bei $R^2=1$spricht man von einer Nullanpassung.\hfill $\square$
     \item[c)]Bei $R^2=0$ wird die Streuung vom Regressionsmodell komplett erklärt. \hfill $\square$
     \item[d)]$R^2=\frac{RSS}{SSY}$\hfill $\square$
@@ -3021,7 +3046,14 @@ Mit einem Scatterplot kann man den Zusammenhang eines Regressors mit der abhäng
 \end{itemize}
 
 
-\newpage
+\clearpage
+
+\section{R-Einführung Teil II}
+
+Teil der Veranstaltung ist eine erweiterte Einführung in \texttt{R} sowie eine Computervorlesung. Dieses Kapitel dient als Platzhalter, falls in diesem Skript in Zukunft der Inhalt aus diesem Vorlesungskapitel vertieft werden sollte. Bis dahin wird empfohlen mit den vorhandenen Vorlesungsmaterialiel zu arbeiten, da diese bereits sehr ausführlich und weitestgehend selbsterklärend sind.
+
+\clearpage
+
 \section*{References}
 
 \begin{itemize}

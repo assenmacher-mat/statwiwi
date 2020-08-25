@@ -117,6 +117,10 @@ Der zweite Teil ($\widehat \approx$ Statistik II) basiert auf Vorlesungszusammen
 
 \clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Grundbegriffe, Skalenniveaus, Datenerhebung}
 
 \subsection{Was ist die Statistik?}
@@ -262,9 +266,11 @@ Mit \texttt{R} kann man so gut wie alles aus der Vorlesung berechnen. Hat man ei
 \noindent oder \hfill \href{https://stat.ethz.ch/R-manual/}{https://stat.ethz.ch/R-manual/}\\
 
 
-
 \newpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Häufigkeitsverteilungen, (univariate) grafische Darstellung}
 Häufigkeiten, deren Berechnung und Darstellung in Diagrammen, sind sicher schon weitgehend aus der Schule bekannt. Im Folgenden wird dies wiederholt und weiter ergänzt.
@@ -448,6 +454,9 @@ Die Schwäche ist, dass man hierfür von einer Gleichverteilung innerhalb der Kl
 
 \clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Lagemaße}
 Grob gesagt beschreiben (zentrale) Lageparameter, wo sich der Schwerpunkt der Daten auf einer Skala befindet. Manche Lageparameter machen nur bei bestimmten Skalen Sinn. In der folgenden Tabelle ist markiert, bei welchen Skalen die einzelnen Lageparameter jeweils Sinn machen.
@@ -589,8 +598,11 @@ Die Verteilung heißt im Gegensatz dazu rechtssteil bzw. linksschief, wenn der M
 \end{itemize}
 
 
-\newpage
+\clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Streuungsmaße}
 Bis jetzt haben wir uns Lagemaße angeschaut, welche nur etwas über die (zentrale) Lage der Daten aussagen. Um zu quantifizieren, wie stark die Daten schwanken/streuen (Hier: Wie stark die Daten um einen Mittelwert schwanken). Weil man zur Berechnung von Streuungsmaßen Differenzen benötigt, ist auch hier wieder nur für bestimmte Skalenniveaus die Berechnung der vorgestellten Streuungsmaße möglich.
@@ -636,11 +648,11 @@ Die \textit{mittlere absolute Abweichung} (Englisch: mean absolute deviation) gi
     D_A = \frac{1}{n} \sum_{i=1}^n |x_i-A| 
 \end{align*}
 
-\noindent Die Betragsstriche verhindern dabei, dass sich die positiven und negativen Abweichungen "aufheben". Eine weitere Möglichkeit dies zu vermeiden, wäre die Differenzen zu quadrieren (vgl. Kap. \ref{sec:Varianz}).\\
+\noindent Die Betragsstriche verhindern dabei, dass sich die positiven und negativen Abweichungen "aufheben". Eine weitere Möglichkeit dies zu vermeiden, wäre die Differenzen zu quadrieren (vgl. Kap. \ref{sec:varianz}).\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den MAD: > mad(data, center = median(data), ...)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/mad}{Dokumentation}}
 
-\subsection{Varianz}\label{sec:Varianz}
+\subsection{Varianz}\label{sec:varianz}
 Die Varianz $s^2$ ist die mittlere \textit{quadratische} Abweichung zum arithmetischen Mittel. Die Varianz ist dabei das gängigste Maß für die Streuung von Merkmalsausprägungen um das arithmetische Mittel. Wie oben bereits erwähnt, wird durch die Quadrierung verhindert, dass sich die positiven \& negativen Abweichungen "aufheben" können.
 
 \begin{align*}
@@ -678,7 +690,7 @@ Die Streuung in zwei Teile zerlegt ($s^2_{zwischen}$ und $s^2_{innerhalb}$), die
 \noindent \dangersign[3ex] Die R-Funktion teilt bei der Berechnung der Varianz nicht durch $n$ sondern durch $n-1$. Die Hintergründe dafür werden in Statistik II (vgl. Kap. \ref{sec:ML}) erläutert. Um dies zu umgehen und die (empirische) Varianz zu berechnen, sollte das Ergebnis dieses R-Befehls mit \texttt{(n - 1) / n} multipliziert werden.
 
 \subsection{Standardabweichung}
-Die Standardabweichung erhält man, indem man die positive Wurzel der Varianz (vgl. Kap. \ref{sec:Varianz} zieht. Der Vorteil der Standardabweichung ist, dass diese wieder in der gleichen Einheit wie die Beobachtungswerte vorliegt, da wir das Quadrieren aus der Formel für die Varianz durch das Wurzelziehen wieder auflösen.\\
+Die Standardabweichung erhält man, indem man die positive Wurzel der Varianz (vgl. Kap. \ref{sec:varianz} zieht. Der Vorteil der Standardabweichung ist, dass diese wieder in der gleichen Einheit wie die Beobachtungswerte vorliegt, da wir das Quadrieren aus der Formel für die Varianz durch das Wurzelziehen wieder auflösen.\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die Standardabweichung: > sd(data)} \hfill  \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd}{Dokumentation}}
 
@@ -729,8 +741,11 @@ Beim Variationskoeffizient wird die Standardabweichung in Beziehung zum arithm. 
 \end{itemize}
 
 
-\newpage
+\clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Konzentrationsmaße}\label{sec:konz}
 Bis jetzt können wir bei einem Datensatz Aussagen über die (zentrale) Lage der Daten und das Ausmaß der Streuung treffen. Im Folgenden werden auch Aussagen über die \textit{Konzentration} der Daten von Interesse sein, sowie deren graphische Darstellung. Somit kann bspw. ausgesagt werden, ob eine eher gleiche ($\widehat =$ faire) Verteilung oder möglicherweise ein Monopol vorliegt.\\
@@ -918,7 +933,12 @@ Beim Gini kann man relativ einfach pauschale Aussagen über Veränderungen treff
     \item[d)] .. die Anzahl der Gruppen kleiner als 10 ist. \hfill $\square$
 \end{itemize}
 
-\newpage
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Zusammenhangsmaße}\label{chap:zshg}
 Bis jetzt haben wir stets lediglich eine Variable (bzw. Merkmal) $X$ und dessen Ausprägungen $x_1, x_2,.., x_i$ betrachtet. Auf diese Art und Weise war es uns möglich, Aussagen über dessen Lage, Streuung und Konzentration zu treffen.\\
@@ -930,7 +950,7 @@ Da in diesem Kapitel Aussagen über Zusammenhänge getroffen werden sollen bzw. 
 
 \noindent \paragraph{Beispiel:} Betrachten wir bei Personen ihr Geschlecht ($X$) und ihr Einkommen ($Y$), so sind nur Zusammenhangsmaße anwendbar, die für nominale Merkmale geeignet sind, da das Merkmal Geschlecht lediglich nominal skaliert ist. Berechnet man stattdessen Betriebszugehörigkeit ($X$) und Einkommen ($Y$), so sind Zusammenhangsmaße für metrische Merkmale anwendbar.
 
-\subsection{Die Kontingenztafel}
+\subsection{Die Kontingenztafel}\label{sec:kont}
 Eines der grundlegendsten Instrumente zur gemeinsamen Darstellung zweier Merkmale ist die Kontingenztafel.
 Hierbei wird pro unterschiedliche Merkmalsausprägung von $X$ eine Zeile, für jede untersch. Merkmalsausprägung von $Y$ eine Spalte belegt. Dies führt bei der Betrachtung der Merkmale $X$: "Parteizugehörigkeit im Bundestag" (Ausprägungen: \textit{Union, SPD, Grüne, FDP, Linke, AfD}) und $Y$: Geschlecht (Ausprägungen: \textit{weiblich, männlich, divers}) zu einer Kontingenztafel mit 6 Zeilen und 3 Spalten, d.h. einer $(6\times3)$-Kontingenztafel.\\
 Die Entscheidung, welche Variable in den Zeilen und welche Variable in den Spalten abgetragen wird, kann mehr oder minder frei getroffen werden. Oftmals wird die Auswahl jedoch nach zwei Kriterien getroffen:
@@ -1003,7 +1023,7 @@ Teilt man alle Häufigkeiten der inneren Zellen in der i-ten Zeile durch die Ran
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für (bedingte) Kontingenztafeln: > prop.table(data)} \hfill \href{https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/prop.table}{Dokumentation}}
 
-\subsection{Unabhängigkeit}
+\subsection{Unabhängigkeit}\label{sec:unabh}
 Ein zentrales Konzept bei der Betrachtung von Zusammenhängen ist die \textit{Unabhängigkeit}.\\
 Betrachtet man in Tabelle \ref{tab:abs} die Randhäufigkeiten $n_{\bullet j}$ der Spalten, so erkennt man das Verhältnis von Lungenkrebs zu Nicht-Lungenkrebs, unabhängig davon ob jemand geraucht hat oder nicht. Dieses Verhältnis liegt bei etwas mehr als 2 zu 3. Betrachtet man nun lediglich die Häufigkeiten in der ersten Zeile (d.h. nur die Nicht-Raucher) $n_{11}$ und $n_{12}$, so erkennt man, dass unter diesen Beobachtungen das Verhältnis von Lungenkrebs zu Nicht-Lungenkrebs bei ca. 1 zu 4 liegt (bei den Nicht-Lungenkrebs-Fällen liegt es bei etwas mehr als 2 zu 1). Somit scheint es einen Zusammenhang zwischen Rauchen und dem Auftreten von Lungenkrebs zu geben, da man unter Unabhängigkeit erwarten würde, in beiden Gruppen (Nicht-Raucher und Raucher) dasselbe Verhältnis, nämlich das der Randhäufigkeiten zu beobachten. Berechenbar sind die \textit{unter Unabhängigkeit erwarteten absoluten Häufigkeiten} über die Formel $\hat{n_{ij}} = \frac{n_{i\bullet} \cdot n_{\bullet j}}{n}$.
 
@@ -1269,7 +1289,7 @@ Die Kovarianz ist ein Maß für den Zusammenhang zweier metrischer Merkmale. Sie
 \paragraph{Die Berechnung} kann als Verallgemeinerung der Varianz angesehen werden:
 $$Cov (X,Y) = \frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y}) = \frac{1}{n}\sum_{i=1}^nx_iy_i-n\bar{x}\bar{y}$$
 
-\noindent zieht man den Vergleich zur Formel der Varianz aus Kapitel \ref{sec:Varianz}, so fällt auf, dass $Cov(X,X) = Var(X)$. Des weiteren ist die Kovarianz symmetrisch, d.h. $Cov(X,Y) = Cov(X,Y)$, was man eigentlich recht gut an obiger Formel sieht.\\
+\noindent zieht man den Vergleich zur Formel der Varianz aus Kapitel \ref{sec:varianz}, so fällt auf, dass $Cov(X,X) = Var(X)$. Des weiteren ist die Kovarianz symmetrisch, d.h. $Cov(X,Y) = Cov(X,Y)$, was man eigentlich recht gut an obiger Formel sieht.\\
 Ist die Kovarianz positiv bzw. negativ, so liegt ein positiver bzw. negativer Zusammenhang zwischen den beiden Merkmalen vor.
 Die Kovarianz hat einen Wertebereich von $-\infty$ bis $\infty$ und hängt von zwei Faktoren ab:
 \begin{itemize}
@@ -1373,8 +1393,11 @@ Metrisch &$\chi^2$-basiert & Rangkorrelation & Korrelation (Kovarianz) \\
 \end{itemize}
 
 
-\newpage
+\clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Lineare Einfachregression}\label{chap:linreg}
 \subsection{Einführung}
@@ -1660,8 +1683,11 @@ Zur Kontrolle: $\hat a + \hat b_1 \cdot (-1) + \hat b_2 \cdot (-1) = 20,5022 - 6
 \end{itemize}
 
 
-\newpage
+\clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Indizes}\label{chap:index}
 \subsection{Verhältniszahlen}
@@ -1681,11 +1707,8 @@ Dabei bezeichnet $x_0$ den Wert der Maßzahl in der Basisperiode, $x_t$ den Wert
 \end{align*}
 
 \noindent Da Zähler und Nenner die gleiche Einheit haben, kürzt sich diese raus und der Index hat keine Einheit. Einfache Indexzahlen werden häufig für Preise (Preismesszahl/Preisindex) oder Mengen (Mengenmesszahl/Mengenindex) berechnet, um deren zeitliche Entwicklung nachzuvollziehen: 
-
-\begin{align*}
-    P_{0t}=\frac{p_t}{p_0} (Preismesszahl);\qquad
-    Q_{0t}=\frac{q_t}{q_0} (Mengenmesszahl)
-\end{align*}
+$$P_{0t}=\frac{p_t}{p_0} (Preismesszahl);\qquad
+    Q_{0t}=\frac{q_t}{q_0} (Mengenmesszahl)$$
 
 \noindent \dangersign[3ex] Preise ($p_t$) und Mengen ($q_t$) werden mit Kleinbuchstaben und nur einer Zahl im Index bezeichnet, Indexzahlen für Preise ($P_{0,t}$) und Mengen ($Q_{0t}$) mit Großbuchstaben und zwei Zahlen im Index (Basis- und Berechtszeitpunkt).
 
@@ -1702,30 +1725,23 @@ Dabei bezeichnet $x_0$ den Wert der Maßzahl in der Basisperiode, $x_t$ den Wert
 \subsection{Preisindizes}\label{sec:preis}
 \textit{Zusammengesetzte Indexzahlen} verknüpfen  einfache Indexzahlen für $n$ verschiedene Güter miteiander. Der naive Ansatz, das Mitteln der Preismesszahlen verschiedener Güter für die verschiedenen Zeitpunkte im Zeitverlauf, wäre problematisch, da alle Güter mit gleicher Gewichtung eingehen würden. Dies wäre jedoch nicht repräsentativ, da nicht für alle Güter die gleichen Mengen angenommen werden. 
 Deshalb wird ein sogenannter repräsentativer \href{https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2015.pdf;jsessionid=8FB8106A47EAAE26AF0095FEDD152C69.internet8721?__blob=publicationFile}{Warenkorb} gebildet, in dem jedes Produkt einzeln, proportional zur jeweiligen Menge, gewichtet wird:
-
-\begin{align*}
-    P_{0t}=I_{0t}^P(1) \tilde w(1)+....+I_{0t}^P(n)\tilde w (n)
-\end{align*}
+$$P_{0t}=I_{0t}^P(1) \tilde w(1)+....+I_{0t}^P(n)\tilde w (n)$$
 
 \noindent Für die Gewichtung existieren zwei Ansätze, der Preisindex nach Laspeyres und der nach Paasche
 
 \subsubsection{nach Laspeyres}\label{sec:p-laspeyres}
 Der Preisindex nach Laspeyres verwendet für die Gewichtung die Menge aus der \textit{Basisperiode}:
 Im Zähler steht die Summe der Preise in der Berichtsperiode, jeweils multipliziert mit den Menge aus der Basisperiode, im Nenner dasselbe für die Preise der Basisperiode:
+$$P_{0t}^L =\frac{\sum_{i=1}^n p_t(i)q_0(i)}{\sum_{i=1}^n p_0(i)q_0(i)}$$
 
-\begin{align*}
-    P_{0t}^L =\frac{\sum_{i=1}^n p_t(i)q_0(i)}{\sum_{i=1}^n p_0(i)q_0(i)}
-\end{align*}
+\noindent \dangersign[3ex] Der Preisindex nach Laspeyres kann auch als als Summe über die Produkte aus den Preismesszahlen $P_{0t}(i)$ und den Umsatzanteilen aus der \textit{Basisperiode} $\frac{p_0(i)q_0(i)}{\sum_{i=1}^n p_0(i)q_0(i)}$ berechnet werden. \\
 
 \noindent Der Preisindex nach Laspeyres gibt an, wie sich der der Wert des Warenkorbs aus Basisperiode in der Berichtsperiode (verglichen mit der Basisperiode) verändert hat.\\
 Der Vorteil dieses Preisindex ist, dass man nach Erheben der Daten für eine neue Berichtsperiode sofort den Preisindex mit früheren Indexwerten vergleichen kann. Der Nachteil ist jedoch, dass der Warenkorb mit der Zeit veraltet, neue Produkte dazukommen und alte außen vorgelassen werden. Daher muss der Warenkorb in regelmäßigen Abständen aktualisiert werden.
 
 \subsubsection{nach Paasche}\label{sec:p-paasche}
 Im Vergleich zum Preisindex nach Laspeyres werden im Preisindex von Paasche die Mengen der Berichtsperiode zur Gewichtung verwendet:
-
-\begin{align*}
-    P_{0t}^P =\frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_t(i)}
-\end{align*}
+$$P_{0t}^P =\frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_t(i)}$$
 
 \noindent Der Preisindex nach Paasche gibt an, wie sich der der Wert des Warenkorbs aus Berichtsperiode in der Berichtsperiode (verglichen mit der Basisperiode) verändert hat.\\
 Der Vorteil ist, dass der Warenkorb immer aktuell ist, da die Güter und deren Mengen durch jährliche Anpassung nie veralten. Es ist allerdings nicht so einfach diesen Preisindex mit alten Preisindizes zu vergleichen, da man jede Berichtsperiode unterschiedliche Warenkörbe benutzt.
@@ -1735,28 +1751,21 @@ Man erhält den Mengenindizes durch Vertauschen von Preis und Menge, dabei vergl
 
 \subsubsection{nach Laspeyres}\label{sec:q-laspeyres}
 Der Mengenindex von Laspeyres wird mit dem konstanten Preis der Basisperiode berechnet.
-
-\begin{align*}
-    Q_{0t}^L = \frac{\sum_{i=1}^n p_0(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_0(i)}
-\end{align*}
+$$Q_{0t}^L = \frac{\sum_{i=1}^n p_0(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_0(i)}$$
 
 \noindent Der Mengenindex nach Laspeyres gibt an, wie sich der Wert des Warenkorbs durch Mengenänderungen verändert hat, bewertet mit gleichbleibenden Preisen aus der \textit{Basisperiode}.
 
 \subsubsection{nach Paasche}\label{sec:q-paasche}
 Der Mengenindex nach Paasche wird mit konstanten Preisen aus der Berichtsperiode berechnet.
-
-\begin{align*}
-    Q_{0t}^P = \frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_t(i)q_0(i)}
-\end{align*}
+$$ Q_{0t}^P = \frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_t(i)q_0(i)}$$
 
 \noindent Der Mengenindex nach Paasche gibt an, wie sich der Wert des Warenkorbs durch Mengenänderungen verändert hat, bewertet mit gleichbleibenden Preisen aus der \textit{Berichtsperiode}.
 
 \subsection{Umsatzindex}
 Beim Umsatzindex berechnet man im Zähler das Produkt aus Preis und Menge der Berichtsperiode und im Nenner das Produkt aus Preis und Menge zur Basisperiode.
-\begin{align*}
-    W_{0t} = \frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_0(i)}
-\end{align*}
-Der Umsatzindex gibt die Veränderung des Wertes des Warenkorbs in der Berichtsperiode im Verhältnis zum Wert des Warenkorbs aus der Basisperiode an, ohne dabei nach Preis- oder Mengendänderung als Ursache zu differenzieren.
+$$W_{0t} = \frac{\sum_{i=1}^n p_t(i)q_t(i)}{\sum_{i=1}^n p_0(i)q_0(i)}$$
+
+\noindent Der Umsatzindex gibt die Veränderung des Wertes des Warenkorbs in der Berichtsperiode im Verhältnis zum Wert des Warenkorbs aus der Basisperiode an, ohne dabei nach Preis- oder Mengendänderung als Ursache zu differenzieren.
 
 
 \subsection{Spezielle Probleme}
@@ -1808,7 +1817,12 @@ Große Warenkörbe bestehen oft aus kleineren Sub-Warenkörben. Dies hilft dabei
     \item[d)] Subindizes können durch Gewichtung mit Mengenanteilen zu einem Gesamtindex\\kombiniert werden. \hfill $\square$
 \end{itemize}
 
-\newpage
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Zeitreihen}
 Bei Zeitreihen misst man ein Merkmal wiederholt über die Zeit hinweg und betrachtet wie es sich im Zeitverlauf entwickelt. Diese Entwicklung kann man in \textit{Kurvendiagrammen} darstellen. Dabei befindet sich auf der x-Achse die Zeit (bspw. Tageswerte, Monatswerte, Quartals -/oder Jahreswerte) und auf der y-Achse die Merkmalsausprägungen. Im Folgenden werden einige simple Methoden vorgestellt, mit denen man Zeitreihendaten analysieren kann. Dabei geht man stets von \textit{äquidistanten} Zeitreihen aus, was bedeutet dass die Zeit die zwischen zwei Messungen immer dieselbe ist.
@@ -1916,10 +1930,13 @@ Zu Zeitreihen gibt es eigene ganze Vorlesungen, siehe z.B.:
 
 \clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{R-Einführung Teil I}
 
-Teil der Veranstaltung ist eine Einführung in \texttt{R} sowie eine Computervorlesung. Dieses Kapitel dient als Platzhalter, falls in diesem Skript in Zukunft der Inhalt aus diesem Vorlesungskapitel vertieft werden sollte. Bis dahin wird empfohlen mit den vorhandenen Vorlesungsmaterialiel zu arbeiten, da diese bereits sehr ausführlich und weitestgehend selbsterklärend sind.
+Teil der Veranstaltung ist eine Einführung in \texttt{R} sowie eine Computervorlesung. Dieses Kapitel dient als Platzhalter, falls in diesem Skript in Zukunft der Inhalt aus diesem Vorlesungskapitel vertieft werden sollte. Bis dahin wird empfohlen mit den vorhandenen Vorlesungsmaterialien zu arbeiten, da diese bereits sehr ausführlich und weitestgehend selbsterklärend sind.
 
 \clearpage
 
@@ -1931,72 +1948,107 @@ Teil der Veranstaltung ist eine Einführung in \texttt{R} sowie eine Computervor
 \vfill
 \hspace{0pt}
 
+
 \clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Kombinatorik}
-In der Kombinatorik stellt man sich hauptsächlich zwei Fragen: \\
-Zum einen, wie viele verschiedene Möglichkeiten gibt es eine Menge anzuordnen, dabei berechnet man die Permutationen und zum anderen, wie viele Möglichkeiten gibt es, m Elemente aus n Elementen auszuwählen, dabei handelt es sich dann um die Kombination. Das heißt bei der Permutation nimmt man alle Elemente einer Menge und bei der Permutation nimmt man nur eine bestimmte Anzahl der Elemente einer Menge.\\
-Dabei ist es wichtig den Begriff \textit{Mächtigkeit}, Anzahl der Elemente einer Menge M, formal dargestellt |M| zu kennen und ob Elemente \textit{geordnet}, also die Reihenfolge von Bedeutung ist oder nicht, dann sind sie \textit{ungeordnet}.
 
-\subsection{Permutation}
-Die Permutation gibt an, wie viele verschiedene Möglichkeiten es gibt die Elemente n einer Menge anzuordnen. Dabei spielt somit die Reihenfolge immer eine Rolle. Als Permutation bezeichnet man explizit eine mögliche Anordnung einer bestimmten Reihenfolge der Elemente n.\\
-Man kann die Permutation unterteilen in \textit{mit Wiederholungen} und \textit{ohne Wiederholungen}.
+Grundlegend ist hier zunächst mal die Unterscheidung von \textbf{Permutation} \& \textbf{Kombination}.
+Unter der \textbf{Permutation} versteht man eine Möglichkeit, die $n$ Elemente einer Menge $M$ anzuordnen. Von einer \textbf{Kombination} spricht man, wenn man nicht (zwingend) alle $n$ Elemente auswählt. Formal ist eine Kombination eine "Möglichkeiten, $m$ Elemente aus $n$ Elementen einer Menge $M$ auszuwählen".\\
+In beiden Fällen interessiert man sich für die \textit{Anzahl aller möglichen Permutationen/Kombinationen}.
 
-\subsubsection{Permutation ohne Wiederholungen}
-Bei Permutationen ohne Wiederholungen gibt es nur unterschiedliche Elemente, die der Reihenfolge nach angeordnet werden. Dabei gibt es auf dem ersten Platz der Reihenfolge n verschiedene Möglichkeiten diesen zu besetzen, auf dem zweiten Platz nur noch n-1, da schon eines der Elemente auf dem ersten Platz sitzt und dieses nun nicht mehr auf dem zweiten Platz sein kann. So geht es weiter bis am Ende nur noch auf dem letzten Platz eine Möglichkeit noch besteht, nämlich das letzte noch übrige Element.\\
-Wenn man diese verschiedenen Möglichkeiten auf den Plätzen multipliziert, dann erhält man schlussendlich die Anzahl verschiedener Anordnungen. Dies schreibt man dann als n! (ausgesprochen: n \textit{Fakultät}
+\subsection{Permutation}\label{sec:perm}
+Da bei der Permutation \textit{alle} Elemente ausgewählt \& angeordnet werden, spielt die Reihenfolge per Definition eine Rolle. Man unterscheidet jedoch die Fälle \textit{mit Wiederholung} und \textit{ohne Wiederholung}. Der Begriff \textit{Wiederholung} meint hier, ob ein Element nur einmal oder mehrfach angeordnet werden kann.\\
+\textbf{Beispiel:} Wir möchten die Anzahl der verschiedenen Sitzordnungen im Hörsaal bestimmen.
+\begin{itemize}
+    \item[a)] Zunächst handelt es sich hier (natürlicherweise) um eine Permutation \textit{ohne Wiederholung}, da \textit{alle} Studierenden angeordnet werden und \textit{niemand zwei Plätze einnehmen kann}.
+    \item[b)] Unterscheiden wir jedoch nicht jeden einzelnen Studierenden, sondern differenzieren nur nach Studienfach (z.B: \textit{BWL, VWL, Sonstiges}) erzeugen wir den Fall mit Wiederholung. Nun können mehrere Plätze durch z.B. Studierende der VWL eingenommen werden.
+\end{itemize}
+Stellt man sich diese Szenarien als Urnen-Experiment vor, so sind im Fall a) z.B. 100 Kugeln in der Urne (also eine pro Studierendem), welche alle angeordnet werden. Im Fall b) wären nur drei Kugeln in der Urne (eine pro Studienfach), welche nach dem Ziehen stets zurückgelegt werden müssten. \textit{Anmerkung:} Zurücklegen nur so oft, wie wir Studierende je Studienfach haben.
 
+\subsubsection{Anzahl Permutationen ohne Wiederholungen}\label{sec:perm-ohne}
+Stellt man sich dies als Baumdiagramm vor, so entstehen für die erste Stufe $n$ verschiedene Pfade, für die zweite Stufe jeweils nur noch $n-1$ (da bereits ein Element angeordnet wurde), für die dritte Stufe jeweils $n-2$, usw. So geht es weiter bis auf der letzten Stufe jeweils nur noch ein Pfad möglich ist.\\
+Um die Gesamtzahl der möglichen Pfade zu erhalten, muss man die Anzahlen je Stufe miteinander multiplizieren: 
+$$n \cdot (n-1) \cdot (n-2) \cdot \hdots \cdot 1 = n! \qquad \mbox{(ausgesprochen: n \textit{Fakultät})}$$
 
-\subsubsection{Permutation mit Wiederholungen}
-Bei der Permutation mit Wiederholungen sind nicht mehr alle Elemente unterschiedlich. Daher gibt es hier nun weniger Permutationen, da es bei einem gleichen Element egal ist, ob die Elemente auf Platz 3 und 4 oder auf Platz 4 und 3 sind. Somit dürfen diese Anordnungen nicht doppelt gezählt werden, sondern müssen herausgerechnet werden.
-Deshalb teilt man n! durch das Produkt der verschiedenen Gruppengrößen.
-\begin{align*}
-    \frac{n!}{n_1!\cdot n_2!\cdot...\cdot n_s!}
-\end{align*}
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für Fakultät: > factorial(x)} \hfill \href{https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/Special}{Dokumentation}}
+
+\subsubsection{Permutation mit Wiederholungen}\label{sec:perm-mit}
+Bei der Permutation mit Wiederholungen sind nicht mehr alle Elemente unterschiedlich. Daher gibt es (bei gleichem $n$) hier nun eine geringere Zahl möglicher Permutationen, da es bei einem gleichen Element egal ist, ob die Elemente z.B. auf Platz 3 und 4 oder auf Platz 4 und 3 sind. Somit dürfen solche beispielhaften Anordnungen nicht mehr doppelt gezählt werden, sondern müssen "herausgerechnet" werden.\\
+Deshalb teilt man $n!$ durch das Produkt der $n_i!$ verschiedenen Gruppengrößen:
+$$\frac{n!}{n_1!\cdot n_2!\cdot...\cdot n_s!}$$
+
+\noindent Mit $n_i$ berechnet man die Anzahl der möglichen Permutationen in der $i$-ten Gruppe. Da diese hier nicht mehr von Relevanz sind, werden sie herausgerechnet.
 
 \subsection{Kombination}
-Bei der Kombination wähle ich aus einer Menge mit n Elementen m aus. Hierbei ist immer die Frage, ob eine Wiederholung möglich ist, also ob ich ein Element mehrmals aussuchen darf und ob die Reihenfolge bei der Auswahl eine Rolle spielt oder nicht. 
+Bei der Kombination werden \textbf{nicht mehr} alle $n$ Elemente aus $M$, sondern nur noch $m$ ausgewählt. Neben der Frage, ob eine Wiederholung möglich ist oder nicht, muss man sich daher hier auch die Frage stellen, ob die Reihenfolge bei der Auswahl eine Rolle spielt oder nicht. \\
+\textbf{Beispiel:} Erweiterung des Beispiels aus Kapitel \ref{sec:perm}.
+\begin{itemize}
+    \item[a)] \textit{Ohne Wiederholung, ohne Reihenfolge:} Wie viele Möglichkeiten gibt es, 10 aus den 100 Studierenden auszuwählen.
+    \item[a)] \textit{Ohne Wiederholung, mit Reihenfolge:} Wie viele Möglichkeiten gibt es, 10 der 100 Studierenden der Reihe nach auf den Plätzen in der ersten Reihe anzuordnen.
+    \item[c)] \textit{Mit Wiederholung, ohne Reihenfolge:} Wie viele Möglichkeiten gibt es, 10 aus den 150 Studierenden (jedoch nur unterschieden nach Studienfach, s.o.) auszuwählen.
+    \item[d)] \textit{Mit Wiederholung, Mit Reihenfolge:} Wie viele Möglichkeiten gibt es, 10 der 150 Studierenden (jedoch nur unterschieden nach Studienfach, s.o.) der Reihe nach auf den Plätzen in der ersten Reihe anzuordnen.
+\end{itemize}
+Stellt man sich diese Szenarien als Urnen-Experiment vor, so sind im Fall a) \& b) je 100 Kugeln in der Urne (also eine pro Studierendem), von denen in beiden Fällen 10 Stück gezogen werden. Im Fall a) interessiert man sich nicht für die Reihenfolge, in der man die Kugeln zieht, in Fall b) schon. Im Fall c) \& d) wären wieder nur drei Kugeln in der Urne (eine pro Studienfach), welche nach dem Ziehen stets zurückgelegt werden müssten. Im Fall c) interessiert man sich nicht für die Reihenfolge, in der man die Kugeln zieht, in Fall d) schon.\\
+
+\noindent \dangersign[3ex] Bei Permutationen wird die Anzahl der möglichen Permutationen durch Wiederholungen geringer, bei Kombinationen wird die Anzahl der möglichen Kombinationen, sowohl für den Fall mit, als auch für den Fall ohne, Berücksichtigung der Reihenfolge, durch Wiederholungen größer.
+
+\clearpage
 
 \subsubsection{Kombination ohne Wiederholung und ohne Reihenfolge}
-Die Anzahl an möglichen Kombinationen berechnet man mit $\binom{n}{m}$. Da es keine Wiederholungen gibt ist in diesem Fall m immer kleiner als n. Im Taschenrechner kann man den Binomialkoeffizient, so heißt die Funktion, mit \textit{nCr} berechnen z.B. 24nCr3 = $\binom{24}{3}$.
-Man kann den Binomialkoeffizient auch als Permutation mit Wiederholung umschreiben, da man zwei Gruppen hat, zum einen die Gruppe mit den gezogenen Elementen m und die Gruppe n-m  mit den nicht gezogenen Elementen. Somit ergibt sich: $\binom{n}{m}=\frac{n!}{m!\cdot(n-m)!}$
+Die Anzahl an möglichen Kombinationen berechnet man mit $\binom{n}{m}$. Da es keine Wiederholungen gibt ist in diesem Fall $m$ immer kleiner als $n$. Im Taschenrechner kann man den Binomialkoeffizient (so heißt die Funktion) mit \textit{nCr} berechnen z.B. 24nCr3 = $\binom{24}{3}$.\\
+Man kann den Binomialkoeffizient auch als Permutation mit Wiederholung umschreiben, da man zwei Gruppen hat, zum einen die Gruppe mit den gezogenen Elementen $m$ und die Gruppe $n-m$  mit den nicht gezogenen Elementen. Somit ergibt sich: $$\binom{n}{m}=\frac{n!}{m!\cdot(n-m)!}$$
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für Fakultät: > choose(n, k)} \hfill \href{https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/Special}{Dokumentation}}
 
 \subsubsection{Kombination ohne Wiederholung und mit Reihenfolge}
-Hier spielt nun die Reihenfolge eine Rolle, jedoch darf ein gleiches Element nicht zweimal verwendet werden, da es ohne Wiederholung ist. Dies ist ein Mix aus \textit{Kombination ohne Wiederholung und ohne Reihenfolge} und der \textit{Permutation ohne Reihenfolge}, da der Binomialkoeffizient  mit der Fakultät der  Anzahl ausgewählter Elemente multipliziert wird.
-Mächtigkeit an Zusammenstellungen: $\binom{n}{m}=\frac{n!}{(n-m)!}$
+Dieser Fall ist sehr nahe an \textit{Permutation ohne Wiederholung} (vgl. Kap. \ref{sec:perm-ohne}), der einzige Unterschied liegt darin, dass das Baumdiagramm nicht "fertig" gezeichnet wird (sondern nach $m$ Stufen abbricht). Multipliziert man den Binomialkoeffizient mit $m!$, so erhält man die passende Formel dafür: 
+$$m! \cdot \binom{n}{m} = m! \cdot \frac{n!}{m!(n-m)!} = \frac{n!}{(n-m)!}$$ 
+
+\noindent \dangersign[3ex] Die Formel sieht komplizierter aus, als sie letztendlich ist. Im Grund steht im Nenner die Anzahl der nicht ausgewählten Elemente und kürzt dadurch den hinteren Teil von $n!$ weg, sodass diese nach $m$ Stufen abbricht.
 
 \subsubsection{Kombination mit Wiederholung und ohne Reihenfolge}
-Nun wird die Reihenfolge nicht berücksichtigt, jedoch kann ein Element mehrmals gewählt werden. Somit kann nun auch die Anzahl der ausgewählten Elemente m größer sein als n. Zusätzlich zum Fall der Kombination ohne Wiederholung vergrößert sich jetzt die Menge um m-1 Elemente. Bei der Kombination wird daher die die Anzahl an möglichen Kombinationen durch Wiederholungen größer:$\binom{n+m-1}{m}=\frac{(n+m-1)!}{m!(n-1)!}$
+Hier kann die Anzahl der ausgewählten Elemente $m$ größer sein als $n$, da mit Wiederholung gezogen wird. Zusätzlich zum Fall der Kombination ohne Wiederholung vergrößert man künstlich die Menge um $m-1$ Elemente. Dadurch wird nicht aus $n$, sondern aus $n+m-1$ Elementen gezogen:
+$$\binom{n+m-1}{m}=\frac{(n+m-1)!}{m!(n-1)!}$$
+
+\noindent \dangersign[3ex] Diese Formel mag etwas komisch wirken, eine gute Intuition vermittelt jedoch das Beispiel mit den Eiskugeln aus dem Skript.
 
 \subsubsection{Kombination mit Wiederholung und mit Reihenfolge}
-Hier gibt es nun die größte Anzahl an möglichen Kombinationen, da die Reihenfolge berücksichtigt wird und Wiederholungen möglich sind. Bei dieser Variante gibt es bei jeder Auswahl eines m, n verschiedene Wahlmöglichkeiten, deshalb berechnet man die Anzahl an Kombinationen mit $n^m$. \\
-\paragraph\dangersign Bei der Permutation wird die Anzahl der möglichen Permutationen durch die Wiederholungen geringer im Gegensatz zur Kombination. Denn bei der Kombination wird die Anzahlen der möglichen Kombinationen durch Wiederholungen größer.
+Betrachtet man diesen Fall wieder als Baumdiagramm, so erhält man einen Baum mit $m$ Stufen und jeweils $n$ Pfaden pro Stufe. Man berechnet die Anzahl der möglichen Kombinationen durch $$n^m\;.$$
+
 \clearpage
+
 \subsection{Aufgaben}
-\paragraph{1. Welche Aussagen bzgl. der Permutation sind wahr?}
+\paragraph{1. Welche Aussagen bzgl. Permutationem sind wahr?}
 \begin{itemize}
-    \item[a)]  Die Reihenfolge der Elemente kann eine Rolle spielen muss sie aber nicht. \hfill $\square$
-    \item[b)]Permutation wird eine mögliche Anordnung von Elementen in einer bestimmten\\ Reihenfolge genannt.  \hfill $\square$
-    \item[c)] Die Permutation ohne Reihenfolge und ohne Wiederholung berechnet man mit n!\hfill $\square$
-    \item[d)]  Die Anzahl der Permutation mit Wiederholung ist größer als ohne Wiederholungen. \hfill $\square$
+    \item[a)]  Die Reihenfolge der Elemente kann eine Rolle spielen, muss es aber nicht. \hfill $\square$
+    \item[b)] Permutation wird eine mögliche Anordnung von Elementen in einer bestimmten\\ Reihenfolge genannt.  \hfill $\square$
+    \item[c)] Die Anzahl der Permutationen ohne Reihenfolge und ohne Wiederholung berechnet\\ man mit n! \hfill $\square$
+    \item[d)] Die Anzahl der möglichen Permutation mit Wiederholung ist größer als ohne\\ Wiederholungen. \hfill $\square$
 \end{itemize}
-\paragraph{2. Welche Aussagen zur Kombination sind richtig?}
+
+\paragraph{2. Welche Aussagen bzgl. Kombinationen sind richtig?}
 \begin{itemize}
-    \item [a)]Die Kombination ohne Wiederholung und ohne Reihenfolge hat eine größere Anzahl an \\ Kombinationsmöglichkeiten als die Kombination mit Wiederholungen und ohne \\Reihenfolge.\hfill $\square$
-    \item[b)]Wenn die Reihenfolge bei der Kombination mit einbezogen werden soll, dann wird die \\Anzahl an möglichen Kombinationen größer.\hfill $\square$
-    \item[c)]Die Mächtigkeit an Kombination mit Wiederholung und ohne Reihenfolge berechnet\\ man mit $\binom{n}{m}\cdot m!$. \hfill $\square$
-    \item[d)]Bei der Kombination mit Wiederholungen und mit Reihenfolge gibt es auf dem \\"ersten Platz" n verschiedene Möglichkeiten, auf dem zweiten Platz n-1 und auf\\ dem letzten Platz eine Möglichkeit. \hfill $\square$
+    \item [a)] Die Betrachtung \textit{ohne Wiederholung und ohne Reihenfolge} hat eine größere Anzahl \\ an Kombinationsmöglichkeiten als die Betrachtung \textit{mit Wiederholung und ohne \\Reihenfolge.} \hfill $\square$
+    \item[b)] Wenn die Reihenfolge bei der Kombination mit einbezogen werden soll, dann wird die \\Anzahl an möglichen Kombinationen größer.\hfill $\square$
+    \item[c)] Bei Betrachtung von Kombinationen ohne Wiederholung und mit Reihenfolge erhält\\ man eine höhere Anzahl an Möglichkeiten als bei der Permutation ohne Wiederholung \hfill $\square$
+    \item[d)] Bei der Kombination mit Wiederholung und mit Reihenfolge gibt es auf dem \\"ersten Platz" $n$ verschiedene Möglichkeiten, auf dem "zweiten Platz" $n-1$, usw. \hfill $\square$
 \end{itemize}
+
 \paragraph{3. Ein Zahlenschloss besteht aus 4 Rädern mit den Zahlen von 0 bis 9. Welche Aussage ist richtig?}
 \begin{itemize}
     \item[a)]Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Permutation mit Wiederholung.\hfill $\square$
     \item[b)]Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination mit Wiederholung und mit Reihenfolge.\hfill $\square$
     \item[c)]Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination mit Wiederholung und ohne Reihenfolge.\hfill $\square$
     \item[d)]Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination ohne Wiederholung und ohne Reihenfolge.\hfill $\square$
-    \item[e)]Es gibt 10000 verschiedene Kombinationen.\hfill $\square$
+    \item[e)]Es gibt 10.000 verschiedene Kombinationen.\hfill $\square$
 \end{itemize}
-\paragraph{4. Bei einem Basketballspiel laufen nacheinander 5 Spieler auf das Spielfeld. Man berechnet die Anzahl der Möglichkeiten für das Einlaufen mit...}
+
+\paragraph{4. Bei einem Basketballspiel laufen nacheinander 5 Spieler auf das Spielfeld. Man berechnet die Anzahl der Möglichkeiten für das Einlaufen mit ...}
 \begin{itemize}
     \item[a)] der Kombination ohne Wiederholung und mit Reihenfolge.\hfill $\square$
     \item[b)] der Permutation ohne Wiederholung.\hfill $\square$
@@ -2004,16 +2056,22 @@ Hier gibt es nun die größte Anzahl an möglichen Kombinationen, da die Reihenf
     \item[d)] der Kombination ohne Wiederholung und ohne Reihenfolge.\hfill $\square$
     \item[e)] der Kombination mit Wiederholung und mit Reihenfolge.\hfill $\square$
 \end{itemize}
-\paragraph{5. Bei einem Rosenzüchter gibt es 14 verschiedene Rosenarten und du möchtest ein Strauß mit 20 Rosen. Wie viele unterschiedliche Möglichkeiten an Sträußen gibt es?}
+
+\paragraph{5. Bei einem Rosenzüchter gibt es 14 verschiedene Rosenarten und man möchte ein Strauß mit 20 Rosen. Wie viele unterschiedliche mögliche Sträuße gibt es?}
 \begin{itemize}
-    \item[a)] $2,432902008 × 10^{18}$\hfill $\square$
-    \item[b)]573166440\hfill $\square$
-    \item[c)] $8,366825543 × 10^{22}$\hfill $\square$
-    \item[d)]$8,71782912 × 10^{10}$\hfill $\square$
+    \item[a)] $2,432902008 \times 10^{18}$ \hfill $\square$
+    \item[b)] $5,73166440 \times 10^8$ \hfill $\square$
+    \item[c)] $8,366825543 \times 10^{22}$ \hfill $\square$
+    \item[d)] $8,71782912 \times 10^{10}$ \hfill $\square$
 \end{itemize}
 
 
-\newpage
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Wahrscheinlichkeitsrechnung}
 Als Erstes sollte man über ein paar Begriffe im Klaren sein, damit es im Folgenden verständlicher ist.\\
 Ein \textit{Elementarereignis} ist ein Ereignis, deren Menge nur aus einem Element besteht. Bei einem Münzwurf ist somit das Werfen von zum Beispiel Kopf ein Elementarereignis {Kopf}\\
@@ -2125,9 +2183,14 @@ Somit kann man immer überprüfen ob zwei Ereignisse stochastisch unabhängig si
     \item[d)]Man berechnet die stochastische Unabhängigkeit zweier zufälliger Ereignisse durch \\die Summe der beiden Einzelwahrscheinlichkeiten. \hfill $\square$
 \end{itemize}
 
+
 \clearpage
 
-\section{Zufallsexperiment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Zufallsvariablen}\label{chap:zv}
 
 In der deskriptiven Statistik (Statistik I) haben wir fest vorgegebenes Datenmaterial beschrieben. Im Gegensatz dazu gehen wir in der induktiven Statistik (Statistik II) von Zufallsexperimenten mit sogenannten Zufallsvariablen aus. Mit Zufallsvariablen können Ergebnisse eines noch nicht durchgeführten Zufallsexperiments beschrieben werden.
 
@@ -2135,31 +2198,59 @@ In der deskriptiven Statistik (Statistik I) haben wir fest vorgegebenes Datenmat
 
 \noindent Grundsätzlich gibt es zwei verschiedene Arten von Zufallsvariablen -- \textbf{diskrete} und \textbf{stetige}. 
 
-\subsection{Diskrete Zufallsvariablen} \label{sec:DZV}
+\subsection{Diskrete Zufallsvariablen} \label{sec:dzv}
 Wenn Zufallsvariablen nur eine endliche oder abzählbar unendliche Menge an Werten annehmen, spricht man von diskreten Zufallsvariablen. Das bedeutet grob, dass es z.B. eine fixe Anzahl an Werten gibt (wie z.B. beim Roulette-Spiel oder Würfelwurf), oder dass es sich um sogennante Zähldaten handelt, wie etwa die Anzahl an Versicherungsschäden an einem bestimmten Tag. Jedoch ist zu beachten, dass theoretisch beliebig hohe Werte möglich sind, diese jedoch abzählbar sein müssen. 
 
 \paragraph{Abzählbarkeit: Mächtigkeit von Mengen} Für Interessierte gibt es hier einen kleinen  \href{https://de.wikibooks.org/wiki/Mathe_f\%C3\%BCr_Nicht-Freaks:_M\%C3\%A4chtigkeit_von_Mengen}{Ausflug in die Mathematik}
 
+\paragraph{Wahrscheinlichkeitsfunktion} Die Funktion $P(X = x_i= p_i$ ordnet jeder möglichen Ausprägung $x_i$ einer diskreten Zufallsvariable $X$ eine Wahrscheinlichkeit $p_i$ zu. (\textit{Anmerkung:} $\sum_{i=1}^n p_i = 1)$
 
-\subsection{Stetige Zufallsvariablen} \label{sec:SZV}
+\subsection{Stetige Zufallsvariablen} \label{sec:szv}
 Stetige Zufallsvariablen sind innerhalb eines beliebigen Intervalls definiert und können unendlich viele verschiedene Werte annehmen. Man nennt diesen Wertebereich überabzählbar unendlich.
 
 \paragraph{Beispiel:} Geschwindigkeit von Autos bei einer Radarkontrolle. Hier sind theoretisch unendlich viele Werte zwischen z.B. 50km/h und 60km/h möglich. Obwohl natürlich die Messgenauigkeit durch das verwendete Messgerät beschränkt ist (z.B. auf 1km/h genau), werden solche Variablen in der Statistik also meist als stetige Variablen behandelt.
 
-\subsection{Träger einer Zufallsvariablen} \label{sec:Traeger}
+\paragraph{Dichtefunktion} Das stetige Analogen zur Wahrscheinlichkeitsfunktion beschreibt stetige Zufallsvariablen. (\textit{Anmerkung: Muss stets $\geq$ 0 sein }\& $\int_{-\infty}^{\infty} f(x)\; dx = 1$)\\
+
+\noindent \dangersign[3ex] Bei stetigen Zufallsvariablen sind die Punktwahrscheinlichkeiten stets Null, d.h. wir könneen lediglich Aussagen über Wahrscheinlichkeiten für Intervalle treffen.
+
+\subsection{Träger einer Zufallsvariablen} \label{sec:traeger}
 
 Der Träger einer Zufallsvariablen bezeichnet alle möglichen Ergebnisse einer Zufallsvariablen. Beim Roulette-Spiel wäre der Träger z.B. $ T = 0,1,2,...,36$. Für die Geschwindigkeit bei der Radarkontrolle kommen theoretisch alle positiven reellen Zahlen in Frage, hier wäre der Träger also die Menge der reellen Zahlen $\R^+$.
 
+\subsection{Verteilungsfunktion}\label{sec:vtlgfkt}
+
+Die Interpretation ist relativ ähnlich zur empirischen Verteilungsfunktion aus Kapitel \ref{sec:emp-vert}, mit dem Unterschied, dass wir hier von \textit{Wahrscheinlichkeiten} anstatt von relativen Häufigkeiten sprechen. D.h. es handelt sich um ein rein theoretisches Konstrukt (im Gegensatz zum \textit{empirischen} Verteilungsfunktion).\\
+
+\noindent \dangersign[3ex] Bei diskreten Zufallsvariablen wird über die Punktwahrscheinlichkeiten aufsummiert ($\rightarrow$ Treppenfunktion), bei stetigen Zufallsvariablen über die Dichtefunktion integriert ($\rightarrow$ glatter Verlauf).
+
+\subsection{Erwartungwert \& Varianz}\label{sec:ex-var}
+
+Ähnlich der zentralen Lagemaße für \textit{Daten} in der deskriptiven Statistik (vgl. Kap. \ref{sec:median} oder \ref{sec:arithm}) dient der Erwartungswert zur Beschreibung des Schwerpunktes der Verteilung von \textit{Zufallsvariablen}. Die Varianz dient dazu, die Streuung von Verteilungen um deren Erwartungswert zu quantifizieren, im Gegensatz zur \textit{empirischen} Varianz (vgl. Kap. \ref{sec:varianz}) welche die Streuung von \textit{Daten} um deren Mittelwert quantifiziert.\\
+
+\noindent \dangersign[3ex] Auch hier ist bei der Berechnung wieder die Fallunterscheidung zwischen diskreten Zufallsvariablen (\textit{Summation}; eher simpel) und stetigen Zufallsvariablen (\textit{Integration}; eher aufwändig) nötig.
+
+\subsection{Zweidimensionale Zufallsvariablen}\label{sec:2zv}
+
+Zweidimensionale diskrete Verteilungen können über eine Kontingenztafel (vgl. Kap. \ref{sec:kont}) dargestellt werden, für den stetigen Fall Bedarf es einer gemeinsamen Dichtefunktion $f_{XY}(x,y)$.\\
+Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:unabh}, in diesem Fall jedoch wieder umgemünzt auf Wahrscheinlichkeiten anstatt relative Häufigkeiten. Ebenso einfach kann die Idee für die Kovarianz \& die Korrelation übertragen werden.
+
 \clearpage
+
 \subsection{Aufgaben}
 \paragraph{Welche Aussagen zu den Zufallsvariablen sind richtig?}
 \begin{itemize}
-    \item [a)]Der fünffache Münzwurf ist eine diskrete Zufallsvariable.
-    \item[b)]Mit Zufallsvariablen können Ergebnisse von Zufallsexperimenten beschrieben werden, die noch nicht durchgeführt wurden.
-    \item[c)]Der Träger der Zufallsvariable Würfelwurf eines 24-seitigen Würfels ist T = 1,2,3,...,24
-    \item[d)] Eine stetige Zufallsvariable hat abzählbar endliche Ergebnisse.
+    \item[a)] Der fünffache Münzwurf ist eine diskrete Zufallsvariable. \hfill $\square$
+    \item[b)] Mit Zufallsvariablen können Ergebnisse von Zufallsexperimenten beschrieben werden,\\ die noch nicht durchgeführt wurden. \hfill $\square$
+    \item[c)] Der Träger der Zufallsvariable Würfelwurf eines 24-seitigen Würfels ist\\ $T = \{1, 2, 3, \hdots, 24\}$ \hfill $\square$
+    \item[d)] Eine stetige Zufallsvariable hat abzählbar endliche viele mögliche Ergebnisse. \hfill $\square$
 \end{itemize}
-\newpage
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Spezielle Verteilungen} \label{sec:Distr}
 
@@ -2635,10 +2726,11 @@ Der \textbf{Erwartungswert} der diskreten Gleichverteilung ist definiert als $E(
 \end{itemize}
 
 
-\newpage
+\clearpage
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Grenzwertsätze und Approximationen von Verteilungen} \label{sec:GWSapprox}
 
@@ -2723,8 +2815,13 @@ Zur Veranschaulichung könnt ihr ein ähnliches Tool wie für die Binomialvertei
     \item[c)]Die Poissonverteilung darf zu jeder Zeit durch die Normalverteilung approximiert werden.\hfill $\square$
     \item[d)] Die hypergeometrische Verteilung H(9,120,40) darf durch die Binomialverteilung \\approximiert werden.\hfill $\square$
 \end{itemize}
-\newpage
 
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Schätzen}\label{chap:schaetzen}
 
@@ -2747,7 +2844,7 @@ Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern 
 \url{https://mars.wiwi.hu-berlin.de/mediawiki/mmstat3/index.php/Maximum-Likelihood-Methode}
 
 
-\newpage
+\clearpage
 
 \subsection{Konfidenzintervalle (KI)}\label{sec:KI}
 
@@ -2795,9 +2892,11 @@ Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern 
 \end{itemize}
 
 
-\newpage
+\clearpage
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 17
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Testtheorie}\label{sec:Tests}
 
@@ -2954,8 +3053,12 @@ Eine ähnliche Intuition wie für den Unterschied zwischen Gauss-Tests und t-Tes
  \end{itemize}  
 
 
+\clearpage
 
-\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Lineare Regression}
 Die Lineare Regression ist bereits aus Kapitel \ref{chap:linreg} bekannt. Im Folgenden werden wir das aus Statistik I schon gelernte wiederholen und weiter vertiefen.\\
 Bei der linearen Regression benötigt man zwei Variable die abhängige und die unabhängige. Die Annahme ist, dass zwischen diesen beiden eine lineare Beziehung herrscht. Die lineare Regression wird mit der Formel: $Y=\beta_0+\beta_1X+\epsilon$, wobei $\epsilon$ der unbeobachtete Fehlerterm ist. In Statistik II sind nun die Daten Realisationen von Zufallsvariablen, durch die Schlüsse auf die Grundgesamtheit geschlossen werden, im Gegensatz zu Statistik I. Durch die Regression kann man nun nicht mehr nur Aussagen übe die erklärte Streuung machen, sondern auch über Verteilungsannahmen und die statistische Signifikanz. \\
@@ -3048,16 +3151,25 @@ Mit einem Scatterplot kann man den Zusammenhang eines Regressors mit der abhäng
 
 \clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 19
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{R-Einführung Teil II}
 
 Teil der Veranstaltung ist eine erweiterte Einführung in \texttt{R} sowie eine Computervorlesung. Dieses Kapitel dient als Platzhalter, falls in diesem Skript in Zukunft der Inhalt aus diesem Vorlesungskapitel vertieft werden sollte. Bis dahin wird empfohlen mit den vorhandenen Vorlesungsmaterialiel zu arbeiten, da diese bereits sehr ausführlich und weitestgehend selbsterklärend sind.
 
+
 \clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{References}
 
 \begin{itemize}
-    \item[*] Vorlesungsunterlagen "Statistik 1 für Wirtschaftswissenschaflter" (WiSe 2019/20, Prof. Heumann) an der LMU München.
+    \item[*] Vorlesungsunterlagen "Statistik 1 für Wirtschaftswissenschaflter" (WiSe 2020/21, Prof. Heumann) an der LMU München.
     \item[*] Vorlesungsunterlagen "Statistik 2 für Wirtschaftswissenschaflter" (SoSe 2020, Prof. Heumann) an der LMU München.
     \item[*] Toutenburg, H. and Heumann, C., 2008. Induktive Statistik: eine Einführung mit R und SPSS. Springer-Verlag.
     \item[*] Dr. Alexander Engelhardt: \url{https://www.crashkurs-statistik.de}

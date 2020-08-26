@@ -99,7 +99,7 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 \noindent Dieses  Dokument wurde aus verschiedenen Quellen erstellt. Es soll als kleine Verständnishilfe für Studierende angesehen werden, wobei auf mathematische Genauigkeit und Vollständigkeit explizit verzichtet wird. Außerdem wird jedes Thema durch einen Block an Multiple-Choice Aufgaben und Hinweisen auf die passenden \texttt{R}-Funktionen für die behandelten Methoden ergänzt. Für Fehler wird keine Haftung übernommen.\\
 
 \noindent Der erste Teil dieses Dokuments ($\widehat \approx$ Statistik I) wurde von Ann-Kathrin in Zusammenarbeit mit Matthias im Sommer 2020 verfasst. Ann-Kathrin verantwortete das Schreiben des Erstentwurfs, Matthias war verantwortlich für intensives Korrekturlesen, Anpassungen und Erweiterungen.\\
-Der zweite Teil ($\widehat \approx$ Statistik II) basiert auf Vorlesungszusammenfassungen von Max aus dem Sommer 2019, welche in Zusammenarbeit mit Christoph, Patricia \& Matthias in dieses Format gegossen und detaillierter ausgearbeitet wurden. Besonderer Dank für diesen zweiten Teil gilt Herrn Dr. Alexander Engelhardt, der freundlicherweise einen Teil seines Materials zur Verfügung gestellt hat (siehe auch: \url{https://www.crashkurs-statistik.de}), sodass wir uns hiervon inspirieren lassen konnten. Aufgrund des Fehlens der Themenbereich Kombinatorik und Wahrscheinlichkeitsrechnung wurden dieser im Sommer 2020 von Ann-Kathrin \& Matthias ergänzt.
+Der zweite Teil ($\widehat \approx$ Statistik II) basiert auf Vorlesungszusammenfassungen von Max aus dem Sommer 2019, welche in Zusammenarbeit mit Christoph, Patricia \& Matthias in dieses Format gegossen und detaillierter ausgearbeitet wurden. Besonderer Dank für diesen zweiten Teil gilt Herrn Dr. Alexander Engelhardt, der freundlicherweise einen Teil seines Materials zur Verfügung gestellt hat (siehe auch: \url{https://www.crashkurs-statistik.de}), sodass wir uns hiervon inspirieren lassen konnten. Aufgrund des Fehlens der Themenbereiche Kombinatorik, Wahrscheinlichkeitsrechnung \& Multiple Regression wurden diese im Sommer 2020 von Ann-Kathrin \& Matthias ergänzt.
 
 \clearpage
 
@@ -275,7 +275,8 @@ Mit \texttt{R} kann man so gut wie alles aus der Vorlesung berechnen. Hat man ei
 \section{Häufigkeitsverteilungen, (univariate) grafische Darstellung}
 Häufigkeiten, deren Berechnung und Darstellung in Diagrammen, sind sicher schon weitgehend aus der Schule bekannt. Im Folgenden wird dies wiederholt und weiter ergänzt.
 \subsection{Berechnung von Häufigkeiten}
-\subsubsection{absolute Häufigkeit}\label{sec:abs.Häuf}
+
+\subsubsection{absolute Häufigkeit}\label{sec:abs-hkeit}
 Um die Anzahl der Untersuchungseinheiten zu erfassen, welche eine bestimmte Merkmalsausprägung aufweisen, verwendet man die absolute Häufigkeit.\\
 Diese kann man bei Nominal-, Ordinal-/ und der metrischen Skala anwenden.
 Die \textbf{allgemeine Formel für die absolute Wahrscheinlichkeit} lautet:
@@ -291,9 +292,9 @@ Hierbei muss die folgende Bedingung erfüllt sein:
 \end{align*}
 Wenn eine Untersuchungseinheit $I_{a_j}$ die entsprechende Merkmalsausprägung hat, dann bekommt sie den Wert 1 und wird in die Summe mit einbezogen. Fällt eine Untersuchungseinheit nicht in die zu erfassende Menge, also hat eine Untersuchungseinheit nicht die entsprechende Merkmalsausprägung, dann tritt der 2. Fall ein, nämlich diese erhält den Wert 0. Zum Schluss werden alle Untersuchungseinheiten, die diese gewünschte Ausprägung aufweisen aufsummiert.\\
 Die Berechnung der absoluten Häufigkeit macht vor allem für Merkmale Sinn, bei denen nicht allzu viele verschiedene Merkmalsausprägungen beobachtet werden (z.B. Noten, Lieblingsfarbe, o.ä.).
-\\
-\\
-\textbf{Klassenbildung} \label{sec:Klassenbildung}\\
+
+
+\subsubsection{Klassenbildung}\label{sec:klassenbildung}
 Um die Übersicht bei stetigen und diskreten Merkmalen mit vielen Ausprägungen (=quasistetig) zu behalten, macht man sich die Klassenbildung zu Nutze.
 Um eine sinnvolle und brauchbare Verteilung bei der Klassifizierung zu bekommen, bietet es sich an, die Grundgesamtheit in $\sqrt{n}$ Klassen zu teilen (grobe, sehr allgemeine Faustregel!)\\
 Allgemein gibt es zwei Möglichkeiten zur Wahl der Klassen
@@ -317,7 +318,7 @@ $n_j$ &Anzahl der Beobachtungen in der j-ten Klasse\\
     \end{tabular}
 \end{center}
 
-\subsubsection{relative Häufigkeit}
+\subsubsection{relative Häufigkeit}\label{sec:rel-hkeit}
 Die absolute Häufigkeit ist bei unterschiedlichen Stichprobenumfängen nicht vergleichbar.
 Um dieses Problem zu umgehen kann man die relative Häufigkeitsverteilung verwenden, die die gesamte Verteilung auf 1 normiert. Somit sind (relative) Häufigkeiten nun auch für unterschiedliche Stichprobenumfänge vergleichbar.\\
 Die relativen Häufigkeiten $f_j$ sind \textit{die Anteile} die auf jede Ausprägung entfallen. Man berechnet sie durch den Quotienten aus der absoluten Häufigkeit und dem Stichprobenumfang.
@@ -392,7 +393,7 @@ Das Histogramm ist, im Gegensatz zu den bisher vorgestellten Diagramm-Typen, nur
 \end{itemize}
 
 \noindent \textbf{Probleme}\\
-Da das Aussehen von der gewählten Klassengröße abhängt, sollte man, wie schon in (vgl. \textit{Klassenbildung} Kapitel \ref{sec:abs.Häuf})  erwähnt, sachlogische Gegebenheiten bei der Wahl der Klassenbreiten heranziehen.\\
+Da das Aussehen von der gewählten Klassengröße abhängt, sollte man, wie schon in (vgl. \textit{Klassenbildung} Kapitel \ref{sec:abs-hkeit})  erwähnt, sachlogische Gegebenheiten bei der Wahl der Klassenbreiten heranziehen.\\
 Offene Klassen, die gegen unendlich gehen, sind nicht abbildbar. Eine Möglichkeit ist, die Klasse so zu wählen, dass darin schon die Mehrheit der Merkmalsausprägungen enthalten sind. (vgl. Induktive Statistik im zweiten Semester)\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für Histogramme: > hist(data)} \hfill \href{https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/hist}{Dokumentation}}
@@ -433,7 +434,7 @@ Die Rechenregeln für ordinale und diskrete Merkmale: Skript (vgl. Slide 2.39)
 
 \subsubsection{Vorgehensweise bei stetigen Merkmalen}
 \begin{enumerate}
-    \item (Geordnete) Klassen bilden (vgl. Kapitel \ref{sec:Klassenbildung})
+    \item (Geordnete) Klassen bilden (vgl. Kapitel \ref{sec:klassenbildung})
     \item Relativen Häufigkeiten der Klassen berechnen
     \item Kumulierten Häufigkeiten $F(e_j)$ für jede Klasse berechnen
     \item Graph: Trage die kumulierten Häufigkeiten als ($e_j$; $F(e_j)$) in das Diagramm ein und verbinde die Punkte (da man eine Gleichverteilung innerhalb der Klassen annimmt).
@@ -2072,115 +2073,129 @@ Betrachtet man diesen Fall wieder als Baumdiagramm, so erhält man einen Baum mi
 %%%%%%%%%%  KAPITEL 12
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Wahrscheinlichkeitsrechnung}
-Als Erstes sollte man über ein paar Begriffe im Klaren sein, damit es im Folgenden verständlicher ist.\\
-Ein \textit{Elementarereignis} ist ein Ereignis, deren Menge nur aus einem Element besteht. Bei einem Münzwurf ist somit das Werfen von zum Beispiel Kopf ein Elementarereignis {Kopf}\\
-Ein \textit{zufälliges Ereignis} sind mehrere Elementarereignisse eines Zufallsexperiments zusammen, also eine Menge von Elementarereignissen. Ein zufälliges Ereignis tritt dann ein, wenn mindestens ein Elementarereignis, das in der Menge enthalten ist, zutrifft. Beim Münzwurf wäre das {Kopf, Zahl}\\
-Der \textit{Ereignisraum} bzw. der \textit{Grundraum} $\Omega$ ist die Menge aller Elementarereignissen. Bei einem Münzwurf wäre das 2, da es die möglichen Elementarereignisse Kopf und Zahl gibt.\\
-Ein \textit{unmögliches Ereignis} tritt dann auf, wenn keines der in der Menge enthaltenen Elementarereignissen zutrifft. Es kann daher bei keinem Zufallsexperiment auftreten.\\
-Das \textit{sichere Ereignis} tritt immer ein, da alle möglichen Elementarereignisse in der Menge $\omega$ enthalten sind. Somit tritt das Ereignis eins Zufallsexperiments bei jeder Wiederholung ein. Beim Münzwurf wäre das sichere Ereignis, "entweder Kopf oder Zahl würfeln".
-Ein \textit{Komplementärereignis} $\bar A$ tritt dann ein, wenn A nicht eintritt. Also $\bar A$ ist genau das Gegenteil oder "Komplementär". Beim Münzwurf wäre "Zahl" das Komplementärereignis, wenn das zufällige Ereignis, {Kopf} wäre. Oder "ungerade" Zahlen sind das Komplementärereignis, wenn "gerade" Zahlen das zufällige Ereignis wären.\\
-\noindent Zufällige Ereignisse können nicht nur alleine auftreten und da diese Mengen von Elementarereignissen sind, benötigt man Mengenoperation.
+\section{Wahrscheinlichkeitsrechnung}\label{chap:wkeit}
+\subsection{Grundlagen \& -begriffe}\label{sec:wkeit-basics}
+Zunächst ein paar Begriffserklräungen, für das bessere Verständnis:
+\paragraph{Ein Elementarereignis} ist ein Ereignis, desen Menge nur aus einem Element besteht (z.B. bei einem Münzwurf: \textit{Kopf} bzw. \textit{Zahl}). Ein \textbf{zufälliges Ereignis} ist die Kombination mehrerer Elementarereignisse (z.B. beim Würfel: \textit{Gerade Zahl würfeln} = $\{2,4,6\}$).
+\paragraph{Der Ereignisraum} $\Omega$ ist die Menge aller Elementarereignisse (z.B. bei einem Münzwurf die Menge $\{Kopf,\; Zahl\}$).
+\paragraph{Ein unmögliches Ereignis} ist ein Ereignis, dass kein Elementarereignis enthält (z.B. beim Münzwurf $\{Kreuz\}$ oder $\{Pik\}$), ein \textbf{sichere Ereignis} hingegen enthält alle möglichen Elementarereignisse (also $\Omega$).\\
 
-\paragraph{A geschnitten B} [$A\cap B$] Dies ist die Schnittmenge der beiden Mengen A und B. Das heißt die Elementarereignisse, die in A \textit{und} auch in B auftreten.
+\noindent Zufällige Ereignisse können nicht nur alleine auftreten, da diese Mengen von Elementarereignissen sind. Zur Verknüpfung benötigt man sog. Mengenoperation:
 
-\paragraph{A vereinigt B} [$A \cup B$] Dies ist die Vereinigungsmenge. Das heißt tritt das Ereignis A \textit{oder} B oder beide auf, dann tritt die Vereinigungsmenge auf. Es werden sozusagen beide Mengen addiert, wobei Elementarereignisse, die in beiden Mengen vorkommen, nur einmal gezählt werden dürfen.
+\paragraph{A geschnitten B} [$A\; \cap\; B$]\; Dies ist die \textit{Schnittmenge} der beiden Mengen $A$ und $B$, d.h. diejenigen Elementarereignisse, die sowohl in $A$ \textit{als auch} auch in $B$ enthalten sind. Ist $A\cup B=\emptyset$ (d.h. die Schnittmenge ist leer), so spricht man von \textbf{disjunkten Ereignissen}. 
 
-\paragraph{Nicht A} [$\bar A$] Das zufällige Ereignis \textit{A quer} tritt genau dann auf, wenn ein Elementarereignis nicht in der Menge der Elementarereignissen des zufälligen Ereignisses A liegt.
+\paragraph{A vereinigt B} [$A\; \cup\; B$]\; Dies ist die Vereinigungsmenge, d.h. alle Elementarereignisse, die entweder in $A$ \textit{oder} in $B$ (oder in beiden) enthalten ist. Hierfür werden beide Mengen addiert, wobei Elementarereignisse, die in beiden Mengen vorkommen, nur einmal gezählt werden dürfen.
 
-\paragraph{A ohne B} [$A\setminus B$] Die Ereignis tritt dann auf, wenn ein Elementarereignis in A liegt, jedoch nicht in B.
+\paragraph{Nicht A} [$\bar A$]\; Das zufällige Ereignis $\bar A$ (sprich: \textit{A quer}) enthält ausschließlich diejenigen Elementarereignisse, welche in $A$ enthalten sind.
 
-\paragraph{disjunktes Ereignis} Ein disjunktes Ereignis sind zwei Mengen, die keine gleichen Elementarereignisse haben, das heißt sie können niemals gleichzeitig auftreten. Somit gibt es keine Schnittmenge der beiden Mengen, daher ist $A\cup B=\emptyset$.
+\paragraph{A ohne B} [$A\; \setminus\; B$]\; Die Ereignis bezeichnet alle Elementarereignisse, welche in $A$, jedoch nicht in $B$ enthalten sind. $B\; \setminus\; A$ wären alle, die in $B$, jedoch nicht in $A$ enthalten sind.
 
 
 \subsection{Relative Häufigkeit}
-Um eine Quantifizierung vorzunehmen, wie häufig ein Ergebnis zu erwarten ist bzw. wie wahrscheinlich der Ausgang eines Versuchsergebnisses ist, schaut man sich die relative Häufigkeit an. Dabei gewinnt man die absolute Häufigkeit durch n-fache unabhängige Wiederholung des zufälligen Versuches.
-Betrachtet man ausreichend viele Wiederholungen des zufälligen Ereignisses A, dann nähert sich die relative Wahrscheinlichkeit dem typischen Wert von A. Dies wird als \textit{Wahrscheinlichkeit} des Ereignisses A bezeichnet und wird als P(A) geschrieben.
+Um (ohne theoretisches Vorwissen) eine Quantifizierung vorzunehmen, wie häufig ein Ereignis zu erwarten ist bzw. wie wahrscheinlich der Ausgang eines Versuchsergebnisses ist, betrachtet man relative Häufigkeiten (vgl. Kap. \ref{sec:rel-hkeit}).
+Zieht man dabei ausreichend viele Wiederholungen des Zufallsexperiments heran, so nähert sich die relative Häufigkeit der Wahrscheinlichkeit von $A$ an. Diese wird als $P(A)$ geschrieben.
 
-\subsection{Laplacesche Wahrscheinlichkeit}
-Damit ein Laplacesche Wahrscheinlichkeit vorliegt, müssen zwei Voraussetzungen erfüllt sein, zum einen muss die Ergebnismenge endlich sein und zum anderen müssen die Ereignisse die gleiche Wahrscheinlichkeit besitzen. Wenn dies der Fall ist, dann bildet der Quotient aus der Anzahl der für A günstigen Fälle, also in den Fällen, in denen A zutrifft und der Anzahl aller möglichen Fälle die Laplace-Wahrscheinlichkeit $\frac{|A|}{|\Omega|}=P(A)$.
-Der Würfelwurf hat beispielsweise eine Laplacesche Wahrscheinlichkeit, da jede Zahl die gleiche Wahrscheinlichkeit von $\dfrac{1}{6}$ hat und die Ergebnismenge auf die Zahlen von 1-6 beschränkt ist.
+\subsection{Laplacesche Wahrscheinlichkeit}\label{sec:laplace}
+Als Laplace-Experiment bezeichnet man ein Zufallsexperiment, bei dem alle Elementearereignisse die gleiche Wahrscheinlichkeit besitzen (\& der Ereignisraum endlich ist). Dadurch kann man z.B. die Wahrscheinlichkeit für Ereignis $A$ berechnetn, indem man einfach den Quotient aus der Anzahl der für $A$ günstigen Fälle und der Anzahl aller möglichen Elementarereignisse bilden: $\frac{|A|}{|\Omega|}=P(A)$.\\
+\textbf{Beispiel:} Der Würfelwurf ist ein Laplace-Experiment, da jede Zahl die gleiche Wahrscheinlichkeit von $\frac{1}{6}$ besitzt und somit z.B. $P(gerade\; Zahl) = \frac{3}{6}$ berechnet werden kann.
 
-\subsection{Wahrscheinlichkeitsrechnung} \label{sec:W'keitsrechnung}
-A.N.Kolmogorov hat das Axiomensystem der Wahrscheinlichkeitsrechnung erfunden. Dieses bietet die formale Grundlage für die Wahrscheinlichkeit und besteht aus drei Axiomen.
-Das erste Axiom besagt, dass jedem zufälligen Ereignis eines zufälligen Versuchs eine Wahrscheinlichkeit zwischen 0 und 1 zugeordnet wird.\\
-Das zweite Axiom besagt, dass das sichere Ereignis, welches wir zuvor schon kennen gelernt haben, immer die Wahrscheinlichkeit von 1 hat.\\
-Das dritte Axiom sagt, dass zwei disjunkte Ereignisse in der Vereinigungsmenge einfach addiert werden können.
-Aus diesen Axiomen lassen sich 5 Folgerungen ableiten. Als erstes ist die Wahrscheinlichkeit des komplementären Ereignisses $\bar A$ eins minus die Wahrscheinlichkeit für A.\\
-Als zweite Folgerung ist die Wahrscheinlichkeit des unmöglichen Ereignisses 0, da die Wahrscheinlichkeit des sicheren Ereignisses eins ist und dies das Komplementär zum unmöglichen Ereignis ist.\\
-Die Wahrscheinlichkeit von zwei sich gegenseitig nicht ausschließenden, also nicht disjunkten Ereignissen $A_1$ und $A_2$ ist die Summe der beiden Einzelwahrscheinlichkeiten, abzüglich der Schnittmenge der beiden Ereignisse. 
-\dangersign Hier muss zusätzlich einmal die Schnittmenge abgezogen werden, da sonst die Schnittmenge doppelt in die Wahrscheinlichkeit mit einberechnet werden würde. Dies ist anders bei zwei disjunkten Ereignissen, da diese keine gemeinsamen Schnittmenge haben und somit auch diese nicht wegen Doppelberechnung abgezogen werden muss. Somit ist die Wahrscheinlichkeit bei zwei disjunkten Ereignissen die Summe der beiden Einzelwahrscheinlichkeiten.\\
-Die vierte Folgerung besagt, wenn A eine Teilmenge von B ist, dann ist die Wahrscheinlichkeit von A geringer als von B. \\
-Als letzte Schlussfolgerung ergibt sich, wenn man ein Ereignisraum vollständig in mehrere disjunkte Teile $A_1,....,A_n$ zerlegt, und ein Ereignis B innerhalb des Ereignisraumes liegt, dann berechnet sich ein beliebiges Ereignis als Summe aller Schnittmengen zwischen B und einem zerlegten Teil $A_i$.
+\subsection{Axiome} \label{sec:axiome}
+Das Axiomensystem von Kolmogorov bietet die formale Grundlage für die Wahrscheinlichkeitsrechnung und besteht aus drei Axiomen.
 
-\subsection{Bedingte Wahrscheinlichkeit}
-Bei der bedingten Wahrscheinlichkeit handelt es sich um eine Wahrscheinlichkeit eines Ereignisses B, bei der schon als Vorinformation bekannt ist, dass ein Ereignis A bereits eingetreten ist. Nun ist die Frage, ob das eingetretene Ereignis eine Wirkung auf B hat und wie man diese Wirkung berechnet. Formal schreibt man die bedingte Wahrscheinlichkeit P(B|A).\\
-Um die bedingte Wahrscheinlichkeit eines Ereignisses B unter der Bedingung, dass A eingetreten ist, muss zuerst einmal, die Wahrscheinlichkeit von A größer 0 sein, da sie sonst als Vorinformation keinen Sinn macht. Anschließend berechnet man die bedingte Wahrscheinlichkeit aus dem Quotient der Schnittmenge in unserem Fall von A und B und der Wahrscheinlichkeit für die  "Vorinformation", also hier von A.
-\begin{align*}
-    P(B|A)=\frac{P(A\cap B}{P(A)}
-\end{align*}
+\paragraph{1. Axiom:} Jede Wahrscheinlichkeit liegt zwischen 0 und 1.
 
+\paragraph{2. Axiom:} Die Wahrscheinlichkeit für das sichere Ereignis (vgl. Kap. \ref{sec:wkeit-basics}) beträgt 1.
 
-\subsubsection{Multiplikationssatz}
-Durch Umformen der obigen Formel, kann man die Schnittmenge ganz einfach aus dem Produkt der bedingten Wahrscheinlichkeit und der Wahrscheinlichkeit für die Vorinformation, dem schon bekannten eingetretenen Ereignis, berechnen. Dabei kann ich die Rollen von A und B tauschen. Das heißt die Schnittmenge aus A und B kann ich zum Einen aus dem Produkt der bedingten Wahrscheinlichkeit von A und der Wahrscheinlichkeit des Ereignisses von B berechnen und zum Anderen aus dem Produkt der bedingten Wahrscheinlichkeit von B mit der Wahrscheinlichkeit des Ereignisses A.
+\paragraph{3. Axiom:} Die Wahrscheinlichkeiten zweier disjunkter Ereignisse können einfach addiert werden um die Wahrscheinlichkeit der Vereinigungsmenge zu bestimmen.
 
-\subsubsection{Satz von der totalen Wahrscheinlichkeit}
-Möchte man eine Wahrscheinlichkeit eines Ereignisses berechnen, dann verwendet man den Satz der totalen Wahrscheinlichkeit. Diese Wahrscheinlichkeit kann ich mit Hilfe der 5. Folgerung \ref{sec:W'keitsrechnung} herleiten. Bei Folgerung 5 berechnet man die Wahrscheinlichkeit des Ereignisses B aus der Summe der Wahrscheinlichkeiten der Schnittmengen von B mit jedem zerlegten Teil $A_i$ des Ereignisraumes $\Omega$. \\
-Da wir soeben bei dem Multiplikationssatz gelernt haben, dass wir die Schnittmenge auch mit der bedingten Wahrscheinlichkeit berechnen können, setzten wir diese Berechnung einfach anstelle der Schnittmenge in die Summe für die Berechnung der Wahrscheinlichkeit ein. Dabei wird das Produkt aus jeder bedingten Wahrscheinlichkeit von B unter der Bedingung, dass ein Teil der Zerlegung $A_i$ eingetreten ist und der Wahrscheinlichkeit für die Vorinformation $A_i$ berechnet und anschließend aufsummiert, um so die Wahrscheinlichkeit für das Ereignis B zu erhalten.
+\paragraph{Folgerungen:}
+Aus diesen Axiomen lassen sich 5 Folgerungen ableiten:
+\begin{enumerate}
+    \item W'keit des Komplementärereignisses: $P(\bar A) = 1 - P(A)$, da $A \cup \bar A = \Omega$
+    \item W'keit des unmöglichen Ereignisses: $P(\emptyset) = 0$, da $\emptyset = \bar \Omega$ \& $P(\Omega) = 1$
+    \item W'keit der Vereinigungsmenge: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, da die Schnittmenge sowohl in P(A), als auch in P(B) reinspielt \& sonst quasi "doppelt" zählen würde.\\
+    \dangersign[3ex] Sind $A$ \& $B$ disjunkt, reduziert sich dies auf das dritte Axiom, da $P(A \cap B) = 0$
+    \item W'keit der Teilmenge: Wenn $A$ Teilmenge von $B$ ist, so gilt: $P(A) \leq P(B)$
+    \item Kann man $\Omega$ vollständig in disjunkte Teile $A_1,....,A_n$ zerlegen, so gilt für Ereignis $B$:\\$P(B) = \sum_{i=1}^n P(B \cap A_i)$, d.h. $P(B)$ kann vollständig in die W'keiten der Schnittmengen mit den $A_i$ zerlegt werden.
+\end{enumerate}
 
-\subsubsection{Der Satz von Bayes}
-Den Satz von Bayes wird verwendet, um eine bedingte Wahrscheinlichkeit zu berechnen. Dabei sollte die Wahrscheinlichkeit wird zweier beliebiger Ereignisse größer 0 sein. Wir verwenden im Folgenden die Ereignisse A und B. Um auf die Formel zu kommen, kann man einfach den Multiplikationssatz nach der bedingten Wahrscheinlichkeit auflösen. $P(A|B)=\frac{P(A\cap B)}{P(B)}$. Anschließend setzt man in die Schnittmenge das Ergebnis des Multiplikationssatzes ein, jedoch verwendet man diesmal die andere Variante der bedingten Wahrscheinlichkeit, sonst würde man zu keinem Ergebnis kommen. Somit erhält man schlussendlich:
-\begin{align*}
-    P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}
-\end{align*}
+\subsection{Bedingte Wahrscheinlichkeit}\label{sec:bed-wkeit}
+Bei der bedingten Wahrscheinlichkeit handelt es sich um eine Wahrscheinlichkeit eines Ereignisses $B$, bei der schon als Vorinformation bekannt ist, dass ein Ereignis $A$ bereits eingetreten ist. Nun ist die Frage, ob das eingetretene Ereignis $A$ eine Auswirkung auf  $P(B)$ hat und wie man diese Auswirkung bei der Berechnung von $P(B)$ berücksichtig. Formal schreibt man diese sog. \textbf{bedingte Wahrscheinlichkeit} als $P(B|A)$.\\
+Man berechnet sie aus dem Quotient der Wahrscheinlichkeit der Schnittmenge (in diesem Fall von $A$ und $B$) und der Wahrscheinlichkeit für die Bedingung, also hier von $P(A)$.
+$$P(B|A)=\frac{P(A \cap B)}{P(A)}$$
 
-\subsection{Stochastische Unabhängigkeit}
-Eine stochastische Unabhängigkeit liegt vor, wenn die bedingte Wahrscheinlichkeit, also das Eintreten eines Ereignisses A kein Einfluss auf die Wahrscheinlichkeit eines Ereignisses B hat, das heißt P(B)=P(B|A). Grob gesagt heißt das, egal ob das Ereignis A eintritt oder nicht, weiß ich immer noch nichts über das Eintreten des Ereignisses B.\\
-Durch Herleitung ergibt sich schlussendlich auch, dass bei stochastisch unabhängigen Ereignissen bzw. disjunkten Ereignissen die Schnittmenge das Produkt aus den Einzelwahrscheinlichkeiten der Ereignisse A und B ist.\\
-Somit kann man immer überprüfen ob zwei Ereignisse stochastisch unabhängig sind, in dem die Wahrscheinlichkeit der gegebenen Schnittmenge gleich dem Produkt der beiden Einzelwahrscheinlichkeiten entspricht.
+\noindent \dangersign[3ex] Andersherum funktioniert es natürlich genauso, d.h. $P(A|B) = \frac{P(A \cap B)}{P(B)}$\\
+
+\noindent Stellt man diese Formel nach der gemeinsamen Wahrscheinlichkeit um, so ergibt sich der sog. \textbf{Multiplikationssatz}:
+$$P(A \cap B) = P(B|A) \cdot P(A) \qquad bzw: \qquad P(A \cap B) = P(A|B) \cdot P(B)$$
+
+\noindent Die bedingt Wahrscheinlichkeit, sowie deren Umformung, sind von zentraler Bedeutung für die Herleitung der nächsten beiden Sätze.
+
+\subsubsection{Satz von der totalen Wahrscheinlichkeit}\label{sec:tot-wkeit}
+Möchte man eine Wahrscheinlichkeit eines Ereignisses berechnen, kann man den Satz der totalen Wahrscheinlichkeit verwenden. Grundlage ist Folgerung 5 aus Kapitel \ref{sec:axiome}, in der man die Wahrscheinlichkeit des Ereignisses $B$ als Summe der Wahrscheinlichkeiten der Schnittmengen von $B$ mit jedem disjunkt zerlegten Teil $A_i$ des Ereignisraumes $\Omega$ berechnet.\\
+Da die Wahrscheinlichkeit der Schnittmenge auch durch bedingten Wahrscheinlichkeiten berechnet werden kann, setzt man das Produkt aus jeder bedingten Wahrscheinlichkeit von $B$ unter der Bedingung $A_i$ ein \& multipliziert dies jeweils mit der Wahrscheinlichkeit der Vorinformation $A_i$. Anschließend werden diese Produkte (wie in Folgerung 5) aufsummiert, um so die Wahrscheinlichkeit für das Ereignis $B$ zu erhalten:
+$$P(B) = \sum_{i=1}^n P(B \cap A_i) = \sum_{i=1}^n P(B|A_i) \cdot P(A_i)$$
+
+\subsubsection{Der Satz von Bayes}\label{sec:bayes}
+Den Satz von Bayes wird verwendet, um eine bedingte Wahrscheinlichkeit zu berechnen. Verwendet man beide Versionen des Multiplikationssatzes und setzt diese über die gemeinsame Wahrscheinlichkeit gleich, so erhält man: 
+$$P(B|A) \cdot P(A) = P(A|B) \cdot P(B)$$
+
+\noindent Umgestellt nach einer der beiden bedingten Wahrscheinlichkeiten ergibt sich:
+$$ P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)} \qquad bzw: \qquad P(B|A) = \frac{P(A|B)\cdot P(B)}{P(A)}$$
+
+\noindent \dangersign[3ex] Ist eine \textbf{unbedingte Wahrscheinlichkeit} gesucht, so ist meistens der Satz der totalen Wahrscheinlichkeit hilfreich, sucht man eine \textbf{bedingt Wahrscheinlichkeit} so benötigt man meist den Satz von Bayes
+
+\clearpage 
+
+\subsection{Stochastische Unabhängigkeit}\label{sec:sto-unabh}
+Stochastische Unabhängigkeit liegt vor, wenn die bedingte Wahrscheinlichkeit eines Ergeignisses gleich der unbedingten Wahrscheinlichkeit ist, d.h. $P(B) = P(B|A)$. Dies bedeutet, dass das Eintreten eines Ereignisses $A$ kein Einfluss auf die Wahrscheinlichkeit für das Eintreten eines Ereignisses $B$ hat. Grob gesagt heißt das: Egal ob das Ereignis $A$ eintritt oder nicht, weiß ich immer noch nicht mehr über die Wahrscheinlichkeit des Eintreten des Ereignisses $B$ als davor. Die Intuition ist dabei ähnlich zu der in Kapitel \ref{sec:unabh}, jedoch beziehet sich diese Begriff auf \textit{Wahrscheinlichkeiten} und nicht mehr auf \textit{relative Häufigkeiten} (daher auch \textit{stochastische} Unabhängigkeit).
+Überprüfbar ist stochastische Unabhängigkeit zwischen zwei Ereignissen $A$ \& $B$ mittels
+$$P(A \cap B) \stackrel{?}{=} P(A) \cdot P(B)\;.$$
+
+\noindent Gilt diese Gleichung, so können $A$ \& $B$ als stochastisch unabhängig bezeichnet werden.
 
 \clearpage
 \subsection{Aufgaben}
 \paragraph{1. Eine Mutter kauft für den Kindergeburtstag 20 Luftballons, 10 blaue und 10 rote. Welche Aussagen sind richtig?}
 \begin{itemize}
     \item[a)] Ein sicheres Ereignis wäre entweder die Farbe blau oder rot als erstes aufzublasen.\hfill $\square$
-    \item[b)]Ein unmögliches Ereignis wäre die Farbe gelb als erstes auszublasen.\hfill $\square$
-    \item[c)]Das Komplementärereignis $\bar A$ von Ereignis A "Einen blaue Luftballon als erstes \\aufblasen" ist keine Luftballon aufblasen.\hfill $\square$
-    \item[d)]Bei der Frage welchen Luftballon die Mutter als erstes aufbläst, gibt es hier zwei\\ Elementarereignisse.\hfill $\square$
-    \item[e)]Das Ereignis "Blauen Luftballon als erstes aufzublasen" ist ein Elementarereignis. \hfill $\square$
+    \item[b)] Ein unmögliches Ereignis wäre die Farbe gelb als erstes auszublasen. \hfill $\square$
+    \item[c)] Das Komplementärereignis $\bar A$ von Ereignis $A$ "\textit{Einen blaue Luftballon als erstes \\aufblasen}" ist "\textit{Keinen Luftballon aufblasen}". \hfill  $\square$
+    \item[d)] Bei der Frage, welchen Luftballon die Mutter als erstes aufbläst, gibt es hier zwei\\ Elementarereignisse. \hfill $\square$
+    \item[e)] Das Ereignis "\textit{Blauen Luftballon als erstes aufblasen}" ist ein Elementarereignis. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen zur Laplaceschen Wahrscheinlichkeit sind richtig?}
 \begin{itemize}
-    \item [a)] Bei der Laplaceschen Wahrscheinlichkeit kann die Ergebnismenge unendlich sein,\\ solange die Ereignisse gleich wahrscheinlich sind.\hfill $\square$
-    \item[b)] Die Einzige Voraussetzung für ein Laplacesche Wahrscheinlichkeit ist, dass \\die Ereignisse gleich wahrscheinlich sind.\hfill $\square$
-    \item[c)]Mit der Mächtigkeit der für A günstigen Fälle und der Mächtigkeit aller möglichen\\ Fälle berechnet man die Laplacesche Wahrscheinlichkeit.\hfill $\square$
-    \item[d)]Bei der Laplaceschen Wahrscheinlichkeit muss ein Zufallsexperiment zugrunde liegen.\hfill $\square$
+    \item [a)] Bei der Laplaceschen Wahrscheinlichkeit kann der Ereignisraum unendlich sein,\\ solange die Ereignisse gleich wahrscheinlich sind. \hfill $\square$
+    \item[b)] Die einzige Voraussetzung für ein Laplacesche Wahrscheinlichkeit ist, dass \\die Ereignisse gleich wahrscheinlich sind.\hfill $\square$
+    \item[c)] Mit der Anzahl der für $A$ günstigen Fälle und der Anzahl aller möglichen\\ Ereignisse berechnet man die Laplacesche Wahrscheinlichkeit. \hfill $\square$
+    \item[d)] Bei der Laplaceschen Wahrscheinlichkeit muss ein Zufallsexperiment zugrunde liegen. \hfill $\square$
 \end{itemize}
+
 \paragraph{3. Welche Aussagen zur Wahrscheinlichkeitsrechnung sind wahr?} 
 \begin{itemize}
-    \item [a)]Die Wahrscheinlichkeit eines unmöglichen Ereignisses ist die leere Menge.\hfill $\square$
-    \item[b)]Die Wahrscheinlichkeit einer disjunkten Schnittmenge ist die Summe der\\ Einzelwahrscheinlichkeiten abzüglich der doppelt gezählten Schnittmenge der beiden \\Ereignissen.\hfill $\square$
-    \item[c)]Wenn man die Wahrscheinlichkeit des Ereignisses A hat, kann man auch die\\ Wahrscheinlichkeit des Komplementärereignisses berechnen.\hfill $\square$
-    \item[d)] Die Wahrscheinlichkeit eines Ereignisses A kann Zahlen zwischen -1 und 1 annehmen.\hfill $\square$
-    \item[e)]Ist B eine Teilmenge von A, so ist die Wahrscheinlichkeit von B größer oder \\gleich der Wahrscheinlichkeit von A.\hfill $\square$
+    \item[a)] Die Wahrscheinlichkeit eines unmöglichen Ereignisses ist die leere Menge. \hfill $\square$
+    \item[b)] Die Wahrscheinlichkeit der Schnittmenge zweier disjunkter Ereignisse ist die Summe\\ der Einzelwahrscheinlichkeiten abzüglich der  Schnittmenge der beiden Ereignisse.\hfill $\square$
+    \item[c)] Wenn man die Wahrscheinlichkeit des Ereignisses $A$ kennt, kann man auch die\\ Wahrscheinlichkeit des Komplementärereignisses $\bar A$ berechnen.\hfill $\square$
+    \item[d)] Die Wahrscheinlichkeit eines Ereignisses $A$ kann Zahlen zwischen -1 und 1 annehmen.\hfill $\square$
+    \item[e)] Ist $B$ eine Teilmenge von $A$, so ist die Wahrscheinlichkeit von $B$ kleiner oder \\gleich der Wahrscheinlichkeit von $A$. \hfill $\square$
 \end{itemize}
 
 \paragraph{4. Welche Aussagen zur bedingten Wahrscheinlichkeit sind wahr?}
 \begin{itemize}
-    \item[a)]Zur Berechnung einer bedingten Wahrscheinlichkeit benutzt man den\\ Multiplikationssatz.\hfill $\square$
-    \item[b)]Den Satz der totalen Wahrscheinlichkeit verwendet man, wenn man die \\Wahrscheinlichkeit eines Ereignisses berechnen möchte.  \hfill $\square$
-    \item[c)]Man kann den Satz von Bayes verwenden, um eine bedingte Wahrscheinlichkeit\\ zu berechnen.\hfill $\square$
-    \item[d)]Die bedingte Wahrscheinlichkeit $P(E|G)$ berechnet die Wahrscheinlichkeit des\\ Ereignisses E, unter der Bedingung, dass das Ereignis G nicht eintreten wird.\hfill $\square$
-    \item[e)]Wenn die Wahrscheinlichkeit, der Vorinformation größer 0 ist, spricht man von \\der bedingten Wahrscheinlichkeit, da sie dann   einen Einfluss auf das Eintreten \\des zu berechnenden Ereignisses hat.\hfill $\square$
+    \item[a)] Den Satz der totalen Wahrscheinlichkeit verwendet man, wenn man die \\unbedingte Wahrscheinlichkeit eines Ereignisses berechnen möchte. \hfill $\square$
+    \item[b)] Man kann den Satz von Bayes verwenden, um eine bedingte Wahrscheinlichkeit\\ zu berechnen. \hfill $\square$
+    \item[c)] Die bedingte Wahrscheinlichkeit $P(E|G)$ bedeutet die Wahrscheinlichkeit des\\ Ereignisses $E$, unter der Bedingung, dass das Ereignis $G$ nicht eintgereten ist. \hfill $\square$
+    \item[d)] Wenn die bedingte Wahrscheinlichkeit $P(A|B)$ ungleich der bedingten\\Wahrscheinlichkeit $P(B|A)$, dann sind $A$ \& $B$ disjunkt. \hfill $\square$
 \end{itemize}
 
 \paragraph{5.Welche Aussagen zur stochastischen Unabhängigkeit sind wahr?}
 \begin{itemize}
-    \item[a)]Die stochastische Unabhängigkeit zwischen zwei Ereignissen entspricht \\ zweier nicht disjunkter Ereignisse. \hfill $\square$
-    \item[b)]Man berechnet die stochastische Unabhängigkeit aus den 4 Ereignissen E,F,G und H\\ mit dem Produkt der Einzelwahrscheinlichkeiten von E,F,G und H. \hfill $\square$
-    \item[c)]Ist die bedingte Wahrscheinlichkeit P(B|G) ungleich der Wahrscheinlichkeit P(B), \\dann liegt keine stochastische Unabhängigkeit zwischen B und G vor.\hfill $\square$
-    \item[d)]Man berechnet die stochastische Unabhängigkeit zweier zufälliger Ereignisse durch \\die Summe der beiden Einzelwahrscheinlichkeiten. \hfill $\square$
+    \item[a)] Wenn die bedingte Wahrscheinlichkeit $P(A|B)$ ungleich der bedingten\\Wahrscheinlichkeit $P(B|A)$, dann sind $A$ \& $B$ unabhängig. \hfill $\square$
+    \item[b)] Ist die bedingte Wahrscheinlichkeit P(B|G) ungleich der Wahrscheinlichkeit $P(B|\bar G)$, \\dann liegt keine stochastische Unabhängigkeit zwischen B und G vor. \hfill $\square$
+    \item[c)] Ist die bedingte Wahrscheinlichkeit P(B|G) ungleich der Wahrscheinlichkeit P(B), \\dann liegt keine stochastische Unabhängigkeit zwischen B und G vor. \hfill $\square$
+    \item[d)] Liegt stochastische Unabhängigkeit vor, so berechnet man die gemeinsame\\ Wahrscheinlichkeit als die Summe der beiden Einzelwahrscheinlichkeiten. \hfill $\square$
 \end{itemize}
 
 

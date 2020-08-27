@@ -1444,6 +1444,18 @@ $$\hat{a}=\bar{y}-\hat{b}\bar{x}$$
 
 \noindent \dangersign[3ex] $\hat b$ muss immer vor $\hat a$ berechnet werden, da es Teil der Formel zur Berechnung von $\hat a$ ist.
 
+\paragraph{Interpretation des Intercepts $\hat a$:} Grafisch kann man sich den Intercept als Achsenabschnitt, also den Punkt an dem die Gerade die y-Achse schneidet, vorstellen. Interpretiert werden muss dieser als "\textit{der erwartete/geschätzt/durchschnittliche Wert der Zielgröße (Y), falls die Einflussgröße (X) einen Wert von 0 annimmt}". Wichtig ist dabei dass in dieser Formulierung einer der drei Begriffe "erwartet/geschätzt/durchschnittlich" fällt, da wir mit dem Modell natürlich keine deterministischen Aussagen (à la "Jeder mit einem x-Wert von 0 hat genau diesen y-Wert") treffen können.\\
+
+\noindent \dangersign[3ex] Es können Fälle auftreten, in denen eine Interpretation des Intercepts nicht sinnvoll ist. Dies kann zum einen passieren, wenn ein Wert von 0 für die Einflussgröße keinen Sinn macht (z.B. bei Körpergröße) oder zum anderen, falls der geschätzte Wert $\hat a$ für die Zielgröße keinen Sinn macht (z.B. negativer Wert für $\hat a$ bei Lebenserwartung als Zielgröße).
+
+\paragraph{Interpretation des Steigungsparameters $\hat b$:} Der geschätzte Steigungsparameter ist wie folgt zu interpretieren: "\textit{Steigt die Einflussgröße (X) um eine Einheit, so erwartet man (unter sonst gleichen Umständen) einen Anstieg (bzw. Abnahme, bei negativem $\hat b$) der Zielgröße (Y) um $\hat b$ Einheiten (der Zielgröße)}".\\
+Drei Anmerkungen hierzu:
+\begin{itemize}
+    \item Auch hier ist es wieder wichtig von einem "duchschnittlichen" oder "erwarteten" Anstieg zu sprechen (s.o.)
+    \item Wichtig ist auch, dass dieser Anstieg (bzw. Abnahme) der Zielgröße beim Anstieg der Einflussgröße um genau \textbf{eine Einheit} zu erwarten ist.
+    \item Die Formulierung "\textit{unter sonst gleichen Umständen}" ist hier noch nicht entscheidend, da wir nur \textbf{eine} Einflussgröße haben. Betrachten wir eine Modell mit mehreren Einflussgrößen (vgl. Kap. \ref{chap:mult-reg}, Statistik II) ist dies entscheidend, um einen einzelnen Steigungsparameter interpretieren zu können. Oftmals wird dafür der lateinische Begriff \href{https://de.wikipedia.org/wiki/Ceteris_paribus}{"c.p." (ceteris paribus)} verwendet.
+\end{itemize}
+
 \subsection{Besonderheiten der Regressionsgerade}\label{sec:obacht}
 \paragraph{Sinnvoller Wertebereich} Da nur die Beobachtungspaar $(x_1;y_1)$, .., $(x_n;y_n)$ in die Schätzung einfließen, können wir nur über deren Wertebereich eine sinnvolle Aussage treffen.\\
 \textit{Beispiel:} Schätzt man ein Regressionsmodell mit Gewicht als Ziel- und Körpergröße als Einflussgröße basierend auf Daten von Erwachsenen, so sollten basierend darauf keine Aussagen/Progno\-sen für Kleinkinder getroffen werden.
@@ -1491,13 +1503,12 @@ Alle bisherigen Ausführung bezogen sich auf den Fall eines metrischen Merkmals 
             \textbf{Beispiel}: $y_i = a + b_1 \cdot x_{SPD} + b_2 \cdot x_{\mbox{\it \scriptsize Grüne}} + b_1 \cdot x_{Linke} + b_1 \cdot x_{AfD} + b_1 \cdot x_{FDP} + e_i$
 \end{itemize}
 
-\clearpage
-
 \noindent Sie unterscheiden sich in folgenden Schritten:
 \begin{itemize}
     \item[] \textbf{Schritt 4 [Dummykodierung]}: \textit{Definition der Ausprägungen der Dummyvariablen}\\
             Die $i$-te Dummyvariable nimmt den Wert 1 an, falls die $i$-te Kategorie vorliegt und Null sonst.\\
             \textbf{Beispiel:} $x_{SPD} = \begin{cases} 1,\quad \mbox{falls X = SPD}\\ 0,\quad sonst\end{cases};\qquad x_{\mbox{\it \scriptsize Grüne}} = \begin{cases} 1,\quad \mbox{falls X = Grüne}\\ 0,\quad sonst\end{cases}; \mbox{usw.}$
+\clearpage
     \item[] \textbf{Schritt 4 [Effektkodierung]}: \textit{Definition der Ausprägungen der Dummyvariablen}\\
             Die $i$-te Dummyvariable nimmt weiterhin den Wert 1 an, falls die $i$-te Kategorie vorliegt. Sie nimmt den Wert -1 an, falls die Referenz vorliegt und Null bei jeder anderen Kategorie.\\
             \textbf{Beispiel:} $x_{SPD} = \begin{cases} 1,\quad \mbox{falls X = SPD}\\-1,\quad \mbox{falls X = Union}\\ 0,\quad sonst\end{cases};\qquad x_{\mbox{\it \scriptsize Grüne}} = \begin{cases} 1,\quad \mbox{falls X = Grüne}\\-1,\quad \mbox{falls X = Union}\\ 0,\quad sonst\end{cases}; \mbox{usw.}$
@@ -2026,9 +2037,9 @@ Betrachtet man diesen Fall wieder als Baumdiagramm, so erhält man einen Baum mi
 \subsection{Aufgaben}
 \paragraph{1. Welche Aussagen bzgl. Permutationem sind wahr?}
 \begin{itemize}
-    \item[a)]  Die Reihenfolge der Elemente kann eine Rolle spielen, muss es aber nicht. \hfill $\square$
+    \item[a)] Die Reihenfolge der Elemente kann eine Rolle spielen, muss es aber nicht. \hfill $\square$
     \item[b)] Permutation wird eine mögliche Anordnung von Elementen in einer bestimmten\\ Reihenfolge genannt.  \hfill $\square$
-    \item[c)] Die Anzahl der Permutationen ohne Reihenfolge und ohne Wiederholung berechnet\\ man mit n! \hfill $\square$
+    \item[c)] Die Anzahl der Permutationen ohne Reihenfolge und ohne Wiederholung berechnet\\ man mit $n!$ \hfill $\square$
     \item[d)] Die Anzahl der möglichen Permutation mit Wiederholung ist größer als ohne\\ Wiederholungen. \hfill $\square$
 \end{itemize}
 
@@ -2042,11 +2053,11 @@ Betrachtet man diesen Fall wieder als Baumdiagramm, so erhält man einen Baum mi
 
 \paragraph{3. Ein Zahlenschloss besteht aus 4 Rädern mit den Zahlen von 0 bis 9. Welche Aussage ist richtig?}
 \begin{itemize}
-    \item[a)]Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Permutation mit Wiederholung.\hfill $\square$
-    \item[b)]Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination mit Wiederholung und mit Reihenfolge.\hfill $\square$
-    \item[c)]Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination mit Wiederholung und ohne Reihenfolge.\hfill $\square$
-    \item[d)]Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination ohne Wiederholung und ohne Reihenfolge.\hfill $\square$
-    \item[e)]Es gibt 10.000 verschiedene Kombinationen.\hfill $\square$
+    \item[a)] Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Permutation mit Wiederholung.\hfill $\square$
+    \item[b)] Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination mit Wiederholung und mit Reihenfolge.\hfill $\square$
+    \item[c)] Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination mit Wiederholung und ohne Reihenfolge.\hfill $\square$
+    \item[d)] Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination ohne Wiederholung und ohne Reihenfolge.\hfill $\square$
+    \item[e)] Es gibt 10.000 verschiedene Kombinationen.\hfill $\square$
 \end{itemize}
 
 \paragraph{4. Bei einem Basketballspiel laufen nacheinander 5 Spieler auf das Spielfeld. Man berechnet die Anzahl der Möglichkeiten für das Einlaufen mit ...}
@@ -2155,6 +2166,7 @@ $$P(A \cap B) \stackrel{?}{=} P(A) \cdot P(B)\;.$$
 \noindent Gilt diese Gleichung, so können $A$ \& $B$ als stochastisch unabhängig bezeichnet werden.
 
 \clearpage
+
 \subsection{Aufgaben}
 \paragraph{1. Eine Mutter kauft für den Kindergeburtstag 20 Luftballons, 10 blaue und 10 rote. Welche Aussagen sind richtig?}
 \begin{itemize}
@@ -2258,7 +2270,7 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
     \item[a)] Der fünffache Münzwurf ist eine diskrete Zufallsvariable. \hfill $\square$
     \item[b)] Mit Zufallsvariablen können Ergebnisse von Zufallsexperimenten beschrieben werden,\\ die noch nicht durchgeführt wurden. \hfill $\square$
     \item[c)] Der Träger der Zufallsvariable Würfelwurf eines 24-seitigen Würfels ist\\ $T = \{1, 2, 3, \hdots, 24\}$ \hfill $\square$
-    \item[d)] Eine stetige Zufallsvariable hat abzählbar endliche viele mögliche Ergebnisse. \hfill $\square$
+    \item[d)] Eine stetige Zufallsvariable hat abzählbar endlich viele mögliche Ergebnisse. \hfill $\square$
 \end{itemize}
 
 \clearpage
@@ -2270,16 +2282,15 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 \section{Spezielle Verteilungen} \label{sec:Distr}
 
 \subsection{Diskrete Verteilungen} \label{sec:discretedistr}
-\textbf{Diskret} heißt grob gesagt, dass ein Experiment eine endliche Zahl an möglichen Ergebnissen hat. Beispiele für diskrete Verteilungen in der Vorlesung sind die diskrete Gleichverteilung, Bernoulliverteilung, Binomialverteilung, (hyper--)geometrische Verteilung, Poissonverteilung und die Multinomialverteilung. Diese diskreten Verteilungen beschreiben Wahrscheinlichkeiten, mit denen die einzelnen Werte von diskreten Zufallsvariablen (=ZV) auftreten können. Diese ZV besitzt abzählbar viele Werte (Beispiel Würfelwurf mit den Zahlen 1--6).
-
+\paragraph{Diskret} heißt grob gesagt, dass ein Experiment eine endliche Zahl an möglichen Ergebnissen hat. Beispiele für diskrete Verteilungen in der Vorlesung sind die diskrete Gleichverteilung, Bernoulliverteilung, Binomialverteilung, (hyper--)geometrische Verteilung, Poissonverteilung und die Multinomialverteilung. Diese diskreten Verteilungen beschreiben Wahrscheinlichkeiten, mit denen die einzelnen Werte von diskreten Zufallsvariablen (=ZV) auftreten können. Diese ZV besitzt abzählbar viele Werte (Beispiel Würfelwurf mit den Zahlen 1--6).
 
 \subsubsection{Diskrete Gleichverteilung} \label{sec:duni}
 
-\noindent \textbf{Idee/Anwendung}: Modellierung einer diskreten ZV, deren mögliche Ausprägungen alle mit derselben Wahrscheinlichkeit auftreten. \\
+\paragraph{Idee/Anwendung:} Modellierung einer diskreten ZV, deren mögliche Ausprägungen alle mit derselben Wahrscheinlichkeit auftreten. 
 
-\noindent Ein Beispiel dafür ist das Würfeln mit einem fairen Würfel. \textit{Fair} bedeutet in diesem Fall, dass jede Augenzahl (das sind die möglichen Ausprägungen) mit derselben Wahrscheinlichkeit vorkommt. \\
+\paragraph{Ein Beispiel} dafür ist das Würfeln mit einem fairen Würfel. \textit{Fair} bedeutet in diesem Fall, dass jede Augenzahl (das sind die möglichen Ausprägungen) mit derselben Wahrscheinlichkeit vorkommt.
 
-\noindent \textbf{Verteilung}: 
+\paragraph{Verteilung:} 
 \begin{itemize}
 \item[] Wahrscheinlichkeitsfunktion: $P(X=x_i)=p_i=\frac{1}{k}, \hspace{0.2cm} i=1,2,...,k$
 	\begin{itemize}
@@ -2287,15 +2298,21 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 	\end{itemize}
 \item[] Erwartungswert und Varianz: $\E[X]=\frac{k+1}{2}$ und $Var[X]=\frac{1}{12}(k^2-1)$
 \end{itemize}
-\noindent \textbf{Bemerkung}: $k$ ist die Anzahl der möglichen Ausprägungen, d.h. die Mächtigkeit des Ereignisraums
+\paragraph{Bemerkung:} $k$ ist die Anzahl der möglichen Ausprägungen, d.h. die Mächtigkeit des Ereignisraums\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die diskerte Gleichverteilung: > \_dunif()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/extraDistr/versions/1.8.11/topics/DiscreteUniform}{Dokumentation}}
+
+\noindent \dangersign[3ex] Für \textbf{alle} Verteilungen gibt es in \texttt{R} vier verschiedene mögliche Befehle, die durch einen Buchstaben vor dem Verteilungsnamen unterschieden werden (daher hier ein "\_" als Platzhalter. Ein \texttt{d} steht für die Dichte-/Wahrscheinlichkeitefunktion (\texttt{ddunif}), ein \texttt{p} für die Verteilungsfunktion (\texttt{pdunif}), ein \texttt{q} für die Quantilsfunktion (\texttt{qdunif}) und ein \texttt{r} für eine Zufallszahl (\texttt{rdunif})
+
+\noindent \dangersign[3ex] Die R-Funktionen sind \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{extraDistr}. Dieses muss zunächst installiert (\texttt{install.packages("extraDistr")}) und anschließend importiert werden (\texttt{library(extraDistr)}).
 
 \subsubsection{Bernoulliverteilung} \label{sec:Ber}
 
-\noindent \textbf{Idee/Anwendung}:  Ein einziges Experiment mit nur zwei möglichen Ergebnissen, wobei wir 0 für "Misserfolg" und 1 für "Erfolg" kodieren. Erfolg tritt mit Wahrscheinlichkeit $p$ und Misserfolg mit der entsprechenden Gegenwahrscheinlichkeit $(1-p)$ auf. Formell: $P(X=1)=p$ und $P(X=0)=1-p$. \\
+\paragraph{Idee/Anwendung:}  Ein einziges Experiment mit nur zwei möglichen Ergebnissen, wobei wir 0 für "Misserfolg" und 1 für "Erfolg" kodieren. Erfolg tritt mit Wahrscheinlichkeit $p$ und Misserfolg mit der entsprechenden Gegenwahrscheinlichkeit $(1-p)$ auf. Formell: $P(X=1)=p$ und $P(X=0)=1-p$. 
 
-\noindent Ein Beispiel ist der einfache Münzwurf einer fairen Münze. Hierbei spielt es keine Rolle, ob man Kopf oder Zahl als Erfolg (Misserfolg) wählt, es sei denn, man hat eine weitere, persönliche Interpretation der Ereignisse. Wenn man z.B. in einer Wette auf Kopf setzt, ist es sinnvoll, dem Ereignis $Kopf$ den Wert $1$, also "Erfolg", zuzuweisen. \\
+\paragraph{Ein Beispiel} ist der einfache Münzwurf einer fairen Münze. Hierbei spielt es keine Rolle, ob man Kopf oder Zahl als Erfolg (Misserfolg) wählt, es sei denn, man hat eine weitere, persönliche Interpretation der Ereignisse. Wenn man z.B. in einer Wette auf Kopf setzt, ist es sinnvoll, dem Ereignis $Kopf$ den Wert $1$, also "Erfolg", zuzuweisen.
 
-\noindent \textbf{Verteilung}: 
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X\sim B(1,p)$
 \item[] Wahrscheinlichkeitsfunktion: $P(X=x) = \begin{cases}
@@ -2307,17 +2324,19 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 	\item[$\rightarrow$] Wahrscheinlichkeitsfunktion nimmt für beide möglichen Werte (es handelt sich ja um eine binäre ZV) die entsprechende Eintrittswahrscheinlichkeit an. Ansonsten ist sie nicht definiert (was für uns so viel bedeutet, dass sie dort einfach "0" ist).
 	\end{itemize}
 \item[] Erwartungswert und Varianz: $\E[X]=p$ und $Var[X]=p(1-p)$
-
 \end{itemize}
-\noindent \textbf{Bemerkung}: Binomialverteilung ($B(n,p)$) mit $n=1$.
+
+\paragraph{Bemerkung:} Binomialverteilung ($B(n,p)$) mit $n=1$.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die Bernoulliverteilung: > \_binom(.., size = 1)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Binomial}{Dokumentation}}
 
 \subsubsection{Binomialverteilung} \label{sec:Bin}
 
-\noindent \textbf{Idee/Anwendung}: Die Binomialverteilung entsteht durch mehrmaliges ($n$--maliges) Wiederholen desselben Bernoulli-Experiments. Außerdem gilt, dass diese Wiederholungen unabhängig voneinander sind. Von Interesse ist hierbei die gesamte Anzahl der Erfolge, nicht jedoch die konkrete Abfolge von Erfolgen und Misserfolgen. \\
+\paragraph{Idee/Anwendung:} Die Binomialverteilung entsteht durch mehrmaliges ($n$--maliges) Wiederholen desselben Bernoulli-Experiments. Außerdem gilt, dass diese Wiederholungen unabhängig voneinander sind. Von Interesse ist hierbei die gesamte Anzahl der Erfolge, nicht jedoch die konkrete Abfolge von Erfolgen und Misserfolgen.
 
-\noindent Ein Beispiel ist der wiederholte Münzwurf. Angenommen, man ist daran interessiert, wie oft das Ereignis $Kopf$ bei 100 Münzwürfen vorkommt. Dann wählt man $Kopf$ als "Erfolg" im einfachen Bernoulli-Experiment, d.h. man weist $Kopf$ den Wert 1 zu. Die entsprechende Wahrscheinlichkeit bei einer fairen Münze ist $P(X=1)=0,5$. Da man an der Anzahl von $Kopf$ bei 100 Münzwürfen interessiert ist, setzt man nun noch $n=100$ in der Binomialverteilung. \\
+\paragraph{Ein Beispiel} ist der wiederholte Münzwurf. Angenommen, man ist daran interessiert, wie oft das Ereignis $Kopf$ bei 100 Münzwürfen vorkommt. Dann wählt man $Kopf$ als "Erfolg" im einfachen Bernoulli-Experiment, d.h. man weist $Kopf$ den Wert 1 zu. Die entsprechende Wahrscheinlichkeit bei einer fairen Münze ist $P(X=1)=0,5$. Da man an der Anzahl von $Kopf$ bei 100 Münzwürfen interessiert ist, setzt man nun noch $n=100$ in der Binomialverteilung.
 
-\noindent \textbf{Verteilung}:
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X\sim B(n,p)$
 \item[] Wahrscheinlichkeitsfunktion: $P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$, $k=0,1,...,n$
@@ -2330,18 +2349,19 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 		\end{itemize}
 	\end{itemize}
 \item[] Erwartungswert und Varianz: $\E[X]=np$ und $Var[X]=np(1-p)$
-
 \end{itemize}
 
-\noindent \textbf{Bemerkung}: Kann durch $\mathcal{N}(np,np(1-p))$ approximiert werden (vgl. Kapitel \ref{sec:BinN}).
+\paragraph{Bemerkung:} Kann durch $\mathcal{N}(np,np(1-p))$ approximiert werden (vgl. Kapitel \ref{sec:BinN}).\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die Binomialverteilung: > \_binom()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Binomial}{Dokumentation}}
 
 \subsubsection{Geometrische Verteilung} \label{sec:Geo}
 
-\noindent \textbf{Idee/Anwendung}: Die geometrische Verteilung modelliert die \textit{Anzahl der Versuche} bis zum ersten Eintreten des Erfolgs bei unabhängigen (identischen) Bernoulliversuchen. \\
+\paragraph{Idee/Anwendung:} Die geometrische Verteilung modelliert die \textit{Anzahl der Versuche} bis zum ersten Eintreten des Erfolgs bei unabhängigen (identischen) Bernoulliversuchen.
 
-\noindent Ein Beispiel ist hier wieder der wiederholte Münzwurf. Angenommen, man ist daran interessiert, wie oft man eine faire Münze werfen muss, bis das Ereignis $Kopf$ vorkommt, dann wählt man erneut $Kopf$ als "Erfolg" im einfachen Bernoulli-Experiment. Da die Wahrscheinlichkeit $P(X=1)=0,5$ ist, erwartet man in diesem Fall, dass zwei Versuche genügen, um den ersten Erfolg zu erzielen. \\
+\paragraph{Ein Beispiel} ist hier wieder der wiederholte Münzwurf. Angenommen, man ist daran interessiert, wie oft man eine faire Münze werfen muss, bis das Ereignis $Kopf$ vorkommt, dann wählt man erneut $Kopf$ als "Erfolg" im einfachen Bernoulli-Experiment. Da die Wahrscheinlichkeit $P(X=1)=0,5$ ist, erwartet man in diesem Fall, dass zwei Versuche genügen, um den ersten Erfolg zu erzielen.
 
-\noindent \textbf{Verteilung}:
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X\sim G(p)$
 \item[] Wahrscheinlichkeitsfunktion: $P(X=k)=p(1-p)^{k-1}$, $k \in \mathbb{N}$
@@ -2354,18 +2374,17 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 		\end{itemize}
 	\end{itemize}
 \item[] Erwartungswert und Varianz: $\E[X]=\frac{1}{p}$ und $Var[X]=\frac{1}{p}\Big(\frac{1}{p}-1\Big)$
-
 \end{itemize}
 
-\noindent \textbf{Bemerkung}: 
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die geometrische Verteilung: > \_geom()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Geometric}{Dokumentation}}
 
 \subsubsection{Hypergeometrische Verteilung} \label{sec:hypergeo}
 
-\noindent \textbf{Idee/Anwendung}: $n$-maliges Ziehen (ohne Zurücklegen!) aus einem Topf mit $N$ Kugeln, von denen $M$ ($ \leq N$) Kugeln das gewünschte Merkmal tragen. Es ist hierbei egal, ob die anderen $N-M$ Kugeln alle dasselbe Merkmal oder verschiedene Merkmale tragen. Die Anzahl der gezogenen Kugeln mit gewünschtem Merkmal nach $n$--maligem Ziehen folgt dann einer hypergeometrischen Verteilung. \\
+\paragraph{Idee/Anwendung:} $n$-maliges Ziehen (ohne Zurücklegen!) aus einem Topf mit $N$ Kugeln, von denen $M$ ($ \leq N$) Kugeln das gewünschte Merkmal tragen. Es ist hierbei egal, ob die anderen $N-M$ Kugeln alle dasselbe Merkmal oder verschiedene Merkmale tragen. Die Anzahl der gezogenen Kugeln mit gewünschtem Merkmal nach $n$--maligem Ziehen folgt dann einer hypergeometrischen Verteilung.
 
-\noindent Ein Beispiel ist hier das Lottospielen. Es gibt ingesamt $N=49$ Kugeln, von denen $M=6$ das Merkmal \textit{Auf Lottoschein angekreuzt} tragen und die anderen $N-M=43$ nicht. Die Anzahl der richtigen Zahlen im Lotto bei $n=6$ Zügen ist entsprechend hypergeometrisch verteilt ($H(6,6,49)$). \\
+\paragraph{Ein Beispiel} ist hier das Lottospielen. Es gibt ingesamt $N=49$ Kugeln, von denen $M=6$ das Merkmal \textit{Auf Lottoschein angekreuzt} tragen und die anderen $N-M=43$ nicht. Die Anzahl der richtigen Zahlen im Lotto bei $n=6$ Zügen ist entsprechend hypergeometrisch verteilt ($H(6,6,49)$).
 
-\noindent \textbf{Verteilung}:
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X\sim H(n,M,N)$
 \item[] Wahrscheinlichkeitsfunktion: $P(X=x)=\frac{\binom{M}{x}\cdot\binom{N-M}{n-x}}{\binom{N}{n}}$
@@ -2378,33 +2397,36 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 		\end{itemize}
 	\end{itemize}
 \item[] Erwartungswert und Varianz: $\E[X]=n\frac{M}{N}$ und $Var[X]=n\frac{N}{M}\Big(1-\frac{M}{N} \Big)\Big(\frac{N-n}{N-1} \Big)$
-
 \end{itemize}
 
-\noindent \textbf{Bemerkung}: Kann durch $B\Big(n,\frac{M}{N}\Big)$ approximiert werden (vgl Kapitel \ref{sec:HypBin}).
+\paragraph{Bemerkung:} Kann durch $B\Big(n,\frac{M}{N}\Big)$ approximiert werden (vgl Kapitel \ref{sec:HypBin}).\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die hypergeom. Verteilung: > \_hyper()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Hypergeometric}{Dokumentation}}
 
 \subsubsection{Poissonverteilung} \label{sec:Poi}
-\textbf{Idee/Anwendung}: Mit der Poissonverteilung kann man die Anzahl von Ereignissen in einem gegebenen Zeitintervall modellieren. Man zählt also die Anzahl der Ereignisse, die in einem fest vorgegebenen Zeitintervall eintreten, und möchte die Wahrscheinlichkeiten modellieren, mit der genau $x$ Ereignisse in diesem Zeitraum auftreten. Die Länge des Zeitintervalls kann dabei je nach Anwendung unterschiedlich gewählt werden (z.B. 1 Sekunde, 1 Minute, 1 Stunde, 1 Tag oder auch 1 Jahr). \\
 
-\noindent Beispiele sind die \textbf{Anzahl} von Fischen die \textbf{täglich} unter einem Sensor in der Isar vorbeischwimmen oder \textbf{Anzahl} von Haftpflichtfällen \textbf{pro Jahr} eines Versicherungsnehmers. \\
+\paragraph{Idee/Anwendung:} Mit der Poissonverteilung kann man die Anzahl von Ereignissen in einem gegebenen Zeitintervall modellieren. Man zählt also die Anzahl der Ereignisse, die in einem fest vorgegebenen Zeitintervall eintreten, und möchte die Wahrscheinlichkeiten modellieren, mit der genau $x$ Ereignisse in diesem Zeitraum auftreten. Die Länge des Zeitintervalls kann dabei je nach Anwendung unterschiedlich gewählt werden (z.B. 1 Sekunde, 1 Minute, 1 Stunde, 1 Tag oder auch 1 Jahr).
 
-\noindent \textbf{Verteilung}:
+\paragraph{Beispiele} sind die \textbf{Anzahl} von Fischen die \textbf{täglich} unter einem Sensor in der Isar vorbeischwimmen oder \textbf{Anzahl} von Haftpflichtfällen \textbf{pro Jahr} eines Versicherungsnehmers. 
+
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X\sim Po(\lambda)$, $\lambda > 0$
 \item[] Wahrscheinlichkeitsfunktion: $P(X=x)=\frac{\lambda^x}{x!}\cdot exp(-\lambda)$, $x \in \mathbb{N}_0$
 \item[] Erwartungswert und Varianz: $\E[X]=\lambda$ und $Var[X]=\lambda$
-
 \end{itemize}
 
-\noindent \textbf{Bemerkung}: Kann durch $\mathcal{N}(\lambda,\lambda)$ approximiert werden (vgl. Kapitel \ref{sec:PoN}). Außerdem gilt, dass die Wartezeit bis zum Eintreten des ersten Ereignisses exponentialverteilt mit Parameter $\lambda$ ist, wenn die Anzahl der Ereignisse in einem fixem Kontinuum (i.d.R. Zeitraum) der Poissonverteilung mit Parameter $\lambda$ folgt (vgl. Exponentialverteilung, Kapitel \ref{sec:Expo}). 
+\paragraph{Bemerkung:} Kann durch $\mathcal{N}(\lambda,\lambda)$ approximiert werden (vgl. Kapitel \ref{sec:PoN}). Außerdem gilt, dass die Wartezeit bis zum Eintreten des ersten Ereignisses exponentialverteilt mit Parameter $\lambda$ ist, wenn die Anzahl der Ereignisse in einem fixem Kontinuum (i.d.R. Zeitraum) der Poissonverteilung mit Parameter $\lambda$ folgt (vgl. Exponentialverteilung, Kapitel \ref{sec:Expo}). \\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die Poissonverteilung: > \_pois()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Poisson}{Dokumentation}}
 
 \subsubsection{Multinomialverteilung} \label{sec:Multi}
 
-\textbf{Idee/Anwendung}: Allgemein stellt die Multinomialverteilung eine Erweiterung der Binomialverteilung auf mehr als zwei mögliche Ereignisse dar. Man kann sie sich als Verteilung für das Ziehen mit Zurücklegen aus einer Urne mit $k$ Sorten Kugeln vorstellen. Jede dieser verschiedenen Sorten hat eine individuelle Wahrscheinlichkeit $p_i$, $i=1,2,...,k$, mit der sie in der Urne vorkommt. Diese Wahrscheinlichkeiten sind einfach nur die relativen Häufigkeiten. Mit der Wahrscheinlichkeitsfunktion berechnet man die Wahrscheinlichkeit für das Eintreten gewisser Anzahlen $x_i$, $i=1,2,...,k$. Uns ist hierbei die Gesamtzahl der Kugeln in der Urne egal, da wir mit Zurücklegen ziehen\footnote{vgl. \url{https://de.wikipedia.org/wiki/Multinomialverteilung}}. \\
+\paragraph{Idee/Anwendung:} Allgemein stellt die Multinomialverteilung eine Erweiterung der Binomialverteilung auf mehr als zwei mögliche Ereignisse dar. Man kann sie sich als Verteilung für das Ziehen mit Zurücklegen aus einer Urne mit $k$ Sorten Kugeln vorstellen. Jede dieser verschiedenen Sorten hat eine individuelle Wahrscheinlichkeit $p_i$, $i=1,2,...,k$, mit der sie in der Urne vorkommt. Diese Wahrscheinlichkeiten sind einfach nur die relativen Häufigkeiten. Mit der Wahrscheinlichkeitsfunktion berechnet man die Wahrscheinlichkeit für das Eintreten gewisser Anzahlen $x_i$, $i=1,2,...,k$. Uns ist hierbei die Gesamtzahl der Kugeln in der Urne egal, da wir mit Zurücklegen ziehen\footnote{vgl. \url{https://de.wikipedia.org/wiki/Multinomialverteilung}}. 
 
-\noindent Seien zum Beispiel $k=10$ und $p_i=0,1$ , $i=1,2,...,10$, dann ist es egal, ob es insgesamt 100 Kugeln gibt und jede Sorte zehnmal vorkommt oder 1000 Kugeln und jede Sorte 100-mal. Da wir mit Zurücklegen ziehen, ändern sich die Wahrscheinlichkeiten bei den verschiedenen Zügen nicht. \\
+\paragraph{Seien zum Beispiel} $k=10$ und $p_i=0,1$ , $i=1,2,...,10$, dann ist es egal, ob es insgesamt 100 Kugeln gibt und jede Sorte zehnmal vorkommt oder 1000 Kugeln und jede Sorte 100-mal. Da wir mit Zurücklegen ziehen, ändern sich die Wahrscheinlichkeiten bei den verschiedenen Zügen nicht.
 
-\noindent \textbf{Verteilung}:
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X \sim M(n;p_1,p_2,...,p_k)$
 \item[] Wahrscheinlichkeitsfunktion: $P(X_1=x_1,X_2=x_2,...,X_k=x_k)=\frac{n!}{x_1! \cdot x_2! \cdot ... \cdot x_k!} \cdot p_1^{x_1} \cdot p_2^{x_2} \cdot ... \cdot p_k^{x_k}$
@@ -2421,77 +2443,76 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 			np_i(1-p_i) & \text{für i = j,}\\
             -np_ip_j & \text{für i $\neq$ j}
 		 \end{cases}$ 
-
 \end{itemize}
 
-\noindent \textbf{Bemerkung}: 
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die Multinomialverteilung: > \_multinom()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Multinom}{Dokumentation}}
 
+\noindent \dangersign[3ex] Bei der Multinomialverteilung lassen sich nur Zufallszahlen generieren oder die Wahrscheinlichkeitsfunktion abfragen.
 
 \clearpage
-\subsubsection{Aufgaben}
+
+
+\subsubsection{Aufgaben I}
 \paragraph{1. Welche Aussagen bzgl. der Gleichverteilung sind richtig? }
 \begin{itemize}
-    \item[a)]Bei der diskreten Gleichverteilung muss es immer zwei mögliche Ausgänge geben, die\\ die gleiche Wahrscheinlichkeit haben.\hfill $\square$
-    \item[b)]Ein Würfelwurf mit 88 Seiten ist gleichverteilt.\hfill $\square$
-    \item[c)]Ein unfairer Münzwurf mit Kopf und Zahl ist gleichverteilt.\hfill $\square$
-    \item[d)]In einem Bällebad sind 500 rote, 300 blaue, 450 gelbe und 350 grüne Bälle. \\Zur Berechnung des Erwartungswertes eines gezogenen Balles der ZV: Anzahl der\\ blauen und roten Bälle kann man die diskrete Gleichverteilung verwenden.\hfill $\square$
+    \item[a)] Bei der diskreten Gleichverteilung muss es immer zwei mögliche Ausgänge geben, die\\ die gleiche Wahrscheinlichkeit haben. \hfill $\square$
+    \item[b)] Die Augenzahl bei dem Wurf eines Würfels mit 88 Seiten folgt einer Gleichverteilung. \hfill $\square$
+    \item[c)] Das Ergebnis des Wurfs einer unfairen Münzwurf mit Kopf und Zahl ist bernoulliverteilt. \hfill $\square$
+    \item[d)] Das Ergebnis des Wurfs einer unfairen Münzwurf mit Kopf und Zahl ist gleichverteilt. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen bzgl. der Bernoulliverteilung und Binomialverteilung sind wahr?}
 \begin{itemize}
-    \item[a)]Die Binomialverteilung besteht aus n abhängige und identische Bernoulliexperimente.\hfill $\square$
-    \item[b)]Der Erwartungswert der Bernoulliverteilung ist die Wahrscheinlichkeit, dass das\\ Ereignis eintritt, selbst.\hfill $\square$
-    \item[c)]Bei der Bernoulliverteilung und bei der Binomialverteilung gibt es jeweils nur zwei\\ mögliche Ergebnisse.\hfill $\square$
-    \item[d)]Die Verteilungsfunktion der Binomialverteilung geht von 0 bis 1.\hfill $\square$
+    \item[a)] Die Binomialverteilung besteht aus $n$ abhängigen und identische Bernoulliexperimenten. \hfill $\square$
+    \item[b)] Der Erwartungswert der Bernoulliverteilung ist die Wahrscheinlichkeit, dass das\\ Ereignis eintritt, selbst. \hfill $\square$
+    \item[c)] Bei der Bernoulliverteilung und bei der Binomialverteilung gibt es jeweils nur zwei\\ mögliche Ergebnisse. \hfill $\square$
+    \item[d)] Die Verteilungsfunktion der Binomialverteilung geht von 0 bis 1. \hfill $\square$
 \end{itemize}
 
-\paragraph{3. Gegeben ist die Gleichung $P(X=4)=0,30,7^(3)$ Welche Aussagen dazu sind wahr?}
+\paragraph{3. Gegeben ist die Rechnung $P(X=4) = 0,3 \cdot 0,7^3$ Welche Aussagen sind wahr?}
 \begin{itemize}
-    \item[a)]Hierbei handelt es sich um die geometrische Verteilung.\hfill $\square$
-    \item[b)]Der Erwartungswert beträgt hier ca. 3,33\hfill $\square$
-    \item[c)] Mit dieser Gleichung berechnet man die Wahrscheinlichkeit, dass das gewünschte\\ Ereignis bei der dritten Wiederholung eintritt.\hfill $\square$
-    \item[d)]Die Wahrscheinlichkeit für das gewünschten Ereignisses liegt bei 0,7.\hfill $\square$
-    \item[e)]Die Varianz beträgt ca. 0,6122.\hfill $\square$
+    \item[a)] Hierbei handelt es sich um die geometrische Verteilung. \hfill $\square$
+    \item[b)] Der Erwartungswert der Verteilung beträgt hier ca. 3,33 \hfill $\square$
+    \item[c)] Mit dieser Gleichung berechnet man die Wahrscheinlichkeit, dass das gewünschte\\ Ereignis bei der dritten Wiederholung eintritt. \hfill $\square$
+    \item[d)] Die Wahrscheinlichkeit für das Ereignis von Interesse liegt bei 0,7. \hfill $\square$
 \end{itemize}
     
 \paragraph{4. Welche Aussagen bezüglich der geometrischen und hypergeometrischen Verteilung sind wahr?}
 \begin{itemize}
-    \item[a)]Je größer die Wahrscheinlichkeit eines Ereignisses ist, desto länger braucht es, \\ bis es zum ersten Mal auftritt.\hfill $\square$
-    \item[b)]Die hypergeometrische Verteilung verwendet man, wenn man wissen will, wie oft \\man ein Experiment wiederholen muss, bis man das gewünschte Ereignis erhält.\hfill $\square$
-    \item[c)] Um eine Wahrscheinlichkeit mit der geometrischen Verteilung zu berechnen benötigt\\ man 4 Variable, N Einheiten unter denen M Elemente mit dem einem bestimmten\\ Merkmal sind, man wählt n Elemente aus den N aus und man berechnet die\\ Wahrscheinlichkeit, dass man x Elemente mit dem bestimmten Merkmal gezogen hat.\hfill $\square$
-    \item[d)]Die hypergeometrische Verteilung berechnet die Wahrscheinlichkeit unter der \\Voraussetzung, dass die gezogenen bzw. ausgewählten Elemente wieder \\zurückgelegt werden.\hfill $\square$
+    \item[a)] Je größer die Wahrscheinlichkeit eines Ereignisses ist, desto länger braucht es, \\ bis es zum ersten Mal auftritt.\hfill $\square$
+    \item[b)] Die hypergeom. Verteilung verwendet man, wenn man wissen will, mit welcher Wahrschein-\\lichkeit ein Ereignis nach wie vielen Wiederholungen eines Zufallsexperiments eintritt. \hfill $\square$
+    \item[c)] Die hypergeometrische Verteilung berechnet die Wahrscheinlichkeit unter der Voraus-\\setzung, dass die gezogenen Elemente wieder zurückgelegt werden. \hfill $\square$
 \end{itemize}
     
 \paragraph{5. Welche Aussagen zur Poissonverteilung sind richtig?}
 \begin{itemize}
-    \item[a)]Die Poissonverteilung gibt die Wahrscheinlichkeit für das Eintreffen eines \\Ereignisses wieder.\hfill $\square$
-    \item[b)]Das $\lambda$ muss größer gleich 0 sein.\hfill $\square$
-    \item[c)]Die Varianz und der Erwartungswert sind immer gleich groß.\hfill $\square$
-    \item[d)]Das $\lambda$ gibt die Intensitätsrate an, das heißt je größer $\lambda$ ist, desto häufiger wird \\das Ereignis vorkommen.\hfill $\square$
-    \item[e)]Sind zwei Zufallsvariable unabhängig, dann kann man bei der Poissonverteilung die $\lambda$\\ addieren und damit die Wahrscheinlichkeit eines Ereignisses berechnen.\hfill $\square$
+    \item[a)] Sie eignet sich zur Berechnung der Wahrscheinlichkeit für das Eintreten (ja/nein)\\eines Ereignisses. \hfill $\square$
+    \item[b)] Das $\lambda$ muss größer gleich 0 sein. \hfill $\square$
+    \item[c)] Die Varianz und der Erwartungswert sind immer gleich groß. \hfill $\square$
+    \item[d)] Das $\lambda$ gibt die Intensitätsrate an, das heißt je größer $\lambda$ ist, desto häufiger wird \\das Ereignis wahrscheinlich auftreten. \hfill $\square$
 \end{itemize}
 
 \paragraph{6. Welche Aussagen zur Multinomialverteilung sind richtig?}
 \begin{itemize}
-    \item[a)] Bei der Multinomialverteilung ist es wichtig zu wissen, wie viele Einheiten insgesamt\\ vorhanden sind. Also wie groß n ist, da wir nicht mit zurücklegen ziehen.\hfill $\square$
-    \item[b)]Die Multinomialverteilung ist die Verallgemeinerung der Bernoulliverteilung mit\\ mind. 2 Ereignissen.\hfill $\square$
-    \item[c)]k gibt die verschiedenen Sorten die vorhanden sind an.\hfill $\square$
-    \item[d)]Man benötigt die Gesamtheit aller Einheiten nicht, da mit Zurücklegen gezogen\\ wird und hierbei die bekannten relativen Häufigkeiten gleich bleiben.\hfill $\square$
-    \item[e)]Die Form der Wahrscheinlichkeitsfunktion gleicht der Permutation ohne Wiederholung.\hfill $\square$
+    \item[a)] Bei der Multinomialverteilung ist es wichtig zu wissen, wie viele Einheiten insgesamt\\ vorhanden sind. Also wie groß n ist, da wir nicht mit zurücklegen ziehen. \hfill $\square$
+    \item[b)] Die Multinomialverteilung ist die Verallgemeinerung der Bernoulliverteilung mit\\ mindestens zwei möglichen Ereignissen.\hfill $\square$
+    \item[c)] $k$ gibt Anzahl der verschiedenen möglichen Ergebnisse an. \hfill $\square$
+    \item[d)] Alle $k$ Wahrscheinlichkeiten müssen sich immer zu 1 aufaddieren. \hfill $\square$
 \end{itemize}
 \clearpage
 
 
 \subsection{Stetige Verteilungen} \label{sec:contdistr}
-\textbf{Stetig} heißt grob gesagt, dass ein Experiment unendliche viele Zahlen an möglichen Ergebnissen hat. Beispiele aus der Vorlesung sind die stetige Gleichverteilung, Exponentialverteilung, Normalverteilung, $\chi^2$-Verteilung, t-Verteilung und die F-Verteilung. Diese basieren auf stetigen Zufallsvariablen. Die Menge der Werte, die diese stetigen ZV annehmen können ist unendlich und nicht zählbar (Beispiel: das Intervall [1,6]). 
+
+\paragraph{Stetig} heißt grob gesagt, dass ein Experiment unendliche viele Zahlen an möglichen Ergebnissen hat. Beispiele aus der Vorlesung sind die stetige Gleichverteilung, Exponentialverteilung, Normalverteilung, $\chi^2$-Verteilung, t-Verteilung und die F-Verteilung. Diese basieren auf stetigen Zufallsvariablen. Die Menge der Werte, die diese stetigen ZV annehmen können ist unendlich und nicht zählbar (Beispiel: das Intervall [1,6]). 
 
 \subsubsection{Stetige Gleichverteilung}\label{sec:Uni}
 
-\textbf{Idee}: Die möglichen Ausprägungen der ZV liegen auf einem fixen Invervall [a;b] (z.B. [0;1]). Wichtig ist, dass die ZV in diesem Intervall jeden möglichen Wert, also überabzählbar unendlich viele Werte, annehmen kann. In [0;1] kann die Zahl $0,5$ genauso vorkommen wie die Zahl $0,4358984$. Es sind also beliebig viele Nachkommastellen und Kombinationen dieser möglich, also auch beliebig viele Werte. \\
+\paragraph{Idee/Anwendung:} Die möglichen Ausprägungen der ZV liegen auf einem fixen Invervall [a;b] (z.B. [0;1]). Wichtig ist, dass die ZV in diesem Intervall jeden möglichen Wert, also überabzählbar unendlich viele Werte, annehmen kann. In [0;1] kann die Zahl $0,5$ genauso vorkommen wie die Zahl $0,4358984$. Es sind also beliebig viele Nachkommastellen und Kombinationen dieser möglich, also auch beliebig viele Werte. \\
 
 \noindent Wie bei der diskreten Gleichverteilung hat hier jede mögliche Ausprägung dieselbe Wahrscheinlichkeit. Da es nun unendlich viele Werte $k$ gibt, hat jeder einzelne Wert die Wahrscheinlichkeit: $\lim\limits_{k \rightarrow +\infty}{\frac{1}{k}}=0$. Deshalb trifft man in der Regel Aussagen darüber, mit welcher Wahrscheinlichkeit die ZV in einem bestimmten Intervall landet. Zum Beispiel landet eine ZV, die der stetigen Gleichverteilung auf dem Intervall [0;1] folgt, zu 50 \% im Intervall [0;0,5], was genau die Hälfte des Ereignisraums ist.
 
-\noindent \textbf{Verteilung}:
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X \sim U(a,b)$
 \item[] Dichtefunktion\footnote{Zur Erinnerung: Bei stetigen ZVs gibt es eine Dichte-, bei diskreten ZVs eine Wahrscheinlichkeitsfunktion} : $f(x)=\begin{cases}
@@ -2506,18 +2527,18 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 		\end{itemize}
 	\end{itemize}
 \item[] Erwartungswert und Varianz: $\E[X]= \frac{a+b}{2}$ und $Var[X]=\frac{(b-a)^2}{12}$
-
 \end{itemize}
 
-\noindent \textbf{Bemerkung}: 
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die stetige Gleichverteilung: > \_unif()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Uniform}{Dokumentation}}
+
 
 \subsubsection{Exponentialverteilung}\label{sec:Expo}
 
-\textbf{Idee/Anwendung}: Wird für Warte- und Ausfallzeiten verwendet und kann als stetige Version der geometrischen Verteilung angesehen werden. Zur Erinnerung: Auch bei der stetigen Gleichverteilung hatten wir angenommen, dass man damit eine Wartezeit messen kann (vgl. Vorlesung Slide 13.41 - Wartezeit auf S-Bahn $\sim U(0,10)$). Der bedeutendste Unterschied bei der Exponentialverteilung ist, dass die weitere Wartezeit unabhängig von der bereits verstrichenen Wartezeit ist (das nennt sich "Gedächtnislosigkeit der Exponentialverteilung"). \\
+\paragraph{Idee/Anwendung:} Wird für Warte- und Ausfallzeiten verwendet und kann als stetige Version der geometrischen Verteilung angesehen werden. Zur Erinnerung: Auch bei der stetigen Gleichverteilung hatten wir angenommen, dass man damit eine Wartezeit messen kann (vgl. Vorlesung Slide 13.41 - Wartezeit auf S-Bahn $\sim U(0,10)$). Der bedeutendste Unterschied bei der Exponentialverteilung ist, dass die weitere Wartezeit unabhängig von der bereits verstrichenen Wartezeit ist (das nennt sich "Gedächtnislosigkeit der Exponentialverteilung").
 
-\noindent Ein Beispiel ist die Lebenszeit einer Glühbirne (also die Wartezeit bis zum Ausfall), bzw. allgemein Wartezeiten bis zum Eintreffen eines Ereignisses. Die Annahme der Gedächtnislosigkeit ist natürlich bei solchen Beispielen etwas kritisch zu betrachten.\\
+\paragraph{Ein Beispiel} ist die Lebenszeit einer Glühbirne (also die Wartezeit bis zum Ausfall), bzw. allgemein Wartezeiten bis zum Eintreffen eines Ereignisses. Die Annahme der Gedächtnislosigkeit ist natürlich bei solchen Beispielen etwas kritisch zu betrachten.
 
-\noindent \textbf{Verteilung}:
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X \sim Expo(\lambda)$
 \item[] Dichtefunktion: $f(x)=\begin{cases}
@@ -2532,11 +2553,15 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 
 \end{itemize}
 
-\noindent \textbf{Bemerkung}: Wenn eine ZV poissonverteilt mit Parameter $\lambda$ ist ($X \sim Po(\lambda)$), dann ist die Wartezeit bis zum ersten Eintreffen exponentialverteilt mit demselben Parameter $\lambda$. Hierbei ist zu beachten, dass man dann die erwartete Wartezeit (also den Erwartungswert der exponentialverteilten ZV), wenn möglich, in der richtigen (Zeit-)Einheit angibt. Ist der fixe Zeitraum der Poissonverteilung beispielsweise eine Stunde (1 h), dann ist die erwartete Wartezeit in Stunden auch $\frac{1}{\lambda} \cdot 1$ h.
+\paragraph{Bemerkung:} Wenn eine ZV poissonverteilt mit Parameter $\lambda$ ist ($X \sim Po(\lambda)$), dann ist die Wartezeit bis zum ersten Eintreffen exponentialverteilt mit demselben Parameter $\lambda$. Hierbei ist zu beachten, dass man dann die erwartete Wartezeit (also den Erwartungswert der exponentialverteilten ZV), wenn möglich, in der richtigen (Zeit-)Einheit angibt. Ist der fixe Zeitraum der Poissonverteilung beispielsweise eine Stunde (1 h), dann ist die erwartete Wartezeit in Stunden auch $\frac{1}{\lambda} \cdot 1$ h.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die Exponentialverteilung: > \_exp()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Exponential}{Dokumentation}}
+
+\clearpage
 
 \subsubsection{Normalverteilung (aka Gauß'sche Glockenkurve)} \label{sec:Norm}
 
-Gründe für die Verwendung und Wichtigkeit in der Statistik:
+\paragraph{Gründe für die Verwendung und Wichtigkeit in der Statistik:}
 
 \begin{itemize}
     \item Oftmals sind normalverteilte Modelle sehr einfach zu rechnen.
@@ -2544,9 +2569,9 @@ Gründe für die Verwendung und Wichtigkeit in der Statistik:
     \item viele Naturphänomene folgen einer Normalverteilung (Bsp: Körpergröße -- "Durchschnitt" vieler genetischer Faktoren).
 \end{itemize}
 
-\noindent \textbf{Idee/Anwendung}: Eine Intuition wie bei den anderen Funktion gibt es hier nicht wirklich. Aber wie oben beschrieben, gibt es viele gute Gründe, die Normalverteilung zu benutzen. Sie ist deshalb auch eine der häufigsten Verteilungen in der Statistik. \\
+\paragraph{Idee/Anwendung:} Eine Intuition wie bei den anderen Funktion gibt es hier nicht wirklich. Aber wie oben beschrieben, gibt es viele gute Gründe, die Normalverteilung zu benutzen. Sie ist deshalb auch eine der häufigsten Verteilungen in der Statistik.
 
-\noindent \textbf{Verteilung}:
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X \sim \mathcal{N}(\mu,\sigma^2)$
 \item[] Dichtefunktion: $f(x)=\frac{1}{\sigma\sqrt{2\pi}} \cdot exp \Big(-\frac{(x-\mu)^2}{2 \sigma^2}\Big)$
@@ -2555,89 +2580,90 @@ Gründe für die Verwendung und Wichtigkeit in der Statistik:
 
 \end{itemize}
 
-\noindent \textbf{Bemerkung}: Die Dichtefunktion der Standardnormalverteilung ($\mathcal{N}(0,1)$) wird in der Regel als $\phi(x)$ und die Verteilungsfunktion als $\Phi(x)$ bezeichnet. Die Quantile der Standardnormalverteilung werden in der Regel mit $z$ beschrieben.
+\paragraph{Bemerkung:} Die Dichtefunktion der Standardnormalverteilung ($\mathcal{N}(0,1)$) wird in der Regel als $\phi(x)$ und die Verteilungsfunktion als $\Phi(x)$ bezeichnet. Die Quantile der Standardnormalverteilung werden in der Regel mit $z$ beschrieben.\\
 
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die Normalverteilung: > \_norm()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Normal}{Dokumentation}}
 
 \subsubsection{Chi-Quadrat-Verteilung} \label{sec:Chi}
 
-\textbf{Idee/Anwendung}: Ähnlich wie die Normalverteilung haben wir hier keine direkte Intuition, sondern benutzen die Verteilung, weil viele theoretische Konzepte auf ihr beruhen. Die Summe der Quadrate von $n$ standardnormalverteilten ZVs ist $\chi^2$--verteilt mit n Freiheitsgraden (degrees of freedom, df) (vgl. Vorlesung Slide 13.57). 
+\paragraph{Idee/Anwendung:} Ähnlich wie die Normalverteilung haben wir hier keine direkte Intuition, sondern benutzen die Verteilung, weil viele theoretische Konzepte auf ihr beruhen. Die Summe der Quadrate von $n$ standardnormalverteilten ZVs ist $\chi^2$--verteilt mit n Freiheitsgraden (degrees of freedom, df) (vgl. Vorlesung Slide 13.57). 
 
-\noindent \textbf{Bemerkung}: Die Quantile der $\chi^2$--Verteilung werden in der Regel mit $c$ beschrieben.
+\paragraph{Bemerkung:} Die Quantile der $\chi^2$--Verteilung werden in der Regel mit $c$ beschrieben.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die $\chi^2$-Verteilung: > \_chisq()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Chisquare}{Dokumentation}}
 
 
 \subsubsection{t--Verteilung} \label{sec:tdistr}
 
-\textbf{Idee/Anwendung}: Ähnlich wie die Standardnormalverteilung und bei uns hauptsächlich für statistische Tests benutzt. In Bezug auf statistische Tests ist hier anzumerken, dass die t-Verteilung der Standardnormalverteilung sehr ähnlich ist. Sie hat allerdings breitere Enden, was bedeutet, dass kleinere Quantile (kleiner als der Median, der $0$ ist) einen kleineren Wert haben als bei der Standardnormalverteilung (d.h. dass der Betrag ist größer, da die Quantile ja negativ sind). Größere Quantile (größer als $0$) haben analog dazu einen größeren Wert als die der Standardnormalverteilung. Das ist wichtig für den Ablehnbereich in der Testteheorie (vgl. dazu Fig. \ref{Fig:a}). Dazu später mehr (vgl. Kapitel \ref{sec:Gaussvst}). \\
+\paragraph{Idee/Anwendung:} Ähnlich wie die Standardnormalverteilung und bei uns hauptsächlich für statistische Tests benutzt. In Bezug auf statistische Tests ist hier anzumerken, dass die t-Verteilung der Standardnormalverteilung sehr ähnlich ist. Sie hat allerdings breitere Enden, was bedeutet, dass kleinere Quantile (kleiner als der Median, der $0$ ist) einen kleineren Wert haben als bei der Standardnormalverteilung (d.h. dass der Betrag ist größer, da die Quantile ja negativ sind). Größere Quantile (größer als $0$) haben analog dazu einen größeren Wert als die der Standardnormalverteilung. Das ist wichtig für den Ablehnbereich in der Testteheorie (vgl. dazu Fig. \ref{Fig:a}). Dazu später mehr (vgl. Kapitel \ref{sec:Gaussvst}).
 
-\noindent \textbf{Verteilung}:
-\begin{itemize}
-\item[] Notation: $X \sim t_{df}$
+\paragraph{Verteilung:}Notation: $X \sim t_{df}$
 
-\end{itemize}
+\paragraph{Bemerkung:} Die Quantile der t--Verteilung werden in der Regel mit $t$ beschrieben. Außerdem kann für hohe Freiheitsgrade die t-Verteilung durch die Standardnormalverteilung approximiert werden. Das gilt dann natürlich auch für die entsprechenden Quantile. \\
 
-\noindent \textbf{Bemerkung}: Die Quantile der t--Verteilung werden in der Regel mit $t$ beschrieben. Außerdem kann für hohe Freiheitsgrade die t-Verteilung durch die Standardnormalverteilung approximiert werden. Das gilt dann natürlich auch für die entsprechenden Quantile. \\
+\noindent \dangersign[3ex] Immer die korrekten Quantile verwenden, wenn diese angegeben sind. \\
 
-\noindent \dangersign[3ex] Bitte verwendet immer die korrekten Quantile, wenn diese angegeben sind. \\
-
-\begin{figure}[H] 
+\begin{figure}[htbp] 
 \caption{Annäherung der t-Verteilung an die Standardnormalverteilung}\label{Fig:a}
 \centering
-\includegraphics[scale=0.35]{figures/T-distribution.png}
-\footnotesize{Quelle: \url{https://de.wikipedia.org/wiki/Studentsche_t-Verteilung}}
+\includegraphics[scale=0.3]{figures/T-distribution.png}
+\footnotesize{(Quelle: \url{https://de.wikipedia.org/wiki/Studentsche_t-Verteilung})}
 \end{figure}
 
-\noindent Die Grafik verdeutlicht die Annäherung der t-Verteilung mit zunehmenden Freiheitsgraden an die Standardnormalverteilung.
+\noindent Die Grafik verdeutlicht die Annäherung der t-Verteilung mit zunehmenden Freiheitsgraden an die Standardnormalverteilung.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die t-Verteilung: > \_t()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/TDist}{Dokumentation}}
 
 \subsubsection{F--Verteilung}\label{sec:fdistr}
 
-\textbf{Idee/Anwendung}: Auch für die F-Verteilung müssen wir ohne weitere Intuition auskommen. Sie wird wiederum für diverse theoretische Konzepte benutzt. 
+\paragraph{Idee/Anwendung:} Auch für die F-Verteilung müssen wir ohne weitere Intuition auskommen. Sie wird wiederum für diverse theoretische Konzepte benutzt. 
 
-\noindent \textbf{Verteilung}:
+\paragraph{Verteilung:}
 \begin{itemize}
 \item[] Notation: $X \sim F_{df_1,df_2}$
-
 \end{itemize}
 
-\noindent \textbf{Bemerkung}: 
+\noindent \dangersign[3ex] Die F-Verteilung hat zwei Freiheitsgrade. Bitte denkt immer an beide (z.B. bei einem Overall-F-test für die Betakoeffizienten eines multiplen Regressionsmodells)!\\
 
-\noindent \dangersign[3ex] Die F-Verteilung hat zwei Freiheitsgrade. Bitte denkt immer an beide (z.B. bei einem Overall-F-test für die Betakoeffizienten eines multiplen Regressionsmodells)!
-
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für die F-Verteilung: > \_f()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/FDist}{Dokumentation}}
 
 \clearpage
-\subsubsection{Aufgaben}
+
+\subsubsection{Aufgaben II}
 \paragraph{1.Welche Aussagen zur stetigen Gleichverteilung sind richtig?}
 \begin{itemize}
-    \item[a)]Jede einzelne Ausprägung kommt mit einer Wahrscheinlichkeit von 0 vor, also eine\\ Punktwahrscheinlichkeit von 0.\hfill $\square$
-    \item[b)]Der Unterschied zwischen der stetigen und diskreten Gleichverteilung ist, dass die\\ stetige Gleichverteilung unendlich verschiedene Werte annehmen kann.\hfill $\square$
-    \item[c)]Die Dichtefunktion ist das Pendant zur Verteilungsfunktion.
-    \item[d)]Die Dichtefunktion bei der stetigen Gleichverteilung ist eine monoton steigende Gerade.\hfill $\square$
-    \item[e)]Eine stetig gleichverteilte Dichtefunktion hat einen Ereignisraum von [2,6]. \\Die Linie in diesem Intervall ist auf der Höhe 0.25.\hfill $\square$
+    \item[a)] Jede mögliche Ausprägung kommt mit einer Wahrscheinlichkeit von 0 vor. \hfill $\square$
+    \item[b)] Der Unterschied zwischen der stetigen und diskreten Gleichverteilung ist, dass die\\ stetige Gleichverteilung unendlich verschiedene Werte annehmen kann. \hfill $\square$
+    \item[c)] Die Dichtefunktion ist das Pendant zur Verteilungsfunktion.
+    \item[d)] Die Dichtefunktion bei der stetigen Gleichverteilung ist eine monoton steigende Gerade. \hfill $\square$
+    \item[e)] Die Dichtefunktion ($X \sim U(2,6)$) verläuft auf der Höhe 0,25. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen zur Exponentialverteilung sind richtig?}
 \begin{itemize}
-    \item[a)]Die Wartezeit ist abhängig von der davor schon verstrichenen Zeit.\hfill $\square$
-    \item[b)]Bei der exponential wie auch der geometrischen Verteilung geht es darum, wann das\\ gewünschte Ereignis zum ersten Mal auftritt, bei der Exponentialverteilung ist es eine\\ stetige Spanne und bei der Geometrischen Verteilung sind es diskrete Schritte.\hfill $\square$
-    \item[c)]Die Verteilungsfunktion hat ein exponentielles Wachstum.\hfill $\square$
-    \item[d)]Ein zentraler Begriff bei der Exponentialverteilung ist die Gedächtnislosigkeit.\hfill $\square$
+    \item[a)] Die zukünftige Wartezeit ist abhängig von der davor schon verstrichenen Zeit. \hfill $\square$
+    \item[b)] Bei der Exponential-, wie auch der geometrischen Verteilung geht es darum, wann das\\ gewünschte Ereignis zum ersten Mal auftritt. \hfill $\square$
+    \item[c)] Die Exponentialverteilung ist nur für $X \geq 0$ definiert. \hfill $\square$
+    \item[d)] Ein zentraler Begriff bei der Exponentialverteilung ist die Gedächtnislosigkeit. \hfill $\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen zur Normalverteilung / Chi-Quadrat-Verteilung sind wahr?}
 \begin{itemize}
-    \item[a)]Die Dichtefunktion ist symmetrisch um den Erwartungswert verteilt.\hfill $\square$
-    \item[b)]Nur der Durchschnitt von normalverteilten Zufallsvariablen berechnet man mit\\ der Normalverteilung.\hfill $\square$ 
-    \item[c)]Um die Dichtefunktion der Normalverteilung aufzustellen benötigt man nur$\sigma$ und $\mu$.\hfill $\square$
-    \item[d)]Die Normalverteilung hat bei $\mu$ ihr Maximum.\hfill $\square$
-    \item[e)]Bei der Chi-Quadrat-Verteilung werden die QUadrate von mehreren\\ standardnormalverteilten Zufallsvariablen gebildet und aufsummiert.\hfill $\square$
+    \item[a)] Die Dichtefunktion ist bei beiden symmetrisch um den Erwartungswert. \hfill $\square$
+    \item[b)] Der Durchschnitt von i.i.d. normalverteilten Zufallsvariablen ist normalverteilt.\hfill $\square$ 
+    \item[c)] Um die Dichtefunktion der Normalverteilung aufzustellen benötigt man nur $\sigma$ und $\mu$. \hfill $\square$
+    \item[d)] Die Verteilungsfunktion der Normalverteilung hat bei $\mu$ ihr Maximum. \hfill $\square$
+    \item[e)] Für die Chi-Quadrat-Verteilung werden die Quadrate von mehreren\\ standardnormalverteilten Zufallsvariablen gebildet und aufsummiert. \hfill $\square$
 \end{itemize}
 
 \paragraph{4. Welche Aussagen über die t-Verteilung sind richtig?}
 \begin{itemize}
-    \item[a)]Die t-Verteilung kann immer durch die Standardnormalverteilung approximiert werden.\hfill $\square$
-    \item[b)]Je größer die Stichprobenzahl, desto näher kommt sie der Normalverteilung.\hfill $\square$
-    \item[c)]Die Wahrscheinlichkeitsmasse die nach außen verteilt ist ist bei der t-Verteilung geringer \\als bei der Normalverteilung.\hfill $\square$
-    \item[d)]Je weniger Freiheitsgrade, desto ähnlicher ist die t-Verteilung der Normalverteilung.\hfill $\square$
+    \item[a)] Die t-Verteilung kann immer durch die Standardnormalverteilung approximiert werden. \hfill $\square$
+    \item[b)] Je größer die Stichprobe, desto näher kommt sie der Standardnormalverteilung. \hfill $\square$
+    \item[c)] Die Wahrscheinlichkeitsmasse an den Rändern ist bei der t-Verteilung geringer \\als bei der Standardnormalverteilung. \hfill $\square$
+    \item[d)] Je weniger Freiheitsgrade, desto ähnlicher ist die t-Verteilung der Standard-\\normalverteilung. \hfill $\square$
 \end{itemize}
+
 \clearpage
 
 \subsection{Wichtige Schlüsselbegriffe und "Konzepte" anhand der diskreten Gleichverteilung} \label{sec:concept}
@@ -2656,10 +2682,7 @@ In der Statistik I Vorlesung haben wir schon die empirische Verteilungsfunktion 
 F: x \rightarrow P(X \leq x_i)
 \end{equation*}
 
- 
 \noindent Sowohl die \textbf{Wahrscheinlichkeitsfunktion}\footnote{Die Wahrscheinlichkeitsfunktion wird häufig auch Dichte genannt und mit $f(x)$ notiert} für diskrete ZVs als auch die \textbf{Dichtefunktion} für stetige ZVS dienen als Beschreibung von Wahrscheinlichkeitsverteilungen. Sie beschreiben Wahrscheinlichkeiten für jedes mögliche Ergebnis $x_i$ eines Zufallsexperiments (mathematisch einfach $P(X=x_i)$). Oftmals wird sie aber einfach als $f(x)$ definiert. Liegt eine \textbf{stetige ZV} zugrunde, besitzt die Dichtefunktion folgende Eigenschaften:
-
-\newpage
 
 \begin{enumerate}
     \item Die Funktion besitzt keinen negativen Wert: also $f(x)\geq 0$ für alle $x_i \in \mathbb{R}$
@@ -2668,6 +2691,8 @@ F: x \rightarrow P(X \leq x_i)
 	\item[$\rightarrow$] Die Integralgrenzen können durch die Grenzen des Definitionsbereichs ersetzt werden.
 	\end{itemize}
 \end{enumerate}
+
+\clearpage
 
 \noindent Wichtige mathematische Zusammenhänge zwischen der Verteilungsfunktion, der Dichtefunktion und der Quantilsfunktion sind folgende:
 
@@ -2680,7 +2705,7 @@ F: x \rightarrow P(X \leq x_i)
 
 \noindent Aber zurück zum Beispiel der diskreten Gleichverteilung unseres Roulette--Spiels:\\
 
-\noindent \textbf{Verteilungsfunktion}
+\paragraph{Verteilungsfunktion:}
 Allgemein ergibt sich für eine diskrete Gleichverteilung auf den ganzen Zahlen 
 $\left\{a,a+1,a+2,\ldots, b-1, b\right\}$ für die Verteilungsfunktion:
 \begin{equation*}
@@ -2698,7 +2723,7 @@ $\left\{a,a+1,a+2,\ldots, b-1, b\right\}$ für die Verteilungsfunktion:
 \end{equation*}
 
 
-\noindent \textbf{Wahrscheinlichkeitsfunktion}\\
+\paragraph{Wahrscheinlichkeitsfunktion:}
 Die Wahrscheinlichkeitsfunktion sieht folgendermaßen aus:
 
 \begin{equation*}
@@ -2713,31 +2738,32 @@ Die Wahrscheinlichkeitsfunktion sieht folgendermaßen aus:
 Der \textbf{Erwartungswert} der diskreten Gleichverteilung ist definiert als $E(X) = \frac{a+b}{2}$ und die Varianz ist definiert als $Var(X) = \frac{(b-a+1)^2-1}{12}$. Vorsicht: Dies sind etwas allgemeinere Formeln als der Spezialfall in der Formelsammlung, im Prinzip stellt es aber das Gleiche dar.
 
 \clearpage
-\subsubsection{Aufgaben}
+
+\subsubsection{Aufgaben III}
 \paragraph{1. Welche Aussagen sind richtig?}
 \begin{itemize}
-    \item[a)]Die Träger der diskreten Gleichverteilung eines Münzwurfs sind Kopf und Zahl.\hfill $\square$
-    \item[b)]Eine Verteilungsfunktion geht immer von -1 bis 1.\hfill $\square$
-    \item[c)]Der Wert einer Verteilungsfunktion an der Stelle $x=5$ ist die Wahrscheinlichkeit \\für $X\leq 5$.\hfill $\square$
-    \item[d)]Die Werte der Verteilungsfunktion sind die kumulierten Wahrscheinlichkeiten.\hfill $\square$
-    \item[e]Die Wahrscheinlichkeitsfunktion der diskreten Zufallsvariablen ist das gleiche wie \\die Verteilungsfunktion der stetigen Zufallsvariablen.\hfill $\square$
+    \item[a)] Der Träger der diskreten Gleichverteilung eines Münzwurfs sind Kopf und Zahl. \hfill $\square$
+    \item[b)] Eine Verteilungsfunktion geht immer von -1 bis 1. \hfill $\square$
+    \item[c)] Der Wert einer Verteilungsfunktion an der Stelle $x=5$ ist $P(X\leq 5)$.\hfill $\square$
+    \item[d)] Die Werte der Verteilungsfunktion sind die kumulierten Wahrscheinlichkeiten. \hfill $\square$
+    \item[e)] Die Wahrscheinlichkeitsfunktion ist bei diskreten Zufallsvariablen das Gleiche wie \\die Verteilungsfunktion bei stetigen Zufallsvariablen. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen sind richtig?}
 \begin{itemize}
-    \item[a)]Die Verteilungsfunktion ist monoton steigend.\hfill $\square$
-    \item[b)]Die Verteilungsfunktionen von stetigen Zufallsvariablen sind Treppenfunktionen \\im Gegensatz zu den diskreten Zufallsvariablen.\hfill $\square$
-    \item[c)] Eine Eigenschaft der diskreten Verteilungsfunktion ist, dass die Fläche unterhalb \\der Funktion immer 1 ergibt.\hfill $\square$
-    \item[d)]Die Summe aller Einzelwahrscheinlichkeiten bei einer stetigen Zufallsvariable geben 1.\hfill $\square$
-    \item[e)]Eine Eigenschaft der Dichtefunktion einer stetigen ZV ist, dass die Werte immer \\größer gleich 0 sind.\hfill $\square$
+    \item[a)] Die Verteilungsfunktion ist monoton steigend. \hfill $\square$
+    \item[b)] Die Verteilungsfunktionen von stetigen Zufallsvariablen sind Treppenfunktionen \\im Gegensatz zu den diskreten Zufallsvariablen. \hfill $\square$
+    \item[c)] Eine Eigenschaft der diskreten Verteilungsfunktion ist, dass die Fläche unterhalb \\der Funktion immer 1 ergibt. \hfill $\square$
+    \item[d)] Die Summe aller Einzelwahrscheinlichkeiten bei einer stetigen Zufallsvariable ergibt 1. \hfill $\square$
+    \item[e)] Eine Eigenschaft der Dichtefunktion einer stetigen ZV ist, dass die Funktionswerte\\immer größer gleich 0 sind. \hfill $\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen sind richtig?}
 \begin{itemize}
-    \item[a)]Um die Verteilungsfunktion zu erhalten, leite ich die Dichtefunktion ab.\hfill $\square$
-    \item[b)]Die Fläche unter der Dichtefunktion ist die Quantilsfunktion.\hfill $\square$
-    \item[c)]Die Quantilsfunktion ist die Umkehrfunktion der Verteilungsfunktion und umgekehrt.\hfill $\square$
-    \item[d)]Bei der Verteilungsfunktion gibt es immer mind. 3 Stellen die seperat definiert\\ werden müssen.\hfill $\square$
+    \item[a)] Um die Verteilungsfunktion zu erhalten, leitet man die Dichtefunktion ab .\hfill $\square$
+    \item[b)] Die Fläche unter der Dichtefunktion ist die Quantilsfunktion. \hfill $\square$
+    \item[c)] Die Quantilsfunktion ist die Umkehrfunktion der Verteilungsfunktion. \hfill $\square$
+    \item[d)] Die Ableitung der Verteilungsfunktion ist die Dichte. \hfill $\square$
 \end{itemize}
 
 
@@ -2749,8 +2775,8 @@ Der \textbf{Erwartungswert} der diskreten Gleichverteilung ist definiert als $E(
 
 \section{Grenzwertsätze und Approximationen von Verteilungen} \label{sec:GWSapprox}
 
-Dieses Kapitel der Vorlesung beschreibt Grundbegriffe über das Verhalten von Folgen von Zufallsvariablen, wenn $n$ gegen unendlich strebt. Die "normale" mathematische Folge sollte schon aus der Vorlesung "Mathematik für Wirtschaftswissenschaftler" bekannt sein. Diese Idee wird nun durch das Hinzunehmen von Zufallsvariablen erweitert. Für eine Auffrischung der Theorie von Folgen und Reihen siehe:\\
-\url{https://www.statistik.uni-muenchen.de/formulare/skripte_u_aehnliches/mathehandrechnung_schneider.pdf}
+Dieses Kapitel der Vorlesung beschreibt Grundbegriffe über das Verhalten von Folgen von Zufallsvariablen, wenn $n$ gegen unendlich strebt. Die "normale" mathematische Folge sollte schon aus der Vorlesung "Mathematik für Wirtschaftswissenschaftler" bekannt sein. Diese Idee wird nun durch das Hinzunehmen von Zufallsvariablen erweitert. Für eine Auffrischung der Theorie von Folgen und Reihen siehe: 
+\href{https://www.statistik.uni-muenchen.de/formulare/skripte_u_aehnliches/mathehandrechnung_schneider.pdf}{Handreichung von Frau Dr. Dr. Schneider}
 
 \subsection{Grenzwertsätze}\label{sec:GWS}
 \subsubsection{Gesetz der großen Zahlen}\label{sec:LLN}
@@ -2773,62 +2799,58 @@ Wir können unter bestimmten Voraussetzungen Verteilungen durch andere Verteilun
     \item Bei Approximation durch Normalverteilung: Standardisierung möglich.
 \end{itemize}
 
-\noindent Insgesamt haben wir vier Approximationen kennengelernt, die nachfolgend nochmal -- überwiegend bezüglich ihrer Intuition -- besprochen werden.
+\noindent Insgesamt haben wir vier Approximationen kennengelernt, die nachfolgend nochmal -- überwiegend bezüglich ihrer Intuition -- besprochen werden.\\
 
 \noindent \dangersign[3ex] Sehr wichtig: Immer die Annahmen für die Approximation prüfen.
 
 \subsubsection{Approximation der Binomial- durch die Normalverteilung}\label{sec:BinN}
-\begin{itemize}
-\item[] \textbf{Voraussetzung}: $np(1-p) \geq 9$
-\item[] \textbf{Approximation}: $B(n,p) \rightarrow \mathcal{N}(np,np(1-p))$
-\item[] \textbf{Intuition}: Bei erfüllter Voraussetzung ist die Wahrscheinlichkeitsfunktion der Binomialverteilung (annähernd) symmetrisch und sieht der Dichte der Normalverteilung sehr ähnlich. In diesem Fall ist die Approximation zulässig. Um euch davon zu überzeugen, wie die Wahrscheinlichkeitsfunktion der Binomialverteilung für verschiedene $n$ und $p$ aussieht könnt ihr auf der Seite \url{https://matheguru.com/stochastik/binomialverteilung.html} das Tool "Interaktive Binomialverteilung" nutzen und verschiedene Kombinationen für $n$ und $p$ ausprobieren. Ihr könnt z.B. Werte, die die Voraussetzung nicht erfüllen, mit Werten, die die Voraussetzung erfüllen, vergleichen. Beachtet dabei, dass ihr "PDF" anklickt (und nicht "CDF").
-\item[] \textbf{Bemerkung 1}: Auch bei z.B. $n=10$ und $p=0.5$ ist die Wahrscheinlichkeitsfunktion symmetrisch und sieht der Normalverteilung ähnlich. Wir dürfen trotzdem nicht approximieren (vgl. $10\cdot0.5\cdot0.5=2.5<9$). Der Grund dafür, dass wir hier noch nicht approximieren dürfen ist, dass wir eine diskrete Verteilung (Binomialverteilung) durch eine stetige Verteilung (Normalverteilung) approximieren. Die Schritte in der Wahrscheinlichkeitsfunktion sind einfach noch zu groß, um durch eine stetige Verteilung approximiert werden zu dürfen.
-\item[] \textbf{Bermerkung 2}: Außerdem gilt nach dieser Approximation, dass die ZV $\hat{p}=\frac{1}{n} \sum X_i$ auch normalverteilt ist: $\hat{p} \sim \mathcal{N}\Big(p,\frac{p(1-p)}{n}\Big)$
-\end{itemize}
 
+\paragraph{Voraussetzung:} $np(1-p) \geq 9$
+\paragraph{Approximation:} $B(n,p) \rightarrow \mathcal{N}(np,np(1-p))$
+\paragraph{Intuition:} Bei erfüllter Voraussetzung ist die Wahrscheinlichkeitsfunktion der Binomialverteilung (annähernd) symmetrisch und sieht der Dichte der Normalverteilung sehr ähnlich. In diesem Fall ist die Approximation zulässig. Um euch davon zu überzeugen, wie die Wahrscheinlichkeitsfunktion der Binomialverteilung für verschiedene $n$ und $p$ aussieht könnt ihr auf der Seite \url{https://matheguru.com/stochastik/binomialverteilung.html} das Tool "Interaktive Binomialverteilung" nutzen und verschiedene Kombinationen für $n$ und $p$ ausprobieren. Ihr könnt z.B. Werte, die die Voraussetzung nicht erfüllen, mit Werten, die die Voraussetzung erfüllen, vergleichen. Beachtet dabei, dass ihr "PDF" anklickt (und nicht "CDF").
+\paragraph{Bemerkung 1:} Auch bei z.B. $n=10$ und $p=0.5$ ist die Wahrscheinlichkeitsfunktion symmetrisch und sieht der Normalverteilung ähnlich. Wir dürfen trotzdem nicht approximieren (vgl. $10\cdot0.5\cdot0.5=2.5<9$). Der Grund dafür, dass wir hier noch nicht approximieren dürfen ist, dass wir eine diskrete Verteilung (Binomialverteilung) durch eine stetige Verteilung (Normalverteilung) approximieren. Die Schritte in der Wahrscheinlichkeitsfunktion sind einfach noch zu groß, um durch eine stetige Verteilung approximiert werden zu dürfen.
+\paragraph{Bermerkung 2:} Außerdem gilt nach dieser Approximation, dass die ZV $\hat{p}=\frac{1}{n} \sum X_i$ auch normalverteilt ist: $\hat{p} \sim \mathcal{N}\Big(p,\frac{p(1-p)}{n}\Big)$
 
 \subsubsection{Approximation der Binomial- durch die Poissonverteilung}\label{sec:BinPo}
-\begin{itemize}
-\item[] \textbf{Voraussetzung}: Großes $n$ und kleines $p$.
-\item[] \textbf{Approximation}: $B(n,p) \rightarrow Po(np)$
-\item[] \textbf{Intuition}: Da wir sowohl die Binomial- als auch die Poissonverteilung durch die Normalverteilung approximieren können (wenn die entsprechenden Voraussetzungen erfüllt sind), ist diese Approximation dann einfach nur logisch (vgl. dazu $B(0,05;200)$ und $Po(10)$). \textit{Aber was ist, wenn die jeweiligen Voraussetzungen nicht erfüllt sind?} In diesem Fall schauen wir uns einfach wieder die Binomialverteilung für ein großes $n$ und ein kleines $p$ in dem Tool "Interaktive Binomialverteilung" an: 
+
+\paragraph{Voraussetzung:} Großes $n$ und kleines $p$.
+\paragraph{Approximation:} $B(n,p) \rightarrow Po(np)$
+\paragraph{Intuition:} Da wir sowohl die Binomial- als auch die Poissonverteilung durch die Normalverteilung approximieren können (wenn die entsprechenden Voraussetzungen erfüllt sind), ist diese Approximation dann einfach nur logisch (vgl. dazu $B(0,05;200)$ und $Po(10)$). \textit{Aber was ist, wenn die jeweiligen Voraussetzungen nicht erfüllt sind?} In diesem Fall schauen wir uns einfach wieder die Binomialverteilung für ein großes $n$ und ein kleines $p$ in dem Tool "Interaktive Binomialverteilung" an: 
 	 Die Binomialverteilung ist rechtsschief/linkssteil (für kleine $p$). Dann ist $np$ auch so klein, dass die Poissonverteilung rechtsschief/linkssteil ist (vgl. Poissonverteilung mit $\lambda=1$, z.B. als Approximation für die Binomialverteilung mit $p=0,01$ und $n=100$).
-			
-\end{itemize}
+
+
 \subsubsection{Approximation der Poisson- durch die Normalverteilung}\label{sec:PoN}
-\begin{itemize}
-\item[] \textbf{Voraussetzung}: $\lambda \geq 10$
-\item[] \textbf{Approximation}: $Po(\lambda) \rightarrow \mathcal{N}(\lambda,\lambda)$\footnote{Zur Erinnerung: Für $Po(\lambda)$ gilt $\E[X]=Var[X]=\lambda$, d.h. man übernimmt Erwartungswert und Varianz der Poissonverteilung einfach als Parameter für die Normalverteilung.}
-\item[] \textbf{Intuition}: Auch hier schauen wir uns einfach die Wahrscheinlichkeitsfunktion der Poissonverteilung an und sehen, dass diese mit steigendem $\lambda$ \textit{immer symmetrischer} wird. Und wenn letztere annähernd symmetrisch ist (ab $\lambda = 10$), können wir durch die symmetrische Normalverteilung approximieren. Außerdem ist hierbei wichtig, dass die Normalverteilung "weit genug" auf dem positiven Teil der x-Achse liegt und negative Werte nur mit einer sehr, sehr geringen Wahrscheinlichkeit vorkommen, da die Poissonverteilung ja Anzahlen modelliert, die immer nicht-negativ sind. Das ist wiederum erfüllt, wenn die Normalverteilung um $\lambda=\mu \geq 10$ zentriert ist.
-\end{itemize}
-Zur Veranschaulichung könnt ihr ein ähnliches Tool wie für die Binomialverteilung nutzen. Ihr findet es unter \url{https://matheguru.com/stochastik/poisson-verteilung.html}.
+\paragraph{Voraussetzung:} $\lambda \geq 10$
+\paragraph{Approximation:} $Po(\lambda) \rightarrow \mathcal{N}(\lambda,\lambda)$\footnote{Zur Erinnerung: Für $Po(\lambda)$ gilt $\E[X]=Var[X]=\lambda$, d.h. man übernimmt Erwartungswert und Varianz der Poissonverteilung einfach als Parameter für die Normalverteilung.}
+\paragraph{Intuition:} Auch hier schauen wir uns einfach die Wahrscheinlichkeitsfunktion der Poissonverteilung an und sehen, dass diese mit steigendem $\lambda$ \textit{immer symmetrischer} wird. Und wenn letztere annähernd symmetrisch ist (ab $\lambda = 10$), können wir durch die symmetrische Normalverteilung approximieren. Außerdem ist hierbei wichtig, dass die Normalverteilung "weit genug" auf dem positiven Teil der x-Achse liegt und negative Werte nur mit einer sehr, sehr geringen Wahrscheinlichkeit vorkommen, da die Poissonverteilung ja Anzahlen modelliert, die immer nicht-negativ sind. Das ist wiederum erfüllt, wenn die Normalverteilung um $\lambda=\mu \geq 10$ zentriert ist.\\
+
+\noindent Zur Veranschaulichung könnt ihr ein ähnliches Tool wie für die Binomialverteilung nutzen. Ihr findet es unter \url{https://matheguru.com/stochastik/poisson-verteilung.html}.
 
 \subsubsection{Approximation der hypergeometrischen durch die Binomialverteilung}\label{sec:HypBin}
-\begin{itemize}
-\item[] \textbf{Voraussetzungen}: \begin{enumerate}
+
+\paragraph{Voraussetzungen:} \begin{enumerate}
 \item $n \leq 0,1\cdot M$
 \item $n \leq 0,1\cdot (N-M)$
 \end{enumerate}
-\item[] \textbf{Approximation}: $H(n,M,N) \rightarrow B(n, \frac{M}{N})$
-\item[] \textbf{Intuition}: Hinter dieser Approximation steckt, dass jedes Ziehen (insgesamt $n$--mal) mit der hypergeometrischen Verteilung ein Bernoulli-Experiment ist, ob das gewünschte Merkmal gezogen wird oder nicht. Beim ersten Ziehen ist noch sehr offensichtlich, dass die Wahrscheinlichkeit, das gewünschte Merkmal zu ziehen, $p=\frac{M}{N}$ ist. Nach jedem Zug reduzieren sich aber $N$ bzw. $N$ und $M$, d.h. $p$ im einfachen Bernoulli-Experiment verändert sich. Bei erfüllten Faustregeln hingegen ist die Anzahl der Züge im Vergleich zur Anzahl der Objekte mit dem gewünschten Merkmal ($M$) bzw. ohne das gewünschte Merkmal ($N-M$) so gering, dass angenommen werden kann, dass sich $p$ nicht ändert. D.h. wir nehmen $p=\frac{M}{N}$ als konstant an. Dann sind die $n$ Züge unabhängige Bernoulli-Experimente und daher ist die Approximation durch die Binomialverteilung zulässig.
-\end{itemize}
+\paragraph{Approximation:} $H(n,M,N) \rightarrow B(n, \frac{M}{N})$
+\paragraph{Intuition:} Hinter dieser Approximation steckt, dass jedes Ziehen (insgesamt $n$--mal) mit der hypergeometrischen Verteilung ein Bernoulli-Experiment ist, ob das gewünschte Merkmal gezogen wird oder nicht. Beim ersten Ziehen ist noch sehr offensichtlich, dass die Wahrscheinlichkeit, das gewünschte Merkmal zu ziehen, $p=\frac{M}{N}$ ist. Nach jedem Zug reduzieren sich aber $N$ bzw. $N$ und $M$, d.h. $p$ im einfachen Bernoulli-Experiment verändert sich. Bei erfüllten Faustregeln hingegen ist die Anzahl der Züge im Vergleich zur Anzahl der Objekte mit dem gewünschten Merkmal ($M$) bzw. ohne das gewünschte Merkmal ($N-M$) so gering, dass angenommen werden kann, dass sich $p$ nicht ändert. D.h. wir nehmen $p=\frac{M}{N}$ als konstant an. Dann sind die $n$ Züge unabhängige Bernoulli-Experimente und daher ist die Approximation durch die Binomialverteilung zulässig.
 
 \clearpage
+
 \subsection{Aufgaben}
 \paragraph{1.Welche Aussagen bzgl.den Grenzwertsätzen ist wahr?}
 \begin{itemize}
-    \item[a)]Je größer der Stichprobenumfang, desto größer wird der Einfluss von Ausreißern.\hfill $\square$
-    \item[b)]Mit zunehmendem Stichprobenumfang nähert sich die beobachtete relative Häufigkeit\\ der theoretischen Wahrscheinlichkeit an.\hfill $\square$
-    \item[c)]$N=25$ liegt näher an der theoretischen Wahrscheinlichkeit als $N=26$\hfill $\square$
-    \item[d)]Egal welche Verteilung vorliegt, nähert sich der Mittelwert von iid Zufallsvariablen\\ bei zunehmenden Stichprobenumfang der Normalverteilung an.\hfill $\square$
+    \item[a)] Je größer der Stichprobenumfang, desto größer wird der Einfluss von Ausreißern. \hfill $\square$
+    \item[b)] Mit zunehmendem Stichprobenumfang nähert sich die beobachtete relative Häufigkeit\\ der theoretischen Wahrscheinlichkeit an. \hfill $\square$
+    \item[c)] Egal welche Verteilung vorliegt, nähert sich der Mittelwert von i.i.d. Zufallsvariablen\\ bei zunehmenden Stichprobenumfang der Normalverteilung an. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen bzgl. Approximationen sind richtig?}
 \begin{itemize}
-    \item[a)]Die hypergeometrische Verteilung kann durch die Normalverteilung approximiert werden.\hfill $\square$
-    \item[b)]Bei der Approximation der Poissonverteilung durch die Normalverteilung wird das $\lambda$\\ für das $\mu$ und das $\sigma$ einfach übernommen.\hfill $\square$
-    \item[c)]Die Poissonverteilung darf zu jeder Zeit durch die Normalverteilung approximiert werden.\hfill $\square$
-    \item[d)] Die hypergeometrische Verteilung H(9,120,40) darf durch die Binomialverteilung \\approximiert werden.\hfill $\square$
+    \item[a)] Die hypergeom. Verteilung kann durch die Normalverteilung approximiert werden. \hfill $\square$
+    \item[b)] Bei der Approximation der Poissonverteilung durch die Normalverteilung wird das $\lambda$\\ für das $\mu$ und das $\sigma$ einfach übernommen. \hfill $\square$
+    \item[c)] Die Poissonverteilung darf immer durch die Normalverteilung approximiert werden. \hfill $\square$
+    \item[d)] Die hypergeometrische Verteilung H(9,120,40) darf durch die Binomialverteilung \\approximiert werden. \hfill $\square$
 \end{itemize}
 
 
@@ -2844,7 +2866,7 @@ Zur Veranschaulichung könnt ihr ein ähnliches Tool wie für die Binomialvertei
 
 Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern bei gegebener Verteilung einer Zufallsvariable.\\
 
-\noindent \textbf{Idee:} Wähle die Schätzwerte für die wahren Parameter der Grundgesamtheit so, dass unter diesen die beobachtete Stichprobe am wahrscheinlichsten sind (dies erklärt auch den Namen der Methode). Die ML-Methode beinhaltet 5 Schritte:
+\paragraph{Idee:} Wähle die Schätzwerte für die wahren Parameter der Grundgesamtheit so, dass unter diesen die beobachtete Stichprobe am wahrscheinlichsten sind (dies erklärt auch den Namen der Methode). Die ML-Methode beinhaltet 5 Schritte:
 
 \begin{enumerate}
     \item Liegt eine iid-Stichprobe vor?
@@ -2853,17 +2875,15 @@ Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern 
     \item Stelle die log-Likelihoodfunktion auf.
     \item Maximiere die log-Likelihood (Ableitung und 0 setzen) und prüfe die Bedingung 2. Ordnung (Maximim oder Minimum?).
 \end{enumerate}
-% https://www.mathe-online.at/materialien/georg.pernerstorfer/files/Kap1/ml_methode.pdf
 
 \noindent Beispiele der ML-Schätzung für Normalverteilung, Binomialverteilung, Poissonverteilung und Exponentialverteilung:\\
 \url{https://mars.wiwi.hu-berlin.de/mediawiki/mmstat3/index.php/Maximum-Likelihood-Methode}
-
 
 \clearpage
 
 \subsection{Konfidenzintervalle (KI)}\label{sec:KI}
 
-\textbf{Wozu braucht man eigentlich Konfidenzintervalle?} Im Bereich der induktiven Statistik wird mit Hilfe einer Stichprobe versucht, allgemeine Aussagen über die Grundgesamtheit zu machen. Mit Hilfe der ML-Schätzung haben wir dafür schon eine Methode kennengelernt um Punktschätzer zu "generieren". Die erhobenen Daten einer Stichprobe werden dann in einem Punktschätzer zusammengefasst (z.B. Mittelwert oder Varianz), um damit auf die wahren Werte in der Grundgesamtheit zu schließen.\\
+\paragraph{Wozu braucht man eigentlich Konfidenzintervalle?} In der induktiven Statistik wird mit Hilfe einer Stichprobe versucht, allg. Aussagen über die Grundgesamtheit zu machen. Mit der ML-Schätzung haben wir dafür schon eine Methode kennengelernt um Punktschätzer zu "generieren". Die erhobenen Daten einer Stichprobe werden dann in einem Punktschätzer zusammengefasst (z.B. Mittelwert oder Varianz), um damit auf die wahren Werte in der Grundgesamtheit zu schließen.\\
 
 \noindent \dangersign[3ex] Probleme:
 
@@ -2873,37 +2893,40 @@ Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern 
     \item Ist es möglich, dass in Wirklichkeit im Mittel doch ein anderer Wert herauskommt, aber wir in dieser Stichprobe einfach nur Pech hatten?
 \end{itemize}
 
-\noindent $\Rightarrow$ Diese Fragen kann ein Punktschätzer nicht beantworten – aber ein Intervallschätzer kann das!\\
+\noindent $\Rightarrow$ Diese Fragen kann ein Punktschätzer nicht beantworten – aber ein Intervallschätzer kann das!
 
-\noindent \textbf{Doch was ist ein Konfidenzintervall genau?} Die folgende Unterscheidung ist sehr wichtig für das Verständnis von Konfidenzintervallen:
+\paragraph{Doch was ist ein Konfidenzintervall genau?} Die folgende Unterscheidung ist sehr wichtig für das Verständnis von Konfidenzintervallen:
 
 \begin{itemize}
     \item Mit einer Stichprobe schätzen wir einen Parameter, z.B $\hat{\mu}$.
-    \item Der wahre Parameter $\mu$ in der Grundgesamtheit ist dann zwar in der Nähe von $\hat{\mu}$, aber quasi nie genau gleich.
+    \item Das wahre $\mu$ in der Grundgesamtheit ist zwar in der Nähe von $\hat{\mu}$, aber quasi nie genau gleich.
 \end{itemize}
 
-\noindent Den wahren Parameter $\mu$ werden wir also nie exakt bestimmen können, dennoch können wir versuchen einen Bereich zu bestimmen in dem er ziemlich sicher liegt -- und genau das ist die Idee von Konfidenzintervallen.\\
+\noindent Den wahren Parameter $\mu$ werden wir also nie exakt bestimmen können, dennoch können wir versuchen einen Bereich zu bestimmen in dem er ziemlich sicher liegt -- und genau das ist die Idee von Konfidenzintervallen.
 
-\noindent \textbf{Definition KI (ohne Formel)}:\\
-\noindent Ein 95\%-KI ist ein Intervall [a,b], das, wenn es sehr häufig mit neuen Stichproben berechnet wird, den wahren Parameter, z.B. ($\mu$), mit einer Wahrscheinlichkeit von 95\% auch überdeckt.
+\paragraph{Definition KI (ohne Formel):} Ein 95\%-KI ist ein Intervall [a,b], das, wenn es sehr häufig mit neuen Stichproben berechnet wird, den wahren Parameter, z.B. $\mu$, mit einer Wahrscheinlichkeit von 95\% auch überdeckt. $\Rightarrow$ ein einzelnes 95\%-KI ist mit 95\%-iger Wahrscheinlichkeit eines von denen, das den wahren Parameter ($\mu$) beinhaltet.
 
-\noindent $\Rightarrow$ ein einzelnes 95\%-KI ist mit 95\%-iger Wahrscheinlichkeit eines von denen, das den wahren Parameter ($\mu$) beinhaltet.\\
-
-\noindent \textbf{Und wie schätzt man ein Konfidenzintervall?} Das zentrale Prinzip für alle Konfidenzintervalle:
+\paragraph{Und wie schätzt man ein Konfidenzintervall?} Zentrale Prinzip für alle Konfidenzintervalle:
 
 \begin{enumerate}
-    \item Berechne einen Punktschätzer für einen Parameter, z.B. für den Anteilswert $p$ einer Bernoulli oder Binomialverteilung.
-    \item Um diese Punktschätzer bildet man dann ein (meistens) symmetrisches Intervall, das abhängig von der Varianz in der Stichprobe und des gewünschten Konfidenzniveaus $1-\alpha$ enger oder breiter wird.
+    \item Punktschätzer für einen Parameter berechnen, z.B. für den Anteilswert $p$ einer Bernoulli-/Binomialverteilung.
+    \item Um den Punktschätzer bildet man ein (meist) symmetrisches Intervall, das abhängig von der Varianz in der Stichprobe und gewünschtem Konfidenzniveaus $1-\alpha$ enger oder breiter ist.
 \end{enumerate}
 
-\subsection{Aufgabe}
-\paragraph{Welche Aussagen ist bzgl. der Konfidenzintervalle richtig?}
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für Konfidenzintervalle: > ci()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/gmodels/versions/2.18.1/topics/ci}{Dokumentation}}
+
+\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{gmodels}. Dieses muss zunächst installiert (\texttt{install.packages("gmodels")}) und anschließend importiert werden (\texttt{library(gmodels)}).
+
+\clearpage
+
+\subsection{Aufgaben}
+\paragraph{Welche Aussagen ist bzgl. Punkt- \& Intervallschätzer sind richtig?}
 \begin{itemize}
-    \item[a)]Die Punktschätzer sind immer richtig und wahrheitsgetreu.\hfill $\square$
-    \item[b)]Ein Konfidenzintervall gibt den Bereich vor, in dem der wahre Parameter immer \\zu finden ist.\hfill $\square$
-    \item[c)]Man kann die Länge eines Intervalls variieren, je nach dem mit welcher\\ Wahrscheinlichkeit der wahre Parameter innerhalb des Intervalls liegen soll.\hfill $\square$
-    \item[d)]Die Länge eines Intervalls hängt von $\alpha$, $\sigma^2$, der Verteilung und dem Stichproben-\\umfang ab.\hfill $\square$
-    \item[e)]Ein 99$\%$-KI besagt, dass zu 99$\%$ mein Schätzer richtig ist.\hfill $\square$
+    \item[a)] Punktschätzer sind immer richtig und wahrheitsgetreu. \hfill $\square$
+    \item[b)] Ein Konfidenzintervall gibt den Bereich vor, in dem der wahre Parameter immer \\zu finden ist. \hfill $\square$
+    \item[c)] Man kann die Länge eines Intervalls variieren, je nach dem mit welcher\\ Wahrscheinlichkeit der wahre Parameter durch das Intervall überdeckt werden soll. \hfill $\square$
+    \item[d)] Die Länge eines Intervalls hängt von $\alpha$, $\sigma^2$, der Verteilung und dem Stichproben-\\umfang ab. \hfill $\square$
+    \item[e)] Ein 99$\%$-KI besagt, dass zu 99$\%$ mein Schätzer richtig ist. \hfill $\square$
 \end{itemize}
 
 
@@ -2923,31 +2946,36 @@ Der p-Wert gibt die Wahrscheinlichkeit an, dass die Teststatistik, unter der Ann
 
 \subsubsection{Der p-Wert beim einseitigen t-Test}\label{sec:pWert1}
 
-Der einseitige t-Test wird genutzt, um zu testen, ob der Erwartungswert einer normalverteilten ZV größer (kleiner) als ein unter $H_0$ angenommener Wert $\mu_0$ ist, wenn die Varianz $\sigma^2$ unbekannt ist und geschätzt werden muss.  Man kann die Hypothese (je nachdem, was man zeigen möchte) für beide Richtungen aufstellen. Wir zeigen es an dem Beispiel, dass wir testen wollen, ob der Erwartungswert signifikant kleiner als ein $\mu_0$ ist. D.h. die Hypothesen lauten: \\
-\begin{center} $H_0$: $\mu \geq \mu_0$ \hspace{2cm }gegen \hspace{2cm } $H_1$: $\mu < \mu_0$ \end{center}
-Die Teststatistik und ihre Verteilung sind dann unter der $H_0$--Hypothese:\\
-\begin{center} $T(\textbf{X})=\sqrt{n}\cdot\frac{\overline{X}-\mu_0}{S_x} \simtext{$H_0$} t_{n-1}$ \end{center}
+Der einseitige t-Test wird genutzt, um zu testen, ob der Erwartungswert einer normalverteilten ZV größer (kleiner) als ein unter $H_0$ angenommener Wert $\mu_0$ ist, wenn die Varianz $\sigma^2$ unbekannt ist und geschätzt werden muss.  Man kann die Hypothese (je nachdem, was man zeigen möchte) für beide Richtungen aufstellen. Wir zeigen es an dem Beispiel, dass wir testen wollen, ob der Erwartungswert signifikant kleiner als ein $\mu_0$ ist. D.h. die Hypothesen lauten:
+$$H_0: \mu \geq \mu_0 \qquad \mbox{vs.} \qquad H_1: \mu < \mu_0$$
+
+\noindent Die Teststatistik und ihre Verteilung sind dann unter der $H_0$--Hypothese:
+$$T(\textbf{X})=\sqrt{n}\cdot\frac{\overline{X}-\mu_0}{S_x} \simtext{$H_0$} t_{n-1}$$
 
 \noindent Mit den vorliegenden Daten berechnet man nun eine Realisation $t$ der Zufallsvariable T(\textbf{X}). Dann wird $H_0$ abgelehnt, wenn $t \in (-\infty, -t_{n-1,1-\alpha})$. Je kleiner die Realisation $t$ von T(\textbf{X}) also ist, desto eher lehnen wir $H_0$ ab bzw. desto weiter entfernen wir uns davon, $H_0$ anzunehmen. Die Wahrscheinlichkeit, dass man dann eine genauso kleine oder noch kleinere Teststatistik (im Vergleich zur Realisation $t$) erhält, wenn man die unter $H_0$ angenommene Verteilung ($t_{n-1}$) zugrunde legt, ist dann der p-Wert, also:
+$$p-Wert=P(T \leq t),$$
+wobei T ($\sim t_{n-1}$) wieder die ZV ist und $t$ die Realisation. Ist diese Wahrscheinlichkeit kleiner als das Signifikanzniveau $\alpha$, dann ist es sehr unwahrscheinlich, dass die Realisation $t$ von der ZV $T(\textbf{X})$ "unterboten" wird, wenn denn die Verteilungsannahme aus $H_0$ stimmt. Aber wenn es eben so unwahrscheinlich ist, dass $t$ von der ZV $T(\textbf{X})$ unterboten wird, muss $t$ selbst (unter der Verteilung in $H_0$) ein Ausreißer, also ein seltenes Ereignis sein.\\
+D.h. wir hätten mit unseren Daten zufällig ein seltenes Ereignis getroffen. Wir wollen aber nicht glauben, dass wir ausgerechnet ein seltenes Ereignis gefunden haben und verwerfen deshalb die unter $H_0$ angenommene Verteilung und somit die $H_0$--Hypothese.
 
-\begin{center} $p-Wert=P(T \leq t)$, \end{center} 
-wobei T ($\sim t_{n-1}$) wieder die ZV ist und $t$ die Realisation. Ist diese Wahrscheinlichkeit kleiner als das Signifikanzniveau $\alpha$, dann ist es sehr unwahrscheinlich, dass die Realisation $t$ von der ZV $T(\textbf{X})$ "unterboten" wird, wenn denn die Verteilungsannahme aus $H_0$ stimmt. Aber wenn es eben so unwahrscheinlich ist, dass $t$ von der ZV $T(\textbf{X})$ unterboten wird, muss $t$ selbst (unter der Verteilung in $H_0$) ein Ausreißer, also ein seltenes Ereignis sein. D.h. wir hätten mit unseren Daten zufällig ein seltenes Ereignis getroffen. Wir wollen aber nicht glauben, dass wir ausgerechnet ein seltenes Ereignis gefunden haben und verwerfen deshalb die unter $H_0$ angenommene Verteilung und somit die $H_0$--Hypothese. \\
+\paragraph{Merke:} $p-Wert=P(T \leq t) < \alpha$ $\Rightarrow$ $H_0$ verwerfen!\\
 
-\textbf{Merke}: $p-Wert=P(T \leq t) < \alpha$ $\Rightarrow$ $H_0$ verwerfen! \\[1.5cm]
+\noindent \dangersign[3ex] Für die Hypothesen: 
+$$H_0: \mu \leq \mu_0 \qquad \mbox{vs.} \qquad H_1: \mu > \mu_0$$
 
-\noindent \dangersign[3ex] Für die Hypothesen: \\
-\begin{center} $H_0$: $\mu \leq \mu_0$ \hspace{2cm }gegen \hspace{2cm } $H_1$: $\mu > \mu_0$ \end{center}
-ist der p-Wert entsprechend:
-\begin{center} $p-Wert=P(T \geq t)=1-P(T < t)$, \end{center} 
-da wir ja dann den Ablehnbereich $(t_{n-1,1-\alpha}, + \infty)$ haben.
+\noindent ist der p-Wert entsprechend:
+$$p-Wert=P(T \geq t)=1-P(T < t)$$
+
+\noindent da wir ja dann den Ablehnbereich $(t_{n-1,1-\alpha}, + \infty)$ haben.
 
 \subsubsection{Der p-Wert beim zweiseitigen t-Test}\label{sec:pWert2}
 
 Hier werden folgende Hypothesen gegeneinander getestet:
-\begin{center} $H_0$: $\mu = \mu_0$ \hspace{2cm }gegen \hspace{2cm } $H_1$: $\mu \neq \mu_0$ \end{center}
-Die Teststatistik ist wiederum:
-\begin{center} $T(\textbf{X})=\sqrt{n}\cdot\frac{\overline{X}-\mu_0}{S_x} \simtext{$H_0$} t_{n-1}$ \end{center}
-und der Ablehnbereich ist: $(-\infty, -t_{n-1,1-\frac{\alpha}{2}}) \cup (t_{n-1,1-\frac{\alpha}{2}}, +\infty)$.
+$$H_0: \mu = \mu_0 \qquad \mbox{vs.} \qquad H_1: \mu \neq \mu_0$$
+
+\noindent Die Teststatistik ist wiederum:
+$$T(\textbf{X})=\sqrt{n}\cdot\frac{\overline{X}-\mu_0}{S_x} \simtext{$H_0$} t_{n-1}$$
+
+\noindent und der Ablehnbereich ist: $(-\infty, -t_{n-1,1-\frac{\alpha}{2}}) \cup (t_{n-1,1-\frac{\alpha}{2}}, +\infty)$.
 
 \noindent D.h. dann, dass wir uns sowohl für Teststatistiken, die größer als $t_{n-1,1-\frac{\alpha}{2}}$ sind, immer mehr vom Annahmebereich entfernen als auch für Teststatistiken, die kleiner als $-t_{n-1,1-\frac{\alpha}{2}}$ sind. Für den p-Wert bedeutet das, dass wir beide Richtungen berücksichtigen müssen (was wir mit Hilfe des Betrags der Teststatistik machen, wobei wir die Symmetrie der t-Verteilung ausnutzen):
 \begin{align*} 
@@ -2959,62 +2987,95 @@ p-Wert &= P(|T| \geq |t|)  \\
 \end{align*} 
 
 \noindent wobei $F(\cdot)$ die Verteilungsfunktion der entsprechenden Verteilung ist -- hier also der t-Verteilung mit $n-1$ Freiheitsgraden.
+
+
 \subsection{Hypothesentests}\label{sec:HypTests}
 
 In der Vorlesung haben wir eine Reihe von Hypothesentests kennengelernt. Auf die wichtigsten wird hier noch einmal intuitiv eingegangen. Bevor wir auf die verschiedenen Tests eingehen eine kleine Bemerkung zu einfachen bzw. doppelten und einseitigen bzw. zweiseitigen Tests:
 Ein einfacher Test (im Vergleich zu einem doppelten Test) betrachtet eine einzige Stichprobe. Der einfache Test kann aber sowohl einseitig ($H_0:$ $\mu \geq \mu_0$ gg. $H_1:$ $\mu < \mu_0$ bzw. umgekehrt) als auch zweiseitig ($H_0:$ $\mu = \mu_0$ gg. $H_1:$ $\mu \neq \mu_0$) formuliert werden. Ein doppelter Test hingegen betrachtet zwei Stichproben -- auch dieser kann sowohl ein- als auch zweiseitig formuliert werden.
 
 \subsubsection{Einfacher Gauss-Test}\label{sec:Gausstest1}
-Test des Erwartungswerts $\mu_x$ einer (per Annahme) normalverteilten ZV $X$ ($\sim \mathcal{N}(\mu_x, \sigma_x^2)$). Die \textbf{Varianz} $\sigma_x^2$ ist dabei \textbf{bekannt}. 
+Test des Erwartungswerts $\mu_x$ einer (per Annahme) normalverteilten ZV $X$ ($\sim \mathcal{N}(\mu_x, \sigma_x^2)$). Die \textbf{Varianz} $\sigma_x^2$ ist dabei \textbf{bekannt}. \\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für den einfachen Gauss-Test: > gausstest(data\$x)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/compositions/versions/2.0-0/topics/gausstest}{Dokumentation}}
+
+\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{compositions}. Dieses muss zunächst installiert (\texttt{install.packages("compositions")}) und anschließend importiert werden (\texttt{library(compositions)}).
 
 \subsubsection{Einfacher t-Test}\label{sec:tTest1}
-Test des Erwartungswerts $\mu_x$ einer (per Annahme) normalverteilten ZV $X$ ($\sim \mathcal{N}(\mu_x, \sigma_x^2)$). Die \textbf{Varianz} $\sigma_x^2$ ist dabei \textbf{unbekannt} und muss aus der Stichprobe mittels der der Stichprobenvarianz $S^2$ geschätzt werden. 
+Test des Erwartungswerts $\mu_x$ einer (per Annahme) normalverteilten ZV $X$ ($\sim \mathcal{N}(\mu_x, \sigma_x^2)$). Die \textbf{Varianz} $\sigma_x^2$ ist dabei \textbf{unbekannt} und muss aus der Stichprobe mittels der der Stichprobenvarianz $S^2$ geschätzt werden.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für den einfachen t-Test: > t.test(data\$x)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test}{Dokumentation}}
 
 \subsubsection{Approximativer Einfacher Binomialtest}\label{sec:bintest1}
-Test der Erfolgswahrscheinlichkeit $p$ einer (per Annahme) bernoulliverteilten ZV $X$ ($\sim B(1, p)$). Die Teststatistik ist approximativ standardnormalverteilt. 
+Test der Erfolgswahrscheinlichkeit $p$ einer (per Annahme) bernoulliverteilten ZV $X$ ($\sim B(1, p)$). Die Teststatistik ist approximativ standardnormalverteilt. \\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl \textbf{exakter} Binomialtest: > binom.test(data\$x)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/binom.test}{Dokumentation}}
+
+\noindent \dangersign[3ex] Dieser Befehl führt den \textbf{exakten} Binomialtest durch, der approximative kann mit der \texttt{gausstest}-Funktion durchgeführt werden.
 
 \subsubsection{Chi-Quadrat-Anpassungstest}\label{sec:chitest1}
 Test der unter $H_0$ erwarteten und tatsächlich Beobachteten absoluten Häufigkeiten von verschiedenen Ausprägungen einer ZV. Dadurch kann man testen, ob die Verteilung, von der die Stichprobe stammt, ungleich einer unter $H_0$ angenommenen Verteilung ist.
 
 \subsubsection{F-Test}\label{sec:ftest}
-Testet das Verhältnis (Größer/kleiner bzw. Gleichheit gegen Ungleichheit) der Varianzen zweier unabhängiger normalverteiler ZV. Die Teststatistik ist der Quotient der Stichprobenvarianzen und F-verteilt.
+Testet das Verhältnis (Größer/kleiner bzw. Gleichheit/Ungleichheit) der Varianzen zweier unabhängiger normalverteiler ZV. Die Teststatistik ist der Quotient der Stichprobenvarianzen und F-verteilt.\\
 
-\noindent \dangersign[3ex] Die F--Verteilung hat \textbf{zwei Freiheitsgrade}. Denkt immer an beide (z.B. auch bei der F-Statistik eines multiplen Regressionsmodells).
+\noindent \dangersign[3ex] Die F--Verteilung hat \textbf{zwei Freiheitsgrade}. Denkt immer an beide (z.B. auch bei der F-Statistik eines multiplen Regressionsmodells).\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für den F-Test: > var.test(data\$x, data\$y)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/var.test}{Dokumentation}}
 
 \subsubsection{Doppelter Gauss-Test}\label{sec:Gausstest2}
-Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit gegen Ungleichheit) der Erwartungswerte zweier unabhängiger normalverteiler ZVs (X und Y). Die \textbf{Varianzen} $\sigma_x^2$ und $\sigma_y^2$ sind dabei \textbf{bekannt}. 
+Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit/Ungleichheit) der Erwartungswerte zweier unabhängiger normalverteiler ZVs (X und Y). Die \textbf{Varianzen} $\sigma_x^2$ und $\sigma_y^2$ sind dabei \textbf{bekannt}.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für den doppelten Gauss-Test: > gausstest(data\$x, data\$y)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/compositions/versions/2.0-0/topics/gausstest}{Dokumentation}}
+
+\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{compositions}. Dieses muss zunächst installiert (\texttt{install.packages("compositions")}) und anschließend importiert werden (\texttt{library(compositions)}). 
 
 \subsubsection{Doppelter t-Test}\label{sec:tTest2}
-Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit gegen Ungleichheit) der Erwartungswerte zweier unabhängiger normalverteiler ZVs (X und Y). Die \textbf{Varianzen} $\sigma_x^2$ und $\sigma_y^2$ sind dabei \textbf{unbekannt} und müssen aus der Stichprobe mittels der der Stichprobenvarianz $S^2$ geschätzt werden. Hier wird zusätzlich angenommen, dass die zugrundeliegenden Verteilungen \textbf{beider ZVs dieselbe Varianz} haben ($\sigma_x^2 =\sigma_y^2$). 
+Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit/Ungleichheit) der Erwartungswerte zweier unabhängiger normalverteiler ZVs (X und Y). Die \textbf{Varianzen} $\sigma_x^2$ und $\sigma_y^2$ sind dabei \textbf{unbekannt} und müssen aus der Stichprobe mittels der der Stichprobenvarianz $S^2$ geschätzt werden. Hier wird zusätzlich angenommen, dass die zugrundeliegenden Verteilungen \textbf{beider ZVs dieselbe Varianz} haben ($\sigma_x^2 =\sigma_y^2$). \\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl doppelter t-Test: > t.test(data\$x,data\$y,var.equal=TRUE)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test}{Dokumentation}}
 
 \subsubsection{Welch-Test}\label{sec:Welch}
-Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit gegen Ungleichheit) der Erwartungswerte zweier unabhängiger normalverteiler ZV (X und Y). Die \textbf{Varianzen} $\sigma_x^2$ und $\sigma_y^2$ sind dabei \textbf{unbekannt} und müssen aus der Stichprobe mittels der der Stichprobenvarianzen $S_x^2$ und $S_y^2$ geschätzt werden. Hier wird zusätzlich angenommen, dass die zugrundeliegenden Verteilungen \textbf{beider ZVs ungleiche Varianzen} haben ($\sigma_x^2 \neq \sigma_y^2$). 
+Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit/Ungleichheit) der Erwartungswerte zweier unabhängiger normalverteiler ZV (X und Y). Die \textbf{Varianzen} $\sigma_x^2$ und $\sigma_y^2$ sind dabei \textbf{unbekannt} und müssen aus der Stichprobe mittels der der Stichprobenvarianzen $S_x^2$ und $S_y^2$ geschätzt werden. Hier wird zusätzlich angenommen, dass die zugrundeliegenden Verteilungen \textbf{beider ZVs ungleiche Varianzen} haben ($\sigma_x^2 \neq \sigma_y^2$). \\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl Welch-Test: > t.test(data\$x, data\$y, var.equal = FALSE)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test}{Dokumentation}}
 
 \subsubsection{Paired t-Test}\label{sec:paired}
-Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit gegen Ungleichheit) der Erwartungswerte zweier \textbf{abhängiger} normalverteiler ZVs (X und Y). Diese Abhängigkeit kann z.B. dadurch entstehen, dass man an denselben Untersuchungseinheiten dasselbe Merkmal zu zwei verschiedenen Zeitpunkten misst. 
+Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit/Ungleichheit) der Erwartungswerte zweier \textbf{abhängiger} normalverteiler ZV ($X$ und $Y$). Diese Abhängigkeit kann dadurch entstehen, dass man an denselben Untersuchungseinheiten dasselbe Merkmal zu verschiedenen Zeitpunkten misst.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl paired t-Test: > t.test(data\$x, data\$y, paired = TRUE)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test}{Dokumentation}}
 
 \subsubsection{Approximativer Doppelter Binomialtest}\label{sec:bintest2}
 Hier werden statt Mittelwerte Wahrscheinlichkeiten miteinander verglichen. Es handelt sich dabei aber immer noch um Erwartungswerte, da $p$ ja genau der Erwartungswert einer ZV mit der Bernoulliverteilung $B(1,p)$ ist.
 
 \subsubsection{Mann-Whitney-U-Test für zwei unabhängige Stichproben}\label{sec:MWUtest}
-Vergleich der Lageparameter (das ist bei der Normalverteilung der Erwartungswert $\mu$) zweier stetig verteilter ZVs, die ansonsten der gleichen Verteilung folgen. Hier wird im Vergleich zu den meisten bisherigen Tests die Annahme, dass die ZVs normalverteilt sein müssen, gelockert.
+Vergleich der Lageparameter (das ist bei der Normalverteilung der Erwartungswert $\mu$) zweier stetig verteilter ZVs, die ansonsten der gleichen Verteilung folgen. Hier wird im Vergleich zu den meisten bisherigen Tests die Annahme, dass die ZVs normalverteilt sein müssen, gelockert.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl M.-W.-U-Test: > wilcox.test(data\$x,data\$y,paired=FALSE)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/wilcox.test}{Dokumentation}}
+
+\noindent \dangersign[3ex] Der Name mag hier vielleicht irritieren, kommt jedoch daher, dass die Test für \textit{verbundene} Stichproben Wilcoxon-Test heißt, während der für unverbundenen Stichproben der Mann-Whitney-U-Test ist. Dies kann man in dem \texttt{R}-Befehl über \texttt{paired = TRUE/FALSE} steuern.
 
 \subsubsection{Kolmogorov-Smirnov-Anpassungstest}\label{sec:KolSmi}
-Test von Gleichheit gegen Ungleichheit der Verteilung zweier ZVs (X und Y). Wir berechnen dafür die empirischen Verteilungsfunktionen von X und Y ($\hat{F}$ and $\hat{G}$). Dann schauen wir uns jede einzelne Beobachtung von X und Y an (bzw. wir fassen sie einfach zu einem Pool von Beobachtungen zusammen). Aus diesem Pool nehmen wir jeden Wert ($t$) einmal und betrachten $|\hat{F}(t)-\hat{G}(t)|$. Die größte dieser Differenzen ist die Teststatistik. Dann wird wie üblich gegen einen kritischen Wert eine Entscheidung getroffen. Das ist aber an dieser Stelle zu komplex $\rightarrow$ wir benutzen Computer dafür.
+Test von Gleichheit gegen Ungleichheit der Verteilung zweier ZVs (X und Y). Wir berechnen dafür die empirischen Verteilungsfunktionen von X und Y ($\hat{F}$ and $\hat{G}$). Dann schauen wir uns jede einzelne Beobachtung von X und Y an (bzw. wir fassen sie einfach zu einem Pool von Beobachtungen zusammen). Aus diesem Pool nehmen wir jeden Wert ($t$) einmal und betrachten $|\hat{F}(t)-\hat{G}(t)|$. Die größte dieser Differenzen ist die Teststatistik. Dann wird wie üblich gegen einen kritischen Wert eine Entscheidung getroffen. Das ist aber hier zu komplex $\rightarrow$ wir benutzen Computer dafür.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für den K.-S.-Test: > ks.test(data\$x, data\$y)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/ks.test}{Dokumentation}}
 
 \subsubsection{Chi-Quadrat-Unabhängigkeitstest}\label{sec:chitest2}
-Wie beim $\chi^2$--Anpassungstest werden hier beobachtete absolute Häufigkeiten mit unter $H_0$ erwarteten absoluten Häufigkeiten verglichen. Es gibt jedoch zwei Unterschiede. Erstens werden die beobachteten Häufigkeiten aus zwei Stichproben (für zwei ZVs X und Y) mit den unter $H_0$ erwarteten Häufigkeiten verglichen. Zweitens sind die unter $H_0$ erwarteten Häufigkeiten nicht die einer beliebigen Verteilung, sondern genau die, die man unter Unabhängigkeit beider ZVs erwartet. %Die Teststatistik ist übrigens Pearson's $\chi^2$, das wir schon als deskriptives Maß für die (Un--)Abhängigkeit zweier ZVs kennengelernt haben. Hier wird also sehr anschaulich der Übergang von deskriptiver zu induktiver Statistik verdeutlicht.
+Wie beim $\chi^2$--Anpassungstest werden hier beobachtete absolute Häufigkeiten mit unter $H_0$ erwarteten absoluten Häufigkeiten verglichen. Es gibt jedoch zwei Unterschiede. Erstens werden die beobachteten Häufigkeiten aus zwei Stichproben (für zwei ZVs X und Y) mit den unter $H_0$ erwarteten Häufigkeiten verglichen. Zweitens sind die unter $H_0$ erwarteten Häufigkeiten nicht die einer beliebigen Verteilung, sondern genau die, die man unter Unabhängigkeit beider ZVs erwartet.\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für den $\chi^2$-Test: > chisq.test(data\$x, data\$y)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/chisq.test}{Dokumentation}}
 
 \subsubsection{Odds-Ratio-Test}\label{sec:ORtest}
 Testet ebenfalls die Unabhängigkeit zweier Variablen mittels der Odds-Ratio, kann aber dementsprechend nur für Daten, die sich in einer Vier-Felder-Tafel darstellen lassen, angewendet werden.
 
+\clearpage
 
 \subsection{Unterschied zwischen Gauss-Tests und t-Tests}\label{sec:Gaussvst}
-Der Unterschied zwischen Gauss-Tests und t-Tests besteht darin, dass bei Gauss-Tests die Varianz der Verteilung, die der Stichprobe zugrunde liegt, bekannt ist. Bei t-Tests hingegen nicht. Dass führt dazu, dass die Teststatistik bei Gauss-Tests standardnormalverteilt ist. Bei t-Tests hingegen ist sie t-verteilt. \\
+Der Unterschied zwischen Gauss und t-Tests besteht darin, dass bei Gauss-Tests die Varianz der Verteilung, die der Stichprobe zugrunde liegt, bekannt ist. Bei t-Tests hingegen nicht. Dies führt dazu, dass die Teststatistik bei Gauss-Tests standardnormal-, bei t-Tests hingegen t-verteilt ist.
 
-\noindent \textbf{Was genau hat das jetzt mit der Testentscheidung zu tun?} Dazu schauen wir uns erst einmal Fig. \ref{Fig:a} an. Wir sehen, dass (vor allem für wenig Freiheitsgrade) die t-Verteilung breitere Enden hat als die Standardnormalverteilung, was wiederum bedeutet, dass alle $\alpha$--Quantile für $\alpha < 0,5$ bei der t-Verteilung kleiner (also weiter im negativen Bereich) sind als die der Standardnormalverteilung. Alle $\alpha$--Quantile für $\alpha > 0,5$ sind bei der t-Verteilung hingegen größer (also weiter im positiven Bereich) als bei der Standardnormalverteilung\footnote{Der Median, also $\tilde{x}_{0,5}$, ist bei beiden Verteilungen der Wert 0, da sie um 0 zentriert sind}. Das gilt dann insbesondere auch für die Quantile, die wir als kritische Werte für die Testentscheidung heranziehen. Somit verkleinert sich der Ablehnbereich bei t-Tests im Vergleich zu Gauss-Tests. \\
+\paragraph{Was genau hat das jetzt mit der Testentscheidung zu tun?} Dazu schauen wir uns erst einmal Fig. \ref{Fig:a} an. Wir sehen, dass (vor allem für wenig Freiheitsgrade) die t-Verteilung breitere Enden hat als die Standardnormalverteilung, was wiederum bedeutet, dass alle $\alpha$--Quantile für $\alpha < 0,5$ bei der t-Verteilung kleiner (also weiter im negativen Bereich) sind als die der Standardnormalverteilung. Alle $\alpha$--Quantile für $\alpha > 0,5$ sind bei der t-Verteilung hingegen größer (also weiter im positiven Bereich) als bei der Standardnormalverteilung\footnote{Der Median, also $\tilde{x}_{0,5}$, ist bei beiden Verteilungen der Wert 0, da sie um 0 zentriert sind}. Das gilt dann insbesondere auch für die Quantile, die wir als kritische Werte für die Testentscheidung heranziehen. Somit verkleinert sich der Ablehnbereich bei t-Tests im Vergleich zu Gauss-Tests.
 
-\noindent Dafür gibt es auch eine intuitive Begründung: Bei t-Tests müssen wir nicht nur den interessierenden statistischen Parameter (meistens $\mu$) schätzen, sondern auch $\sigma^2$ mittels der Stichprobenvarianz $S^2$. Da wir mehr Parameter schätzen, wollen wir $H_0$ nicht so bereitwillig ablehnen wie bei Gauss-Tests. Dementsprechend ist der Ablehnbereich bei t-Tests kleiner. \\
+\noindent Dafür gibt es auch eine intuitive Begründung: Bei t-Tests müssen wir nicht nur den interessierenden statistischen Parameter (meistens $\mu$) schätzen, sondern auch $\sigma^2$ mittels der Stichprobenvarianz $S^2$. Da wir mehr Parameter schätzen, wollen wir $H_0$ nicht so bereitwillig ablehnen wie bei Gauss-Tests. Dementsprechend ist der Ablehnbereich bei t-Tests kleiner.
 
 \noindent Aber auch dafür gibt es Abhilfe: Je größer der Stichprobenumfang $n$, desto größer die Anzahl der Freiheitsgrade und desto ähnlicher sind sich Standardnormal- und t-Verteilung. D.h. dann, dass wir für einen großen Stichprobenumfang (annähernd) dieselben kritischen Werte für Gauss- und t-Tests benutzen. Die zusätzliche Ungewissheit durch die Schätzung der Varianz (im Vergleich zu bekannter Varianz) wird also durch mehr Beobachtungen gemildert. Das ist natürlich ein intuitives Ergebnis: Je mehr Beobachtungen wir haben, desto "sicherer" sind wir uns mit unserer Schlussfolgerung.
 
@@ -3022,49 +3083,48 @@ Der Unterschied zwischen Gauss-Tests und t-Tests besteht darin, dass bei Gauss-T
 Eine ähnliche Intuition wie für den Unterschied zwischen Gauss-Tests und t-Tests gibt es auch für den doppelten t-Test und den Welch-Test. Die Anzahl der Freiheitsgrade der Teststatistik vom doppelten t-Test ist größer als die beim Welch-Test. D.h. wir haben beim doppelten t-Test einen größeren Ablehnbereich als beim Welch-Test und wir sind uns somit "etwas eher mit der Entscheidung sicher", $H_0$ zu verwerfen, falls es denn dazu kommt. Das liegt daran, dass man beim doppelten t-Test zwei Stichproben hat, mit denen man eine unbekannte Varianz schätzt. Beim Welch-Test hingegen hat man zwei Stichproben, mit Hilfe derer man zwei unbekannte Varianzen schätzen muss. Deshalb ist beim letzteren etwas mehr Ungewissheit im Spiel.
 
 \clearpage
+
 \subsection{Aufgaben}
 \paragraph{1. Welche Aussagen zum p-Wert sind richtig?}
 \begin{itemize}
-    \item[a)]Der p-Wert gibt die Wahrscheinlichkeit an, mit der mein beobachteter Wert richtig ist.\hfill $\square$
-    \item[b)]Der p-Wert gibt $P(X)$ an.\hfill $\square$
-    \item[c)]Die Hypothese, die man Beweisen will befindet sich in der Alternativhypothese $H_1$.\hfill $\square$
-    \item[d)]Wenn der p-Wert kleiner als mein $\alpha$ ist, dann lehne ich die Nullhypothese ab.\hfill $\square$
-    \item[e)]Bei einem beidseitigen Test gibt es immer zwei Ablehnbereiche.\hfill $\square$
-    \item[f)]Der p-Wert gibt uns darüber Auskunft, mit welcher Wahrscheinlichkeit unser Wert \\oder ein Wert, der noch weiter von der Nullhypothese entfernt ist, auftritt, wenn ich\\ daran festhalte, dass die Nullhypothese stimmt.\hfill $\square$
+    \item[a)] Der p-Wert gibt die Wahrscheinlichkeit an, mit der der beobachtete Wert richtig ist. \hfill $\square$
+    \item[b)] Der p-Wert gibt $P(X)$ an. \hfill $\square$
+    \item[c)] Die Hypothese, die man beweisen will befindet sich in der Alternativhypothese $H_1$. \hfill $\square$
+    \item[d)] Wenn der p-Wert kleiner als $\alpha$ ist, dann lehnt man $H_0$ ab. \hfill $\square$
+    \item[e)] Bei einem beidseitigen Test gibt es immer zwei Ablehnbereiche. \hfill $\square$
+    \item[f)] Der p-Wert gibt uns darüber Auskunft, mit welcher Wahrscheinlichkeit unser Wert \\oder ein Wert, der noch weiter von der Nullhypothese entfernt ist, auftritt, unter der\\ Annahme, dass $H_0$ stimmt. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen über die Hypothesentests sind wahr?}
 \begin{itemize}
-    \item[a)]Mit Hypothesentest kann man entscheiden, ob eine Nullhypothese richtig ist.\hfill $\square$
-    \item[b)]Bei einem einfachen t-Test gibt es immer nur ein Ablehnbereich.\hfill $\square$
-    \item[c)]Der Unterschied zwischen dem einfachen Gauss-Test und einfachen t-Test ist die\\ unbekannte Varianz beim t-Test.\hfill $\square$
-    \item[d)]Mit dem approximativen einfachen Binomialtest überprüft man, ob ein $\mu$ signifikant\\ von $\mu_0$ abweicht, also im Ablehnbereich liegt oder nicht.\hfill $\square$
-    \item[e)]Der Gauss-Test ist im Gegensatz zum t-Test normalverteilt.
+    \item[a)] Mit Hypothesentest kann man entscheiden, ob eine Nullhypothese richtig ist. \hfill $\square$
+    \item[b)] Bei einem einfachen t-Test gibt es immer nur einen Ablehnbereich. \hfill $\square$
+    \item[c)] Der Unterschied zwischen dem einfachen Gauss-Test und einfachen t-Test ist die\\ unbekannte (wahre) Varianz beim t-Test. \hfill $\square$
+    \item[d)] Mit dem approximativen einfachen Binomialtest überprüft man, ob ein $\mu$ signifikant\\ von $\mu_0$ abweicht, also im Ablehnbereich liegt oder nicht. \hfill $\square$
+    \item[e)] Die Teststatistik beim Gauss-Test ist im Gegensatz zum t-Test normalverteilt. \hfill $\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen über die Hypothesentests sind wahr? }
 \begin{itemize}
-    \item[a)]Mit dem F-Test kann man das Verhältnis von Varianzen zweier unabhängigen\\ Zufallsvariablen testen.\hfill $\square$
-    \item[b)]Beim doppelten Gauss-Test handelt es sich im Gegensatz zum einfachen Gauss-Test\\ um das Verhältnis der Varianzen zweier unabhängiger, normalverteilter ZV.\hfill $\square$
-    \item[c)]Beim doppelten Gauss-Test sind ebenfalls die Varianzen unbekannt.\hfill $\square$
-    \item[d)]Der Unterschied zwischen des doppelten t-Test und des Welch-Test ist, dass beim\\ doppelten t-Test die Varianzen bekannt sind und beim Welch-Test diese unbekannt sind.\hfill $\square$
-    \item[e)]Die Besonderheit beim Paired t-Test ist, dass es sich hierbei um einen Test mit zwei\\ abhängige normalverteilte ZV handelt.\hfill $\square$
+    \item[a)] Mit dem F-Test kann man das Verhältnis von Varianzen zweier unabhängigen\\ Zufallsvariablen testen. \hfill $\square$
+    \item[b)] Beim doppelten Gauss-Test handelt es sich im Gegensatz zum einfachen Gauss-Test\\ um das Verhältnis der Varianzen zweier unabhängiger, normalverteilter ZV. \hfill $\square$
+    \item[c)] Beim doppelten Gauss-Test sind die Varianzen unbekannt. \hfill $\square$
+    \item[d)] Der Unterschied zwischen dem doppelten t-Test und dem Welch-Test ist, dass beim\\ doppelten t-Test die Varianzen bekannt sind und beim Welch-Test diese unbekannt sind. \hfill $\square$
+    \item[e)] Die Besonderheit beim Paired t-Test ist, dass es sich hierbei um einen Test mit zwei\\ abhängigen normalverteilten ZV handelt. \hfill $\square$
  \end{itemize}
     
 \paragraph{4. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
-    \item[a)]Mit dem Chi-Quadrat-Anpassungstest kann ist testen, ob die Verteilung zweier ZV \\ungleich ist.\hfill $\square$
-    \item[b)]Beim Approximativen Doppelten Binomialtest handelt es sich um den Vergleich von\\ Wahrscheinlichkeiten und somit nicht mehr um den Vergleich von Erwartungswerten.\hfill $\square$
-    \item[c)]Der Vorteil beim Mann-Whitney-U-Test ist, dass die ZV nicht mehr unbedingt\\ normalverteilt sein müssen.\hfill $\square$
-    \item[d)]Der Kolmogorov-Smirnov-Anpassungstest prüft, ob sich zwei ZV in ihrer Verteilung\\ unterscheiden. \hfill $\square$
-    \item[e)]Beim Chi-Quadrat-Unabhängigkeitstest wird die Unabhängigkeit zweier Stichproben\\ überprüft, indem die beobachteten Häufigkeiten mit den zu erwarteten Häufigkeiten \\ohne Abhängigkeit unter $H_0$ vergleicht.\hfill $\square$
-    \item[f)]Der Odds-Ration-Test testet die Unabhängigkeit von zwei beliebigen Variablen ohne\\ Ausnahme.\hfill $\square$
+    \item[a)] Mit dem Chi-Quadrat-Anpassungstest kann man testen, ob die Verteilung zweier ZV \\unterschiedlich ist. \hfill $\square$
+    \item[b)] Der Vorteil beim Mann-Whitney-U-Test ist, dass die ZV nicht mehr unbedingt\\ normalverteilt sein müssen. \hfill $\square$
+    \item[c)] Der Kolmogorov-Smirnov-Anpassungstest prüft, ob sich zwei ZV in ihrer Verteilung\\ unterscheiden. \hfill $\square$
+    \item[d)] Beim Chi-Quadrat-Unabhängigkeitstest wird die Unabhängigkeit zweier Merkmale\\ überprüft, indem die beobachteten Häufigkeiten mit den zu erwarteten Häufigkeiten \\ohne Abhängigkeit unter $H_0$ vergleicht.\hfill $\square$
 \end{itemize}   
   
  \paragraph{5. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
-    \item[a)]Der Ablehnbereich ist  beim Gauss-Test größer als beim t-Test.\hfill $\square$
-    \item[b)]Der Gauss-Test ist etwas unsicherer als der t-Test.\hfill $\square$
-    \item[c)]Bei größeren Stichproben nähern sich die Ergebnisse des t-Tests und des Gauss-Tests an.\hfill $\square$
-    \item[d)] Beim Welch-Test sind wir mit unserer Entscheidung ein wenig sicherer als beim \\doppelten t-Test, da wir nur eine unbekannte Varianz schätzen müssen.\hfill $\square$
+    \item[a)] Der Ablehnbereich ist beim Gauss-Test (bei identischem $\alpha$) größer als beim t-Test. \hfill $\square$
+    \item[b)] Beim Gauss-Test liegt etwas mehr Unsicherheit zugrunde als beim t-Test. \hfill $\square$
+    \item[c)] Bei größeren Stichproben nähern sich die Ergebnisse des t-Tests und des Gauss-Tests an. \hfill $\square$
+    \item[d)] Beim Welch-Test sind wir mit unserer Entscheidung ein wenig sicherer als beim \\doppelten t-Test, da wir nur eine unbekannte Varianz schätzen müssen. \hfill $\square$
  \end{itemize}  
 
 
@@ -3074,93 +3134,178 @@ Eine ähnliche Intuition wie für den Unterschied zwischen Gauss-Tests und t-Tes
 %%%%%%%%%%  KAPITEL 18
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Lineare Regression}
-Die Lineare Regression ist bereits aus Kapitel \ref{chap:linreg} bekannt. Im Folgenden werden wir das aus Statistik I schon gelernte wiederholen und weiter vertiefen.\\
-Bei der linearen Regression benötigt man zwei Variable die abhängige und die unabhängige. Die Annahme ist, dass zwischen diesen beiden eine lineare Beziehung herrscht. Die lineare Regression wird mit der Formel: $Y=\beta_0+\beta_1X+\epsilon$, wobei $\epsilon$ der unbeobachtete Fehlerterm ist. In Statistik II sind nun die Daten Realisationen von Zufallsvariablen, durch die Schlüsse auf die Grundgesamtheit geschlossen werden, im Gegensatz zu Statistik I. Durch die Regression kann man nun nicht mehr nur Aussagen übe die erklärte Streuung machen, sondern auch über Verteilungsannahmen und die statistische Signifikanz. \\
-Der Fehlerterm $\epsilon$ ist nun eine Zufallsvariable und für jede Beobachtung gibt es ein Fehlerterm, welche jedoch unabhängig voneinander sind und deren Erwartungswert 0 ist. Die Varianz der $\epsilon$ ist $\sigma^2$, da durch den Verschiebungssatz schlussendlich nur noch der Erwartungswert der quadrierten Epsilons übrigbleibt. Zudem wird die Annahme getroffen, dass sie Fehlerterme unabhängig voneinander sind, daher ist die Kovarianz bei gleicher Beobachtung $\sigma
-^2$ und bei ungleicher Beobachtung 0 und somit unkorreliert.\\
-Wenn die Varianz $\sigma^2$ ist und somit konstant ist, dann ist der Fehlerterm unabhängig von dem Wert der Einflussgröße. Ist dies der Fall, dann spricht man von \textbf{Homoskedastizität}. Oftmals werden diese Annahmen jedoch verletzt und die Varianz der Fehlerterme nimmt mit steigendem x-Wert zu. Dies nennt man dann \textbf{Heteroskedastizität} was man gut in einem Residualplot oder oftmals auch schon in einem Scatterplot sehen kann.\\
-Nun überträgt man die Verteilung der Epsilons auf die Zufallsvariable Y. Das heißt, wenn die Epsilons unabhängig sind, dann sind das auch die Zufallsvariablem. Eine weiter Annahme ist der Erwartungswert, dabei setzt man den Ansatz des Regressionsmodells ein und da der Erwartungswert von Epsilon gleich 0 ist, ist der Erwartungswert schlussendlich $\beta_0+\beta_1x_1$. Da dies als eine Konstante gesehen wird ist die Varianz der Zufallsvariable auch $\sigma
-^2$. Wie auch bei den Annahmen der Epsilons ist die Kovarianz bei gleichen Beobachtungen $\sigma^2$ und bei ungleichen Beobachtungen 0. Somit sind die Zufallsvariablen auch normalverteilt, die Varianz bleibt die gleiche nur der Erwartungswert erfährt eine Verschiebung und liegt bei $\beta_0+\beta_1x_i$.
+\section{Lineare Regression II}\label{chap:mult-reg}
+Die Lineare Regression ist bereits aus Kapitel \ref{chap:linreg} bekannt. Im Folgenden werden wir dies kurz wiederholen, vertiefen \& \textbf{erweitern}.\\
+Bei der linearen Einfachregression nimmt man an, dass zwischen der abhängigen ($Y$) und der unabhängigen ($X$) eine lineare Beziehung herrscht. Die lineare Regression wird mit der Formel 
+$$Y = \beta_0 + \beta_1X + \epsilon\;,$$ 
+\noindent wobei $\epsilon$ der unbeobachtete Fehlerterm ist. In Statistik II betrachtet man die Daten nun als Realisationen von Zufallsvariablen, mit Hilfe derer Schlüsse auf die Grundgesamtheit möglich sind, im Gegensatz zu Statistik I, wo das Modell rein zu Beschreibung der vorliegenden Daten diente. Dadurch kann man nun nicht mehr nur Aussagen übe die erklärte Streuung machen \& Koeffizienten interpretieren, sondern auch über Verteilungsannahmen Aussagen über deren statistische Signifikanz treffen.\\
 
-\paragraph{Matrixschreibweise}Man kann das Regressionsmodell auch in der Matrixschreibweise schreiben, was bei vielen Beobachtungen einer Zufallsvariablen praktisch und übersichtlich sein kann. Dabei ist in jeder Zeile eine Regressionsgleichung einer Zufallsvariablen abgetragen. $I_n$ ist die nxn Einheitsmatrix. Ein Element in der Einheitsmatrix ist 1, wenn die i-te Zeile gleich der j-ten Spalte ist. Ist dies nicht der Fall, dann ist das Element in der Einheitsmatrix 0\\
+\noindent\dangersign[3ex] Der Notationsunterschied ($\alpha, \beta, \epsilon$ anstatt $a, b, e$) dient zur Abgrenzung von der rein deskriptiven Nutzung des Regressionsmodells in Statistik I.
 
-\noindent Wie bei Statistik I in Kapitel \ref{sec:kat-reg}, kann auch hier die Dummy und Effektkodierung angewendet werden. Als kleine Wiederholung, man wählt eine Referenzkategorie aus, welche bei der Dummyvariablen durch Nullsetzen der anderen Variablen entsteht und bei der Effektcodierung durch das -1 setzten aller anderen Variablen. Die Regressionsgleichungen der einzelnen Merkmalsausprägungen kann dann schlussendlich durch einsetzten von 0, 1 und bei Effektkodierung von -1 in die allgemeine Regressionsgleichung gebildet werden.
+\paragraph{Annahmen} Der Fehlerterm $\epsilon$ ist nun eine Zufallsvariable über die im Vorhinein bestimmte Annahmen getroffen werden:
+\begin{itemize}
+    \item \textbf{Unabhängigkeit} der Fehlerterme für die einzelnen Beobachtungen
+    \item \textbf{Normalverteilung} der Fehlerterme mit ..
+    \begin{itemize}
+        \item .. einem Erwartungswert von 0.
+        \item .. einer \textbf{konstanten Varianz} $\sigma^2$.
+        \item .. und einer Kovarianz von 0.
+    \end{itemize}
+\end{itemize}
+Wenn die Varianz $\sigma^2$ konstant ist, dann ist sie unabhängig von dem Wert der Einflussgröße. Ist dies der Fall, dann spricht man von \textbf{Homoskedastizität}. Wenn diese Annahme jedoch verletzt wird (z.B. wenn die Varianz der Fehlerterme mit steigendem x-Wert zu zunimmt), nennt man dies \textbf{Heteroskedastizität} was man gut in einem Residualplot (vgl. Kap. \ref{sec:reg-fig}) sehen kann.\\
+Die Verteilungannahme der Epsilons lassen sich auch auf die Zufallsvariable Y übertragen, d.h.:
+\begin{itemize}
+    \item \textbf{Unabhängigkeit} der einzelnen $Y_i$ 
+    \item \textbf{Normalverteilung} der Fehlerterme mit ..
+    \begin{itemize}
+        \item .. einem Erwartungswert von $\beta_0+\beta_1x_1$.
+        \item .. einer \textbf{konstanten Varianz} $\sigma^2$.
+        \item .. und einer Kovarianz von 0.
+    \end{itemize}
+\end{itemize}
+
+\noindent Wie bei Statistik I in Kapitel \ref{sec:kat-reg}, kann auch weiterhin die Dummy- und Effektkodierung für kategoriale Variablen angewendet werden.
+
+\subsection{Überprüfung der Modellannahmen}\label{sec:reg-fig}
+
+Eine gute Übersicht zu den Annahmen und den diversen Plots (Residualplot, QQ-Plot, etc.) findet ihr unter folgendem Link:\\
+\url{https://wikis.fu-berlin.de/display/fustat/Residuenplots}
+
 \subsection{Kleinste-Quadrate-Schätzer}
-Auch das Thema der Kleinsten-Quadraten-Schätzer haben wir schon in Statistik I \ref{sec:kq} besprochen. Hier ist nun zu beachten, dass wir nicht mehr a und b als Schreibweise benutzen sondern nun $\beta_0, \beta_1, \beta_2,....$\\
-Somit ergibt sich als Schätzer für $\hat{\beta}_1$: $\hat{\beta}_1=\frac{\sum_{i=1}^n x_iy_i-n\bar y\bar x}{\sum_{i=1}^n x^2_i-n\cdot \bar x^2}$ und für den Intercept bzw. y-Achsenabschnitt: $\hat\beta_0=\bar y-\hat\beta_1\bar x$.
-Da $\sigma^2$ unbekannt ist und auch geschätzt werden muss, ergibt sich als Verteilungsannahme für die standardisierten Parameterschätzer eine t-Verteilung mit 2 Freiheitsgraden.
-
+Auch das Thema der Kleinsten-Quadraten-Schätzer wurde bereits im Statistik I Teil (vgl. Kap. \ref{sec:kq}) behandelt. Hier ist nun zu beachten, dass wir nicht mehr $a$ und $b$ als Schreibweise benutzen (s.o.) sondern nun $\beta_0, \beta_1, \beta_2,....$\\
+Somit ergibt sich für die lineare Einfachregression als Schätzer für $\hat{\beta}_1$: $\hat{\beta}_1=\frac{\sum_{i=1}^n x_iy_i-n\bar y\bar x}{\sum_{i=1}^n x^2_i-n\cdot \bar x^2}$ und für den Intercept bzw. y-Achsenabschnitt: $\hat\beta_0=\bar y-\hat\beta_1\bar x$.
 
 \subsection{Multiple lineare Regression}\label{sec:mult-reg}
-Bei der multiplen linearen Regression haben wir nun nicht mehr eine Einflussgröße X, sondern p verschiedene Einflussgrößen. Die verschiedenen Beobachtungen einer kann man dann wieder in eine Matrix übertragen.\\
-Die Annahmen für die lineare Regression sind soweit wieder die gleichen wie bei der einfachen linearen Regression und die Schätzung kann man wieder mit der Kleinste-Quadrate-Methode bestimmen.
-Daraus ergeben sich dann die Eigenschaften des KQ-Schätzers für $\beta$. $\hat\beta$ ist erwartungstreu, da dessen Erwartungswert $\beta$ ist. Der $\beta$-Schätzer lässt sich berechnen als X transponiert mal X, woraus sich eine p+1 x p+1-Matrix ergibt, daraus die Inverse und multipliziert dies mit X transponiert y. Zwei weitere Eigenschaften sind, dass $\hat\beta$ unter den linearen Schätzern der bestmögliche unverzerrte Schätzer und normalverteilt ist. Die Kovarianz ist $\sigma^2(X'X)^{-1}$. Da $\sigma^2$ ein Schätz ist, ist die Kovarianz auch nur ein Schätzer.
-Bei der Berechnung des geschätzten $\sigma^2$ ist nun die Besonderheit, dass nicht mehr durch n-2 Freiheitsgrade geteilt wird, wie bei der einfachen linearen Regression, sondern durch n-(p+1). P ist dabei die Anzahl der Kovariablen im Modell und +1 bezieht sich auf den Intercept, der zusätzlich noch abgezogen wird, da er nicht in p enthalten ist. \\
-Dies spiegelt sich auch in der Verteilungsannahme für die standardisierte Parameterschätzung wider, da die Verteilung eine t-Verteilung mit n-p-1 Freiheitsgraden ist. Die standardisierte Parameterschätzung berechnet man mit der Differenz aus $\hat\beta_p$ und dessen Erwartungswert und teilt durch die geschätzten Standardfehler von $\hat\beta_p$.\\
-\textbf{Bemerkung:} Lineare Modelle sind möglicherweise allgemeiner als man denkt, da nur die Parameter $\beta$ linear sein müssen.
+Bei der multiplen linearen Regression haben wir nun nicht mehr eine Einflussgröße X, sondern $p$ verschiedene Einflussgrößen $X_1, \hdots, X_p$. Die führt zu folgendem Modell:
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \hdots + \beta_p X_p + \epsilon\;,$$ 
+
+\noindent Diese Erweiterung führt (1) dazu, dass die Koeffizientenschätzer händisch nicht mehr so einfach berechenbar sind (man verwendet stattdessen \texttt{R}) und hat (2) Implikationen für die Interpretation der Parameterschätzer.
+
+\paragraph{Interpretation des Intercepts $\hat \alpha$:} Interpretiert werden muss der Intercept nun als "\textit{der erwartete/geschätzt/durchschnittliche Wert der Zielgröße (Y), falls \textbf{alle} Einflussgrößen einen Wert von 0 annimmt}". Wichtig ist hier vor allem, dass man aufpasst, falls kategoriale Kovariablen teil des Modells sind, da ein Wert von 0 hier das vorliegen der Referenzkategorie bedeutet.\\
+
+\noindent \dangersign[3ex] Es können die gleiche Fälle auftreten, in denen eine Interpretation des Intercepts nicht sinnvoll ist wie bereits in Kapitel \ref{chap:linreg} beschrieben.
+
+\paragraph{Interpretation der Steigungsparameters $\hat \beta_j$:} Der geschätzte Steigungsparameter für die $j$-te Einflussgröße ist wie folgt zu interpretieren: "\textit{Steigt die $j$-te Einflussgröße ($X_j$) um eine Einheit, so erwartet man, unter sonst gleichen Umständen/\href{https://de.wikipedia.org/wiki/Ceteris_paribus}{c.p. (ceteris paribus)}, einen Anstieg (bzw. Abnahme, bei negativem $\hat \beta_j$) der Zielgröße (Y) um $\hat \beta_j$ Einheiten (der Zielgröße)}".\\
+Drei Anmerkungen hierzu:
+\begin{itemize}
+    \item Auch hier ist es wieder wichtig von einem "erwarteten" Anstieg zu sprechen.
+    \item Wichtig ist auch, dass dieser Anstieg (bzw. Abnahme) der Zielgröße beim Anstieg der Einflussgröße um genau \textbf{eine Einheit} zu erwarten ist.
+    \item Die Formulierung "\textit{unter sonst gleichen Umständen}" ist hier entscheidend, da wir nun \textbf{mehrere} Einflussgröße haben und die anderen für die Interpretation von $\hat \beta_j$ konstant gehalten werden müssen
+\end{itemize}
+
+\noindent \dangersign[3ex] \textit{Bemerkung:} Lineare Modelle sind möglicherweise allgemeiner als man denkt, da nur die Parameter $\beta$ linear sein müssen, jedoch trotzdem auch Kovariablen quadriert aufgenommen werden können.
 
 \subsection{Signifikanztests und Konfidenzintervalle}
-Mit dem Signifikanztest soll überprüft werden, ob eine j-te Einflussgröße einen signifikanten Erklärungswert auf die Zielgröße besitzt. Dabei kommt in die Alternativhypothese die Eigenschaft die wir nachweisen wollen, dass $\beta_j$ einen statistisch signifikanten Einfluss hat. Somit ist die Alternativhypothese $H_1:\beta_j\neq0$ und damit die Nullhypothese $H_O:\beta_j=0$. Die Teststatistik mit ihrem Ablehnungsbereich findet man in der Formelsammlung unter \textit{Test für Regressionskoeffizienten} auf Seite 9. Man kann die komplette t-Statistik auch quadrieren, was dann der F-Verteilung mit 1,(n-p-1) Freiheitsgraden entspricht. Zudem findet man auch die Konstruktion des Konfidenzintervalls für $\beta_j$.
+Mit dem Signifikanztest soll überprüft werden, ob eine $j$-te Einflussgröße einen signifikanten Erklärungswert für die Zielgröße besitzt. Dabei kommt in die Alternativhypothese die Eigenschaft die wir nachweisen wollen, nämlich dass $H_1: \beta_j \neq 0$. Somit ist die Nullhypothese $H_0:\beta_j=0$.\\
+Vom Prinzip her entspricht dieser Test einem einfachen t-Test (vgl. Kap. \ref{sec:pWert} \& \ref{sec:tTest1}) wobei der hypothetische Wert 0 ist, d.h. im Zähler steht nur der Koeffizientenschätzer $\beta_j$.\\
+
+\noindent \dangersign[3ex] Im Gegensatz zum t-Test muss hier \textbf{nicht mehr} mit $\sqrt{n}$ multipliziert werden, da dies bereits in der geschätzten Standardabweichung $\hat \sigma_{\hat \beta_j}$ mit drinsteckt.\\
+
+\noindent Die Verteilung der Teststatistik ist dabei ein $t$-Verteilung mit $n-p-1$ Freiheitsgraden, wobei $n$ die Anzahl der Beobachtungen und $p$ die Anzahl der geschätzten Koeffizieten (\textbf{ohne} Intercept) ist. Die 1 ist für den Intercept mit dabei.\\
+
+\noindent Die Konstruktion des Konfidenzintervalls für $\beta_j$ läuft analog wie in Kapitel \ref{sec:KI} beschrieben.
 
 \subsection{Bestimmtheitsmaß und Overall F-Test}
 \subsubsection{Bestimmtheitsmaß}
-Bereits aus Statistik I ist das Bestimmtheitsmaß $R^2$ zur Beurteilung der Güte der Regression bekannt. Die Berechnung von $R^2$ ist auch beim multiplen Regressionsmodell möglich. $R^2$ berechnet sich wieder aus dem Quotienten der erklärten Streuung SSReg und der Gesamtvarianz von Y SSY. Die erklärte Streuung entspricht dabei dem Produkt aus Zeilen und Spaltenvektor $(\hat Y-\bar Y)'(\hat Y-\bar Y)$ und SSY berechnet sich aus $(Y-\bar Y)'(Y-\bar Y)$.  $R^2$ kann man auch mit der Reststreuung RSS berechnen, wobei RSS die Residuuen Streuung $\hat\epsilon'\hat\epsilon$ ist.\\
-Die perfekte Anpassung ist wenn $\hat\epsilon$ gleich 0 ist und $R^2=1$ ist. Erklärt das Regressionsmodell gar keine Streuung, dann ist die Gesamtstreuung gleich der Residuenstreuung und $R^2=1$. Man spricht von Nullanpassung.
+Bereits aus Statistik I ist das Bestimmtheitsmaß $R^2$ zur Beurteilung der Güte der Regression bekannt, dessen auch beim multiplen Regressionsmodell möglich ist. Händisch ist die Berechnung jedoch beim multiplen Modell (ähnlich wie für die Koeffizientenschätzer) schwierig, weshalb man auch den Wert aus dem \texttt{R}-Output abliest.
 
 \subsubsection{Overall F-Test}
-Mit dem Overall F-Test kann man testen, ob die Regressoren überhaupt einen statistisch signifikanten Erklärungswert für die anhängige Variable Y liefert. Dabei steht in der Nullhypothese die Annahme, dass kein Regressor ein signifikanten Erklärungswert über die abhängige Variable Y liefert: $H_0:\beta_1=\beta_2=...=\beta_p=0$. In der Alternativhypothese steht dann: $H_1:\beta_j\neq0$ für mind. ein j. Das heißt, die Nullhypothese wird abgelehnt, wenn mindestens einer der Regressoren eine signifikante Erklärung für die unabhängige Variable liefert. Somit testet man das Modell mit allen Regressoren gegen das Modell nur mit Intercept, da alle Betas null sind.\\
-Die Teststatistik berechnet man mit $F=\frac{R^2}{1-R^2}\cdot \frac{n-(p+1)}{p}$. Somit verwendet man bei der Teststatistik das Bestimmtheitsmaß $R^2$. Wie der Name schon sagt, handelt es sich hier um eine F-Verteilung. Um die Nullhypothese ablehnen zu können, muss mein berechnetes F größer sein, als $F_{1-\alpha}$ mit p und n-(p+1) Freiheitsgraden. Hier liegt anders wie beim t-Test nur ein Ablehnungsbereich vor. Die Nullhypothese kann somit nur bei positiven Werten angelehnt werden.\\
-\textbf{Bemerkung:} Hat man einen R-Output gegeben, dann befindet sich meistens am Ende schon das berechnete Bestimmtheitsmaß.\\
-Mit einem Scatterplot kann man den Zusammenhang eines Regressors mit der abhängigen variablen Y graphisch darstellen. Dabei kann man eine Regressionsgleichung mit hineinlegen, um zu sehen, in wie fern diese den Daten entspricht. Somit kann man mehr oder weniger graphisch sehen, wie gut ein Regressor die unabhängige Variable erklärt. Zudem gibt es auch Multivariate Analysen wie die Modellzusammenfassung oder die ANOVA Tabelle, um schnell einen Überblick über den Erklärungswert der Regressoren über die unabhängige Variable zu bekommen.\\
+Mit dem Overall F-Test kann man testen, ob \textbf{irgendeine} Einflussgröße überhaupt einen statistisch signifikanten Erklärungswert für die anhängige Variable $Y$ liefert. Dabei steht in der Nullhypothese die Annahme, dass kein Regressor einen signifikanten Erklärungswert über die abhängige Variable $Y$ besitzt: 
+$$H_0:\beta_1 = \beta_2 = \hdots = \beta_p = 0$$
 
-\noindent Eine gute Übersicht zu den Annahmen und den diversen Plots (Residualplot, QQ-Plot, etc.) findet ihr unter folgendem Link:\\
-\url{https://wikis.fu-berlin.de/display/fustat/Residuenplots}
+\noindent während die Alternativhypothese besagt, dass \textbf{mindestens} eine Einflussgröße  signifikanten Erklärungswert besitzt: 
+$$H_1: \beta_j \neq 0 \qquad \mbox{für mind. ein $j$.}$$ 
+
+\noindent Das heißt, die Nullhypothese wird abgelehnt, wenn mindestens einer der Regressoren einen signifikanten Einfluss auf die unabhängige Variable hat. Somit testet man formell das Modell mit allen Regressoren gegen das Modell nur mit Intercept, da dort alle Betas 0 wären.\\
+Die Teststatistik berechnet man mit $F=\frac{R^2}{1-R^2}\cdot \frac{n-(p+1)}{p}$. und sie folgt einer F-Verteilung (vgl. Kap. \ref{sec:fdistr}) mit $p$ \& $(n-p-1)$ Freiheitsgraden. Um die Nullhypothese ablehnen zu können, muss die berechnete Teststatistik größer sein, als $F_{1-\alpha}$. \\
+
+\noindent \dangersign[3ex] \textbf{Bemerkung:} Hat man einen \texttt{R}-Output gegeben, dann befindet am Ende das Bestimmtheitsmaß und die Teststatistik, sowie der p-Wert vom Overall F-Test..\\
 
 \clearpage
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für lineare Regression: > lm(formula = .., data = ..)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/lm}{Dokumentation}}\\
+
+\noindent \dangersign[3ex] Im Gegensatz zur linearen Einfachregression werden bei der multiplen Regression auf die rechten Seite der Tilde mehrere Argumente (verknüpft mit einem "+") eingegeben.\\
+
+\noindent Eine typischer Output (Wieder Beispiel-Datensatz \href{https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars}{\texttt{mtcars}}) sähe hier in etwa so aus:
+
+\begin{small}
+\begin{Verbatim}[frame=single]
+modell <- lm(formula = mpg ~ wt + factor(cyl) + hp, data = mtcars)
+summary(modell)
+
+Call:
+lm(formula = mpg ~ wt + factor(cyl) + hp, data = mtcars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.2612 -1.0320 -0.3210  0.9281  5.3947 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  35.84600    2.04102  17.563 2.67e-16 ***
+wt           -3.18140    0.71960  -4.421 0.000144 ***
+factor(cyl)6 -3.35902    1.40167  -2.396 0.023747 *  
+factor(cyl)8 -3.18588    2.17048  -1.468 0.153705    
+hp           -0.02312    0.01195  -1.934 0.063613 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.44 on 27 degrees of freedom
+Multiple R-squared:  0.8572,	Adjusted R-squared:  0.8361 
+F-statistic: 40.53 on 4 and 27 DF,  p-value: 4.869e-11
+\end{Verbatim}
+\end{small}
+In der \texttt{Coefficients}-Tabelle kann man in der ersten Spalte ("\texttt{Estimate}") $\hat \alpha$ in der Zeile \texttt{Intercept} und die $\hat \beta_j$ in den darauffolgenden Zeilen ablesen.\\
+
+\noindent In der zweiten Spalte ("\texttt{Std. Error}") findet man jeweils die $\hat \sigma_{\hat \beta_j}$ zu jedem $\hat \beta_j$. Mit diesen beiden Angaben könnte man den Wert der Teststatistik, welcher in der dritten Spalte ("\texttt{t value}") steht, berechnen. In der vierten Spalte ("\texttt{Pr(>|t|)}") befindet sich der p-Wert für jedes $\hat \beta_j$ mit passender Legende dahinter, zu welchem Signifikanzniveau dieser jeweils signifikant wäre (Legende darunter).\\
+Unter \texttt{Multiple R-squared} findet wieder man den Wert für $R^2$, sowie den zugehörigen Wert der Teststatistik des F-Tests (mit den zugehörigen Freiheitsgraden und dem p-Wert).\\
+
+\noindent \framebox[\textwidth]{\texttt{R-Befehl für Diagnostik-Plots: > plot(modell)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/plot.lm}{Dokumentation}}
+
+\clearpage
+
 \subsection{Aufgaben}
 \paragraph{1. Welche Aussagen über die einfache lineare Regression sind wahr?}
 \begin{itemize}
-    \item[a)]Der Erwartungswert der Residuen sollte immer 1 sein.\hfill $\square$
-    \item[b)]Bei der Homoskedastizität geht man von einer konstanten Varianz der Fehlertermen aus.\hfill $\square$
-    \item[c)]In Statistik II trifft man die Annahme, dass die Fehlerterme eine Zufallsvariable sind.\hfill $\square$
-    \item[d)]In Statistik II kann man keine Schlüsse über die Grundgesamtheit ziehen, da\\ schlussendlich alles nur Annahmen sind und nichts sicher ist.\hfill $\square$
+    \item[a)] Der Erwartungswert der Residuen sollte per Annahme gleich 1 sein. \hfill $\square$
+    \item[b)] Homoskedastizität bedeutet konstante Varianz der Fehlertermen. \hfill $\square$
+    \item[c)] In Statistik II trifft man die Annahme, dass die Fehlerterme eine Zufallsvariable sind. \hfill $\square$
+    \item[d)] In Statistik II kann man keine Schlüsse über die Grundgesamtheit ziehen, da\\ schlussendlich alles nur Annahmen sind und nichts sicher ist. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen über die einfache lineare Regression sind wahr?}
 \begin{itemize}
-    \item[a)]Mit steigenden x-Werten, sollte auch die Varianz der Residuen steigen.\hfill $\square$
-    \item[b)]Die Normalverteilung der Zufallsvariablen lautet N(0,$\sigma^2)$\hfill $\square$
-    \item[c)]Bei der Effektkodierung wählt man im Gegensatz zur Dummykodierung keine\\ Referenzkategorie.\hfill $\square$
-    \item[d)]Bei der Effektkodierung wird die Referenzkategorie mit -1 setzen aller Effektvariablen \\gebildet.\hfill $\square$
+    \item[a)] Mit steigenden x-Werten, sollte auch die Varianz der Residuen steigen. \hfill $\square$
+    \item[b)] Die angenommene Verteilung der Fehlerterme lautet N(0,$\sigma^2)$. \hfill $\square$
+    \item[c)] Bei der Effektkodierung wählt man im Gegensatz zur Dummykodierung keine\\Referenzkategorie. \hfill $\square$
+    \item[d)] Bei der Effektkodierung nehmen bei Vorliegen der Referenzkategorie alle Dummys\\den Wert -1 an. \hfill $\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen bezüglich der multiplen linearen Regression sind richtig?}
 \begin{itemize}
-    \item[a)]Eine Eigenschaft des KQ-Schätzers ist, dass er erwartungstreu ist.\hfill $\square$
-    \item[b)]$\hat\beta$ ist der allgemein beste Schätzer für $\beta$.\hfill $\square$
-    \item[c)]$Y_i=\beta_0+\beta_1x{i1}+\beta_2x_{i2}+\beta_3x_{i3}+\beta_4x{i4}$ hat 5 Freiheitsgrade.\hfill $\square$
-    \item[d)]$y=\beta_0+\beta_1\sqrt{x}^2+\beta_2+\beta_3x^{3,75}$ ist eine lineares Modell.\hfill $\square$
-    \item[e)]Die Freiheitsgrade der t-Statistik werden mit n-2 berechnet.
+    \item[a)] Eine Eigenschaft des KQ-Schätzers ist, dass er erwartungstreu ist. \hfill $\square$
+    \item[b)] Bei der Effektkodierung wir eine andere Anzahl an Dummy-Variablen benötigt\\als bei der Dummy-Kodierung. \hfill $\square$
+    \item[c)] Im Falle von $y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4}$ hat die $t$-Verteilung für den\\Signifikanztest 5 Freiheitsgrade. \hfill $\square$
+    \item[d)] $y = \beta_0 + \beta_1 \sqrt{x} + \beta_2 x^2 + \beta_3x^{3}$ ist ein lineares Modell. \hfill $\square$
 \end{itemize}
 
 \paragraph{4. Welche Aussagen bezüglich des Signifikanztest und der KI-Intervalle sind richtig?}
 \begin{itemize}
-    \item[a)]Mit dem Signifikanztest für einen Parameter kann man überprüfen, ob die\\ Nullhypothese signifikant richtig ist.\hfill $\square$
-    \item[b)]Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen\\ nicht in der Teststatistik nicht weiter beachten.\hfill $\square$
-    \item[c)]Das Konfidenzintervall liegt symmetrisch um den Schätzer.\hfill $\square$
-    \item[d)]Wenn t=-4,8 ist und $t_{n-p-1),1-\alpha}=4,5$, dann kann ich die Nullhypothese nicht ablehnen.\hfill $\square$
-    \item[e)]Eine Teststatistik mit $t_{194}$ Freiheitsgraden und n=200 hat ein p=6.\hfill $\square$
+    \item[a)] Mit dem Signifikanztest für einen Parameter kann man überprüfen, ob die\\ Nullhypothese signifikant richtig ist. \hfill $\square$
+    \item[b)] Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen\\ hypothetischen Wert bei Berechnung der Teststatistik nicht weiter beachten. \hfill $\square$
+    \item[c)] Das Konfidenzintervall liegt symmetrisch um den Schätzer. \hfill $\square$
+    \item[d)] Wenn $t = -4,8$ ist und $t_{n-p-1),1-\alpha} = 4,5$, dann kann die Nullhypothese\\nicht abgelehnt werden. \hfill $\square$
+    \item[e)] Eine Teststatistik die $t_{194}$-verteilt ist, stammt aus einem Modell mit $n = 200$ und\\6 geschätzten Koeffizienten .\hfill $\square$
 \end{itemize}
 
 \paragraph{5. Welche Aussagen über das Bestimmtheitsmaß und den Overall F-Test sind richtig?}
 \begin{itemize}
-    \item[a)]Wenn die Nullhypothese abgelehnt wird, dann haben alle Regressoren einen\\ statistisch signifikanten Erklärungswert für die Zielvariable Y.  \hfill $\square$
-    \item[b)]Bei $R^2=1$spricht man von einer Nullanpassung.\hfill $\square$
-    \item[c)]Bei $R^2=0$ wird die Streuung vom Regressionsmodell komplett erklärt. \hfill $\square$
-    \item[d)]$R^2=\frac{RSS}{SSY}$\hfill $\square$
-    \item[e)]Ist $R^2=0$, dann wird $H_0$ nicht abgelehnt.\hfill $\square$
-    \item[f]Ist mein berechneter Wert F negativ, dann wird die $H_0$-Hypothese abgelehnt.\hfill $\square$
+    \item[a)] Wenn die Nullhypothese abgelehnt wird, dann haben alle Regressoren einen\\ statistisch signifikanten Erklärungswert für die Zielvariable $Y$. \hfill $\square$
+    \item[b)] Bei $R^2=1$ spricht man von einer Nullanpassung. \hfill $\square$
+    \item[c)] Bei $R^2=0$ wird die Streuung der Zielgröße vom Regressionsmodell komplett erklärt. \hfill $\square$
+    \item[d)] Ist $R^2=0$, dann wird $H_0$ nicht abgelehnt. \hfill $\square$
+    \item[e)] Ist mein berechneter Wert $f$ negativ, dann wird $H_0$ abgelehnt. \hfill $\square$
 \end{itemize}
 
 

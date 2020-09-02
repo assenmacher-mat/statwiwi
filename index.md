@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+# Wiederholung, Ergänzung, Erklärung & Intuition: Statistik I & II für Studierende der Wirtschaftswissenschaften (LMU)
 
-You can use the [editor on GitHub](https://github.com/assenmacher-mat/statwiwi/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Allgemeines
+Dieses Dokument soll als kleine Verständnishilfe für Studierende der Wirtschaftswissenschaften angesehen werden.
+Wir versuchen explizit auf mathematische Genauigkeit und Vollständigkeit, zu verzichten, wenig auf Formeln und viel auf Inution & Verständnis einzugehen. 
+Außerdem wird jedes Thema durch einen Block an Multiple-Choice Aufgaben und Hinweisen auf die passenden R-Funktionen für die behandelten Methoden ergänzt.  
+Das Manuskript ist in der Datei `statwiwi.pdf` enthalten, der Source-Code in `statwiwi.tex`.  
+Die verwendeten Grafiken befinden sich im Ordner `figures`, der R-Code zu deren Reproduktion im Ordner `code`. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Disclaimer
+Dieses Manuskript ist explizit __kein__ Teil der offiziellen Vorlesungsunterlagen für dieses Fach.  
+Für Fehler wird keine Haftung übernommen.
 
-### Markdown
+## Geplante Erweiterungen in Zukunft
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- Ergänzung der einzelnen Kapitel um mehr & mehr Zahlenbeispiele
+- Erweiterung der Aufgabenblöcke um offene Fragen
+- Vervollständigung der Hinweise auf die R-Funktion um kleine Anwendungen/Code-Beispiele
 
-```markdown
-Syntax highlighted code block
+ (Nicht notwendigerweise in der abgebildeten Reihenfolge, sondern eher nach Lust, Laune & Zeit :wink:)
 
-# Header 1
-## Header 2
-### Header 3
+## Kontakt
+Bei Anmerkungen oder Interesse an Zusammenarbeit, gerne einfach Kontakt aufnehmen:  
+:e-mail: matthias@stat.uni-muenchen.de
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/assenmacher-mat/statwiwi/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+----
+## Copyright Info
+This work is licensed under a Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)\\          
+License details: https://creativecommons.org/licenses/by-nc/4.0/

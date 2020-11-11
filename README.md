@@ -5,6 +5,7 @@ Dieses Dokument soll als kleine Verständnishilfe für Studierende der Wirtschaf
 Wir versuchen explizit auf mathematische Genauigkeit und Vollständigkeit, zu verzichten, wenig auf Formeln und viel auf Inution & Verständnis einzugehen. 
 Außerdem wird jedes Thema durch einen Block an Multiple-Choice Aufgaben und Hinweisen auf die passenden R-Funktionen für die behandelten Methoden ergänzt.  
 Das Manuskript ist in der Datei `statwiwi.pdf` enthalten, der Source-Code in `statwiwi.tex`.  
+Die verwendeten Grafiken befinden sich im Ordner `figures`, der R-Code zu deren Reproduktion im Ordner `code`. 
 
 ## Disclaimer
 Dieses Manuskript ist explizit __kein__ Teil der offiziellen Vorlesungsunterlagen für dieses Fach.  

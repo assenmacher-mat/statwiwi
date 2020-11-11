@@ -7,6 +7,8 @@ Außerdem wird jedes Thema durch einen Block an Multiple-Choice Aufgaben und Hin
 Das Manuskript ist in der Datei `statwiwi.pdf` enthalten, der Source-Code in `statwiwi.tex`.  
 Die verwendeten Grafiken befinden sich im Ordner `figures`, der R-Code zu deren Reproduktion im Ordner `code`. 
 
+_Update (11.11.20):_ Lösungen zu den ersten zwölf Kapiteln sind in der Datei `solutions.pdf` (Source-Code in `solutions.tex`) verfügbar.
+
 ## Disclaimer
 Dieses Manuskript ist explizit __kein__ Teil der offiziellen Vorlesungsunterlagen für dieses Fach.  
 Für Fehler wird keine Haftung übernommen.

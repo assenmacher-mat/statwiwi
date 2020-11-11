@@ -1,0 +1,846 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{stmaryrd}
+\usepackage{subfig}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{floatrow}
+\usepackage{minted}
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{stackengine}
+\usepackage{scalerel}
+\usepackage{xcolor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Custom definitions
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclareMathOperator*{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\simtext}[1]{\ensuremath{\stackrel{\text{#1}}{\sim}}}
+\newcommand\myeq{\stackrel{\mathclap{\normalfont\mbox{D}}}{=}}
+\newtheorem{thm}{Hypothesis}
+\newtheorem{lem}[thm]{Result}
+
+\definecolor{bg}{rgb}{0.98,0.98,0.98}
+\floatsetup[listing]{capposition=bottom}    
+
+\def\boxitem#1{\setbox0=\vbox{#1}{\centering\makebox[0pt]{%
+  \fboxrule=2pt\color{mLightBrown}\fbox{\hspace{\leftmargini}\color{black}\box0}}\par}}
+
+\newenvironment{longlisting}{\captionsetup{type=listing}}{}
+
+\setlength{\columnsep}{0.2cm}
+
+\newcommand{\RomNum}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+\def\boxitem#1{\setbox0=\vbox{#1}{\centering\makebox[0pt]{%
+  \fboxrule=2pt\color{mLightBrown}\fbox{\hspace{\leftmargini}\color{black}\box0}}\par}}
+
+\newcommand\dangersign[1][2ex]{%
+  \renewcommand\stacktype{L}%
+  \scaleto{\stackon[1.3pt]{\color{red}$\triangle$}{\tiny !}}{#1}%
+}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\linespread{1.5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{%
+  \large Wiederholung, Ergänzung, Erklärung \& Intuition:\\
+  \Large Statistik I \& II für Studierende der Wirtschaftswissenschaften\\
+  \large (Ludwig-Maximilians-Universität München)
+}
+\date{\textbf{Stand:} \today}
+\author{\textbf{Autoren:}\\ 
+Matthias Aßenmacher\thanks{Institut für Statistik, LMU München; Kontakt bei Fragen \& Anregungen: \url{matthias@stat.uni-muenchen.de}},\\
+Ann-Kathrin Köpple\thanks{Studentische Hilfskraft (SoSe20), Institut für Statistik, LMU München},\\
+Christoph Luther\thanks{Studentische Hilfskraft (WiSe 18/19 - SoSe 20), Institut für Statistik, LMU München},\\
+Patricia Haro\thanks{Studentische Hilfskraft (WiSe 18/19 - WiSe 19/20), Institut für Statistik, LMU München},\\
+Maximilian Mandl\thanks{Institut für medizinische Informationsverarbeitung, Biometrie und Epidemiologie, LMU München\vspace{.25cm}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\blfootnote{
+\hspace{-0.75cm} 
+\textit{\small 
+This work is licensed under a Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)\\          
+License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
+}
+
+\noindent Dieses Dokument enthält die Lösungen zu den Beispielaufgaben.
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\hspace{0pt}
+\vfill
+\begin{center}
+    {\Huge Statistik I}
+\end{center}
+\vfill
+\hspace{0pt}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Grundbegriffe, Skalenniveaus, Datenerhebung}
+
+\noindent (Noch) keine Aufgaben enthalten
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Häufigkeitsverteilungen, (univariate) grafische Darstellung}
+
+\noindent (Noch) keine Aufgaben enthalten
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lagemaße}
+
+\subsection{Aufgaben}
+
+\paragraph{1. Unterschiede zwischen Mittelwert und Median?}
+
+\begin{itemize}
+    \item[a)] Mittelwert ist robuster ggü. Ausreißern \hfill $\square$
+    \item[b)] Median ist robuster ggü. Ausreißern   \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Keine \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Der Median ..}
+
+\begin{itemize}
+    \item[a)] .. liegt immer genau in der Mitte der Box. \hfill $\square$
+    \item[b)] .. entspricht dem 50\%-Quantil. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] .. entspricht dem 2. Quartil. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] .. ist wichtig dafür, zu berechnen wann ein Wert ein Ausreißer ist. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche Mittelung ist geeignet, um den durchschnittlichen Anstieg der Transferausgaben in der Fußballbundesliga zu ermitteln?}
+
+\begin{itemize}
+    \item[a)] Arithmetisches Mittel \hfill $\square$
+    \item[b)] Geometrisches Mittel \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Harmonisches Mittel \hfill $\square$
+    \item[d)] Alle drei machen Sinn \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Streuungsmaße}
+
+\subsection{Aufgaben}
+
+\paragraph{1. Bei welcher Maßzahl werden hohe Abweichungen vom Mittelwert stärker gewichtet?}
+
+\begin{itemize}
+    \item[a)] MAD \hfill $\square$
+    \item[b)] Varianz   \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Bei beiden gleich stark \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen zur Streuungszerlegung sind wahr?}
+
+\begin{itemize}
+    \item[a)] Die Varianz innerhalb der Gruppen ist immer größer als zwischen den Gruppen. \hfill $\square$
+    \item[b)] Man kann die Varianz innerhalb und zwischen den Gruppen einfach addieren\\um die Gesamtvarianz zu erhalten. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Es gibt Sonderfälle, bei denen die Streuung zwischen den Gruppen der\\Gesamtstreuung entspricht. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Es muss immer eine Streuung innerhalb der Gruppen vorliegen. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Der Verschiebungssatz ..}
+
+\begin{itemize}
+    \item[a)] .. erleichtert die Berechnung des arithmetischen Mittels. \hfill $\square$
+    \item[b)] .. kann auch bei gruppierten Daten verwendet werden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] .. dient zur Berechnung des arithmetischen Mittels der quadrierten Daten. \hfill $\square$
+    \item[d)] .. benötigt das arithmetische Mittel der quadrierten Daten. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{4. Welche der folgenden Aussagen zum Variationskoeffizienten sind wahr?}
+
+\begin{itemize}
+    \item[a)] Der Variationskoeffizient ermöglicht den Vergleich von Streuungen von Merkmalen,\\die in verschiedenen Einheiten gemessen werden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Der Variationskoeffizient ermöglicht den Vergleich von Streuungen von Merkmalen,\\die in verschiedenen Größenordnungen liegen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Für die Berechnung des Variationskoeffizienten müssen beide Merkmale in der gleichen\\Einheit vorliegen. \hfill $\square$
+    \item[d)] Zur Berechnung des Variationskoeffizienten benötigt man den Median. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Konzentrationsmaße}\label{sec:konz}
+
+\subsection{Aufgaben}
+
+\paragraph{1. Welche Aussagen bzgl. Gini \& Lorenzkurve sind wahr?}
+
+\begin{itemize}
+    \item[a)] Die absolute Merkmalssumme ist unerheblich für den Gini. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Höherer Gini bedeutet (global) steilere Lorenzkurve. \hfill $\square$
+    \item[c)] Der Gini ist uneingeschränkt geeignet um die Konzentration in zwei Gruppen\\zu vergleichen. \hfill $\square$
+    \item[d)] Erhalten alle Merkmalsträger dieselbe prozentuale Steigerung ihres (absoluten)\\Teils der Merkmalssumme, so verändert sich der Gini nicht. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen bzgl. des Herfindahl-Index sind wahr?}
+
+\begin{itemize}
+    \item[a)] Der Herfindahl-Index ist uneingeschränkt geeignet um die Konzentration in zwei\\Gruppen zu vergleichen. \hfill $\square$
+    \item[b)] Falls sich die Merkmalssumme ändert, können definitive Aussagen über der Änderung\\des Herfindahl-Index getroffen werden. \hfill $\square$
+    \item[c)] Falls sich die Verteilung Merkmalssumme ändert, können definitive Aussagen über der\\Änderung des Herfindahl-Index getroffen werden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Höherer Herfindahl-Index bedeutet ungleichere Verteilung. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{3. Der Gini für gruppierte Daten ist nur identisch zum "normalen" Gini, falls ..}
+
+\begin{itemize}
+    \item[a)] .. alle Gruppen gleich groß sind. \hfill $\square$
+    \item[b)] .. absolute Gleichverteilung herrscht. \hfill $\square$
+    \item[c)] .. Gleichverteilung innerhalb der Gruppen herrscht. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] .. die Anzahl der Gruppen kleiner als 10 ist. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Zusammenhangsmaße}\label{chap:zshg}
+
+\subsection{Aufgaben}
+
+\paragraph{1. Welche Aussagen bzgl. relativem Risiko \& Odds Ratio sind wahr?}
+
+\begin{itemize}
+    \item[a)] Bei beiden Maßzahlen werden zwei Gruppen verglichen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Der Odds Ratio kann auf Basis von relativen Risiken berechnet werden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Beim relativen Risiko werden zwei Risikomerkmale verglichen. b\hfill $\square$
+    \item[d)] Ein Odds Ratio < 0 bedeutet eine geringere Chance in der ersten Gruppe. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Die unter Unabhängigkeit erwarteten absoluten Häufigkeiten ..}
+
+\begin{itemize}
+    \item[a)] .. müssen stets ganzzahlig sein. \hfill $\square$
+    \item[b)] .. können ohne Kenntnis der gemeinsamen Verteilung berechnet werden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] .. sind identisch zu der bedingten Verteilung. \hfill $\square$
+    \item[d)] .. sind maximal so hoch wie die tatsächlich beobachteten Häufigkeiten. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche der folgenden Aussagen über Zusammenhangsmaße für nominale Merkmale sind wahr?}
+
+\begin{itemize}
+    \item[a)] Mit Cramers $V$ sind Zusammenhänge für Kontingenztafeln von verschiedener Dimension\\und mit unterschiedlichem $n$ vergleichbar. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] $\Phi$ besitzt einen kleineren Wertebereich als $\chi^2$. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Um Kontingenztafeln mit dem korrigierten Kontingenzkoeffizienten vergleichen zu\\können muss deren Dimension gleich sein. \hfill $\square$
+    \item[d)] Kein Zusammenhangsmaß für nominale Merkmale kann negative Werte annehmen. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{4. Welche der folgenden Aussagen sind wahr?}
+
+\begin{itemize}
+    \item[a)] Rang-basierte Zusammenhangsmaße sind bei metrischen Merkmalen nicht anwendbar. \hfill $\square$
+    \item[b)] Das Prinzip der Kon-/Diskordanz kann auch bei nominalen Merkmalen angewendet\\werden. \hfill $\square$
+    \item[c)] Zusammenhangsmaße für nominale Merkmale können nicht bei ordinalen oder\\metrischen Merkmalen verwendet werden. \hfill $\square$
+    \item[d)] Zusammenhangsmaße für nominale Merkmale können keine Richtung des\\Zusammenhangs angeben. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{5. Bindungen in $Y$ ..}
+
+\begin{itemize}
+    \item[a)] .. sprechen für einen negativen Zusammenhang. \hfill $\square$
+    \item[b)] .. haben keinen Einfluss auf den Wert von $\gamma$. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] .. erhöhen den Wert von Kendalls $\tau_b$. \hfill $\square$
+    \item[d)] .. haben einen Einfluss auf den Wert von Kendalls/Stuarts $\tau_c$. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lineare Einfachregression}\label{chap:linreg}
+
+\subsection{Aufgaben}
+
+\paragraph{1. Welche der folgenden Aussagen sind wahr?}
+
+\begin{itemize}
+    \item[a)] Regressionskoeffizient \& Korrelationskoeffizient haben die gleiche Aussagekraft. \hfill $\square$
+    \item[b)] Man kann bereits aus dem Korrelationskoeffizienten auf das Vorzeichen des\\Regressionskoeffizienten schließen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Höherer Korrelationskoeffizient, bedeutet automatisch auch höherer\\Regressionskoeffizient. \hfill $\square$
+    \item[d)] Sowohl Korrelation als auch Regressionskoeffizient haben einen Wertebereich von -1 bis 1. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. $R^2$ bei der linearen Einfachregression ..}
+
+\begin{itemize}
+    \item[a)] .. ist immer kleiner/gleich dem Korrelationskoeffizienten. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] .. kann Werte von -1 bis 1 annehmen. \hfill $\square$
+    \item[c)] .. beschreibt den Anteil der erklärten Streuung der Zielgröße durch die Einflussgröße. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] .. deutet bei kleinen Werten auf eine eher schlechte Modellgüte hin. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[e)] .. beschreibt den Anteil der erklärten Streuung des Modells. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Was ist bei der Interpretations der geschätzten Koeffizienten im Regressionsmodell wichtig?}
+
+\begin{itemize}
+    \item[a)] Stets nur den Absolutbetrag interpretieren. \hfill $\square$
+    \item[b)] Der Intercept ist der erwartete Wert der Zielgröße wenn die Einflussgröße ihren\\Durchschnittswert annimmt. \hfill $\square$
+    \item[c)] Interpretation des Steigungsparameters pro Einheit. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Der Intercept ist nicht immer sinnvoll interpretierbar. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[e)] Vorhersagen sollte man nur für Werte der Einflussgröße durchführen, die auch so\\(ähnlich) in der Stichprobe vorkommen. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{4. Welche Aussagen bzgl. kategorialen Regressoren sind korrekt?}
+
+\begin{itemize}
+    \item[a)] Sowohl Dummy- als auch Effekt-Kodierung führen zu gleichen Zahl an Dummy-Variaben. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Die Interpretation der geschätzten Koeffizienten ist bei Dummy- \& Effekt\\-Kodierung identisch. \hfill $\square$
+    \item[c)] Der Intercept ist weder bei Dummy- noch bei Effekt-Kodierung interpretierbar. \hfill $\square$
+    \item[d)] Bei einer höheren Anzahl an verschiedenen Kategorien ist die Dummy-Kodierung\\sinnvoller. \hfill $\square$
+\end{itemize}
+
+\paragraph{5. Interpretation des Intercepts bei Dummy-Kodierung:}
+
+\begin{itemize}
+    \item[a)] Der Intercept entspricht dem erwarteten Wert der Zielgröße bei Vorliegen der\\Referenzkategorie. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Eine Änderung der Referenzkategorie hat eine Änderung der geschätzten Koeffizienten\\für alle Dummy-Variablen zur Folge. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Eine Änderung der Referenzkategorie hat (potenziell) eine Änderung der\\Anpassungsgüte ($R^2$) zur Folge. \hfill $\square$
+    \item[d)] Die Referenzkategorie ist immer auf natürliche Art \& Weise vorgegeben. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Indizes}\label{chap:index}
+
+\subsection{Aufgaben}
+
+\paragraph{1. Welche der folgenden Aussagen über Indexzahlen sind wahr?}
+
+\begin{itemize}
+    \item[a)] Zur Umbasierung (Veränderung Basisjahr) werden lediglich die Indexzahlen und nicht\\die Rohdaten benötigt. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Zur Verkettung von Indexzahlen werden die Rohdaten benötigt \hfill $\square$
+    \item[c)] Zur Umbasierung müssen sich alle bereits vorliegenden Indexzahlen auf das\\gleiche Basisjahr beziehen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Indexzahlen werden für Mengen und Preise getrennt berechnet. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen bzgl. der verschiedenen Indizes sind wahr?}
+
+\begin{itemize}
+    \item[a)] Der Preisindex nach Laspeyres ist stets größer als der nach Paasche. \hfill $\square$
+    \item[b)] Sind die Mengen in Berichts- und Basisperiode gleich, so sind die Preisindizes nach\\Laspeyres und Paasche ebenfalls identisch. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Bei konstanten Preisen sind sowohl der Mengenindex nach Laspeyres als auch der\\nach Paasche gleich 1. \hfill $\square$
+    \item[d)] Der Mengenindex nach Paasche gewichtet die Mengen mit den Umsatzanteilen aus\\der Berichtsperiode. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche Aussagen bzgl. "Spezieller Probleme" sind wahr?}
+
+\begin{itemize}
+    \item[a)] Bei der Substitution muss für mindestens eine Periode der Preis für beide Güter\\beobachtet werden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Bei der Erweiterung muss für das neue Produkt auch eine Menge in der Basisperiode\\bekannt sein. \hfill $\square$
+    \item[c)] Bei der Substitution werden die Preissteigerungen des neuen Produkts einfach auf das\\alte übertragen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Subindizes können durch Gewichtung mit Mengenanteilen zu einem Gesamtindex\\kombiniert werden. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Zeitreihen}
+
+\subsection{Aufgaben}
+
+\paragraph{1. Welche Aussagen bzgl. gleitender Durchschnitte sind wahr?}
+
+\begin{itemize}
+    \item[a)] Durch k wird festgelegt, ob der die Ordnung der gl. Durchschnitt gerade oder ungerade\\ist. \hfill $\square$
+    \item[b)] Bei einem gl. Durchschnitt ungerader Ordnung fallen am Rand der Zeitreihe mehr\\Werte weg als bei gerader Ordnung. \hfill $\square$
+    \item[c)] Je höher die Ordnung, desto mehr Werte fallen am Rand der Zeitreihe weg. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Bei einem gl. Durchschnitt gerader Ordnung gehen (bei gleichem k) mehr Werte\\in die Berechnung mit ein als bei ungerader Ordnung. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen bzgl. des Zeitreihenmodells sind wahr?}
+
+\begin{itemize}
+    \item[a)] Mit gleitenden Durchschnitten kann die Trendkomponente geschätzt werden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Mit gleitenden Durchschnitten kann die Saisonkomponente geschätzt werden. \hfill $\square$
+    \item[c)] Jede Zeitreihe besitzt eine Trend- und eine Saisonkomponente. \hfill $\square$
+    \item[d)] Welche Ordnung für die gleitenden Durchschnitte gewählt wird, hängt von der\\Saisonkomponente ab. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{R-Einführung Teil I}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Kombinatorik}
+
+\subsection{Aufgaben}
+\paragraph{1. Welche Aussagen bzgl. Permutationen sind wahr?}
+\begin{itemize}
+    \item[a)] Die Reihenfolge der Elemente kann eine Rolle spielen, muss es aber nicht. \hfill $\square$
+    \item[b)] Permutation wird eine mögliche Anordnung von Elementen in einer bestimmten\\ Reihenfolge genannt.  \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Die Anzahl der Permutationen ohne Reihenfolge und ohne Wiederholung berechnet\\ man mit $n!$ \hfill $\square$
+    \item[d)] Die Anzahl der möglichen Permutation mit Wiederholung ist größer als ohne\\ Wiederholungen. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen bzgl. Kombinationen sind richtig?}
+\begin{itemize}
+    \item [a)] Die Betrachtung \textit{ohne Wiederholung und ohne Reihenfolge} hat eine größere Anzahl \\ an Kombinationsmöglichkeiten als die Betrachtung \textit{mit Wiederholung und ohne \\Reihenfolge.} \hfill $\square$
+    \item[b)] Wenn die Reihenfolge bei der Kombination mit einbezogen werden soll, dann wird die \\Anzahl an möglichen Kombinationen größer.\hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Bei Betrachtung von Kombinationen \textit{ohne Wiederholung und mit Reihenfolge} erhält\\ man eine höhere Anzahl an Möglichkeiten als bei der Permutation ohne Wiederholung \hfill $\square$
+    \item[d)] Bei der Kombination mit Wiederholung und mit Reihenfolge gibt es auf dem \\"ersten Platz" $n$ verschiedene Möglichkeiten, auf dem "zweiten Platz" $n-1$, usw. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Ein Zahlenschloss besteht aus 4 Rädern mit den Zahlen von 0 bis 9. Welche Aussage ist richtig?}
+\begin{itemize}
+    \item[a)] Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Permutation mit Wiederholung.\hfill $\square$
+    \item[b)] Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination mit Wiederholung und mit Reihenfolge.\hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination mit Wiederholung und ohne Reihenfolge.\hfill $\square$
+    \item[d)] Um die Anzahl der möglichen Kombinationen zu berechnen benutzt man die\\ Kombination ohne Wiederholung und ohne Reihenfolge.\hfill $\square$
+    \item[e)] Es gibt 10.000 verschiedene Kombinationen.\hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{4. Bei einem Basketballspiel laufen nacheinander 5 Spieler auf das Spielfeld. Man berechnet die Anzahl der Möglichkeiten für das Einlaufen mit ...}
+\begin{itemize}
+    \item[a)] der Kombination ohne Wiederholung und mit Reihenfolge.\hfill $\square$
+    \item[b)] der Permutation ohne Wiederholung.\hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] der Permutation mit Wiederholung.\hfill $\square$
+    \item[d)] der Kombination ohne Wiederholung und ohne Reihenfolge.\hfill $\square$
+    \item[e)] der Kombination mit Wiederholung und mit Reihenfolge.\hfill $\square$
+\end{itemize}
+
+\paragraph{5. Bei einem Rosenzüchter gibt es 14 verschiedene Rosenarten und man möchte ein Strauß mit 20 Rosen. Wie viele unterschiedliche mögliche Sträuße gibt es?}
+\begin{itemize}
+    \item[a)] $2,432902008 \times 10^{18}$ \hfill $\square$
+    \item[b)] $5,73166440 \times 10^8$ \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] $8,366825543 \times 10^{22}$ \hfill $\square$
+    \item[d)] $8,71782912 \times 10^{10}$ \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Wahrscheinlichkeitsrechnung}\label{chap:wkeit}
+
+\subsection{Aufgaben}
+\paragraph{1. Eine Mutter kauft für den Kindergeburtstag 20 Luftballons, 10 blaue und 10 rote. Welche Aussagen sind richtig?}
+\begin{itemize}
+    \item[a)] Ein sicheres Ereignis wäre entweder die Farbe blau oder rot als erstes aufzublasen.\hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Ein unmögliches Ereignis wäre die Farbe gelb als erstes auszublasen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Das Komplementärereignis $\bar A$ von Ereignis $A$ "\textit{Einen blaue Luftballon als erstes \\aufblasen}" ist "\textit{Keinen Luftballon aufblasen}". \hfill  $\square$
+    \item[d)] Bei der Frage, welchen Luftballon die Mutter als erstes aufbläst, gibt es hier zwei\\ Elementarereignisse. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[e)] Das Ereignis "\textit{Blauen Luftballon als erstes aufblasen}" ist ein Elementarereignis. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen zur Laplaceschen Wahrscheinlichkeit sind richtig?}
+\begin{itemize}
+    \item [a)] Bei der Laplaceschen Wahrscheinlichkeit kann der Ereignisraum unendlich sein,\\ solange die Ereignisse gleich wahrscheinlich sind. \hfill $\square$
+    \item[b)] Die einzige Voraussetzung für ein Laplacesche Wahrscheinlichkeit ist, dass \\die Ereignisse gleich wahrscheinlich sind.\hfill $\square$
+    \item[c)] Mit der Anzahl der für $A$ günstigen Fälle und der Anzahl aller möglichen\\ Ereignisse berechnet man die Laplacesche Wahrscheinlichkeit. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Bei der Laplaceschen Wahrscheinlichkeit muss ein Zufallsexperiment zugrunde liegen. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{3. Welche Aussagen zur Wahrscheinlichkeitsrechnung sind wahr?} 
+\begin{itemize}
+    \item[a)] Die Wahrscheinlichkeit eines unmöglichen Ereignisses ist die leere Menge. \hfill $\square$
+    \item[b)] Die Wahrscheinlichkeit der Schnittmenge zweier disjunkter Ereignisse ist die Summe\\ der Einzelwahrscheinlichkeiten abzüglich der  Schnittmenge der beiden Ereignisse.\hfill $\square$
+    \item[c)] Wenn man die Wahrscheinlichkeit des Ereignisses $A$ kennt, kann man auch die\\ Wahrscheinlichkeit des Komplementärereignisses $\bar A$ berechnen.\hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Die Wahrscheinlichkeit eines Ereignisses $A$ kann Zahlen zwischen -1 und 1 annehmen.\hfill $\square$
+    \item[e)] Ist $B$ eine Teilmenge von $A$, so ist die Wahrscheinlichkeit von $B$ kleiner oder \\gleich der Wahrscheinlichkeit von $A$. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{itemize}
+
+\paragraph{4. Welche Aussagen zur bedingten Wahrscheinlichkeit sind wahr?}
+\begin{itemize}
+    \item[a)] Den Satz der totalen Wahrscheinlichkeit verwendet man, wenn man die \\unbedingte Wahrscheinlichkeit eines Ereignisses berechnen möchte. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Man kann den Satz von Bayes verwenden, um eine bedingte Wahrscheinlichkeit\\ zu berechnen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Die bedingte Wahrscheinlichkeit $P(E|G)$ bedeutet die Wahrscheinlichkeit des\\ Ereignisses $E$, unter der Bedingung, dass das Ereignis $G$ nicht eintgereten ist. \hfill $\square$
+    \item[d)] Wenn die bedingte Wahrscheinlichkeit $P(A|B)$ ungleich der bedingten\\Wahrscheinlichkeit $P(B|A)$, dann sind $A$ \& $B$ disjunkt. \hfill $\square$
+\end{itemize}
+
+\paragraph{5.Welche Aussagen zur stochastischen Unabhängigkeit sind wahr?}
+\begin{itemize}
+    \item[a)] Wenn die bedingte Wahrscheinlichkeit $P(A|B)$ ungleich der bedingten\\Wahrscheinlichkeit $P(B|A)$, dann sind $A$ \& $B$ unabhängig. \hfill $\square$
+    \item[b)] Ist die bedingte Wahrscheinlichkeit $P(B|G)$ ungleich der Wahrscheinlichkeit $P(B|\bar G)$, \\dann liegt keine stochastische Unabhängigkeit zwischen B und G vor. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Ist die bedingte Wahrscheinlichkeit $P(B|G)$ ungleich der Wahrscheinlichkeit $P(B)$, \\dann liegt keine stochastische Unabhängigkeit zwischen $B$ und $G$ vor. \hfill $\square$
+    \item[d)] Liegt stochastische Unabhängigkeit vor, so berechnet man die gemeinsame\\ Wahrscheinlichkeit als die Summe der beiden Einzelwahrscheinlichkeiten. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Zufallsvariablen}\label{chap:zv}
+
+\subsection{Aufgaben}
+\paragraph{Welche Aussagen zu den Zufallsvariablen sind richtig?}
+\begin{itemize}
+    \item[a)] Der fünffache Münzwurf ist eine diskrete Zufallsvariable. \hfill $\square$
+    \item[b)] Mit Zufallsvariablen können Ergebnisse von Zufallsexperimenten beschrieben werden,\\ die noch nicht durchgeführt wurden. \hfill $\square$
+    \item[c)] Der Träger der Zufallsvariable Würfelwurf eines 24-seitigen Würfels ist\\ $T = \{1, 2, 3, \hdots, 24\}$ \hfill $\square$
+    \item[d)] Eine stetige Zufallsvariable hat abzählbar endlich viele mögliche Ergebnisse. \hfill $\square$
+\end{itemize}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Spezielle Verteilungen} \label{sec:Distr}
+
+\subsubsection{Aufgaben I}
+\paragraph{1. Welche Aussagen bzgl. der Gleichverteilung sind richtig? }
+\begin{itemize}
+    \item[a)] Bei der diskreten Gleichverteilung muss es immer zwei mögliche Ausgänge geben, die\\ die gleiche Wahrscheinlichkeit haben. \hfill $\square$
+    \item[b)] Die Augenzahl bei dem Wurf eines Würfels mit 88 Seiten folgt einer Gleichverteilung. \hfill $\square$
+    \item[c)] Das Ergebnis des Wurfs einer unfairen Münzwurf mit Kopf und Zahl ist bernoulliverteilt. \hfill $\square$
+    \item[d)] Das Ergebnis des Wurfs einer unfairen Münzwurf mit Kopf und Zahl ist gleichverteilt. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen bzgl. der Bernoulliverteilung und Binomialverteilung sind wahr?}
+\begin{itemize}
+    \item[a)] Die Binomialverteilung besteht aus $n$ abhängigen und identische Bernoulliexperimenten. \hfill $\square$
+    \item[b)] Der Erwartungswert der Bernoulliverteilung ist die Wahrscheinlichkeit, dass das\\ Ereignis eintritt, selbst. \hfill $\square$
+    \item[c)] Bei der Bernoulliverteilung und bei der Binomialverteilung gibt es jeweils nur zwei\\ mögliche Ergebnisse. \hfill $\square$
+    \item[d)] Die Verteilungsfunktion der Binomialverteilung geht von 0 bis 1. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Gegeben ist die Rechnung $P(X=4) = 0,3 \cdot 0,7^3$ Welche Aussagen sind wahr?}
+\begin{itemize}
+    \item[a)] Hierbei handelt es sich um die geometrische Verteilung. \hfill $\square$
+    \item[b)] Der Erwartungswert der Verteilung beträgt hier ca. 3,33 \hfill $\square$
+    \item[c)] Mit dieser Gleichung berechnet man die Wahrscheinlichkeit, dass das gewünschte\\ Ereignis bei der dritten Wiederholung eintritt. \hfill $\square$
+    \item[d)] Die Wahrscheinlichkeit für das Ereignis von Interesse liegt bei 0,7. \hfill $\square$
+\end{itemize}
+    
+\paragraph{4. Welche Aussagen bezüglich der geometrischen und hypergeometrischen Verteilung sind wahr?}
+\begin{itemize}
+    \item[a)] Je größer die Wahrscheinlichkeit eines Ereignisses ist, desto länger braucht es, \\ bis es zum ersten Mal auftritt.\hfill $\square$
+    \item[b)] Die hypergeom. Verteilung verwendet man, wenn man wissen will, mit welcher Wahrschein-\\lichkeit ein Ereignis nach wie vielen Wiederholungen eines Zufallsexperiments eintritt. \hfill $\square$
+    \item[c)] Die hypergeometrische Verteilung berechnet die Wahrscheinlichkeit unter der Voraus-\\setzung, dass die gezogenen Elemente wieder zurückgelegt werden. \hfill $\square$
+\end{itemize}
+    
+\paragraph{5. Welche Aussagen zur Poissonverteilung sind richtig?}
+\begin{itemize}
+    \item[a)] Sie eignet sich zur Berechnung der Wahrscheinlichkeit für das Eintreten (ja/nein)\\eines Ereignisses. \hfill $\square$
+    \item[b)] Das $\lambda$ muss größer gleich 0 sein. \hfill $\square$
+    \item[c)] Die Varianz und der Erwartungswert sind immer gleich groß. \hfill $\square$
+    \item[d)] Das $\lambda$ gibt die Intensitätsrate an, das heißt je größer $\lambda$ ist, desto häufiger wird \\das Ereignis wahrscheinlich auftreten. \hfill $\square$
+\end{itemize}
+
+\paragraph{6. Welche Aussagen zur Multinomialverteilung sind richtig?}
+\begin{itemize}
+    \item[a)] Bei der Multinomialverteilung ist es wichtig zu wissen, wie viele Einheiten insgesamt\\ vorhanden sind. Also wie groß n ist, da wir nicht mit zurücklegen ziehen. \hfill $\square$
+    \item[b)] Die Multinomialverteilung ist die Verallgemeinerung der Bernoulliverteilung mit\\ mindestens zwei möglichen Ereignissen.\hfill $\square$
+    \item[c)] $k$ gibt Anzahl der verschiedenen möglichen Ergebnisse an. \hfill $\square$
+    \item[d)] Alle $k$ Wahrscheinlichkeiten müssen sich immer zu 1 aufaddieren. \hfill $\square$
+\end{itemize}
+
+\clearpage
+
+\subsubsection{Aufgaben II}
+\paragraph{1.Welche Aussagen zur stetigen Gleichverteilung sind richtig?}
+\begin{itemize}
+    \item[a)] Jede mögliche Ausprägung kommt mit einer Wahrscheinlichkeit von 0 vor. \hfill $\square$
+    \item[b)] Der Unterschied zwischen der stetigen und diskreten Gleichverteilung ist, dass die\\ stetige Gleichverteilung unendlich verschiedene Werte annehmen kann. \hfill $\square$
+    \item[c)] Die Dichtefunktion ist das Pendant zur Verteilungsfunktion.
+    \item[d)] Die Dichtefunktion bei der stetigen Gleichverteilung ist eine monoton steigende Gerade. \hfill $\square$
+    \item[e)] Die Dichtefunktion ($X \sim U(2,6)$) verläuft auf der Höhe 0,25. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen zur Exponentialverteilung sind richtig?}
+\begin{itemize}
+    \item[a)] Die zukünftige Wartezeit ist abhängig von der davor schon verstrichenen Zeit. \hfill $\square$
+    \item[b)] Bei der Exponential-, wie auch der geometrischen Verteilung geht es darum, wann das\\ gewünschte Ereignis zum ersten Mal auftritt. \hfill $\square$
+    \item[c)] Die Exponentialverteilung ist nur für $X \geq 0$ definiert. \hfill $\square$
+    \item[d)] Ein zentraler Begriff bei der Exponentialverteilung ist die Gedächtnislosigkeit. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche Aussagen zur Normalverteilung / Chi-Quadrat-Verteilung sind wahr?}
+\begin{itemize}
+    \item[a)] Die Dichtefunktion ist bei beiden symmetrisch um den Erwartungswert. \hfill $\square$
+    \item[b)] Der Durchschnitt von i.i.d. normalverteilten Zufallsvariablen ist normalverteilt.\hfill $\square$ 
+    \item[c)] Um die Dichtefunktion der Normalverteilung aufzustellen benötigt man nur $\sigma$ und $\mu$. \hfill $\square$
+    \item[d)] Die Verteilungsfunktion der Normalverteilung hat bei $\mu$ ihr Maximum. \hfill $\square$
+    \item[e)] Für die Chi-Quadrat-Verteilung werden die Quadrate von mehreren\\ standardnormalverteilten Zufallsvariablen gebildet und aufsummiert. \hfill $\square$
+\end{itemize}
+
+\paragraph{4. Welche Aussagen über die t-Verteilung sind richtig?}
+\begin{itemize}
+    \item[a)] Die t-Verteilung kann immer durch die Standardnormalverteilung approximiert werden. \hfill $\square$
+    \item[b)] Je größer die Stichprobe, desto näher kommt sie der Standardnormalverteilung. \hfill $\square$
+    \item[c)] Die Wahrscheinlichkeitsmasse an den Rändern ist bei der t-Verteilung geringer \\als bei der Standardnormalverteilung. \hfill $\square$
+    \item[d)] Je weniger Freiheitsgrade, desto ähnlicher ist die t-Verteilung der Standard-\\normalverteilung. \hfill $\square$
+\end{itemize}
+
+\clearpage
+
+\subsubsection{Aufgaben III}
+\paragraph{1. Welche Aussagen sind richtig?}
+\begin{itemize}
+    \item[a)] Der Träger der diskreten Gleichverteilung eines Münzwurfs sind Kopf und Zahl. \hfill $\square$
+    \item[b)] Eine Verteilungsfunktion geht immer von -1 bis 1. \hfill $\square$
+    \item[c)] Der Wert einer Verteilungsfunktion an der Stelle $x=5$ ist $P(X\leq 5)$.\hfill $\square$
+    \item[d)] Die Werte der Verteilungsfunktion sind die kumulierten Wahrscheinlichkeiten. \hfill $\square$
+    \item[e)] Die Wahrscheinlichkeitsfunktion ist bei diskreten Zufallsvariablen das Gleiche wie \\die Verteilungsfunktion bei stetigen Zufallsvariablen. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen sind richtig?}
+\begin{itemize}
+    \item[a)] Die Verteilungsfunktion ist monoton steigend. \hfill $\square$
+    \item[b)] Die Verteilungsfunktionen von stetigen Zufallsvariablen sind Treppenfunktionen \\im Gegensatz zu den diskreten Zufallsvariablen. \hfill $\square$
+    \item[c)] Eine Eigenschaft der diskreten Verteilungsfunktion ist, dass die Fläche unterhalb \\der Funktion immer 1 ergibt. \hfill $\square$
+    \item[d)] Die Summe aller Einzelwahrscheinlichkeiten bei einer stetigen Zufallsvariable ergibt 1. \hfill $\square$
+    \item[e)] Eine Eigenschaft der Dichtefunktion einer stetigen ZV ist, dass die Funktionswerte\\immer größer gleich 0 sind. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche Aussagen sind richtig?}
+\begin{itemize}
+    \item[a)] Um die Verteilungsfunktion zu erhalten, leitet man die Dichtefunktion ab .\hfill $\square$
+    \item[b)] Die Fläche unter der Dichtefunktion ist die Quantilsfunktion. \hfill $\square$
+    \item[c)] Die Quantilsfunktion ist die Umkehrfunktion der Verteilungsfunktion. \hfill $\square$
+    \item[d)] Die Ableitung der Verteilungsfunktion ist die Dichte. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Grenzwertsätze und Approximationen von Verteilungen} \label{sec:GWSapprox}
+
+\subsection{Aufgaben}
+\paragraph{1.Welche Aussagen bzgl.den Grenzwertsätzen ist wahr?}
+\begin{itemize}
+    \item[a)] Je größer der Stichprobenumfang, desto größer wird der Einfluss von Ausreißern. \hfill $\square$
+    \item[b)] Mit zunehmendem Stichprobenumfang nähert sich die beobachtete relative Häufigkeit\\ der theoretischen Wahrscheinlichkeit an. \hfill $\square$
+    \item[c)] Egal welche Verteilung vorliegt, nähert sich der Mittelwert von i.i.d. Zufallsvariablen\\ bei zunehmenden Stichprobenumfang der Normalverteilung an. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen bzgl. Approximationen sind richtig?}
+\begin{itemize}
+    \item[a)] Die hypergeom. Verteilung kann durch die Normalverteilung approximiert werden. \hfill $\square$
+    \item[b)] Bei der Approximation der Poissonverteilung durch die Normalverteilung wird das $\lambda$\\ für das $\mu$ und das $\sigma$ einfach übernommen. \hfill $\square$
+    \item[c)] Die Poissonverteilung darf immer durch die Normalverteilung approximiert werden. \hfill $\square$
+    \item[d)] Die hypergeometrische Verteilung H(9,120,40) darf durch die Binomialverteilung \\approximiert werden. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Schätzen}\label{chap:schaetzen}
+
+\subsection{Aufgaben}
+\paragraph{Welche Aussagen ist bzgl. Punkt- \& Intervallschätzer sind richtig?}
+\begin{itemize}
+    \item[a)] Punktschätzer sind immer richtig und wahrheitsgetreu. \hfill $\square$
+    \item[b)] Ein Konfidenzintervall gibt den Bereich vor, in dem der wahre Parameter immer \\zu finden ist. \hfill $\square$
+    \item[c)] Man kann die Länge eines Intervalls variieren, je nach dem mit welcher\\ Wahrscheinlichkeit der wahre Parameter durch das Intervall überdeckt werden soll. \hfill $\square$
+    \item[d)] Die Länge eines Intervalls hängt von $\alpha$, $\sigma^2$, der Verteilung und dem Stichproben-\\umfang ab. \hfill $\square$
+    \item[e)] Ein 99$\%$-KI besagt, dass zu 99$\%$ mein Schätzer richtig ist. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 17
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Testtheorie}\label{sec:Tests}
+
+\subsection{Aufgaben}
+\paragraph{1. Welche Aussagen zum p-Wert sind richtig?}
+\begin{itemize}
+    \item[a)] Der p-Wert gibt die Wahrscheinlichkeit an, mit der der beobachtete Wert richtig ist. \hfill $\square$
+    \item[b)] Der p-Wert gibt $P(X)$ an. \hfill $\square$
+    \item[c)] Die Hypothese, die man beweisen will befindet sich in der Alternativhypothese $H_1$. \hfill $\square$
+    \item[d)] Wenn der p-Wert kleiner als $\alpha$ ist, dann lehnt man $H_0$ ab. \hfill $\square$
+    \item[e)] Bei einem beidseitigen Test gibt es immer zwei Ablehnbereiche. \hfill $\square$
+    \item[f)] Der p-Wert gibt uns darüber Auskunft, mit welcher Wahrscheinlichkeit unser Wert \\oder ein Wert, der noch weiter von der Nullhypothese entfernt ist, auftritt, unter der\\ Annahme, dass $H_0$ stimmt. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen über die Hypothesentests sind wahr?}
+\begin{itemize}
+    \item[a)] Mit Hypothesentest kann man entscheiden, ob eine Nullhypothese richtig ist. \hfill $\square$
+    \item[b)] Bei einem einfachen t-Test gibt es immer nur einen Ablehnbereich. \hfill $\square$
+    \item[c)] Der Unterschied zwischen dem einfachen Gauss-Test und einfachen t-Test ist die\\ unbekannte (wahre) Varianz beim t-Test. \hfill $\square$
+    \item[d)] Mit dem approximativen einfachen Binomialtest überprüft man, ob ein $\mu$ signifikant\\ von $\mu_0$ abweicht, also im Ablehnbereich liegt oder nicht. \hfill $\square$
+    \item[e)] Die Teststatistik beim Gauss-Test ist im Gegensatz zum t-Test normalverteilt. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche Aussagen über die Hypothesentests sind wahr? }
+\begin{itemize}
+    \item[a)] Mit dem F-Test kann man das Verhältnis von Varianzen zweier unabhängigen\\ Zufallsvariablen testen. \hfill $\square$
+    \item[b)] Beim doppelten Gauss-Test handelt es sich im Gegensatz zum einfachen Gauss-Test\\ um das Verhältnis der Varianzen zweier unabhängiger, normalverteilter ZV. \hfill $\square$
+    \item[c)] Beim doppelten Gauss-Test sind die Varianzen unbekannt. \hfill $\square$
+    \item[d)] Der Unterschied zwischen dem doppelten t-Test und dem Welch-Test ist, dass beim\\ doppelten t-Test die Varianzen bekannt sind und beim Welch-Test diese unbekannt sind. \hfill $\square$
+    \item[e)] Die Besonderheit beim Paired t-Test ist, dass es sich hierbei um einen Test mit zwei\\ abhängigen normalverteilten ZV handelt. \hfill $\square$
+ \end{itemize}
+    
+\paragraph{4. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
+    \item[a)] Mit dem Chi-Quadrat-Anpassungstest kann man testen, ob die Verteilung zweier ZV \\unterschiedlich ist. \hfill $\square$
+    \item[b)] Der Vorteil beim Mann-Whitney-U-Test ist, dass die ZV nicht mehr unbedingt\\ normalverteilt sein müssen. \hfill $\square$
+    \item[c)] Der Kolmogorov-Smirnov-Anpassungstest prüft, ob sich zwei ZV in ihrer Verteilung\\ unterscheiden. \hfill $\square$
+    \item[d)] Beim Chi-Quadrat-Unabhängigkeitstest wird die Unabhängigkeit zweier Merkmale\\ überprüft, indem die beobachteten Häufigkeiten mit den zu erwarteten Häufigkeiten \\ohne Abhängigkeit unter $H_0$ vergleicht.\hfill $\square$
+\end{itemize}   
+  
+ \paragraph{5. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
+    \item[a)] Der Ablehnbereich ist beim Gauss-Test (bei identischem $\alpha$) größer als beim t-Test. \hfill $\square$
+    \item[b)] Beim Gauss-Test liegt etwas mehr Unsicherheit zugrunde als beim t-Test. \hfill $\square$
+    \item[c)] Bei größeren Stichproben nähern sich die Ergebnisse des t-Tests und des Gauss-Tests an. \hfill $\square$
+    \item[d)] Beim Welch-Test sind wir mit unserer Entscheidung ein wenig sicherer als beim \\doppelten t-Test, da wir nur eine unbekannte Varianz schätzen müssen. \hfill $\square$
+ \end{itemize}  
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lineare Regression II}\label{chap:mult-reg}
+
+\subsection{Aufgaben}
+\paragraph{1. Welche Aussagen über die einfache lineare Regression sind wahr?}
+\begin{itemize}
+    \item[a)] Der Erwartungswert der Residuen sollte per Annahme gleich 1 sein. \hfill $\square$
+    \item[b)] Homoskedastizität bedeutet konstante Varianz der Fehlertermen. \hfill $\square$
+    \item[c)] In Statistik II trifft man die Annahme, dass die Fehlerterme eine Zufallsvariable sind. \hfill $\square$
+    \item[d)] In Statistik II kann man keine Schlüsse über die Grundgesamtheit ziehen, da\\ schlussendlich alles nur Annahmen sind und nichts sicher ist. \hfill $\square$
+\end{itemize}
+
+\paragraph{2. Welche Aussagen über die einfache lineare Regression sind wahr?}
+\begin{itemize}
+    \item[a)] Mit steigenden x-Werten, sollte auch die Varianz der Residuen steigen. \hfill $\square$
+    \item[b)] Die angenommene Verteilung der Fehlerterme lautet N(0,$\sigma^2)$. \hfill $\square$
+    \item[c)] Bei der Effektkodierung wählt man im Gegensatz zur Dummykodierung keine\\Referenzkategorie. \hfill $\square$
+    \item[d)] Bei der Effektkodierung nehmen bei Vorliegen der Referenzkategorie alle Dummys\\den Wert -1 an. \hfill $\square$
+\end{itemize}
+
+\paragraph{3. Welche Aussagen bezüglich der multiplen linearen Regression sind richtig?}
+\begin{itemize}
+    \item[a)] Eine Eigenschaft des KQ-Schätzers ist, dass er erwartungstreu ist. \hfill $\square$
+    \item[b)] Bei der Effektkodierung wir eine andere Anzahl an Dummy-Variablen benötigt\\als bei der Dummy-Kodierung. \hfill $\square$
+    \item[c)] Im Falle von $y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4}$ hat die $t$-Verteilung für den\\Signifikanztest 5 Freiheitsgrade. \hfill $\square$
+    \item[d)] $y = \beta_0 + \beta_1 \sqrt{x} + \beta_2 x^2 + \beta_3x^{3}$ ist ein lineares Modell. \hfill $\square$
+\end{itemize}
+
+\paragraph{4. Welche Aussagen bezüglich des Signifikanztest und der KI-Intervalle sind richtig?}
+\begin{itemize}
+    \item[a)] Mit dem Signifikanztest für einen Parameter kann man überprüfen, ob die\\ Nullhypothese signifikant richtig ist. \hfill $\square$
+    \item[b)] Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen\\ hypothetischen Wert bei Berechnung der Teststatistik nicht weiter beachten. \hfill $\square$
+    \item[c)] Das Konfidenzintervall liegt symmetrisch um den Schätzer. \hfill $\square$
+    \item[d)] Wenn $t = -4,8$ ist und $t_{n-p-1),1-\alpha} = 4,5$, dann kann die Nullhypothese\\nicht abgelehnt werden. \hfill $\square$
+    \item[e)] Eine Teststatistik die $t_{194}$-verteilt ist, stammt aus einem Modell mit $n = 200$ und\\6 geschätzten Koeffizienten .\hfill $\square$
+\end{itemize}
+
+\paragraph{5. Welche Aussagen über das Bestimmtheitsmaß und den Overall F-Test sind richtig?}
+\begin{itemize}
+    \item[a)] Wenn die Nullhypothese abgelehnt wird, dann haben alle Regressoren einen\\ statistisch signifikanten Erklärungswert für die Zielvariable $Y$. \hfill $\square$
+    \item[b)] Bei $R^2=1$ spricht man von einer Nullanpassung. \hfill $\square$
+    \item[c)] Bei $R^2=0$ wird die Streuung der Zielgröße vom Regressionsmodell komplett erklärt. \hfill $\square$
+    \item[d)] Ist $R^2=0$, dann wird $H_0$ nicht abgelehnt. \hfill $\square$
+    \item[e)] Ist mein berechneter Wert $f$ negativ, dann wird $H_0$ abgelehnt. \hfill $\square$
+\end{itemize}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  KAPITEL 19
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{R-Einführung Teil II}
+
+\end{document}

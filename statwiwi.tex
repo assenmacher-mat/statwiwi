@@ -869,12 +869,12 @@ Die im vorigen Kapitel erwähnte Fläche $F$, die zwischen dem Graph und der Win
     \item Dieses Produkt wird zum Schluss von 1 abgezogen.
 \end{itemize}
 \begin{align*}
-    G=1-\frac{1}{n}\sum_{i=1}^n n_j \cdot (v_{i-1} + v_i)
+    G=1-\frac{1}{n}\sum_{i=1}^n (v_{i-1} + v_i)
 \end{align*}
 Für gruppierte Daten ändern sich Vorgehen und Formel nicht dramatisch. Der einzige Unterschied zur obigen Formel besteht darin, dass man mit den Gruppengrößen $n_j$ gewichten muss:
 
 \begin{align*}
-    G=1-\frac{1}{n}\sum_{i=1}^n (\tilde v_{i-1} + \tilde v_i)
+    G=1-\frac{1}{n}\sum_{i=1}^n n_j \cdot (\tilde v_{i-1} + \tilde v_i)
 \end{align*}
 
 \noindent Man kann sich das ein bisschen wie bei gewichteten arithmetischen Mittel in Kapitel \ref{sec:arithm} vorstellen, da auch dort Unterschiedlichen Gruppengrößen auf ähnliche Art \& Weise Rechnung getragen wird.\\

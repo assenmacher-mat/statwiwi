@@ -19,11 +19,11 @@
 \usepackage{mathtools}
 \usepackage{xcolor}
 \usepackage{floatrow}
-\usepackage{minted}
+%\usepackage{minted}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
 \usepackage{color}
 \usepackage{multicol}
-\usepackage{stackengine}
-\usepackage{scalerel}
 \usepackage{xcolor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -54,10 +54,10 @@
 \def\boxitem#1{\setbox0=\vbox{#1}{\centering\makebox[0pt]{%
   \fboxrule=2pt\color{mLightBrown}\fbox{\hspace{\leftmargini}\color{black}\box0}}\par}}
 
-\newcommand\dangersign[1][2ex]{%
-  \renewcommand\stacktype{L}%
-  \scaleto{\stackon[1.3pt]{\color{red}$\triangle$}{\tiny !}}{#1}%
-}
+\newcommand\dangersign{%
+ \makebox[1.8em][c]{%
+ \makebox[0pt][c]{\raisebox{.15em}{\small!}}%
+ \makebox[0pt][c]{\color{red}\Large$\triangle$}}}%
 
 \newcommand\blfootnote[1]{%
   \begingroup
@@ -77,10 +77,10 @@
 }
 \date{\textbf{Stand:} \today}
 \author{\textbf{Autoren:}\\ 
-Matthias Aßenmacher\thanks{Institut für Statistik, LMU München; Kontakt bei Fragen \& Anregungen: \url{matthias@stat.uni-muenchen.de}},\\
-Ann-Kathrin Köpple\thanks{Studentische Hilfskraft (SoSe20), Institut für Statistik, LMU München},\\
-Christoph Luther\thanks{Studentische Hilfskraft (WiSe 18/19 - SoSe 20), Institut für Statistik, LMU München},\\
-Patricia Haro\thanks{Studentische Hilfskraft (WiSe 18/19 - WiSe 19/20), Institut für Statistik, LMU München},\\
+Matthias Aßenmacher\thanks{Institut für Statistik, LMU München; Kontakt bei Fragen \& Anregungen: \url{matthias@stat.uni-muenchen.de}}\qquad
+Ann-Kathrin Köpple\thanks{Studentische Hilfskraft (SoSe20), Institut für Statistik, LMU München}\qquad
+Christoph Luther\thanks{Studentische Hilfskraft (WiSe 18/19 - SoSe 20), Institut für Statistik, LMU München}\\
+Patricia Haro\thanks{Studentische Hilfskraft (WiSe 18/19 - WiSe 19/20), Institut für Statistik, LMU München}\qquad
 Maximilian Mandl\thanks{Institut für medizinische Informationsverarbeitung, Biometrie und Epidemiologie, LMU München\vspace{.25cm}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -236,7 +236,7 @@ Dies ist wie eine Tabelle, in der
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die Erstellung von Datensätzen: > data.frame()} \hfill \href{https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/data.frame}{Dokumentation}}
 
-\noindent \dangersign[3ex] Meist werden Datensätze in der Praxis nicht in \texttt{R} erstellt, sondern aus einer externen Quelle (z.B. einer .csv-Datei oder einer .txt-Datei) importiert. 
+\noindent \dangersign Meist werden Datensätze in der Praxis nicht in \texttt{R} erstellt, sondern aus einer externen Quelle (z.B. einer .csv-Datei oder einer .txt-Datei) importiert. 
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den Import von Datensätzen: > read.table()} \hfill \href{https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/read.table}{Dokumentation}}
 
@@ -370,7 +370,7 @@ Bei einem gestapelten Balkendiagramm nutzt man die Tatsache, dass sich die relat
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für Balken-/Säulendiagramme: > barplot(data)} \hfill \href{https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/barplot}{Dokumentation}}
 
-\noindent \dangersign[3ex] Für gestapelte Balkendiagramme muss der Funktion eine Tabelle übergeben werden.
+\noindent \dangersign Für gestapelte Balkendiagramme muss der Funktion eine Tabelle übergeben werden.
 
 \subsubsection{Kreisdiagramm}
 \textbf{Gestaltung von Kreisdiagrammen}\\
@@ -398,7 +398,7 @@ Offene Klassen, die gegen unendlich gehen, sind nicht abbildbar. Eine Möglichke
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für Histogramme: > hist(data)} \hfill \href{https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/hist}{Dokumentation}}
 
-\noindent \dangersign[3ex] Per default nutzt \texttt{R} gleiche Klassenbreiten, deren Anzahl mit Hilfe der \href{https://en.wikipedia.org/wiki/Histogram#Sturges'_formula}{Formel von Sturges} berechnet wird. Selbst gewählte Klassen (auch ungleicher Breite) können mit dem \texttt{breaks}-Argument übergeben werden.
+\noindent \dangersign Per default nutzt \texttt{R} gleiche Klassenbreiten, deren Anzahl mit Hilfe der \href{https://en.wikipedia.org/wiki/Histogram#Sturges'_formula}{Formel von Sturges} berechnet wird. Selbst gewählte Klassen (auch ungleicher Breite) können mit dem \texttt{breaks}-Argument übergeben werden.
 
 \subsection{Ordnungsstatistik}
 
@@ -452,6 +452,7 @@ Die Schwäche ist, dass man hierfür von einer Gleichverteilung innerhalb der Kl
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die emp. Verteilungsfunktion: > ecdf(data)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/ecdf}{Dokumentation}}
 
+\noindent \dangersign Die \texttt{ecdf()}-Funktion selbst erzeugt noch keine Grafik, sondern lediglich ein Objekt das die Werte der emp. Verteilungsfunktion enthält. Um die emp. Verteilungsfunktion zu plotten, muss der \texttt{plot()}-Befehl auf die \texttt{ecdf()}-Funktion angewandt werden: \texttt{plot(ecdf(data))} 
 
 \clearpage
 
@@ -485,7 +486,7 @@ Die Merkmalsausprägung, die am häufigsten auftritt, nennt man Modus. Diese Ma�
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den Modus: > Mod(data)} \hfill \href{https://www.rdocumentation.org/packages/DescTools/versions/0.99.37/topics/OddsRatio}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
 
 \subsection{Median/Zentralwert}\label{sec:median}
 Um den Median bei diskreten Merkmalen anwenden zu können, bringt man die Urliste zuerst einmal in eine Ordnungsstatistik.
@@ -688,14 +689,14 @@ Die Streuung in zwei Teile zerlegt ($s^2_{zwischen}$ und $s^2_{innerhalb}$), die
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die Varianz: > var(data)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion teilt bei der Berechnung der Varianz nicht durch $n$ sondern durch $n-1$. Die Hintergründe dafür werden in Statistik II (vgl. Kap. \ref{sec:ML}) erläutert. Um dies zu umgehen und die (empirische) Varianz zu berechnen, sollte das Ergebnis dieses R-Befehls mit \texttt{(n - 1) / n} multipliziert werden.
+\noindent \dangersign Die R-Funktion teilt bei der Berechnung der Varianz nicht durch $n$ sondern durch $n-1$. Die Hintergründe dafür werden in Statistik II (vgl. Kap. \ref{sec:ML}) erläutert. Um dies zu umgehen und die (empirische) Varianz zu berechnen, sollte das Ergebnis dieses R-Befehls mit \texttt{(n - 1) / n} multipliziert werden.
 
 \subsection{Standardabweichung}
 Die Standardabweichung erhält man, indem man die positive Wurzel der Varianz (vgl. Kap. \ref{sec:varianz} zieht. Der Vorteil der Standardabweichung ist, dass diese wieder in der gleichen Einheit wie die Beobachtungswerte vorliegt, da wir das Quadrieren aus der Formel für die Varianz durch das Wurzelziehen wieder auflösen.\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die Standardabweichung: > sd(data)} \hfill  \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/sd}{Dokumentation}}
 
-\noindent \dangersign[3ex] Wie bei der Varianz wird auch beim R-Befehl für die Standardabweichung nicht durch $n$ sondern durch $n-1$ geteilt.
+\noindent \dangersign Wie bei der Varianz wird auch beim R-Befehl für die Standardabweichung nicht durch $n$ sondern durch $n-1$ geteilt.
 
 \subsection{Variationskoeffizient}
 Beim Variationskoeffizient wird die Standardabweichung in Beziehung zum arithm. Mittel gesetzt, damit die Streuungen von Datensätzen mit unterschiedlichen Mittelwerten miteinander verglichen werden können. Die Berechnung erfolgt durch den Quotienten aus Standardabweichung und arithm. Mittel, dadurch wird der Variationskoeffizient dimensionslos. \\
@@ -791,7 +792,7 @@ Beim Herfindahl-Index kann man relativ einfach pauschale Aussagen über Verände
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den Herfindahl-Index: > Herfindahl(data)} \hfill \href{https://www.rdocumentation.org/packages/DescTools/versions/0.99.37/topics/Herfindahl}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
 
 \clearpage
 
@@ -814,7 +815,7 @@ $$(\frac{1}{5}|\frac{1}{20});\qquad (\frac{2}{5}|\frac{4}{20});\qquad (\frac{3}{
 
 \noindent Außerdem gehören zu \textbf{jeder} Lorenzkurve die Punkte (0|0) und (1|1), da logischerweise 0\% der Merkmalsträger auch 0\% der Merkmalsumme besitzen und 100\% der Merkmalsträger auch 100\% der Merkmalsumme besitzen.\\
 
-\noindent \dangersign[3ex] \textit{Notation:} Die Werte Werte auf der x-Achse werden oft als $u_i$ und die Werte auf der y-Achse als $v_i$ bezeichnet. Dies ist für die Formeln in Kapitel \ref{sec:gini} wichtig.\\
+\noindent \dangersign \textit{Notation:} Die Werte Werte auf der x-Achse werden oft als $u_i$ und die Werte auf der y-Achse als $v_i$ bezeichnet. Dies ist für die Formeln in Kapitel \ref{sec:gini} wichtig.\\
 
 \noindent Für die Interpretation ist es wichtig sich klar zu machen, wie eine perfekt Gleichverteilung der Merkmalssumme sich in der Lorenzkurve widerspiegeln würde. In unserem Beispiel wäre in diesem Fall jedes $x_i = 4$ (gesamte Merkmalssumme von 20 aufgeteilt auf 5 Merkmalsträger) und die Punkte für die Lorenzkurve wären:
 $$(0|0);\qquad(\frac{1}{5}|\frac{1}{5});\qquad (\frac{2}{5}|\frac{2}{5});\qquad (\frac{3}{5}|\frac{3}{5});\qquad (\frac{4}{5}|\frac{4}{5});\qquad (1|1)$$
@@ -848,13 +849,13 @@ $$(0|0);\qquad(0,1|0,0125);\qquad (0,5|0,2625);\qquad (0,7|0,4375);\qquad (1|1)$
     \label{fig:lk2}
 \end{figure}
 
-\noindent \dangersign[3ex] \textit{Notation:} Um Formeln für gruppierte von Formeln für Individualdaten abzuheben wird eine Tilde verwendet, d.h. x-Werte als $\tilde u_i$ und y-Werte als $\tilde v_i$ bezeichnet.\\
-\noindent \dangersign[3ex] \textit{Anmerkung I:} Die gleiche Lorenzkurve wie in Abbildung \ref{fig:lk2} hätte man auch für die Individualdaten zeichnen können, jedoch wäre dies ein um einiges höherer Aufwand gewesen. In diesem Fall wäre es jedoch möglich gewesen, da wir tatsächlich für jedes Individuum dessen genaue Merkmalsausprägung kennen.\\
-\noindent \dangersign[3ex] \textit{Anmerkung II:} Kennen wir \textbf{nicht} für jedes Individuum dessen genaue Merkmalsausprägung, sondern lediglich einen Gruppenmittelwert, so wird jedem Inidividuum in einer Gruppe diese Gruppenmittelwert als Merkmalsausprägung zugeordnet. Dadurch kann man ganz normal, wie oben für gruppierte Daten gezeigt, vorgehen. Wichtig ist dabei jedoch im Hinterkopf zu behalten, dass damit implizit die Annahme einhergeht, dass innerhalb der Gruppen Gleichverteilung herrscht, da wir jedem Individuum einer Gruppe denselben Wert zuordnen. Diese Annahme muss nicht immer realistisch sein und sollte stets kritisch hinterfragt werden.\\
+\noindent \dangersign \textit{Notation:} Um Formeln für gruppierte von Formeln für Individualdaten abzuheben wird eine Tilde verwendet, d.h. x-Werte als $\tilde u_i$ und y-Werte als $\tilde v_i$ bezeichnet.\\
+\noindent \dangersign \textit{Anmerkung I:} Die gleiche Lorenzkurve wie in Abbildung \ref{fig:lk2} hätte man auch für die Individualdaten zeichnen können, jedoch wäre dies ein um einiges höherer Aufwand gewesen. In diesem Fall wäre es jedoch möglich gewesen, da wir tatsächlich für jedes Individuum dessen genaue Merkmalsausprägung kennen.\\
+\noindent \dangersign \textit{Anmerkung II:} Kennen wir \textbf{nicht} für jedes Individuum dessen genaue Merkmalsausprägung, sondern lediglich einen Gruppenmittelwert, so wird jedem Inidividuum in einer Gruppe diese Gruppenmittelwert als Merkmalsausprägung zugeordnet. Dadurch kann man ganz normal, wie oben für gruppierte Daten gezeigt, vorgehen. Wichtig ist dabei jedoch im Hinterkopf zu behalten, dass damit implizit die Annahme einhergeht, dass innerhalb der Gruppen Gleichverteilung herrscht, da wir jedem Individuum einer Gruppe denselben Wert zuordnen. Diese Annahme muss nicht immer realistisch sein und sollte stets kritisch hinterfragt werden.\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die Lorenzkurve: > Lc(data)} \hfill \href{https://www.rdocumentation.org/packages/ineq/versions/0.2-13/topics/Lc}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{ineq}. Um diese Funktion verwenden zu können, muss das Paket zunächst installiert werden (\texttt{install.packages("ineq")}) und anschließend importiert werden (\texttt{library(ineq)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{ineq}. Um diese Funktion verwenden zu können, muss das Paket zunächst installiert werden (\texttt{install.packages("ineq")}) und anschließend importiert werden (\texttt{library(ineq)}).
 
 \clearpage
 
@@ -888,7 +889,7 @@ Der normierte Gini-Koeffizient erhält man, indem man den berechneten Gini-Koeff
 \end{align*}
 Der Wertebereich von $G^+$ geht dann noch von 0 bis 1 und ist unabhängig von $n$. Die Konzentration 0 steht dabei für absolute Gleichverteilung, also dafür, dass es \textit{keine} Konzentration gibt, während 1 für eine \textit{vollständige} Konzentration, also für ein Monopol, steht. Somit ist es nun kein Problem mehr verschiedene Merkmale mit unterschiedlichem $n$ in Bezug auf ihre Konzentration zu vergleichen.\\
 
-\noindent \dangersign[3ex] Bei der Normierung des Gini für gruppierte Daten entspricht $n$ weiterhin der Anzahl der Beobachtungen und \textbf{nicht} der Anzahl der Gruppen.\\
+\noindent \dangersign Bei der Normierung des Gini für gruppierte Daten entspricht $n$ weiterhin der Anzahl der Beobachtungen und \textbf{nicht} der Anzahl der Gruppen.\\
 
 \noindent \textbf{Einschub: Aussagen über Veränderungen}\\
 Beim Gini kann man relativ einfach pauschale Aussagen über Veränderungen treffen, solange die Anzahl der Merkmalträger gleich bleibt.
@@ -901,7 +902,7 @@ Beim Gini kann man relativ einfach pauschale Aussagen über Veränderungen treff
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den Gini: > Gini(data)} \hfill \href{https://www.rdocumentation.org/packages/ineq/versions/0.2-13/topics/ineq}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{ineq}. Um diese Funktion verwenden zu können, muss das Paket zunächst installiert werden (\texttt{install.packages("ineq")}) und anschließend importiert werden (\texttt{library(ineq)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{ineq}. Um diese Funktion verwenden zu können, muss das Paket zunächst installiert werden (\texttt{install.packages("ineq")}) und anschließend importiert werden (\texttt{library(ineq)}).
 
 \clearpage
 
@@ -1063,7 +1064,7 @@ Um diesen Nachteilen entgegenzutreten existieren verschiedene Erweiterungen, wel
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für $\chi^2$: > chisq.test(data\$x, data\$y)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/chisq.test}{Dokumentation}}
 
-\noindent \dangersign[3ex] Diese R-Funktion führt neben der Berechnung von $\chi^2$ auch den zugehörigen $\chi^2$-Unabhängigkeits\-test durch. Dies ist erst Teil des Stoffs von Statistik II (vgl. Kap. \ref{sec:chitest2}) und kann vorläufig ignoriert werden. Der Wert \texttt{X-squared} in der Ausgabe entspricht dem $\chi^2$-Koeffizienten.
+\noindent \dangersign Diese R-Funktion führt neben der Berechnung von $\chi^2$ auch den zugehörigen $\chi^2$-Unabhängigkeits\-test durch. Dies ist erst Teil des Stoffs von Statistik II (vgl. Kap. \ref{sec:chitest2}) und kann vorläufig ignoriert werden. Der Wert \texttt{X-squared} in der Ausgabe entspricht dem $\chi^2$-Koeffizienten.
 
 \paragraph{Loslösung vom Stichprobenumfang}
 Der $\Phi$-Koeffizient und der Kontingenzkoeffizient $C$ sind zwei Möglichkeiten um den Wertebereich von $\chi^2$ vom Stichprobenumfang zu lösen. Sie berechnen sich auf folgende, leicht unterschiedliche Weisen
@@ -1072,14 +1073,14 @@ Der $\Phi$-Koeffizient und der Kontingenzkoeffizient $C$ sind zwei Möglichkeite
     C &= \sqrt{\frac{\chi^2}{\chi^2 + n}}, \qquad 0 \leq C \leq \sqrt{\frac{min(k,l)-1}{min(k,l)}}
 \end{align*}
 
-\noindent \dangersign[3ex] \textbf{Wichtig:} Die Zeilen- und Spaltenzahl werden in diesem Kontext mit $k$ \& $l$ bezeichnet.\\
+\noindent \dangersign \textbf{Wichtig:} Die Zeilen- und Spaltenzahl werden in diesem Kontext mit $k$ \& $l$ bezeichnet.\\
 
 \noindent Eine Berechnung diese beiden Maßzahlen macht Sinn, wenn wir die Zusammenhänge aus zwei Kontingenztafeln vergleichen wollen, bei denen zwar der Stichprobenumfang, nicht aber jedoch die Dimensionen der Kontingenztafel unterschiedlich sind. Beispielsweise könnte man den berechneten Zusammenhang aus Tabelle \ref{tab:abs} mit einer Gruppe von männlichen Rauchern vergleichen. Hier wären dann die Dimensionen der beiden Tafeln identisch, die Stichprobenumfänge könnten sich jedoch unterscheiden.\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den $\Phi$-Koeffizient: > Phi(data\$x, data\$y)} \hfill \href{https://www.rdocumentation.org/packages/DescTools/versions/0.99.37/topics/Association\%20measures}{Dokumentation}}\\
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den $C$: > ContCoef(data\$x, data\$y)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/DescTools/versions/0.99.37/topics/Association\%20measures}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktionen sind \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
+\noindent \dangersign Die R-Funktionen sind \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
 
 \paragraph{Loslösung von der Dimension der Kontingenztafel}
 Möchte man diese beiden Maße nun auch noch von der Dimension der Kontingenztafel loslösen, so kann man dies durch Berechnung von $Cramers\; V$ oder des korrigierten Kontingenzkoeffizienten $C_{korr}$ tun:
@@ -1093,7 +1094,7 @@ Möchte man diese beiden Maße nun auch noch von der Dimension der Kontingenztaf
 \noindent  \framebox[\textwidth]{\texttt{R-Befehl für den Cramers V: > CramerV(data\$x, data\$y)} \hfill \href{https://www.rdocumentation.org/packages/DescTools/versions/0.99.37/topics/Association\%20measures}{Dokumentation}}\\
 \noindent  \framebox[\textwidth]{\texttt{R-Befehl für $C_{korr}$: > ContCoef(.., correct = TRUE)} \hfill \href{https://www.rdocumentation.org/packages/DescTools/versions/0.99.37/topics/Association\%20measures}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktionen sind \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
+\noindent \dangersign Die R-Funktionen sind \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
 
 \clearpage
 
@@ -1141,14 +1142,14 @@ Dieser Wert bedeutet, dass die Chance für Lungenkrebs bei den Nicht-Rauchern ca
 \end{align*}
 Die Interpretation wäre hier, dass die Chance für Lungenkrebs bei den Rauchern 58,65 mal dem der Nicht-Raucher entspricht. Letztlich die gleiche Aussage wie zuvor, nur auf andere Art und Weise ausgedrückt.\\
 
-\noindent \dangersign[3ex] Bei der generellen Formel für den Odds Ratio steht (sofern nicht explizit etwas anderes gesagt wird) das Schichtungsmerkmal aus der ersten Zeile im Zähler, was man an der Formel (bezogen auf Tabelle \ref{tab:2k2}) erkennen kann:
+\noindent \dangersign Bei der generellen Formel für den Odds Ratio steht (sofern nicht explizit etwas anderes gesagt wird) das Schichtungsmerkmal aus der ersten Zeile im Zähler, was man an der Formel (bezogen auf Tabelle \ref{tab:2k2}) erkennen kann:
 \begin{align*}
     OR = \dfrac{\frac{a}{b}}{\frac{c}{d}} = \dfrac{a \cdot d}{b \cdot c}
 \end{align*}\\
 
 \noindent  \framebox[\textwidth]{\texttt{R-Befehl für den Odds Ratio: > OddsRatio(data)} \hfill \href{https://www.rdocumentation.org/packages/DescTools/versions/0.99.37/topics/OddsRatio}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
 
 \clearpage
 
@@ -1198,7 +1199,7 @@ Bei ordinalen Daten haben wir, durch die Möglichkeit die Daten zu ordnen, mehr 
     \item Man wendet dieses Prinzip auf \textbf{jede} Zelle in der Tabelle an und summiert die Werte für die einzelnen Zellen am Schluss auf, um die Gesamtzahl an Bindungen in Y zu erhalten.
 \end{itemize}
 
-\noindent \dangersign[3ex] \textit{Notation:} Für alle nachfolgend aufgeführten Formeln werden die Anzahlen der konkordanten \& diskordanten Paare, sowie der Bindungen in X bzw. Y, mit $K$, $D$, $T_x$ \& $T_y$ bezeichnet.\\
+\noindent \dangersign \textit{Notation:} Für alle nachfolgend aufgeführten Formeln werden die Anzahlen der konkordanten \& diskordanten Paare, sowie der Bindungen in X bzw. Y, mit $K$, $D$, $T_x$ \& $T_y$ bezeichnet.\\
 
 \noindent Ein schönes Beispiel für die Berechnung von $K$ und $D$ findet sich hier: \hfill \href{https://support.minitab.com/de-de/minitab/19/help-and-how-to/statistics/tables/supporting-topics/other-statistics-and-tests/what-are-concordant-and-discordant-pairs/}{Beispiel}\\
 
@@ -1215,13 +1216,13 @@ Das $\gamma$ nach Goodman and Kruskal quantifiziert den Zusammenhang zwischen zw
 Aufgrund der Differenzenbildung im Zähler dann der Bruch sowohl positive, als auch negative Werte annehmen. Liegen nur diskordante Paare vor (d.h. $K = 0$), besteht ein perfekter negativer Zusammenhang und $\gamma$ nimmt den Wert -1 an. Liegen ausschließlich konkordante Paare vor (d.h. $D = 0$), so spricht man von einem perfekten positiven Zusammenhang und $\gamma$ beträgt +1.\\
 Abstufungen im negativen \& positiven Bereich deuten auf \textit{tendenziell} negative bzw. positive Zusammenhänge hin und je näher der Wert betragsmäßig an der 1 liegt, als desto stärker wird der Zusammenhang bewertet. Liegen (annähernd) gleich viele konkordante und diskorante Paar vor, so ist wird $\gamma$ (annähernd) einen Wert von 0 annehmen und es ist kein eindeutiger Zusammenhang erkennbar.\\
 
-\noindent \dangersign[3ex] Im Gegensatz zu den den Maßen für nominale Merkmale beinhaltet $\gamma$ nicht nur eine Aussage über die \textbf{Stärke}, sondern auch über die \textbf{Richtung} des Zusammenhangs. Dies spiegelt sich im Wertebereich wieder, der in Kapitel \ref{sec:zshg-nom} bei allen Maßen nur im positiven lag und bei den Maßen in diesem Kapitel sowohl im positiven als auch im negativen liegt.\\
+\noindent \dangersign Im Gegensatz zu den den Maßen für nominale Merkmale beinhaltet $\gamma$ nicht nur eine Aussage über die \textbf{Stärke}, sondern auch über die \textbf{Richtung} des Zusammenhangs. Dies spiegelt sich im Wertebereich wieder, der in Kapitel \ref{sec:zshg-nom} bei allen Maßen nur im positiven lag und bei den Maßen in diesem Kapitel sowohl im positiven als auch im negativen liegt.\\
 
-\noindent \dangersign[3ex] Bei der Berechnung von $\gamma$ werden die Bindungen komplett außen vor gelassen werden. Dies führt (tendenziell) zu einer Überschätzung des Zusammenhangs, da Beobachtungspaare die gegen einen Zusammenhang sprechen (die Bindungen) ignoriert werden. Die $\tau$-Maße beheben dieses Problem.\\
+\noindent \dangersign Bei der Berechnung von $\gamma$ werden die Bindungen komplett außen vor gelassen werden. Dies führt (tendenziell) zu einer Überschätzung des Zusammenhangs, da Beobachtungspaare die gegen einen Zusammenhang sprechen (die Bindungen) ignoriert werden. Die $\tau$-Maße beheben dieses Problem.\\
 
 \noindent  \framebox[\textwidth]{\texttt{R-Befehl für $\gamma$: > GoodmanKruskalGamma(data)} \hfill \href{https://www.rdocumentation.org/packages/DescTools/versions/0.99.37/topics/GoodmanKruskalGamma}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
 
 \clearpage
 
@@ -1233,7 +1234,7 @@ Hier werden die $T_x$ und $T_y$ Bindungen berücksichtigt. Der Zähler ist ident
     \tau_b = \frac{K-D}{\sqrt{(K+D+T_x)(K+D+T_y)}}
 \end{align*}
 
-\noindent \dangersign[3ex] Liegen keine Bindungen vor, so kollabiert der Nenner zu 
+\noindent \dangersign Liegen keine Bindungen vor, so kollabiert der Nenner zu 
 $$\sqrt{(K+D+0)(K+D+0)} = \sqrt{(K+D)^2} = K+D\;,$$ sodass $\tau_b$ identisch zu $\gamma$ ist.\\
 
 \noindent  \framebox[\textwidth]{\texttt{R-Befehl für $\tau_b$: > cor(data\$x, data\$y, method = "kendall")} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor}{Dokumentation}}
@@ -1244,13 +1245,13 @@ Bei Kendalls/Stuarts $\tau_c$ werden nicht die Bindungen, sondern das Minimum au
     \tau_c = \frac{2min(k,l) (K-D)}{n^2(min(k,l)-1)}
 \end{align*}
 
-\noindent \dangersign[3ex] \textbf{Remember:} Die Zeilen- und Spaltenzahl werden in diesem Kontext mit $k$ \& $l$ bezeichnet.\\
+\noindent \dangersign \textbf{Remember:} Die Zeilen- und Spaltenzahl werden in diesem Kontext mit $k$ \& $l$ bezeichnet.\\
 
 \noindent  \framebox[\textwidth]{\texttt{R-Befehl für $\tau_c$: > StuartTauC(data)} \hfill \href{https://www.rdocumentation.org/packages/DescTools/versions/0.99.37/topics/StuartTauC}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{DescTools}. Dieses muss zunächst installiert (\texttt{install.packages("DescTools")}) und anschließend importiert werden (\texttt{library(DescTools)}).
 
-\noindent \dangersign[3ex] Kendalls $tau_b$ ist das wohl gebräuchlichste diese drei Maße, was man auch daran erkennen kann, dass es in \textit{base-R} verfügbar ist während die anderen beiden nur über eine spezielles Paket verfügbar sind.
+\noindent \dangersign Kendalls $tau_b$ ist das wohl gebräuchlichste diese drei Maße, was man auch daran erkennen kann, dass es in \textit{base-R} verfügbar ist während die anderen beiden nur über eine spezielles Paket verfügbar sind.
 
 \subsubsection{Rangkorrelationskoeffizient nach Spearman}
 Der Spearman Korrelations-Koeffizient ($r_{SP}$) wird auch Rangkorrelationskoeffizient genannt, da man nicht die Abstände der echten Datenpunkte zueinandner in Beziehung setzt, sondern nur die \textit{Rangabstände} betrachtet. Dies ist auch der große Unterschied zum Korrelationskoeffizient nach Bravais-Pearson (vgl. Kap. \ref{sec:cor-bp}).
@@ -1261,11 +1262,11 @@ Der Spearman Korrelations-Koeffizient ($r_{SP}$) wird auch Rangkorrelationskoeff
     r_{SP}=1-\frac{6\sum_{i=1}^nd_i^2}{n(n^2-1)}
 \end{align*}
 
-\noindent \dangersign[3ex] Diese Formel funktioniert nur wenn \textbf{keine} Bindungen vorliegen. Ist dies doch der Fall, so muss man dafür korrigieren (siehe unten).
+\noindent \dangersign Diese Formel funktioniert nur wenn \textbf{keine} Bindungen vorliegen. Ist dies doch der Fall, so muss man dafür korrigieren (siehe unten).
 
 \paragraph{Korrigierter Rangkorrelationskoeffizient nach Spearman} Liegen \textit{Bindungen} innerhalb eines Merkmals oder beider Merkmale vor, wird die Bestimmung der Ränge etwas komplexer. Zusätzlich zu den $d_i$ kommen hier noch $b_j$ und $c_k$ hinzu.\\
 
-\noindent \dangersign[3ex] $b_j$ und $c_k$ haben einen anderen Index als die $d_i$. Während $i$ der Laufindex für die Beobachtungen ist, beziehen sich $j$ und $k$ auf die verschiedenen Merkmalsausprägungnen von X bzw. Y.\\
+\noindent \dangersign $b_j$ und $c_k$ haben einen anderen Index als die $d_i$. Während $i$ der Laufindex für die Beobachtungen ist, beziehen sich $j$ und $k$ auf die verschiedenen Merkmalsausprägungnen von X bzw. Y.\\
 
 \noindent Die $b_j$ sind die Anzahlen, die angeben wie oft die unterschiedlichen Merkmalsausprägungen beim Merkmal X jeweils auftreten. Die $c_k$ bedeuten analog dazu dasselbe für Y.\\
 Liegen keine Bindungen vor, so passieren zwei Dinge: Alle $b_j$ und alle $c_k$ nehmen den Wert 1 an, da jede Merkmalsausprägung nur einmal vorkommt. Die Teile der Formel mit $b_j$ und $c_k$ werden dadurch gleich Null und fallen also weg. Passiert dies, so reduziert sich die Formel auf die obige Formel, welche also nur einen Spezielfall der nachfolgenden Formel darstellt:
@@ -1278,7 +1279,7 @@ Liegen keine Bindungen vor, so passieren zwei Dinge: Alle $b_j$ und alle $c_k$ n
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für $r_{SP}$: > cor(data\$x, data\$y, method = "spearman")} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor}{Dokumentation}}\\
 
-\noindent \dangersign[3ex] Auch wenn alle Maße aus diesem Kapitel für ordinale Merkmale gedacht sind, kann man sie auch für metrische Daten verwenden. Dabei entsteht allerdings Informationsverlust, da diese Maße nicht die volle Information der metrischen Skala (Interpretierbarkeit von Abständen) ausnutzen.
+\noindent \dangersign Auch wenn alle Maße aus diesem Kapitel für ordinale Merkmale gedacht sind, kann man sie auch für metrische Daten verwenden. Dabei entsteht allerdings Informationsverlust, da diese Maße nicht die volle Information der metrischen Skala (Interpretierbarkeit von Abständen) ausnutzen.
 
 \clearpage
 
@@ -1299,7 +1300,7 @@ Die Kovarianz hat einen Wertebereich von $-\infty$ bis $\infty$ und hängt von z
 \end{itemize}
 wobei der Einfluss von Letzterem die Quantifizierung des reinen Zusammenhangs behindert.\\
 
-\noindent \dangersign[3ex] \textbf{Aufpassen:} Es kann passieren, dass eine Merkmal $X$ (mit hoher Streuung) eine höhere Kovarianz mit Merkmal $Y$ besitzt als das Merkmal $Z$ (mit niedriger Streuung), obwohl $Z$ stärker mit $Y$ zusammenhängt als $X$.\\
+\noindent \dangersign \textbf{Aufpassen:} Es kann passieren, dass eine Merkmal $X$ (mit hoher Streuung) eine höhere Kovarianz mit Merkmal $Y$ besitzt als das Merkmal $Z$ (mit niedriger Streuung), obwohl $Z$ stärker mit $Y$ zusammenhängt als $X$.\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für $Cov(X,Y)$: > cov(data\$x, data\$y)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor}{Dokumentation}}\\
 
@@ -1404,7 +1405,7 @@ Metrisch &$\chi^2$-basiert & Rangkorrelation & Korrelation (Kovarianz) \\
 \subsection{Einführung}
 Das Ziel der Regression ist es herauszufinden, den Einfluss von einem Merkmal X (Einflussgröße) auf ein Merkmal Y (Zielgröße) zu quantifizieren. Die Einflussgröße X wird auch Regressor oder unabhängige Variable genannt. Das Merkmal Y wird daher abhängige Variable, da sie abhängig von X ist, Response oder Regressand genannt. Um eine Regressionsanalyse sinnvoll durchführen zu können, benötigt man Beobachtungspaare (wie bereits in Kap. \ref{chap:zshg}), mit unterschiedlichen Merkmalsausprägungen von X und Y. Damit kann man dann die Merkmale auf einen (linearen) Zusammenhang prüfen und versuchen, diesen mit einem Modell zu schätzen.\\
 
-\noindent \dangersign[3ex] Zusammenhangsmaße geben (im best case) lediglich Stärke \& Richtunng des Zusammenhangs an. Die lineare Regression geht \textit{zwei} Schritte weiter: Es wird (1) eine Wirkungskette angenommen ($X$ beeinflusst $Y$ und nicht andersherum) \& (2) der Zusammenhang quantifiziert ("\textit{Wenn X um eine Einheit steigt, erwarten wir eine Änderung von Y um ...}")\\
+\noindent \dangersign Zusammenhangsmaße geben (im best case) lediglich Stärke \& Richtunng des Zusammenhangs an. Die lineare Regression geht \textit{zwei} Schritte weiter: Es wird (1) eine Wirkungskette angenommen ($X$ beeinflusst $Y$ und nicht andersherum) \& (2) der Zusammenhang quantifiziert ("\textit{Wenn X um eine Einheit steigt, erwarten wir eine Änderung von Y um ...}")\\
 
 \noindent Der einfachste Zusammenhang zwischen zwei Merkmalen ist der lineare Zusammenhang, welcher durch den Ansatz $Y=a+b \cdot X$ angegeben wird. Bildet man den Zusammenhang zwischen $X$ und $Y$ durch dieses Modell ab, so spricht man von einer \textit{linearen (Einfach-)Regression}.\\
 Da nicht alle Beobachtungspaare zwingend auf einer Gerade liegen, wird der obige Ansatz durch ein \textit{Fehlerglied (bzw. -term)} oder \textit{Residuum} $e$ ergänzt. Dadurch werden zufällige Abweichungen von der Geraden mit in das Modell einbezogen und es wir erhalten $Y=a+b \cdot X+e$ als Modellgleichung.
@@ -1423,7 +1424,7 @@ $$\hat y_1 = a + b \cdot x_1 = 4 + 2 \cdot 5 = 14\;,$$
 $$y_1 = \underbrace{a + b \cdot x_1}_{\hat y_1} + e_1 \quad \Leftrightarrow \quad \hat e_1 = y_1 - \hat y_1 = 5$$
 \noindent Genauso könnte man für das zweite, dritte, .., $n$-te Beobachtungspaar den Fehler bestimmen. Je besser das Modell, desto kleine wäre die Summe der \textit{Beträge der Fehler}. Das Wort \textit{Betrag} ist hier wichtig, da sowohl Abweichungen nach oben als auch nach unten schlecht sind.\\
 
-\noindent \dangersign[3ex] \textbf{Notation:} \textit{Geschätzte} Werte werden stets mit einem \textit{Dach} versehen (z.B. $\hat a$ oder $\hat y$).\\
+\noindent \dangersign \textbf{Notation:} \textit{Geschätzte} Werte werden stets mit einem \textit{Dach} versehen (z.B. $\hat a$ oder $\hat y$).\\
 
 \noindent Diese Fehler spielen eine zentrale Rolle in dem Optimierungsproblem zur Bestimmung der Werte für $a$ und $b$. Bei diesem Optimierungsproblem wird die \textbf{Summe der quadrierten Fehler} minimiert:
 \begin{align*}
@@ -1442,11 +1443,11 @@ $$\hat{a}=\bar{y}-\hat{b}\bar{x}$$
 
 \noindent Würde man den Schätzer für $b$ mit $\frac{1}{n}$ erweitern, so stünde im Zähler die Kovarianz und im Nenner die Varianz der Einflussgröße, d.h. $\hat{b}=\frac{Cov(X,Y)}{Var(X)}$.\\
 
-\noindent \dangersign[3ex] $\hat b$ muss immer vor $\hat a$ berechnet werden, da es Teil der Formel zur Berechnung von $\hat a$ ist.
+\noindent \dangersign $\hat b$ muss immer vor $\hat a$ berechnet werden, da es Teil der Formel zur Berechnung von $\hat a$ ist.
 
 \paragraph{Interpretation des Intercepts $\hat a$:} Grafisch kann man sich den Intercept als Achsenabschnitt, also den Punkt an dem die Gerade die y-Achse schneidet, vorstellen. Interpretiert werden muss dieser als "\textit{der erwartete/geschätzt/durchschnittliche Wert der Zielgröße (Y), falls die Einflussgröße (X) einen Wert von 0 annimmt}". Wichtig ist dabei dass in dieser Formulierung einer der drei Begriffe "erwartet/geschätzt/durchschnittlich" fällt, da wir mit dem Modell natürlich keine deterministischen Aussagen (à la "Jeder mit einem x-Wert von 0 hat genau diesen y-Wert") treffen können.\\
 
-\noindent \dangersign[3ex] Es können Fälle auftreten, in denen eine Interpretation des Intercepts nicht sinnvoll ist. Dies kann zum einen passieren, wenn ein Wert von 0 für die Einflussgröße keinen Sinn macht (z.B. bei Körpergröße) oder zum anderen, falls der geschätzte Wert $\hat a$ für die Zielgröße keinen Sinn macht (z.B. negativer Wert für $\hat a$ bei Lebenserwartung als Zielgröße).
+\noindent \dangersign Es können Fälle auftreten, in denen eine Interpretation des Intercepts nicht sinnvoll ist. Dies kann zum einen passieren, wenn ein Wert von 0 für die Einflussgröße keinen Sinn macht (z.B. bei Körpergröße) oder zum anderen, falls der geschätzte Wert $\hat a$ für die Zielgröße keinen Sinn macht (z.B. negativer Wert für $\hat a$ bei Lebenserwartung als Zielgröße).
 
 \paragraph{Interpretation des Steigungsparameters $\hat b$:} Der geschätzte Steigungsparameter ist wie folgt zu interpretieren: "\textit{Steigt die Einflussgröße (X) um eine Einheit, so erwartet man (unter sonst gleichen Umständen) einen Anstieg (bzw. Abnahme, bei negativem $\hat b$) der Zielgröße (Y) um $\hat b$ Einheiten (der Zielgröße)}".\\
 Drei Anmerkungen hierzu:
@@ -1474,7 +1475,7 @@ Die Frage "\textit{Wie gut repräsentiert unser Modell die Originaldaten?}" läs
 
 \noindent Die erste der drei Summen ($SQ_{Total}$) ist die Gesamtstreuung von $Y$. Die zweite ($SQ_{Regression}$) ist die Streuung der \textit{vorhergesagten} y-Werte. Daher spricht man hier von der Streuung, die durch das Regressionsmodell erklärt wird. Das heißt je größer $SQ_{Regression}$ im Verhältnis zu $SQ_{Total}$ ist, desto besser passt das Regressionsmodell zu den Originaldaten. Diese dritte Summe ($SQ_{Residual}$) entspricht den quadrierten Fehlern und sollte daher im Verhältnis zu $SQ_{Total}$ möglichst klein sein.\\
 
-\noindent \dangersign[3ex] Da die $\hat y_i$ basierend auf den $x_i$ vorhergesagt werden, kennen wir den Grund (nämlich die unterschiedlichen x-Werte) für die Abweichung von $\bar y$. Daher spricht man vom der \textit{erklärten Streuung}.
+\noindent \dangersign Da die $\hat y_i$ basierend auf den $x_i$ vorhergesagt werden, kennen wir den Grund (nämlich die unterschiedlichen x-Werte) für die Abweichung von $\bar y$. Daher spricht man vom der \textit{erklärten Streuung}.
 
 \paragraph{Bestimmtheitsmaß $R^2$} Dieses Maß gibt den Anteil der erklärten Streuung ($SQ_{Regression}$) an der gesamten Streuung ($SQ_{Total}$) an. Analog könnte man auch den Anteil der nicht erklärten Streuung ($SQ_{Residual}$) von 1 subtrahieren:
 $$R^2 = \frac{SQ_{Regression}}{SQ_{Total}} = 1 - \frac{SQ_{Residual}}{SQ_{Total}}$$
@@ -1483,7 +1484,7 @@ $$R^2 = \frac{SQ_{Regression}}{SQ_{Total}} = 1 - \frac{SQ_{Residual}}{SQ_{Total}
 Liegen sämtliche Beobachtungspaare exakt auf der Regressionsgerade, so ist $SQ_{Regression} = SQ_{Total}$ und $R^2$ nimmt folglich den Wert 1 an. Man spricht hier von \textit{perfekter Anpassung}.\\
 Wenn jedoch das Bestimmtheitsmaß 0 beträgt, dann wird kein Teil der Streuuung in den Originaldaten durch das Modell erklärt. Dies erkennt man grafisch an einer Regressionsgerade die parallel zur x-Achse verläuft, da $\hat{b}=0$ und somit für jedes $x_i$ das gleiche $\hat{y_i} = \bar y$ vorhergesagt wird. Man spricht hier von \textit{Nullanpassung}.\\
 
-\noindent \dangersign[3ex] Für die lineare Regression mit einer Einflussgröße ergibt sich ein Spezialfall: Hier kann $R^2$ auch durch Quadrierung von $r_{BP}$ berechnet werden.
+\noindent \dangersign Für die lineare Regression mit einer Einflussgröße ergibt sich ein Spezialfall: Hier kann $R^2$ auch durch Quadrierung von $r_{BP}$ berechnet werden.
 
 \subsection{Kategoriale Regression} \label{sec:kat-reg}
 Alle bisherigen Ausführung bezogen sich auf den Fall eines metrischen Merkmals als Einflussgröße. Besitzt $X$ jedoch nur kategoriales bzw. nominales Skalenniveau, erfordert dies eine andere Vorgehensweise. Um auch solche Merkmale als Einflussgröße verwenden zu können, müssen diese entsprechend \textit{umzukodiert} werden. Dies kann mit Hilfe der \textbf{Dummykodierueng} oder der \textbf{Effektkodierung} geschehen, welche im Folgenden anhand eine Beispiels erläutert werden:\\
@@ -1543,14 +1544,14 @@ $\hat{a}$ ist der Mittelwert der Referenzkategorie und $\hat{b}_1, \hdots, \hat{
 
 \noindent Für die folgenden Erläuterungen wird der Datensatz \href{https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars}{\texttt{mtcars}} aus dem \texttt{datasets}-Paket verwendet.\\Für das Verständnis der Beispiele sollte man sich die Dokumentation kurz ansehen.
 
-\noindent \dangersign[3ex] In dem \texttt{formula}-Argument wird die Modellgleichung übergeben. Dabei wird der Intercept \textbf{nicht} mit angegeben, da diese per default mitgeschätzt wird. Anstatt dem Ist-Gleich-Zeichen muss hier eine Tilde ($\sim$) eingegeben werden.\\
+\noindent \dangersign In dem \texttt{formula}-Argument wird die Modellgleichung übergeben. Dabei wird der Intercept \textbf{nicht} mit angegeben, da diese per default mitgeschätzt wird. Anstatt dem Ist-Gleich-Zeichen muss hier eine Tilde ($\sim$) eingegeben werden.\\
 Eine typische Eingabe sähe hier in etwa so aus:
 \texttt{formula = mpg $\sim$ wt}\\
 
-\noindent \dangersign[3ex] In dem \texttt{data}-Argument wird der Datensatz übergeben, in dem die Variablen aus der Modellgleichung zu finden sind. Der vollständige Befehl sähe hier in etwa so aus:\\
+\noindent \dangersign In dem \texttt{data}-Argument wird der Datensatz übergeben, in dem die Variablen aus der Modellgleichung zu finden sind. Der vollständige Befehl sähe hier in etwa so aus:\\
 \texttt{lm(formula = mpg $\sim$ wt, data = mtcars)}\\
 
-\noindent \dangersign[3ex] Mit dem \texttt{summary}-Befehl kann der Output eines geschätzten Modell angezeigt werden. Man weist dem Modell typischerweise einen Namen zu und gibt diesen dann als Argument in den \texttt{summary}-Befehl (s.u.). Ein typischer Output sähe wie folgt aus:\\
+\noindent \dangersign Mit dem \texttt{summary}-Befehl kann der Output eines geschätzten Modell angezeigt werden. Man weist dem Modell typischerweise einen Namen zu und gibt diesen dann als Argument in den \texttt{summary}-Befehl (s.u.). Ein typischer Output sähe wie folgt aus:\\
 
 \begin{small}
 \begin{Verbatim}[frame=single]
@@ -1578,11 +1579,11 @@ F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
 \end{small}
 In der \texttt{Coefficients}-Tabelle kann man in der ersten Spalte ("\texttt{Estimate}") $\hat a$ in der Zeile \texttt{Intercept} und $\hat b$ in der Zeile \texttt{wt} ablesen. Unter \texttt{Multiple R-squared} findet man den Wert für $R^2$.\\
 
-\noindent \dangersign[3ex] Wurde bereits ein Scatter-Plot der Daten mit \texttt{plot(data\$x, data\$y)} erstellt, so kann mit \texttt{abline(modell)} relativ unkompliziert die geschätzte Regressionsgerade eingezeichnet werden:\\
+\noindent \dangersign Wurde bereits ein Scatter-Plot der Daten mit \texttt{plot(data\$x, data\$y)} erstellt, so kann mit \texttt{abline(modell)} relativ unkompliziert die geschätzte Regressionsgerade eingezeichnet werden:\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl fürs Einzeichnen von Geraden: > abline(modell)} \hfill \href{https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/abline}{Dokumentation}}\\
 
-\noindent \dangersign[3ex] Kategoriale Variablen erkennt man in \texttt{R} daran, dass sie den Variablentyp \texttt{factor} aufweisen. Den Variablentyp kann man mit dem \texttt{str()}-Befehl abfragen. Übergibt man dem \texttt{lm()}-Befehl im \texttt{formula}-Argument auf der rechten Seite der Tilde eine Variable von Typ \texttt{factor}, so bildet \texttt{R} automatisch $k-1$ Dummyvariablen und nimmt diese mit ins Modell auf. Ist eine Variable nicht vom Typ \texttt{factor}, so kann man sie mit dem \texttt{factor()}-Befehl umwandeln (so wie hier notwendig, s.u.). Ein typischer Output sähe wie folgt aus:\\
+\noindent \dangersign Kategoriale Variablen erkennt man in \texttt{R} daran, dass sie den Variablentyp \texttt{factor} aufweisen. Den Variablentyp kann man mit dem \texttt{str()}-Befehl abfragen. Übergibt man dem \texttt{lm()}-Befehl im \texttt{formula}-Argument auf der rechten Seite der Tilde eine Variable von Typ \texttt{factor}, so bildet \texttt{R} automatisch $k-1$ Dummyvariablen und nimmt diese mit ins Modell auf. Ist eine Variable nicht vom Typ \texttt{factor}, so kann man sie mit dem \texttt{factor()}-Befehl umwandeln (so wie hier notwendig, s.u.). Ein typischer Output sähe wie folgt aus:\\
 
 \begin{small}
 \begin{Verbatim}[frame=single]
@@ -1612,7 +1613,7 @@ F-statistic:  39.7 on 2 and 29 DF,  p-value: 4.979e-09
 \textit{Nötiges Hintergrundwissen zu den Daten:} Die Variable \texttt{cyl} steht für die Anzahl der Zylinder und nimmt lediglich die Ausprägungen 4, 6 und 8 an. Daher machte es auch Sinn, sie hier als kategorialen Regressor in das Modell mit aufzunehmen.\\
 Wieder liegt unser Fokus auf der ersten Spalte ("\texttt{Estimate}") der \texttt{Coefficients}-Tabelle: Zunächst fällt auf, dass es zwei Dummyvariabeln für die Ausprägungen 6 und 8 gibt. Daran erkennen wir, dass \texttt{R} die Ausprägung 4 als Referenz geählt hat. $\hat a$ in der Zeile \texttt{Intercept} ist somit der Mittelwert dieser Referenz. Die Parameter $\hat b_1$ \& $\hat b_2$ in den Zeilen \texttt{factor(cyl)6} und \texttt{factor(cyl)8} geben die Abweichungen der Mittelwerte für die jeweiligen Kategorien an. Unter \texttt{Multiple R-squared} findet man erneut den Wert für $R^2$.\\
 
-\noindent \dangersign[3ex] Per default verwendet \texttt{R} stets die Dummy-Kodierung. Um auf die Effektkodierung umzustellen muss man auf das \texttt{contrasts}-Argument zurückgreifen. Um das adäquat tun zu können, sollte man sich \texttt{cyl} zunächst als \texttt{factor}-Variable definieren, und dies nicht erst in der \texttt{lm}-Funktion tun:\\
+\noindent \dangersign Per default verwendet \texttt{R} stets die Dummy-Kodierung. Um auf die Effektkodierung umzustellen muss man auf das \texttt{contrasts}-Argument zurückgreifen. Um das adäquat tun zu können, sollte man sich \texttt{cyl} zunächst als \texttt{factor}-Variable definieren, und dies nicht erst in der \texttt{lm}-Funktion tun:\\
 
 \begin{small}
 \begin{Verbatim}[frame=single]
@@ -1722,7 +1723,7 @@ Dabei bezeichnet $x_0$ den Wert der Maßzahl in der Basisperiode, $x_t$ den Wert
 $$P_{0t}=\frac{p_t}{p_0} (Preismesszahl);\qquad
     Q_{0t}=\frac{q_t}{q_0} (Mengenmesszahl)$$
 
-\noindent \dangersign[3ex] Preise ($p_t$) und Mengen ($q_t$) werden mit Kleinbuchstaben und nur einer Zahl im Index bezeichnet, Indexzahlen für Preise ($P_{0,t}$) und Mengen ($Q_{0t}$) mit Großbuchstaben und zwei Zahlen im Index (Basis- und Berechtszeitpunkt).
+\noindent \dangersign Preise ($p_t$) und Mengen ($q_t$) werden mit Kleinbuchstaben und nur einer Zahl im Index bezeichnet, Indexzahlen für Preise ($P_{0,t}$) und Mengen ($Q_{0t}$) mit Großbuchstaben und zwei Zahlen im Index (Basis- und Berechtszeitpunkt).
 
 \paragraph{Veränderungen des Basisjahres} Bei langen Zeitreihen macht es möglicherweise Sinn, irgendwann ein neues Basisjahr festzulegen (bspw. wegen strukturellen Umbrüchen). Man führt ein neues Basisjahr $k$ ein und berechnet den Index $I_{kt}$ als Quotienten aus Index der Berichtsperiode zur alten Basisperiode ($I_{0t}$) und dem Index der neuen Basisperiode zur alten Basisperiode ($I_{0k}$):
 
@@ -1746,7 +1747,7 @@ Der Preisindex nach Laspeyres verwendet für die Gewichtung die Menge aus der \t
 Im Zähler steht die Summe der Preise in der Berichtsperiode, jeweils multipliziert mit den Menge aus der Basisperiode, im Nenner dasselbe für die Preise der Basisperiode:
 $$P_{0t}^L =\frac{\sum_{i=1}^n p_t(i)q_0(i)}{\sum_{i=1}^n p_0(i)q_0(i)}$$
 
-\noindent \dangersign[3ex] Der Preisindex nach Laspeyres kann auch als als Summe über die Produkte aus den Preismesszahlen $P_{0t}(i)$ und den Umsatzanteilen aus der \textit{Basisperiode} $\frac{p_0(i)q_0(i)}{\sum_{i=1}^n p_0(i)q_0(i)}$ berechnet werden. \\
+\noindent \dangersign Der Preisindex nach Laspeyres kann auch als als Summe über die Produkte aus den Preismesszahlen $P_{0t}(i)$ und den Umsatzanteilen aus der \textit{Basisperiode} $\frac{p_0(i)q_0(i)}{\sum_{i=1}^n p_0(i)q_0(i)}$ berechnet werden. \\
 
 \noindent Der Preisindex nach Laspeyres gibt an, wie sich der der Wert des Warenkorbs aus Basisperiode in der Berichtsperiode (verglichen mit der Basisperiode) verändert hat.\\
 Der Vorteil dieses Preisindex ist, dass man nach Erheben der Daten für eine neue Berichtsperiode sofort den Preisindex mit früheren Indexwerten vergleichen kann. Der Nachteil ist jedoch, dass der Warenkorb mit der Zeit veraltet, neue Produkte dazukommen und alte außen vorgelassen werden. Daher muss der Warenkorb in regelmäßigen Abständen aktualisiert werden.
@@ -1847,7 +1848,7 @@ $$y_t=g_t+s_t+r_t\;.$$
 $$y_t = \tilde g_t \cdot \tilde s_t \cdot \tilde r_t\;$$
 zu verfolgen, wird nachfolgend erläutert wie man unterscheiden kann, welcher Ansatz benötigt wird.\\
 
-\noindent \dangersign[3ex] Es ist möglich, dass multiplikative Modell durch Logarithmieren in additive Schreibweise zu überführen, was mathematisch angenehmer zu handhaben ist.\\
+\noindent \dangersign Es ist möglich, dass multiplikative Modell durch Logarithmieren in additive Schreibweise zu überführen, was mathematisch angenehmer zu handhaben ist.\\
 
 \noindent Um zu unterscheiden welcher Ansatz (additiv vs. multiplikativ) erforderlich ist, sollten die Daten grafisch dargestellt werden um festzustellen ob es im vorliegenden Fall Trend- \& Saisonkomponente additiv oder multiplikativ zusammenhängen. In Abbildung \ref{fig:add_mult} sind zwei beispielhafte Szenarien für einen additiven (links) bzw. multiplikativen (rechts) Zusammenhang dargestellt. Von einem additiven Zusammenhang von Trend und Saison kann ausgegangen werden, wenn die saisonalen Schwankungen konstant zu bleiben scheinen, völlig egal ob ein steigender oder fallender Trend vorliegt. Ein multiplikativer Zusammenhang liegt vermutlich vor, falls bei steigendem (fallenden) Trend, die saisonalen Schwankungen im Zeitverlauf entsprechend größer (kleiner) werden. In diesem Fall sollte man die Daten logarithmieren und die nachfolgend vorgestellten Methoden auf die logarithmierten Daten anwenden. 
 
@@ -1868,27 +1869,27 @@ Gleitende Durchschnitte sind eine Methode um den Trend, also die glatte Komponen
 \paragraph{Gleitende Durchschnitte gerader Ordnung:} Soll eine gerade Anzahl $k$ an Werten in den gleitenden Durchschnitt mit einfließen, gestaltet sich die Berechnung ein klein wenig komplizierter, da man nun nicht mehr auf natürliche Art und Weise einen mittleren Wert hat wie oben. Daher bedient man sich hier des "Tricks", die Werte am Rand des gewählten Fensters nur mit halbem Gewicht in den Durchschnitt mit einfließen zu lassen. Somit kommt man auf eine gerade Zahl an "ganzen" Werten. Man berechnet also das arithmetische Mittel über je $k$ Werte vor und nach diesem Zeitpunkt $t$, sowie dem Wert $y_t$ selbst und gewichtet die äußersten Werte mit $\frac{1}{2}$.\\
 \textbf{Beispiel:} Für $k = 2$ fließen fünf Werte in den Durchschnitt mit ein: Die äußersten Werte nur zur Hälfte, die jeweils direkten "Nachbarn" des Wertes $y_t$ ganz und der Wert $y_t$ selbst ebenfalls ganz. Somit kommt man schließlich auf 4 "ganze" Werte, daher gleitender Durchschnitt 4. Ordnung.\\
 
-\noindent \dangersign[3ex] Obwohl bei obigem Beispiel tatsächlich fünf Werte mit einfließen, wird bei der Berechnung des airthm. Mittels nur durch vier geteilt, da zwei Werte nur jeweils mit Gewicht $\frac{1}{2}$ einfließen.\\
+\noindent \dangersign Obwohl bei obigem Beispiel tatsächlich fünf Werte mit einfließen, wird bei der Berechnung des airthm. Mittels nur durch vier geteilt, da zwei Werte nur jeweils mit Gewicht $\frac{1}{2}$ einfließen.\\
 
 \noindent Diese Berechnung führt man  für jeden Zeitpunkt $t$ der Zeitreihe durch und erhält damit eine geglättete Zeitreihe als Schätzung für die Trendkomponente. Wie man sich für eine Ordnung entscheidet, wird in den nachfolgenden Kapiteln erläutert.\\
 
-\noindent \dangersign[3ex] Je höher der gewählte Ordnung, für desto mehr Werte am Rand der Zeitreihe lässt sich kein gleitender Durchschnitt berechnen, da man immer $k$ Werte links \& rechts von dem Zeitpunkt $t$, für den man den gleitenden Durchschnitt berechnen will, braucht.\\
+\noindent \dangersign Je höher der gewählte Ordnung, für desto mehr Werte am Rand der Zeitreihe lässt sich kein gleitender Durchschnitt berechnen, da man immer $k$ Werte links \& rechts von dem Zeitpunkt $t$, für den man den gleitenden Durchschnitt berechnen will, braucht.\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den gl. Durchschnitt: > runmean(data, k, ..)} \hfill \href{https://www.rdocumentation.org/packages/caTools/versions/1.17.1/topics/runmean}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{caTools}. Dieses muss zunächst installiert (\texttt{install.packages("caTools")}) und anschließend importiert werden\\(\texttt{library(caTools)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{caTools}. Dieses muss zunächst installiert (\texttt{install.packages("caTools")}) und anschließend importiert werden\\(\texttt{library(caTools)}).
 
 
 \subsection{Saisonale Komponente, konstante Saisonfigur}
 Gilt $s_t = s_{t+p}$, dann spricht man von einer konstanten Saisonfigur mit Periode $p$, da nach $p$ Zeitpunkten die Saisonkomponente wieder in etwa den gleichen Wert annimmt. Summiert man alle Werte dazwischenliegenden Werte dieser Periode auf, so sollte 0 herauskommen.\\
 
-\noindent \dangersign[3ex] Auch die Periodendauer $p$ ist etwas, das man durch grafische Darstellung der Zeitreihe herausfinden kann. Man überprüft visuell, ob es saisonale Muster gibt, die sich in regelmäßigen Zeitabständen wiederholen.
+\noindent \dangersign Auch die Periodendauer $p$ ist etwas, das man durch grafische Darstellung der Zeitreihe herausfinden kann. Man überprüft visuell, ob es saisonale Muster gibt, die sich in regelmäßigen Zeitabständen wiederholen.
 
 \subsection{Zerlegung in Trend und Saison}
 Die saisonale Komponente ist "\textit{eine regelmäßige Wiederholende Schwankung um die glatte Komponente}". Wenn man daher die Ordnung des gleitenden Durchschnitts so wählt, dass sie einem Vielfachen $l$ der Periodendauer entspricht ($2k = l \cdotp p$, kann man die Zeitreihe "glätten", also die Saisonkomponente herausrechnen. Übrig bleibt dadurch eine Schätzung für die Trendkomponente $g_t$.
 Die kleinste mögliche Ordnung um die Saisonkomponente zu eliminieren enstpricht somit der Periodendauer $p$.\\
 
-\noindent \dangersign[3ex] Höhere Ordnungen $l \cdot p$ sind theoretisch auch möglich (s.o.), würden jedoch dazu führen, dass man für mehr Zeitpunkte am Rand der Reihe keinen gleitenden Durchschnitt berechnen könnte.\\
+\noindent \dangersign Höhere Ordnungen $l \cdot p$ sind theoretisch auch möglich (s.o.), würden jedoch dazu führen, dass man für mehr Zeitpunkte am Rand der Reihe keinen gleitenden Durchschnitt berechnen könnte.\\
 
 \noindent Die Differenz $d_t$ zwischen dem urspr. Wert $y_t$ und geschätzten Trendkomponente $g_t$ entspricht bereits grob den saisonale Abweichungen, allerdings noch mit zusätzlichem Fehler.\\
 Durch diese Berechnung der Differenzen erhalten wir nun für jeden Teil der Saisonfigur (bspw. für jedes Quartal) \textit{mehrere} Abweichungen (da in der Zeitreihe z.B. 8 mal ein erstes Quartal auftaucht) für die gilt, dass $d_t\approx d_{t+p}$. Daher mitteln wir für jeden Teil des Saisonfigur alle berechneten Abweichungen, die diesem Teil zuzuordnen sind (bspw. alle $d_t$ die für ein erster Quartal berechnet wurden). Dies führt zu Mittelwerten für jeden der $p$ Teile der Saisonkomponente: $(\bar{d}_1, \hdots, \bar{d}_p)$\\
@@ -2007,7 +2008,7 @@ Bei der Kombination werden \textbf{nicht mehr} alle $n$ Elemente aus $M$, sonder
 \end{itemize}
 Stellt man sich diese Szenarien als Urnen-Experiment vor, so sind im Fall a) \& b) je 100 Kugeln in der Urne (also eine pro Studierendem), von denen in beiden Fällen 10 Stück gezogen werden. Im Fall a) interessiert man sich nicht für die Reihenfolge, in der man die Kugeln zieht, in Fall b) schon. Im Fall c) \& d) wären wieder nur drei Kugeln in der Urne (eine pro Studienfach), welche nach dem Ziehen stets zurückgelegt werden müssten. Im Fall c) interessiert man sich nicht für die Reihenfolge, in der man die Kugeln zieht, in Fall d) schon.\\
 
-\noindent \dangersign[3ex] Bei Permutationen wird die Anzahl der möglichen Permutationen durch Wiederholungen geringer, bei Kombinationen wird die Anzahl der möglichen Kombinationen, sowohl für den Fall mit, als auch für den Fall ohne, Berücksichtigung der Reihenfolge, durch Wiederholungen größer.
+\noindent \dangersign Bei Permutationen wird die Anzahl der möglichen Permutationen durch Wiederholungen geringer, bei Kombinationen wird die Anzahl der möglichen Kombinationen, sowohl für den Fall mit, als auch für den Fall ohne, Berücksichtigung der Reihenfolge, durch Wiederholungen größer.
 
 \clearpage
 
@@ -2021,13 +2022,13 @@ Man kann den Binomialkoeffizient auch als Permutation mit Wiederholung umschreib
 Dieser Fall ist sehr nahe an \textit{Permutation ohne Wiederholung} (vgl. Kap. \ref{sec:perm-ohne}), der einzige Unterschied liegt darin, dass das Baumdiagramm nicht "fertig" gezeichnet wird (sondern nach $m$ Stufen abbricht). Multipliziert man den Binomialkoeffizient mit $m!$, so erhält man die passende Formel dafür: 
 $$m! \cdot \binom{n}{m} = m! \cdot \frac{n!}{m!(n-m)!} = \frac{n!}{(n-m)!}$$ 
 
-\noindent \dangersign[3ex] Die Formel sieht komplizierter aus, als sie letztendlich ist. Im Grund steht im Nenner die Anzahl der nicht ausgewählten Elemente und kürzt dadurch den hinteren Teil von $n!$ weg, sodass diese nach $m$ Stufen abbricht.
+\noindent \dangersign Die Formel sieht komplizierter aus, als sie letztendlich ist. Im Grund steht im Nenner die Anzahl der nicht ausgewählten Elemente und kürzt dadurch den hinteren Teil von $n!$ weg, sodass diese nach $m$ Stufen abbricht.
 
 \subsubsection{Kombination mit Wiederholung und ohne Reihenfolge}
 Hier kann die Anzahl der ausgewählten Elemente $m$ größer sein als $n$, da mit Wiederholung gezogen wird. Zusätzlich zum Fall der Kombination ohne Wiederholung vergrößert man künstlich die Menge um $m-1$ Elemente. Dadurch wird nicht aus $n$, sondern aus $n+m-1$ Elementen gezogen:
 $$\binom{n+m-1}{m}=\frac{(n+m-1)!}{m!(n-1)!}$$
 
-\noindent \dangersign[3ex] Diese Formel mag etwas komisch wirken, eine gute Intuition vermittelt jedoch das Beispiel mit den Eiskugeln aus dem Skript.
+\noindent \dangersign Diese Formel mag etwas komisch wirken, eine gute Intuition vermittelt jedoch das Beispiel mit den Eiskugeln aus dem Skript.
 
 \subsubsection{Kombination mit Wiederholung und mit Reihenfolge}
 Betrachtet man diesen Fall wieder als Baumdiagramm, so erhält man einen Baum mit $m$ Stufen und jeweils $n$ Pfaden pro Stufe. Man berechnet die Anzahl der möglichen Kombinationen durch $$n^m\;.$$
@@ -2125,7 +2126,7 @@ Aus diesen Axiomen lassen sich 5 Folgerungen ableiten:
     \item W'keit des Komplementärereignisses: $P(\bar A) = 1 - P(A)$, da $A \cup \bar A = \Omega$
     \item W'keit des unmöglichen Ereignisses: $P(\emptyset) = 0$, da $\emptyset = \bar \Omega$ \& $P(\Omega) = 1$
     \item W'keit der Vereinigungsmenge: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, da die Schnittmenge sowohl in P(A), als auch in P(B) reinspielt \& sonst quasi "doppelt" zählen würde.\\
-    \dangersign[3ex] Sind $A$ \& $B$ disjunkt, reduziert sich dies auf das dritte Axiom, da $P(A \cap B) = 0$
+    \dangersign Sind $A$ \& $B$ disjunkt, reduziert sich dies auf das dritte Axiom, da $P(A \cap B) = 0$
     \item W'keit der Teilmenge: Wenn $A$ Teilmenge von $B$ ist, so gilt: $P(A) \leq P(B)$
     \item Kann man $\Omega$ vollständig in disjunkte Teile $A_1,....,A_n$ zerlegen, so gilt für Ereignis $B$:\\$P(B) = \sum_{i=1}^n P(B \cap A_i)$, d.h. $P(B)$ kann vollständig in die W'keiten der Schnittmengen mit den $A_i$ zerlegt werden.
 \end{enumerate}
@@ -2135,7 +2136,7 @@ Bei der bedingten Wahrscheinlichkeit handelt es sich um eine Wahrscheinlichkeit 
 Man berechnet sie aus dem Quotient der Wahrscheinlichkeit der Schnittmenge (in diesem Fall von $A$ und $B$) und der Wahrscheinlichkeit für die Bedingung, also hier von $P(A)$.
 $$P(B|A)=\frac{P(A \cap B)}{P(A)}$$
 
-\noindent \dangersign[3ex] Andersherum funktioniert es natürlich genauso, d.h. $P(A|B) = \frac{P(A \cap B)}{P(B)}$\\
+\noindent \dangersign Andersherum funktioniert es natürlich genauso, d.h. $P(A|B) = \frac{P(A \cap B)}{P(B)}$\\
 
 \noindent Stellt man diese Formel nach der gemeinsamen Wahrscheinlichkeit um, so ergibt sich der sog. \textbf{Multiplikationssatz}:
 $$P(A \cap B) = P(B|A) \cdot P(A) \qquad bzw: \qquad P(A \cap B) = P(A|B) \cdot P(B)$$
@@ -2154,7 +2155,7 @@ $$P(B|A) \cdot P(A) = P(A|B) \cdot P(B)$$
 \noindent Umgestellt nach einer der beiden bedingten Wahrscheinlichkeiten ergibt sich:
 $$ P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)} \qquad bzw: \qquad P(B|A) = \frac{P(A|B)\cdot P(B)}{P(A)}$$
 
-\noindent \dangersign[3ex] Ist eine \textbf{unbedingte Wahrscheinlichkeit} gesucht, so ist meistens der Satz der totalen Wahrscheinlichkeit hilfreich, sucht man eine \textbf{bedingt Wahrscheinlichkeit} so benötigt man meist den Satz von Bayes
+\noindent \dangersign Ist eine \textbf{unbedingte Wahrscheinlichkeit} gesucht, so ist meistens der Satz der totalen Wahrscheinlichkeit hilfreich, sucht man eine \textbf{bedingt Wahrscheinlichkeit} so benötigt man meist den Satz von Bayes
 
 \clearpage 
 
@@ -2239,7 +2240,7 @@ Stetige Zufallsvariablen sind innerhalb eines beliebigen Intervalls definiert un
 
 \paragraph{Dichtefunktion} Das stetige Analogen zur Wahrscheinlichkeitsfunktion beschreibt stetige Zufallsvariablen. (\textit{Anmerkung: Muss stets $\geq$ 0 sein }\& $\int_{-\infty}^{\infty} f(x)\; dx = 1$)\\
 
-\noindent \dangersign[3ex] Bei stetigen Zufallsvariablen sind die Punktwahrscheinlichkeiten stets Null, d.h. wir könneen lediglich Aussagen über Wahrscheinlichkeiten für Intervalle treffen.
+\noindent \dangersign Bei stetigen Zufallsvariablen sind die Punktwahrscheinlichkeiten stets Null, d.h. wir könneen lediglich Aussagen über Wahrscheinlichkeiten für Intervalle treffen.
 
 \subsection{Träger einer Zufallsvariablen} \label{sec:traeger}
 
@@ -2249,13 +2250,13 @@ Der Träger einer Zufallsvariablen bezeichnet alle möglichen Ergebnisse einer Z
 
 Die Interpretation ist relativ ähnlich zur empirischen Verteilungsfunktion aus Kapitel \ref{sec:emp-vert}, mit dem Unterschied, dass wir hier von \textit{Wahrscheinlichkeiten} anstatt von relativen Häufigkeiten sprechen. D.h. es handelt sich um ein rein theoretisches Konstrukt (im Gegensatz zum \textit{empirischen} Verteilungsfunktion).\\
 
-\noindent \dangersign[3ex] Bei diskreten Zufallsvariablen wird über die Punktwahrscheinlichkeiten aufsummiert ($\rightarrow$ Treppenfunktion), bei stetigen Zufallsvariablen über die Dichtefunktion integriert ($\rightarrow$ glatter Verlauf).
+\noindent \dangersign Bei diskreten Zufallsvariablen wird über die Punktwahrscheinlichkeiten aufsummiert ($\rightarrow$ Treppenfunktion), bei stetigen Zufallsvariablen über die Dichtefunktion integriert ($\rightarrow$ glatter Verlauf).
 
 \subsection{Erwartungwert \& Varianz}\label{sec:ex-var}
 
 Ähnlich der zentralen Lagemaße für \textit{Daten} in der deskriptiven Statistik (vgl. Kap. \ref{sec:median} oder \ref{sec:arithm}) dient der Erwartungswert zur Beschreibung des Schwerpunktes der Verteilung von \textit{Zufallsvariablen}. Die Varianz dient dazu, die Streuung von Verteilungen um deren Erwartungswert zu quantifizieren, im Gegensatz zur \textit{empirischen} Varianz (vgl. Kap. \ref{sec:varianz}) welche die Streuung von \textit{Daten} um deren Mittelwert quantifiziert.\\
 
-\noindent \dangersign[3ex] Auch hier ist bei der Berechnung wieder die Fallunterscheidung zwischen diskreten Zufallsvariablen (\textit{Summation}; eher simpel) und stetigen Zufallsvariablen (\textit{Integration}; eher aufwändig) nötig.
+\noindent \dangersign Auch hier ist bei der Berechnung wieder die Fallunterscheidung zwischen diskreten Zufallsvariablen (\textit{Summation}; eher simpel) und stetigen Zufallsvariablen (\textit{Integration}; eher aufwändig) nötig.
 
 \subsection{Zweidimensionale Zufallsvariablen}\label{sec:2zv}
 
@@ -2302,9 +2303,9 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die diskerte Gleichverteilung: > \_dunif()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/extraDistr/versions/1.8.11/topics/DiscreteUniform}{Dokumentation}}
 
-\noindent \dangersign[3ex] Für \textbf{alle} Verteilungen gibt es in \texttt{R} vier verschiedene mögliche Befehle, die durch einen Buchstaben vor dem Verteilungsnamen unterschieden werden (daher hier ein "\_" als Platzhalter. Ein \texttt{d} steht für die Dichte-/Wahrscheinlichkeitefunktion (\texttt{ddunif}), ein \texttt{p} für die Verteilungsfunktion (\texttt{pdunif}), ein \texttt{q} für die Quantilsfunktion (\texttt{qdunif}) und ein \texttt{r} für eine Zufallszahl (\texttt{rdunif})
+\noindent \dangersign Für \textbf{alle} Verteilungen gibt es in \texttt{R} vier verschiedene mögliche Befehle, die durch einen Buchstaben vor dem Verteilungsnamen unterschieden werden (daher hier ein "\_" als Platzhalter. Ein \texttt{d} steht für die Dichte-/Wahrscheinlichkeitefunktion (\texttt{ddunif}), ein \texttt{p} für die Verteilungsfunktion (\texttt{pdunif}), ein \texttt{q} für die Quantilsfunktion (\texttt{qdunif}) und ein \texttt{r} für eine Zufallszahl (\texttt{rdunif})
 
-\noindent \dangersign[3ex] Die R-Funktionen sind \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{extraDistr}. Dieses muss zunächst installiert (\texttt{install.packages("extraDistr")}) und anschließend importiert werden (\texttt{library(extraDistr)}).
+\noindent \dangersign Die R-Funktionen sind \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{extraDistr}. Dieses muss zunächst installiert (\texttt{install.packages("extraDistr")}) und anschließend importiert werden (\texttt{library(extraDistr)}).
 
 \subsubsection{Bernoulliverteilung} \label{sec:Ber}
 
@@ -2447,7 +2448,7 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die Multinomialverteilung: > \_multinom()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/Multinom}{Dokumentation}}
 
-\noindent \dangersign[3ex] Bei der Multinomialverteilung lassen sich nur Zufallszahlen generieren oder die Wahrscheinlichkeitsfunktion abfragen.
+\noindent \dangersign Bei der Multinomialverteilung lassen sich nur Zufallszahlen generieren oder die Wahrscheinlichkeitsfunktion abfragen.
 
 \clearpage
 
@@ -2601,7 +2602,7 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 
 \paragraph{Bemerkung:} Die Quantile der t--Verteilung werden in der Regel mit $t$ beschrieben. Außerdem kann für hohe Freiheitsgrade die t-Verteilung durch die Standardnormalverteilung approximiert werden. Das gilt dann natürlich auch für die entsprechenden Quantile. \\
 
-\noindent \dangersign[3ex] Immer die korrekten Quantile verwenden, wenn diese angegeben sind. \\
+\noindent \dangersign Immer die korrekten Quantile verwenden, wenn diese angegeben sind. \\
 
 \begin{figure}[htbp] 
 \caption{Annäherung der t-Verteilung an die Standardnormalverteilung}\label{Fig:a}
@@ -2623,7 +2624,7 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 \item[] Notation: $X \sim F_{df_1,df_2}$
 \end{itemize}
 
-\noindent \dangersign[3ex] Die F-Verteilung hat zwei Freiheitsgrade. Bitte denkt immer an beide (z.B. bei einem Overall-F-test für die Betakoeffizienten eines multiplen Regressionsmodells)!\\
+\noindent \dangersign Die F-Verteilung hat zwei Freiheitsgrade. Bitte denkt immer an beide (z.B. bei einem Overall-F-test für die Betakoeffizienten eines multiplen Regressionsmodells)!\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die F-Verteilung: > \_f()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/FDist}{Dokumentation}}
 
@@ -2787,7 +2788,7 @@ Das Gesetz der großen Zahlen besagt, dass sich beobachtete relative Häufigkeit
 \subsubsection{Zentraler Grenzwertsatz (ZGS)}\label{sec:ZGS}
 Der zentrale Grenzwertsatz gehört zu den wichtigsten Aussagen der Wahrscheinlichkeitstheorie. Er gibt eine Charakterisierung der Normalverteilung als Grenzverteilung von Überlagerungen einer Vielzahl unabhängiger zufälliger Einzeleffekte. Der ZGS besagt, dass sich der Mittelwert einer jeden beliebigen Verteilung von iid Zufallsvariablen mit zunehmenden Stichprobenumfang der Normalverteilung annähern wird. Wegen des zentralen Grenzwertsatzes können wir Hypothesentests durchführen, auch wenn die Grundgesamtheit keiner Normalverteilung unterliegt, vorausgesetzt, dass die Stichprobe ausreichend groß ist.\\
 
-\noindent \dangersign[3ex] Vorsicht: Oftmals wird angenommen, dass der zentrale Grenzwertsatz sagt, dass eine Stichprobe ab einer gewissen Größe automatisch normalverteilt sein wird. Dies stimmt aber nicht!
+\noindent \dangersign Vorsicht: Oftmals wird angenommen, dass der zentrale Grenzwertsatz sagt, dass eine Stichprobe ab einer gewissen Größe automatisch normalverteilt sein wird. Dies stimmt aber nicht!
 
 
 \subsection{Approximationen}\label{sec:Approx}
@@ -2801,7 +2802,7 @@ Wir können unter bestimmten Voraussetzungen Verteilungen durch andere Verteilun
 
 \noindent Insgesamt haben wir vier Approximationen kennengelernt, die nachfolgend nochmal -- überwiegend bezüglich ihrer Intuition -- besprochen werden.\\
 
-\noindent \dangersign[3ex] Sehr wichtig: Immer die Annahmen für die Approximation prüfen.
+\noindent \dangersign Sehr wichtig: Immer die Annahmen für die Approximation prüfen.
 
 \subsubsection{Approximation der Binomial- durch die Normalverteilung}\label{sec:BinN}
 
@@ -2885,7 +2886,7 @@ Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern 
 
 \paragraph{Wozu braucht man eigentlich Konfidenzintervalle?} In der induktiven Statistik wird mit Hilfe einer Stichprobe versucht, allg. Aussagen über die Grundgesamtheit zu machen. Mit der ML-Schätzung haben wir dafür schon eine Methode kennengelernt um Punktschätzer zu "generieren". Die erhobenen Daten einer Stichprobe werden dann in einem Punktschätzer zusammengefasst (z.B. Mittelwert oder Varianz), um damit auf die wahren Werte in der Grundgesamtheit zu schließen.\\
 
-\noindent \dangersign[3ex] Probleme:
+\noindent \dangersign Probleme:
 
 \begin{itemize}
     \item Wie präzise ist diese Punktschätzung eigentlich?
@@ -2915,7 +2916,7 @@ Die ML Schätzung ist ein Prinzip für die Konstruktion von Parameterschätzern 
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für Konfidenzintervalle: > ci()}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/gmodels/versions/2.18.1/topics/ci}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{gmodels}. Dieses muss zunächst installiert (\texttt{install.packages("gmodels")}) und anschließend importiert werden (\texttt{library(gmodels)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{gmodels}. Dieses muss zunächst installiert (\texttt{install.packages("gmodels")}) und anschließend importiert werden (\texttt{library(gmodels)}).
 
 \clearpage
 
@@ -2959,7 +2960,7 @@ D.h. wir hätten mit unseren Daten zufällig ein seltenes Ereignis getroffen. Wi
 
 \paragraph{Merke:} $p-Wert=P(T \leq t) < \alpha$ $\Rightarrow$ $H_0$ verwerfen!\\
 
-\noindent \dangersign[3ex] Für die Hypothesen: 
+\noindent \dangersign Für die Hypothesen: 
 $$H_0: \mu \leq \mu_0 \qquad \mbox{vs.} \qquad H_1: \mu > \mu_0$$
 
 \noindent ist der p-Wert entsprechend:
@@ -2999,7 +3000,7 @@ Test des Erwartungswerts $\mu_x$ einer (per Annahme) normalverteilten ZV $X$ ($\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den einfachen Gauss-Test: > gausstest(data\$x)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/compositions/versions/2.0-0/topics/gausstest}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{compositions}. Dieses muss zunächst installiert (\texttt{install.packages("compositions")}) und anschließend importiert werden (\texttt{library(compositions)}).
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{compositions}. Dieses muss zunächst installiert (\texttt{install.packages("compositions")}) und anschließend importiert werden (\texttt{library(compositions)}).
 
 \subsubsection{Einfacher t-Test}\label{sec:tTest1}
 Test des Erwartungswerts $\mu_x$ einer (per Annahme) normalverteilten ZV $X$ ($\sim \mathcal{N}(\mu_x, \sigma_x^2)$). Die \textbf{Varianz} $\sigma_x^2$ ist dabei \textbf{unbekannt} und muss aus der Stichprobe mittels der der Stichprobenvarianz $S^2$ geschätzt werden.\\
@@ -3011,7 +3012,7 @@ Test der Erfolgswahrscheinlichkeit $p$ einer (per Annahme) bernoulliverteilten Z
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl \textbf{exakter} Binomialtest: > binom.test(data\$x)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/binom.test}{Dokumentation}}
 
-\noindent \dangersign[3ex] Dieser Befehl führt den \textbf{exakten} Binomialtest durch, der approximative kann mit der \texttt{gausstest}-Funktion durchgeführt werden.
+\noindent \dangersign Dieser Befehl führt den \textbf{exakten} Binomialtest durch, der approximative kann mit der \texttt{gausstest}-Funktion durchgeführt werden.
 
 \subsubsection{Chi-Quadrat-Anpassungstest}\label{sec:chitest1}
 Test der unter $H_0$ erwarteten und tatsächlich Beobachteten absoluten Häufigkeiten von verschiedenen Ausprägungen einer ZV. Dadurch kann man testen, ob die Verteilung, von der die Stichprobe stammt, ungleich einer unter $H_0$ angenommenen Verteilung ist.
@@ -3019,7 +3020,7 @@ Test der unter $H_0$ erwarteten und tatsächlich Beobachteten absoluten Häufigk
 \subsubsection{F-Test}\label{sec:ftest}
 Testet das Verhältnis (Größer/kleiner bzw. Gleichheit/Ungleichheit) der Varianzen zweier unabhängiger normalverteiler ZV. Die Teststatistik ist der Quotient der Stichprobenvarianzen und F-verteilt.\\
 
-\noindent \dangersign[3ex] Die F--Verteilung hat \textbf{zwei Freiheitsgrade}. Denkt immer an beide (z.B. auch bei der F-Statistik eines multiplen Regressionsmodells).\\
+\noindent \dangersign Die F--Verteilung hat \textbf{zwei Freiheitsgrade}. Denkt immer an beide (z.B. auch bei der F-Statistik eines multiplen Regressionsmodells).\\
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den F-Test: > var.test(data\$x, data\$y)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/var.test}{Dokumentation}}
 
@@ -3028,7 +3029,7 @@ Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit/Ungleichheit) der Erwar
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für den doppelten Gauss-Test: > gausstest(data\$x, data\$y)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/compositions/versions/2.0-0/topics/gausstest}{Dokumentation}}
 
-\noindent \dangersign[3ex] Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{compositions}. Dieses muss zunächst installiert (\texttt{install.packages("compositions")}) und anschließend importiert werden (\texttt{library(compositions)}). 
+\noindent \dangersign Die R-Funktion ist \textbf{nicht} Teil von \texttt{base-R} sondern Teil des Paketes \texttt{compositions}. Dieses muss zunächst installiert (\texttt{install.packages("compositions")}) und anschließend importiert werden (\texttt{library(compositions)}). 
 
 \subsubsection{Doppelter t-Test}\label{sec:tTest2}
 Testet das Verhältnis (Größer/Kleiner bzw. Gleichheit/Ungleichheit) der Erwartungswerte zweier unabhängiger normalverteiler ZVs (X und Y). Die \textbf{Varianzen} $\sigma_x^2$ und $\sigma_y^2$ sind dabei \textbf{unbekannt} und müssen aus der Stichprobe mittels der der Stichprobenvarianz $S^2$ geschätzt werden. Hier wird zusätzlich angenommen, dass die zugrundeliegenden Verteilungen \textbf{beider ZVs dieselbe Varianz} haben ($\sigma_x^2 =\sigma_y^2$). \\
@@ -3053,7 +3054,7 @@ Vergleich der Lageparameter (das ist bei der Normalverteilung der Erwartungswert
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl M.-W.-U-Test: > wilcox.test(data\$x,data\$y,paired=FALSE)}\\ \mbox{} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/wilcox.test}{Dokumentation}}
 
-\noindent \dangersign[3ex] Der Name mag hier vielleicht irritieren, kommt jedoch daher, dass die Test für \textit{verbundene} Stichproben Wilcoxon-Test heißt, während der für unverbundenen Stichproben der Mann-Whitney-U-Test ist. Dies kann man in dem \texttt{R}-Befehl über \texttt{paired = TRUE/FALSE} steuern.
+\noindent \dangersign Der Name mag hier vielleicht irritieren, kommt jedoch daher, dass die Test für \textit{verbundene} Stichproben Wilcoxon-Test heißt, während der für unverbundenen Stichproben der Mann-Whitney-U-Test ist. Dies kann man in dem \texttt{R}-Befehl über \texttt{paired = TRUE/FALSE} steuern.
 
 \subsubsection{Kolmogorov-Smirnov-Anpassungstest}\label{sec:KolSmi}
 Test von Gleichheit gegen Ungleichheit der Verteilung zweier ZVs (X und Y). Wir berechnen dafür die empirischen Verteilungsfunktionen von X und Y ($\hat{F}$ and $\hat{G}$). Dann schauen wir uns jede einzelne Beobachtung von X und Y an (bzw. wir fassen sie einfach zu einem Pool von Beobachtungen zusammen). Aus diesem Pool nehmen wir jeden Wert ($t$) einmal und betrachten $|\hat{F}(t)-\hat{G}(t)|$. Die größte dieser Differenzen ist die Teststatistik. Dann wird wie üblich gegen einen kritischen Wert eine Entscheidung getroffen. Das ist aber hier zu komplex $\rightarrow$ wir benutzen Computer dafür.\\
@@ -3140,7 +3141,7 @@ Bei der linearen Einfachregression nimmt man an, dass zwischen der abhängigen (
 $$Y = \beta_0 + \beta_1X + \epsilon\;,$$ 
 \noindent wobei $\epsilon$ der unbeobachtete Fehlerterm ist. In Statistik II betrachtet man die Daten nun als Realisationen von Zufallsvariablen, mit Hilfe derer Schlüsse auf die Grundgesamtheit möglich sind, im Gegensatz zu Statistik I, wo das Modell rein zu Beschreibung der vorliegenden Daten diente. Dadurch kann man nun nicht mehr nur Aussagen übe die erklärte Streuung machen \& Koeffizienten interpretieren, sondern auch über Verteilungsannahmen Aussagen über deren statistische Signifikanz treffen.\\
 
-\noindent\dangersign[3ex] Der Notationsunterschied ($\alpha, \beta, \epsilon$ anstatt $a, b, e$) dient zur Abgrenzung von der rein deskriptiven Nutzung des Regressionsmodells in Statistik I.
+\noindent\dangersign Der Notationsunterschied ($\alpha, \beta, \epsilon$ anstatt $a, b, e$) dient zur Abgrenzung von der rein deskriptiven Nutzung des Regressionsmodells in Statistik I.
 
 \paragraph{Annahmen} Der Fehlerterm $\epsilon$ ist nun eine Zufallsvariable über die im Vorhinein bestimmte Annahmen getroffen werden:
 \begin{itemize}
@@ -3183,7 +3184,7 @@ $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \hdots + \beta_p X_p + \epsilon\;,$$
 
 \paragraph{Interpretation des Intercepts $\hat \alpha$:} Interpretiert werden muss der Intercept nun als "\textit{der erwartete/geschätzt/durchschnittliche Wert der Zielgröße (Y), falls \textbf{alle} Einflussgrößen einen Wert von 0 annimmt}". Wichtig ist hier vor allem, dass man aufpasst, falls kategoriale Kovariablen teil des Modells sind, da ein Wert von 0 hier das vorliegen der Referenzkategorie bedeutet.\\
 
-\noindent \dangersign[3ex] Es können die gleiche Fälle auftreten, in denen eine Interpretation des Intercepts nicht sinnvoll ist wie bereits in Kapitel \ref{chap:linreg} beschrieben.
+\noindent \dangersign Es können die gleiche Fälle auftreten, in denen eine Interpretation des Intercepts nicht sinnvoll ist wie bereits in Kapitel \ref{chap:linreg} beschrieben.
 
 \paragraph{Interpretation der Steigungsparameters $\hat \beta_j$:} Der geschätzte Steigungsparameter für die $j$-te Einflussgröße ist wie folgt zu interpretieren: "\textit{Steigt die $j$-te Einflussgröße ($X_j$) um eine Einheit, so erwartet man, unter sonst gleichen Umständen/\href{https://de.wikipedia.org/wiki/Ceteris_paribus}{c.p. (ceteris paribus)}, einen Anstieg (bzw. Abnahme, bei negativem $\hat \beta_j$) der Zielgröße (Y) um $\hat \beta_j$ Einheiten (der Zielgröße)}".\\
 Drei Anmerkungen hierzu:
@@ -3193,13 +3194,13 @@ Drei Anmerkungen hierzu:
     \item Die Formulierung "\textit{unter sonst gleichen Umständen}" ist hier entscheidend, da wir nun \textbf{mehrere} Einflussgröße haben und die anderen für die Interpretation von $\hat \beta_j$ konstant gehalten werden müssen
 \end{itemize}
 
-\noindent \dangersign[3ex] \textit{Bemerkung:} Lineare Modelle sind möglicherweise allgemeiner als man denkt, da nur die Parameter $\beta$ linear sein müssen, jedoch trotzdem auch Kovariablen quadriert aufgenommen werden können.
+\noindent \dangersign \textit{Bemerkung:} Lineare Modelle sind möglicherweise allgemeiner als man denkt, da nur die Parameter $\beta$ linear sein müssen, jedoch trotzdem auch Kovariablen quadriert aufgenommen werden können.
 
 \subsection{Signifikanztests und Konfidenzintervalle}
 Mit dem Signifikanztest soll überprüft werden, ob eine $j$-te Einflussgröße einen signifikanten Erklärungswert für die Zielgröße besitzt. Dabei kommt in die Alternativhypothese die Eigenschaft die wir nachweisen wollen, nämlich dass $H_1: \beta_j \neq 0$. Somit ist die Nullhypothese $H_0:\beta_j=0$.\\
 Vom Prinzip her entspricht dieser Test einem einfachen t-Test (vgl. Kap. \ref{sec:pWert} \& \ref{sec:tTest1}) wobei der hypothetische Wert 0 ist, d.h. im Zähler steht nur der Koeffizientenschätzer $\beta_j$.\\
 
-\noindent \dangersign[3ex] Im Gegensatz zum t-Test muss hier \textbf{nicht mehr} mit $\sqrt{n}$ multipliziert werden, da dies bereits in der geschätzten Standardabweichung $\hat \sigma_{\hat \beta_j}$ mit drinsteckt.\\
+\noindent \dangersign Im Gegensatz zum t-Test muss hier \textbf{nicht mehr} mit $\sqrt{n}$ multipliziert werden, da dies bereits in der geschätzten Standardabweichung $\hat \sigma_{\hat \beta_j}$ mit drinsteckt.\\
 
 \noindent Die Verteilung der Teststatistik ist dabei ein $t$-Verteilung mit $n-p-1$ Freiheitsgraden, wobei $n$ die Anzahl der Beobachtungen und $p$ die Anzahl der geschätzten Koeffizieten (\textbf{ohne} Intercept) ist. Die 1 ist für den Intercept mit dabei.\\
 
@@ -3219,13 +3220,13 @@ $$H_1: \beta_j \neq 0 \qquad \mbox{für mind. ein $j$.}$$
 \noindent Das heißt, die Nullhypothese wird abgelehnt, wenn mindestens einer der Regressoren einen signifikanten Einfluss auf die unabhängige Variable hat. Somit testet man formell das Modell mit allen Regressoren gegen das Modell nur mit Intercept, da dort alle Betas 0 wären.\\
 Die Teststatistik berechnet man mit $F=\frac{R^2}{1-R^2}\cdot \frac{n-(p+1)}{p}$. und sie folgt einer F-Verteilung (vgl. Kap. \ref{sec:fdistr}) mit $p$ \& $(n-p-1)$ Freiheitsgraden. Um die Nullhypothese ablehnen zu können, muss die berechnete Teststatistik größer sein, als $F_{1-\alpha}$. \\
 
-\noindent \dangersign[3ex] \textbf{Bemerkung:} Hat man einen \texttt{R}-Output gegeben, dann befindet am Ende das Bestimmtheitsmaß und die Teststatistik, sowie der p-Wert vom Overall F-Test..\\
+\noindent \dangersign \textbf{Bemerkung:} Hat man einen \texttt{R}-Output gegeben, dann befindet am Ende das Bestimmtheitsmaß und die Teststatistik, sowie der p-Wert vom Overall F-Test..\\
 
 \clearpage
 
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für lineare Regression: > lm(formula = .., data = ..)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/lm}{Dokumentation}}\\
 
-\noindent \dangersign[3ex] Im Gegensatz zur linearen Einfachregression werden bei der multiplen Regression auf die rechten Seite der Tilde mehrere Argumente (verknüpft mit einem "+") eingegeben.\\
+\noindent \dangersign Im Gegensatz zur linearen Einfachregression werden bei der multiplen Regression auf die rechten Seite der Tilde mehrere Argumente (verknüpft mit einem "+") eingegeben.\\
 
 \noindent Eine typischer Output (Wieder Beispiel-Datensatz \href{https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars}{\texttt{mtcars}}) sähe hier in etwa so aus:
 

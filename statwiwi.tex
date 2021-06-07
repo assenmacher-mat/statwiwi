@@ -2094,11 +2094,11 @@ Zunächst ein paar Begriffserklräungen, für das bessere Verständnis:
 
 \noindent Zufällige Ereignisse können nicht nur alleine auftreten, da diese Mengen von Elementarereignissen sind. Zur Verknüpfung benötigt man sog. Mengenoperation:
 
-\paragraph{A geschnitten B} [$A\; \cap\; B$]\; Dies ist die \textit{Schnittmenge} der beiden Mengen $A$ und $B$, d.h. diejenigen Elementarereignisse, die sowohl in $A$ \textit{als auch} auch in $B$ enthalten sind. Ist $A\cup B=\emptyset$ (d.h. die Schnittmenge ist leer), so spricht man von \textbf{disjunkten Ereignissen}. 
+\paragraph{A geschnitten B} [$A\; \cap\; B$]\; Dies ist die \textit{Schnittmenge} der beiden Mengen $A$ und $B$, d.h. diejenigen Elementarereignisse, die sowohl in $A$ \textit{als auch} auch in $B$ enthalten sind. Ist $A\cap B=\emptyset$ (d.h. die Schnittmenge ist leer), so spricht man von \textbf{disjunkten Ereignissen}. 
 
 \paragraph{A vereinigt B} [$A\; \cup\; B$]\; Dies ist die Vereinigungsmenge, d.h. alle Elementarereignisse, die entweder in $A$ \textit{oder} in $B$ (oder in beiden) enthalten ist. Hierfür werden beide Mengen addiert, wobei Elementarereignisse, die in beiden Mengen vorkommen, nur einmal gezählt werden dürfen.
 
-\paragraph{Nicht A} [$\bar A$]\; Das zufällige Ereignis $\bar A$ (sprich: \textit{A quer}) enthält ausschließlich diejenigen Elementarereignisse, welche in $A$ enthalten sind.
+\paragraph{Nicht A} [$\bar A$]\; Das zufällige Ereignis $\bar A$ (sprich: \textit{A quer}) enthält ausschließlich diejenigen Elementarereignisse, welche nicht in $A$ enthalten sind.
 
 \paragraph{A ohne B} [$A\; \setminus\; B$]\; Die Ereignis bezeichnet alle Elementarereignisse, welche in $A$, jedoch nicht in $B$ enthalten sind. $B\; \setminus\; A$ wären alle, die in $B$, jedoch nicht in $A$ enthalten sind.
 
@@ -2458,8 +2458,8 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 \begin{itemize}
     \item[a)] Bei der diskreten Gleichverteilung muss es immer zwei mögliche Ausgänge geben, die\\ die gleiche Wahrscheinlichkeit haben. \hfill $\square$
     \item[b)] Die Augenzahl bei dem Wurf eines Würfels mit 88 Seiten folgt einer Gleichverteilung. \hfill $\square$
-    \item[c)] Das Ergebnis des Wurfs einer unfairen Münzwurf mit Kopf und Zahl ist bernoulliverteilt. \hfill $\square$
-    \item[d)] Das Ergebnis des Wurfs einer unfairen Münzwurf mit Kopf und Zahl ist gleichverteilt. \hfill $\square$
+    \item[c)] Das Ergebnis des Wurfs einer unfairen Münze mit Kopf und Zahl ist bernoulliverteilt. \hfill $\square$
+    \item[d)] Das Ergebnis des Wurfs einer unfairen Münze mit Kopf und Zahl ist gleichverteilt. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen bzgl. der Bernoulliverteilung und Binomialverteilung sind wahr?}
@@ -2467,7 +2467,7 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
     \item[a)] Die Binomialverteilung besteht aus $n$ abhängigen und identische Bernoulliexperimenten. \hfill $\square$
     \item[b)] Der Erwartungswert der Bernoulliverteilung ist die Wahrscheinlichkeit, dass das\\ Ereignis eintritt, selbst. \hfill $\square$
     \item[c)] Bei der Bernoulliverteilung und bei der Binomialverteilung gibt es jeweils nur zwei\\ mögliche Ergebnisse. \hfill $\square$
-    \item[d)] Die Verteilungsfunktion der Binomialverteilung geht von 0 bis 1. \hfill $\square$
+    \item[d)] Die Verteilungsfunktion der Binomialverteilung steigt von 0 bis 1. \hfill $\square$
 \end{itemize}
 
 \paragraph{3. Gegeben ist die Rechnung $P(X=4) = 0,3 \cdot 0,7^3$ Welche Aussagen sind wahr?}
@@ -2480,9 +2480,9 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
     
 \paragraph{4. Welche Aussagen bezüglich der geometrischen und hypergeometrischen Verteilung sind wahr?}
 \begin{itemize}
-    \item[a)] Je größer die Wahrscheinlichkeit eines Ereignisses ist, desto länger braucht es, \\ bis es zum ersten Mal auftritt.\hfill $\square$
+    \item[a)] Je größer die Wahrscheinlichkeit eines Ereignisses ist, desto länger die erwartete Dauer, \\ bis es zum ersten Mal auftritt. \hfill $\square$
     \item[b)] Die hypergeom. Verteilung verwendet man, wenn man wissen will, mit welcher Wahrschein-\\lichkeit ein Ereignis nach wie vielen Wiederholungen eines Zufallsexperiments eintritt. \hfill $\square$
-    \item[c)] Die hypergeometrische Verteilung berechnet die Wahrscheinlichkeit unter der Voraus-\\setzung, dass die gezogenen Elemente wieder zurückgelegt werden. \hfill $\square$
+    \item[c)] Mit der hypergeometrische Verteilung berechnet man die Wahrscheinlichkeit unter\\ der Voraussetzung, dass die gezogenen Elemente wieder zurückgelegt werden. \hfill $\square$
 \end{itemize}
     
 \paragraph{5. Welche Aussagen zur Poissonverteilung sind richtig?}
@@ -2495,10 +2495,10 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 
 \paragraph{6. Welche Aussagen zur Multinomialverteilung sind richtig?}
 \begin{itemize}
-    \item[a)] Bei der Multinomialverteilung ist es wichtig zu wissen, wie viele Einheiten insgesamt\\ vorhanden sind. Also wie groß n ist, da wir nicht mit zurücklegen ziehen. \hfill $\square$
-    \item[b)] Die Multinomialverteilung ist die Verallgemeinerung der Bernoulliverteilung mit\\ mindestens zwei möglichen Ereignissen.\hfill $\square$
+    \item[a)] Bei der Multinomialverteilung ist es wichtig zu wissen, wie groß $n$ ist. \hfill $\square$
+    \item[b)] Die Multinomialverteilung ist die Verallgemeinerung der Bernoulliverteilung mit\\ mehr als zwei möglichen Ereignissen. \hfill $\square$
     \item[c)] $k$ gibt Anzahl der verschiedenen möglichen Ergebnisse an. \hfill $\square$
-    \item[d)] Alle $k$ Wahrscheinlichkeiten müssen sich immer zu 1 aufaddieren. \hfill $\square$
+    \item[d)] Die $k$ Wahrscheinlichkeiten müssen sich nicht zwingend zu 1 aufaddieren. \hfill $\square$
 \end{itemize}
 \clearpage
 

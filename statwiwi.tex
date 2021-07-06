@@ -25,6 +25,7 @@
 \usepackage{color}
 \usepackage{multicol}
 \usepackage{xcolor}
+\usepackage{enumitem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -265,6 +266,39 @@ Mit \texttt{R} kann man so gut wie alles aus der Vorlesung berechnen. Hat man ei
 \noindent Es finden sich auch zahlreiche Hilfe-Seiten, wie z.B. \hfill \href{https://www.rdocumentation.org/}{https://www.rdocumentation.org/}\\
 \noindent oder \hfill \href{https://stat.ethz.ch/R-manual/}{https://stat.ethz.ch/R-manual/}\\
 
+\newpage
+
+\subsection{Aufgaben}
+
+\paragraph{1. Datenerhebung: Welche Aussagen sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Längsschnittdaten werden stets durch die Erhebungsmethode "Beobachtung" gewonnen. \hfill $\square$
+    \item Bei Längsschnittdaten müssen die zeitlichen Abstände identisch sein. \hfill $\square$
+    \item Längsschnittdaten entstehen durch die wiederholte Erhebung von Querschnittsdaten. \hfill $\square$
+    \item Von einer Zeitreihe spricht man, wenn ein Merkmal der Reihe nach zu festgelegten\\ Zeitpunkten an unterschiedlichen Untersuchungseinheiten beobachtet wird. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
+
+\paragraph{2. Welche Aussagen zu Skalenniveaus sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Wenn man die Anzahl der möglichen Ausprägungen zählen kann, ist ein Merkmal\\ metrisch skaliert. \hfill $\square$
+    \item Ein ordinalskaliertes Merkmal besitzt mehr mögliche Ausprägungen als ein\\ nominalskaliertes Merkmal. \hfill $\square$
+    \item Im Gegensatz zu ordinalskalierten Merkmalen kann man metrische Merkmale ordnen. \hfill $\square$
+    \item Nominalskalierte Merkmale können auch stetig sein. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
+
+\paragraph{3. Welche Aussagen zu Skalenniveaus sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Die Existenz eines natürlichen Nullpunkts ist Voraussetzung für eine Absolutskala. \hfill $\square$
+    \item Die „Intervallskala“ hat einen höheren Informationsgehalt als die „Verhältnisskala“. \hfill $\square$
+    \item Geschlecht ist ein Beispiel für ein ordinalskaliertes Merkmal. \hfill $\square$
+    \item Quasistetig bedeutet, dass ein Merkmal theoretisch diskret ist, aber wie ein stetiges\\ Merkmal behandelt wird. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
 
 \newpage
 
@@ -453,6 +487,40 @@ Die Schwäche ist, dass man hierfür von einer Gleichverteilung innerhalb der Kl
 \noindent \framebox[\textwidth]{\texttt{R-Befehl für die emp. Verteilungsfunktion: > ecdf(data)} \hfill \href{https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/ecdf}{Dokumentation}}
 
 \noindent \dangersign Die \texttt{ecdf()}-Funktion selbst erzeugt noch keine Grafik, sondern lediglich ein Objekt das die Werte der emp. Verteilungsfunktion enthält. Um die emp. Verteilungsfunktion zu plotten, muss der \texttt{plot()}-Befehl auf die \texttt{ecdf()}-Funktion angewandt werden: \texttt{plot(ecdf(data))} 
+
+\clearpage
+
+\subsection{Aufgaben}
+
+\paragraph{1. Häufigkeitsbegriffe und Visualisierungen: Welche Aussagen sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Für stetige oder quasistetige Merkmale sollten bei der Häufigkeitsauszählung\\ Klassen gebildet werden. \hfill $\square$
+    \item Absolute Häufigkeiten summieren sich stets zu 1 auf. \hfill $\square$
+    \item Balken-/Säulendiagramme sind gut für nominale/ordinale Merkmale geeignet. \hfill $\square$
+    \item Kreisdiagramme sind für ordinale Merkmale eher ungeeignet. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
+
+\paragraph{2. Welche Aussagen zu Histogrammen sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Bei ungleichen Klassenbreiten ist die Höhe des Balkens proportional zur rel. Häufigkeit. \hfill $\square$
+    \item Histogramme sind gut für nominale/ordinale Merkmale geeignet. \hfill $\square$
+    \item Ein Histogramm mit konstanter Klassenbreite ist dasselbe wie ein Säulendiagramm. \hfill $\square$
+    \item Je gröber die Klasseneinteilung, desto höher die einzelnen Balken. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
+
+\paragraph{3. Welche Aussagen sind zur Empirische Verteilungsfunktion sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Für ein stetiges Merkmal gilt: H(x < 5) = H(x <= 4). \hfill $\square$
+    \item Die kumulierten relativen Häufigkeiten summieren sich zu 1. \hfill $\square$
+    \item Für diskrete Merkmale: Bei der häufigsten Beobachtung ist die emp. Verteilungs-\\funktion am größten. \hfill $\square$
+    \item Für diskrete Merkmale: Bei der häufigsten Beobachtung macht die emp. Verteilungs-\\funktion den größten Sprung. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
 
 \clearpage
 
@@ -1928,7 +1996,7 @@ Zu Zeitreihen gibt es eigene ganze Vorlesungen, siehe z.B.:
     \item[a)] Durch k wird festgelegt, ob der die Ordnung der gl. Durchschnitt gerade oder ungerade\\ist. \hfill $\square$
     \item[b)] Bei einem gl. Durchschnitt ungerader Ordnung fallen am Rand der Zeitreihe mehr\\Werte weg als bei gerader Ordnung. \hfill $\square$
     \item[c)] Je höher die Ordnung, desto mehr Werte fallen am Rand der Zeitreihe weg. \hfill $\square$
-    \item[d)] Bei einem gl. Durchschnitt gerader Ordnung gehen (bei gleichem k) mehr Werte\\in die Berechnung mit ein als bei ungerader Ordnung. \hfill $\square$
+    \item[d)] Bei einem gl. Durchschnitt gerader Ordnung gehen (bei gleichem k) mehr Zeitpunkte\\in die Berechnung mit ein als bei ungerader Ordnung. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen bzgl. des Zeitreihenmodells sind wahr?}
@@ -2634,16 +2702,16 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 \paragraph{1.Welche Aussagen zur stetigen Gleichverteilung sind richtig?}
 \begin{itemize}
     \item[a)] Jede mögliche Ausprägung kommt mit einer Wahrscheinlichkeit von 0 vor. \hfill $\square$
-    \item[b)] Der Unterschied zwischen der stetigen und diskreten Gleichverteilung ist, dass die\\ stetige Gleichverteilung unendlich verschiedene Werte annehmen kann. \hfill $\square$
-    \item[c)] Die Dichtefunktion ist das Pendant zur Verteilungsfunktion.
-    \item[d)] Die Dichtefunktion bei der stetigen Gleichverteilung ist eine monoton steigende Gerade. \hfill $\square$
-    \item[e)] Die Dichtefunktion ($X \sim U(2,6)$) verläuft auf der Höhe 0,25. \hfill $\square$
+    \item[b)] Der Unterschied zwischen der stetigen und diskreten Gleichverteilung ist, dass die\\ stetige Gleichverteilung unendlich viele verschiedene Werte annehmen kann. \hfill $\square$
+    \item[c)] Die Dichtefunktion ist dasselbe wie die Verteilungsfunktion. \hfill $\square$
+    \item[d)] Die Dichtefunktion bei der stetigen Gleichverteilung ist eine steigende Gerade. \hfill $\square$
+    \item[e)] Die Dichtefunktion von $X \sim U(2,6)$ verläuft auf der Höhe 0,25. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen zur Exponentialverteilung sind richtig?}
 \begin{itemize}
     \item[a)] Die zukünftige Wartezeit ist abhängig von der davor schon verstrichenen Zeit. \hfill $\square$
-    \item[b)] Bei der Exponential-, wie auch der geometrischen Verteilung geht es darum, wann das\\ gewünschte Ereignis zum ersten Mal auftritt. \hfill $\square$
+    \item[b)] Bei der Exponential-, wie auch der geometrischen Verteilung geht es darum, wann das\\ gewünschte Ereignis zum ersten/nächsten Mal auftritt. \hfill $\square$
     \item[c)] Die Exponentialverteilung ist nur für $X \geq 0$ definiert. \hfill $\square$
     \item[d)] Ein zentraler Begriff bei der Exponentialverteilung ist die Gedächtnislosigkeit. \hfill $\square$
 \end{itemize}
@@ -2660,7 +2728,7 @@ Das Prinzip der Unabhängigkeit ist ähnlich definiert wie in Kapitel \ref{sec:u
 \paragraph{4. Welche Aussagen über die t-Verteilung sind richtig?}
 \begin{itemize}
     \item[a)] Die t-Verteilung kann immer durch die Standardnormalverteilung approximiert werden. \hfill $\square$
-    \item[b)] Je größer die Stichprobe, desto näher kommt sie der Standardnormalverteilung. \hfill $\square$
+    \item[b)] Je größer die Anzahl der Freiheitsgrade, desto näher kommt sie der Standardnormalverteilung. \hfill $\square$
     \item[c)] Die Wahrscheinlichkeitsmasse an den Rändern ist bei der t-Verteilung geringer \\als bei der Standardnormalverteilung. \hfill $\square$
     \item[d)] Je weniger Freiheitsgrade, desto ähnlicher ist die t-Verteilung der Standard-\\normalverteilung. \hfill $\square$
 \end{itemize}
@@ -2743,18 +2811,17 @@ Der \textbf{Erwartungswert} der diskreten Gleichverteilung ist definiert als $E(
 \subsubsection{Aufgaben III}
 \paragraph{1. Welche Aussagen sind richtig?}
 \begin{itemize}
-    \item[a)] Der Träger der diskreten Gleichverteilung eines Münzwurfs sind Kopf und Zahl. \hfill $\square$
-    \item[b)] Eine Verteilungsfunktion geht immer von -1 bis 1. \hfill $\square$
-    \item[c)] Der Wert einer Verteilungsfunktion an der Stelle $x=5$ ist $P(X\leq 5)$.\hfill $\square$
-    \item[d)] Die Werte der Verteilungsfunktion sind die kumulierten Wahrscheinlichkeiten. \hfill $\square$
-    \item[e)] Die Wahrscheinlichkeitsfunktion ist bei diskreten Zufallsvariablen das Gleiche wie \\die Verteilungsfunktion bei stetigen Zufallsvariablen. \hfill $\square$
+    \item[a)] Eine Verteilungsfunktion geht immer von -1 bis 1. \hfill $\square$
+    \item[b)] Der Wert einer Verteilungsfunktion an der Stelle $x=5$ ist $P(X\leq 5)$.\hfill $\square$
+    \item[c)] Die Werte der Verteilungsfunktion entsprechen kumulierten Wahrscheinlichkeiten. \hfill $\square$
+    \item[d)] Die Wahrscheinlichkeitsfunktion ist bei diskreten Zufallsvariablen optisch dasselbe wie \\die Verteilungsfunktion bei stetigen Zufallsvariablen. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen sind richtig?}
 \begin{itemize}
     \item[a)] Die Verteilungsfunktion ist monoton steigend. \hfill $\square$
     \item[b)] Die Verteilungsfunktionen von stetigen Zufallsvariablen sind Treppenfunktionen \\im Gegensatz zu den diskreten Zufallsvariablen. \hfill $\square$
-    \item[c)] Eine Eigenschaft der diskreten Verteilungsfunktion ist, dass die Fläche unterhalb \\der Funktion immer 1 ergibt. \hfill $\square$
+    \item[c)] Eine Eigenschaft der Verteilungsfunktion ist, dass die Fläche unterhalb \\der Funktion immer 1 ergibt. \hfill $\square$
     \item[d)] Die Summe aller Einzelwahrscheinlichkeiten bei einer stetigen Zufallsvariable ergibt 1. \hfill $\square$
     \item[e)] Eine Eigenschaft der Dichtefunktion einer stetigen ZV ist, dass die Funktionswerte\\immer größer gleich 0 sind. \hfill $\square$
 \end{itemize}
@@ -2848,7 +2915,7 @@ Wir können unter bestimmten Voraussetzungen Verteilungen durch andere Verteilun
 
 \paragraph{2. Welche Aussagen bzgl. Approximationen sind richtig?}
 \begin{itemize}
-    \item[a)] Die hypergeom. Verteilung kann durch die Normalverteilung approximiert werden. \hfill $\square$
+    \item[a)] Die hypergeom. Verteilung kann direkt durch die Normalverteilung approximiert werden. \hfill $\square$
     \item[b)] Bei der Approximation der Poissonverteilung durch die Normalverteilung wird das $\lambda$\\ für das $\mu$ und das $\sigma$ einfach übernommen. \hfill $\square$
     \item[c)] Die Poissonverteilung darf immer durch die Normalverteilung approximiert werden. \hfill $\square$
     \item[d)] Die hypergeometrische Verteilung H(9,120,40) darf durch die Binomialverteilung \\approximiert werden. \hfill $\square$
@@ -3090,7 +3157,7 @@ Eine ähnliche Intuition wie für den Unterschied zwischen Gauss-Tests und t-Tes
 \begin{itemize}
     \item[a)] Der p-Wert gibt die Wahrscheinlichkeit an, mit der der beobachtete Wert richtig ist. \hfill $\square$
     \item[b)] Der p-Wert gibt $P(X)$ an. \hfill $\square$
-    \item[c)] Die Hypothese, die man beweisen will befindet sich in der Alternativhypothese $H_1$. \hfill $\square$
+    \item[c)] Die Hypothese, die man nachweisen will befindet sich in der Alternativhypothese $H_1$. \hfill $\square$
     \item[d)] Wenn der p-Wert kleiner als $\alpha$ ist, dann lehnt man $H_0$ ab. \hfill $\square$
     \item[e)] Bei einem beidseitigen Test gibt es immer zwei Ablehnbereiche. \hfill $\square$
     \item[f)] Der p-Wert gibt uns darüber Auskunft, mit welcher Wahrscheinlichkeit unser Wert \\oder ein Wert, der noch weiter von der Nullhypothese entfernt ist, auftritt, unter der\\ Annahme, dass $H_0$ stimmt. \hfill $\square$
@@ -3101,8 +3168,7 @@ Eine ähnliche Intuition wie für den Unterschied zwischen Gauss-Tests und t-Tes
     \item[a)] Mit Hypothesentest kann man entscheiden, ob eine Nullhypothese richtig ist. \hfill $\square$
     \item[b)] Bei einem einfachen t-Test gibt es immer nur einen Ablehnbereich. \hfill $\square$
     \item[c)] Der Unterschied zwischen dem einfachen Gauss-Test und einfachen t-Test ist die\\ unbekannte (wahre) Varianz beim t-Test. \hfill $\square$
-    \item[d)] Mit dem approximativen einfachen Binomialtest überprüft man, ob ein $\mu$ signifikant\\ von $\mu_0$ abweicht, also im Ablehnbereich liegt oder nicht. \hfill $\square$
-    \item[e)] Die Teststatistik beim Gauss-Test ist im Gegensatz zum t-Test normalverteilt. \hfill $\square$
+    \item[d)] Die Teststatistik beim Gauss-Test ist im Gegensatz zum t-Test normalverteilt. \hfill $\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen über die Hypothesentests sind wahr? }
@@ -3112,13 +3178,14 @@ Eine ähnliche Intuition wie für den Unterschied zwischen Gauss-Tests und t-Tes
     \item[c)] Beim doppelten Gauss-Test sind die Varianzen unbekannt. \hfill $\square$
     \item[d)] Der Unterschied zwischen dem doppelten t-Test und dem Welch-Test ist, dass beim\\ doppelten t-Test die Varianzen bekannt sind und beim Welch-Test diese unbekannt sind. \hfill $\square$
     \item[e)] Die Besonderheit beim Paired t-Test ist, dass es sich hierbei um einen Test mit zwei\\ abhängigen normalverteilten ZV handelt. \hfill $\square$
+    \item[f)] Der F-Test ist immer zweiseitig. \hfill $\square$
  \end{itemize}
     
 \paragraph{4. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
     \item[a)] Mit dem Chi-Quadrat-Anpassungstest kann man testen, ob die Verteilung zweier ZV \\unterschiedlich ist. \hfill $\square$
     \item[b)] Der Vorteil beim Mann-Whitney-U-Test ist, dass die ZV nicht mehr unbedingt\\ normalverteilt sein müssen. \hfill $\square$
     \item[c)] Der Kolmogorov-Smirnov-Anpassungstest prüft, ob sich zwei ZV in ihrer Verteilung\\ unterscheiden. \hfill $\square$
-    \item[d)] Beim Chi-Quadrat-Unabhängigkeitstest wird die Unabhängigkeit zweier Merkmale\\ überprüft, indem die beobachteten Häufigkeiten mit den zu erwarteten Häufigkeiten \\ohne Abhängigkeit unter $H_0$ vergleicht.\hfill $\square$
+    \item[d)] Beim Chi-Quadrat-Unabhängigkeitstest wird die Unabhängigkeit zweier Merkmale\\ überprüft, indem die beobachteten Häufigkeiten mit den zu erwarteten Häufigkeiten \\(ohne Abhängigkeit) verglichen werden.\hfill $\square$
 \end{itemize}   
   
  \paragraph{5. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
@@ -3271,8 +3338,8 @@ Unter \texttt{Multiple R-squared} findet wieder man den Wert für $R^2$, sowie d
 \begin{itemize}
     \item[a)] Der Erwartungswert der Residuen sollte per Annahme gleich 1 sein. \hfill $\square$
     \item[b)] Homoskedastizität bedeutet konstante Varianz der Fehlertermen. \hfill $\square$
-    \item[c)] In Statistik II trifft man die Annahme, dass die Fehlerterme eine Zufallsvariable sind. \hfill $\square$
-    \item[d)] In Statistik II kann man keine Schlüsse über die Grundgesamtheit ziehen, da\\ schlussendlich alles nur Annahmen sind und nichts sicher ist. \hfill $\square$
+    \item[c)] In Statistik II trifft man die Annahme, dass die Fehlerterme Zufallsvariablen sind. \hfill $\square$
+    \item[d)] In Statistik II kann man keine Rückschlüsse auf die Grundgesamtheit ziehen, da\\ schlussendlich alles nur Annahmen sind und nichts sicher ist. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen über die einfache lineare Regression sind wahr?}
@@ -3294,9 +3361,9 @@ Unter \texttt{Multiple R-squared} findet wieder man den Wert für $R^2$, sowie d
 \paragraph{4. Welche Aussagen bezüglich des Signifikanztest und der KI-Intervalle sind richtig?}
 \begin{itemize}
     \item[a)] Mit dem Signifikanztest für einen Parameter kann man überprüfen, ob die\\ Nullhypothese signifikant richtig ist. \hfill $\square$
-    \item[b)] Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen\\ hypothetischen Wert bei Berechnung der Teststatistik nicht weiter beachten. \hfill $\square$
+    \item[b)] Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen\\ hypothetischen Wert bei Berechnung der Teststatistik praktisch nicht weiter beachten. \hfill $\square$
     \item[c)] Das Konfidenzintervall liegt symmetrisch um den Schätzer. \hfill $\square$
-    \item[d)] Wenn $t = -4,8$ ist und $t_{n-p-1),1-\alpha} = 4,5$, dann kann die Nullhypothese\\nicht abgelehnt werden. \hfill $\square$
+    \item[d)] Wenn $t = -4,8$ ist und $t_{n-p-1),1-\alpha} = 4,5/2$, dann kann die Nullhypothese\\$H_0: \beta_j = 0$ nicht abgelehnt werden. \hfill $\square$
     \item[e)] Eine Teststatistik die $t_{194}$-verteilt ist, stammt aus einem Modell mit $n = 200$ und\\6 geschätzten Koeffizienten .\hfill $\square$
 \end{itemize}
 

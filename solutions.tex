@@ -19,12 +19,13 @@
 \usepackage{mathtools}
 \usepackage{xcolor}
 \usepackage{floatrow}
-\usepackage{minted}
+%\usepackage{minted}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
 \usepackage{color}
 \usepackage{multicol}
-\usepackage{stackengine}
-\usepackage{scalerel}
 \usepackage{xcolor}
+\usepackage{enumitem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -54,10 +55,10 @@
 \def\boxitem#1{\setbox0=\vbox{#1}{\centering\makebox[0pt]{%
   \fboxrule=2pt\color{mLightBrown}\fbox{\hspace{\leftmargini}\color{black}\box0}}\par}}
 
-\newcommand\dangersign[1][2ex]{%
-  \renewcommand\stacktype{L}%
-  \scaleto{\stackon[1.3pt]{\color{red}$\triangle$}{\tiny !}}{#1}%
-}
+\newcommand\dangersign{%
+ \makebox[1.8em][c]{%
+ \makebox[0pt][c]{\raisebox{.15em}{\small!}}%
+ \makebox[0pt][c]{\color{red}\Large$\triangle$}}}%
 
 \newcommand\blfootnote[1]{%
   \begingroup
@@ -77,10 +78,10 @@
 }
 \date{\textbf{Stand:} \today}
 \author{\textbf{Autoren:}\\ 
-Matthias Aßenmacher\thanks{Institut für Statistik, LMU München; Kontakt bei Fragen \& Anregungen: \url{matthias@stat.uni-muenchen.de}},\\
-Ann-Kathrin Köpple\thanks{Studentische Hilfskraft (SoSe20), Institut für Statistik, LMU München},\\
-Christoph Luther\thanks{Studentische Hilfskraft (WiSe 18/19 - SoSe 20), Institut für Statistik, LMU München},\\
-Patricia Haro\thanks{Studentische Hilfskraft (WiSe 18/19 - WiSe 19/20), Institut für Statistik, LMU München},\\
+Matthias Aßenmacher\thanks{Institut für Statistik, LMU München; Kontakt bei Fragen \& Anregungen: \url{matthias@stat.uni-muenchen.de}}\qquad
+Ann-Kathrin Köpple\thanks{Studentische Hilfskraft (SoSe20), Institut für Statistik, LMU München}\qquad
+Christoph Luther\thanks{Studentische Hilfskraft (WiSe 18/19 - SoSe 20), Institut für Statistik, LMU München}\\
+Patricia Haro\thanks{Studentische Hilfskraft (WiSe 18/19 - WiSe 19/20), Institut für Statistik, LMU München}\qquad
 Maximilian Mandl\thanks{Institut für medizinische Informationsverarbeitung, Biometrie und Epidemiologie, LMU München\vspace{.25cm}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,7 +121,37 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 
 \section{Grundbegriffe, Skalenniveaus, Datenerhebung}
 
-\noindent (Noch) keine Aufgaben enthalten
+\subsection{Aufgaben}
+
+\paragraph{1. Datenerhebung: Welche Aussagen sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Längsschnittdaten werden stets durch die Erhebungsmethode "Beobachtung" gewonnen. \hfill $\square$
+    \item Bei Längsschnittdaten müssen die zeitlichen Abstände identisch sein. \hfill $\square$
+    \item Längsschnittdaten entstehen durch die wiederholte Erhebung von Querschnittsdaten. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item Von einer Zeitreihe spricht man, wenn ein Merkmal der Reihe nach zu festgelegten\\ Zeitpunkten an unterschiedlichen Untersuchungseinheiten beobachtet wird. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
+
+\paragraph{2. Welche Aussagen zu Skalenniveaus sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Wenn man die Anzahl der möglichen Ausprägungen zählen kann, ist ein Merkmal\\ metrisch skaliert. \hfill $\square$
+    \item Ein ordinalskaliertes Merkmal besitzt mehr mögliche Ausprägungen als ein\\ nominalskaliertes Merkmal. \hfill $\square$
+    \item Im Gegensatz zu ordinalskalierten Merkmalen kann man metrische Merkmale ordnen. \hfill $\square$
+    \item Nominalskalierte Merkmale können auch stetig sein. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{enumerate}
+
+\paragraph{3. Welche Aussagen zu Skalenniveaus sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Die Existenz eines natürlichen Nullpunkts ist Voraussetzung für eine Absolutskala. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item Die „Intervallskala“ hat einen höheren Informationsgehalt als die „Verhältnisskala“. \hfill $\square$
+    \item Geschlecht ist ein Beispiel für ein ordinalskaliertes Merkmal. \hfill $\square$
+    \item Quasistetig bedeutet, dass ein Merkmal theoretisch diskret ist, aber wie ein stetiges\\ Merkmal behandelt wird. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
 
 \clearpage
 
@@ -130,7 +161,37 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 
 \section{Häufigkeitsverteilungen, (univariate) grafische Darstellung}
 
-\noindent (Noch) keine Aufgaben enthalten
+\subsection{Aufgaben}
+
+\paragraph{1. Häufigkeitsbegriffe und Visualisierungen: Welche Aussagen sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Für stetige oder quasistetige Merkmale sollten bei der Häufigkeitsauszählung\\ Klassen gebildet werden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item Absolute Häufigkeiten summieren sich stets zu 1 auf. \hfill $\square$
+    \item Balken-/Säulendiagramme sind gut für nominale/ordinale Merkmale geeignet. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item Kreisdiagramme sind für ordinale Merkmale eher ungeeignet. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
+
+\paragraph{2. Welche Aussagen zu Histogrammen sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Bei ungleichen Klassenbreiten ist die Höhe des Balkens proportional zur rel. Häufigkeit. \hfill $\square$
+    \item Histogramme sind gut für nominale/ordinale Merkmale geeignet. \hfill $\square$
+    \item Ein Histogramm mit konstanter Klassenbreite ist dasselbe wie ein Säulendiagramm. \hfill $\square$
+    \item Je gröber die Klasseneinteilung, desto höher die einzelnen Balken. \hfill $\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\text{\rlap{$\checkmark$}}\square$
+\end{enumerate}
+
+\paragraph{3. Welche Aussagen sind zur Empirische Verteilungsfunktion sind wahr?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Für ein stetiges Merkmal gilt: H(x < 5) = H(x <= 4). \hfill $\square$
+    \item Die kumulierten relativen Häufigkeiten summieren sich zu 1. \hfill $\square$
+    \item Für diskrete Merkmale: Bei der häufigsten Beobachtung ist die emp. Verteilungs-\\funktion am größten. \hfill $\square$
+    \item Für diskrete Merkmale: Bei der häufigsten Beobachtung macht die emp. Verteilungs-\\funktion den größten Sprung. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item Keine der obigen Aussagen ist wahr. \hfill $\square$
+\end{enumerate}
 
 \clearpage
 
@@ -421,7 +482,7 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
     \item[a)] Durch k wird festgelegt, ob der die Ordnung der gl. Durchschnitt gerade oder ungerade\\ist. \hfill $\square$
     \item[b)] Bei einem gl. Durchschnitt ungerader Ordnung fallen am Rand der Zeitreihe mehr\\Werte weg als bei gerader Ordnung. \hfill $\square$
     \item[c)] Je höher die Ordnung, desto mehr Werte fallen am Rand der Zeitreihe weg. \hfill $\text{\rlap{$\checkmark$}}\square$
-    \item[d)] Bei einem gl. Durchschnitt gerader Ordnung gehen (bei gleichem k) mehr Werte\\in die Berechnung mit ein als bei ungerader Ordnung. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Bei einem gl. Durchschnitt gerader Ordnung gehen (bei gleichem k) mehr Zeitpunkte\\in die Berechnung mit ein als bei ungerader Ordnung. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen bzgl. des Zeitreihenmodells sind wahr?}
@@ -558,9 +619,9 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 \subsection{Aufgaben}
 \paragraph{Welche Aussagen zu den Zufallsvariablen sind richtig?}
 \begin{itemize}
-    \item[a)] Der fünffache Münzwurf ist eine diskrete Zufallsvariable. \hfill $\square$
-    \item[b)] Mit Zufallsvariablen können Ergebnisse von Zufallsexperimenten beschrieben werden,\\ die noch nicht durchgeführt wurden. \hfill $\square$
-    \item[c)] Der Träger der Zufallsvariable Würfelwurf eines 24-seitigen Würfels ist\\ $T = \{1, 2, 3, \hdots, 24\}$ \hfill $\square$
+    \item[a)] Der fünffache Münzwurf ist eine diskrete Zufallsvariable. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Mit Zufallsvariablen können Ergebnisse von Zufallsexperimenten beschrieben werden,\\ die noch nicht durchgeführt wurden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Der Träger der Zufallsvariable Würfelwurf eines 24-seitigen Würfels ist\\ $T = \{1, 2, 3, \hdots, 24\}$ \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[d)] Eine stetige Zufallsvariable hat abzählbar endlich viele mögliche Ergebnisse. \hfill $\square$
 \end{itemize}
 
@@ -576,48 +637,48 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 \paragraph{1. Welche Aussagen bzgl. der Gleichverteilung sind richtig? }
 \begin{itemize}
     \item[a)] Bei der diskreten Gleichverteilung muss es immer zwei mögliche Ausgänge geben, die\\ die gleiche Wahrscheinlichkeit haben. \hfill $\square$
-    \item[b)] Die Augenzahl bei dem Wurf eines Würfels mit 88 Seiten folgt einer Gleichverteilung. \hfill $\square$
-    \item[c)] Das Ergebnis des Wurfs einer unfairen Münzwurf mit Kopf und Zahl ist bernoulliverteilt. \hfill $\square$
-    \item[d)] Das Ergebnis des Wurfs einer unfairen Münzwurf mit Kopf und Zahl ist gleichverteilt. \hfill $\square$
+    \item[b)] Die Augenzahl bei dem Wurf eines Würfels mit 88 Seiten folgt einer Gleichverteilung. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Das Ergebnis des Wurfs einer unfairen Münze mit Kopf und Zahl ist bernoulliverteilt. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Das Ergebnis des Wurfs einer unfairen Münze mit Kopf und Zahl ist gleichverteilt. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen bzgl. der Bernoulliverteilung und Binomialverteilung sind wahr?}
 \begin{itemize}
     \item[a)] Die Binomialverteilung besteht aus $n$ abhängigen und identische Bernoulliexperimenten. \hfill $\square$
-    \item[b)] Der Erwartungswert der Bernoulliverteilung ist die Wahrscheinlichkeit, dass das\\ Ereignis eintritt, selbst. \hfill $\square$
+    \item[b)] Der Erwartungswert der Bernoulliverteilung ist die Wahrscheinlichkeit, dass das\\ Ereignis eintritt, selbst. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[c)] Bei der Bernoulliverteilung und bei der Binomialverteilung gibt es jeweils nur zwei\\ mögliche Ergebnisse. \hfill $\square$
-    \item[d)] Die Verteilungsfunktion der Binomialverteilung geht von 0 bis 1. \hfill $\square$
+    \item[d)] Die Verteilungsfunktion der Binomialverteilung steigt von 0 bis 1. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{3. Gegeben ist die Rechnung $P(X=4) = 0,3 \cdot 0,7^3$ Welche Aussagen sind wahr?}
 \begin{itemize}
-    \item[a)] Hierbei handelt es sich um die geometrische Verteilung. \hfill $\square$
-    \item[b)] Der Erwartungswert der Verteilung beträgt hier ca. 3,33 \hfill $\square$
-    \item[c)] Mit dieser Gleichung berechnet man die Wahrscheinlichkeit, dass das gewünschte\\ Ereignis bei der dritten Wiederholung eintritt. \hfill $\square$
+    \item[a)] Hierbei handelt es sich um die geometrische Verteilung. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Der Erwartungswert der Verteilung beträgt hier ca. 3,33 \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Mit dieser Gleichung berechnet man die Wahrscheinlichkeit, dass das gewünschte\\ Ereignis bei der dritten Wiederholung eintritt. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[d)] Die Wahrscheinlichkeit für das Ereignis von Interesse liegt bei 0,7. \hfill $\square$
 \end{itemize}
     
 \paragraph{4. Welche Aussagen bezüglich der geometrischen und hypergeometrischen Verteilung sind wahr?}
 \begin{itemize}
-    \item[a)] Je größer die Wahrscheinlichkeit eines Ereignisses ist, desto länger braucht es, \\ bis es zum ersten Mal auftritt.\hfill $\square$
+    \item[a)] Je größer die Wahrscheinlichkeit eines Ereignisses ist, desto länger die erwartete Dauer, \\ bis es zum ersten Mal auftritt. \hfill $\square$
     \item[b)] Die hypergeom. Verteilung verwendet man, wenn man wissen will, mit welcher Wahrschein-\\lichkeit ein Ereignis nach wie vielen Wiederholungen eines Zufallsexperiments eintritt. \hfill $\square$
-    \item[c)] Die hypergeometrische Verteilung berechnet die Wahrscheinlichkeit unter der Voraus-\\setzung, dass die gezogenen Elemente wieder zurückgelegt werden. \hfill $\square$
+    \item[c)] Mit der hypergeometrische Verteilung berechnet man die Wahrscheinlichkeit unter\\ der Voraussetzung, dass die gezogenen Elemente wieder zurückgelegt werden. \hfill $\square$
 \end{itemize}
     
 \paragraph{5. Welche Aussagen zur Poissonverteilung sind richtig?}
 \begin{itemize}
     \item[a)] Sie eignet sich zur Berechnung der Wahrscheinlichkeit für das Eintreten (ja/nein)\\eines Ereignisses. \hfill $\square$
-    \item[b)] Das $\lambda$ muss größer gleich 0 sein. \hfill $\square$
-    \item[c)] Die Varianz und der Erwartungswert sind immer gleich groß. \hfill $\square$
-    \item[d)] Das $\lambda$ gibt die Intensitätsrate an, das heißt je größer $\lambda$ ist, desto häufiger wird \\das Ereignis wahrscheinlich auftreten. \hfill $\square$
+    \item[b)] Das $\lambda$ muss größer gleich 0 sein. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Die Varianz und der Erwartungswert sind immer gleich groß. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Das $\lambda$ gibt die Intensitätsrate an, das heißt je größer $\lambda$ ist, desto häufiger wird \\das Ereignis wahrscheinlich auftreten. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{6. Welche Aussagen zur Multinomialverteilung sind richtig?}
 \begin{itemize}
-    \item[a)] Bei der Multinomialverteilung ist es wichtig zu wissen, wie viele Einheiten insgesamt\\ vorhanden sind. Also wie groß n ist, da wir nicht mit zurücklegen ziehen. \hfill $\square$
-    \item[b)] Die Multinomialverteilung ist die Verallgemeinerung der Bernoulliverteilung mit\\ mindestens zwei möglichen Ereignissen.\hfill $\square$
-    \item[c)] $k$ gibt Anzahl der verschiedenen möglichen Ergebnisse an. \hfill $\square$
-    \item[d)] Alle $k$ Wahrscheinlichkeiten müssen sich immer zu 1 aufaddieren. \hfill $\square$
+    \item[a)] Bei der Multinomialverteilung ist es wichtig zu wissen, wie groß $n$ ist. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Die Multinomialverteilung ist die Verallgemeinerung der Bernoulliverteilung mit\\ mehr als zwei möglichen Ereignissen. \hfill $\square$
+    \item[c)] $k$ gibt Anzahl der verschiedenen möglichen Ergebnisse an. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Die $k$ Wahrscheinlichkeiten müssen sich nicht zwingend zu 1 aufaddieren. \hfill $\square$
 \end{itemize}
 
 \clearpage
@@ -625,34 +686,34 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 \subsubsection{Aufgaben II}
 \paragraph{1.Welche Aussagen zur stetigen Gleichverteilung sind richtig?}
 \begin{itemize}
-    \item[a)] Jede mögliche Ausprägung kommt mit einer Wahrscheinlichkeit von 0 vor. \hfill $\square$
-    \item[b)] Der Unterschied zwischen der stetigen und diskreten Gleichverteilung ist, dass die\\ stetige Gleichverteilung unendlich verschiedene Werte annehmen kann. \hfill $\square$
-    \item[c)] Die Dichtefunktion ist das Pendant zur Verteilungsfunktion.
-    \item[d)] Die Dichtefunktion bei der stetigen Gleichverteilung ist eine monoton steigende Gerade. \hfill $\square$
-    \item[e)] Die Dichtefunktion ($X \sim U(2,6)$) verläuft auf der Höhe 0,25. \hfill $\square$
+    \item[a)] Jede mögliche Ausprägung kommt mit einer Wahrscheinlichkeit von 0 vor. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Der Unterschied zwischen der stetigen und diskreten Gleichverteilung ist, dass die\\ stetige Gleichverteilung unendlich viele verschiedene Werte annehmen kann. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Die Dichtefunktion ist dasselbe wie die Verteilungsfunktion. \hfill $\square$
+    \item[d)] Die Dichtefunktion bei der stetigen Gleichverteilung ist eine steigende Gerade. \hfill $\square$
+    \item[e)] Die Dichtefunktion von $X \sim U(2,6)$ verläuft auf der Höhe 0,25. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen zur Exponentialverteilung sind richtig?}
 \begin{itemize}
     \item[a)] Die zukünftige Wartezeit ist abhängig von der davor schon verstrichenen Zeit. \hfill $\square$
-    \item[b)] Bei der Exponential-, wie auch der geometrischen Verteilung geht es darum, wann das\\ gewünschte Ereignis zum ersten Mal auftritt. \hfill $\square$
-    \item[c)] Die Exponentialverteilung ist nur für $X \geq 0$ definiert. \hfill $\square$
-    \item[d)] Ein zentraler Begriff bei der Exponentialverteilung ist die Gedächtnislosigkeit. \hfill $\square$
+    \item[b)] Bei der Exponential-, wie auch der geometrischen Verteilung geht es darum, wann das\\ gewünschte Ereignis zum ersten/nächsten Mal auftritt. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Die Exponentialverteilung ist nur für $X \geq 0$ definiert. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Ein zentraler Begriff bei der Exponentialverteilung ist die Gedächtnislosigkeit. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen zur Normalverteilung / Chi-Quadrat-Verteilung sind wahr?}
 \begin{itemize}
     \item[a)] Die Dichtefunktion ist bei beiden symmetrisch um den Erwartungswert. \hfill $\square$
-    \item[b)] Der Durchschnitt von i.i.d. normalverteilten Zufallsvariablen ist normalverteilt.\hfill $\square$ 
-    \item[c)] Um die Dichtefunktion der Normalverteilung aufzustellen benötigt man nur $\sigma$ und $\mu$. \hfill $\square$
+    \item[b)] Der Durchschnitt von i.i.d. normalverteilten Zufallsvariablen ist normalverteilt.\hfill $\text{\rlap{$\checkmark$}}\square$ 
+    \item[c)] Um die Dichtefunktion der Normalverteilung aufzustellen benötigt man nur $\sigma$ und $\mu$. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[d)] Die Verteilungsfunktion der Normalverteilung hat bei $\mu$ ihr Maximum. \hfill $\square$
-    \item[e)] Für die Chi-Quadrat-Verteilung werden die Quadrate von mehreren\\ standardnormalverteilten Zufallsvariablen gebildet und aufsummiert. \hfill $\square$
+    \item[e)] Für die Chi-Quadrat-Verteilung werden die Quadrate von mehreren\\ standardnormalverteilten Zufallsvariablen gebildet und aufsummiert. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{4. Welche Aussagen über die t-Verteilung sind richtig?}
 \begin{itemize}
     \item[a)] Die t-Verteilung kann immer durch die Standardnormalverteilung approximiert werden. \hfill $\square$
-    \item[b)] Je größer die Stichprobe, desto näher kommt sie der Standardnormalverteilung. \hfill $\square$
+    \item[b)] Je größer die Anzahl der Freiheitsgrade, desto näher kommt sie der Standardnormalverteilung. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[c)] Die Wahrscheinlichkeitsmasse an den Rändern ist bei der t-Verteilung geringer \\als bei der Standardnormalverteilung. \hfill $\square$
     \item[d)] Je weniger Freiheitsgrade, desto ähnlicher ist die t-Verteilung der Standard-\\normalverteilung. \hfill $\square$
 \end{itemize}
@@ -662,28 +723,27 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 \subsubsection{Aufgaben III}
 \paragraph{1. Welche Aussagen sind richtig?}
 \begin{itemize}
-    \item[a)] Der Träger der diskreten Gleichverteilung eines Münzwurfs sind Kopf und Zahl. \hfill $\square$
-    \item[b)] Eine Verteilungsfunktion geht immer von -1 bis 1. \hfill $\square$
-    \item[c)] Der Wert einer Verteilungsfunktion an der Stelle $x=5$ ist $P(X\leq 5)$.\hfill $\square$
-    \item[d)] Die Werte der Verteilungsfunktion sind die kumulierten Wahrscheinlichkeiten. \hfill $\square$
-    \item[e)] Die Wahrscheinlichkeitsfunktion ist bei diskreten Zufallsvariablen das Gleiche wie \\die Verteilungsfunktion bei stetigen Zufallsvariablen. \hfill $\square$
+    \item[a)] Eine Verteilungsfunktion geht immer von -1 bis 1. \hfill $\square$
+    \item[b)] Der Wert einer Verteilungsfunktion an der Stelle $x=5$ ist $P(X\leq 5)$.\hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Die Werte der Verteilungsfunktion entsprechen kumulierten Wahrscheinlichkeiten. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Die Wahrscheinlichkeitsfunktion ist bei diskreten Zufallsvariablen optisch dasselbe wie \\die Verteilungsfunktion bei stetigen Zufallsvariablen. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen sind richtig?}
 \begin{itemize}
-    \item[a)] Die Verteilungsfunktion ist monoton steigend. \hfill $\square$
+    \item[a)] Die Verteilungsfunktion ist monoton steigend. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[b)] Die Verteilungsfunktionen von stetigen Zufallsvariablen sind Treppenfunktionen \\im Gegensatz zu den diskreten Zufallsvariablen. \hfill $\square$
-    \item[c)] Eine Eigenschaft der diskreten Verteilungsfunktion ist, dass die Fläche unterhalb \\der Funktion immer 1 ergibt. \hfill $\square$
+    \item[c)] Eine Eigenschaft der Verteilungsfunktion ist, dass die Fläche unterhalb \\der Funktion immer 1 ergibt. \hfill $\square$
     \item[d)] Die Summe aller Einzelwahrscheinlichkeiten bei einer stetigen Zufallsvariable ergibt 1. \hfill $\square$
-    \item[e)] Eine Eigenschaft der Dichtefunktion einer stetigen ZV ist, dass die Funktionswerte\\immer größer gleich 0 sind. \hfill $\square$
+    \item[e)] Eine Eigenschaft der Dichtefunktion einer stetigen ZV ist, dass die Funktionswerte\\immer größer gleich 0 sind. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen sind richtig?}
 \begin{itemize}
-    \item[a)] Um die Verteilungsfunktion zu erhalten, leitet man die Dichtefunktion ab .\hfill $\square$
+    \item[a)] Um die Verteilungsfunktion zu erhalten, leitet man die Dichtefunktion ab. \hfill $\square$
     \item[b)] Die Fläche unter der Dichtefunktion ist die Quantilsfunktion. \hfill $\square$
-    \item[c)] Die Quantilsfunktion ist die Umkehrfunktion der Verteilungsfunktion. \hfill $\square$
-    \item[d)] Die Ableitung der Verteilungsfunktion ist die Dichte. \hfill $\square$
+    \item[c)] Die Quantilsfunktion ist die Umkehrfunktion der Verteilungsfunktion. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Die Ableitung der Verteilungsfunktion ist die Dichte. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 
@@ -699,14 +759,14 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 \paragraph{1.Welche Aussagen bzgl.den Grenzwertsätzen ist wahr?}
 \begin{itemize}
     \item[a)] Je größer der Stichprobenumfang, desto größer wird der Einfluss von Ausreißern. \hfill $\square$
-    \item[b)] Mit zunehmendem Stichprobenumfang nähert sich die beobachtete relative Häufigkeit\\ der theoretischen Wahrscheinlichkeit an. \hfill $\square$
-    \item[c)] Egal welche Verteilung vorliegt, nähert sich der Mittelwert von i.i.d. Zufallsvariablen\\ bei zunehmenden Stichprobenumfang der Normalverteilung an. \hfill $\square$
+    \item[b)] Mit zunehmendem Stichprobenumfang nähert sich die beobachtete relative Häufigkeit\\ der theoretischen Wahrscheinlichkeit an. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Egal welche Verteilung vorliegt, nähert sich der Mittelwert von i.i.d. Zufallsvariablen\\ bei zunehmenden Stichprobenumfang der Normalverteilung an. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen bzgl. Approximationen sind richtig?}
 \begin{itemize}
-    \item[a)] Die hypergeom. Verteilung kann durch die Normalverteilung approximiert werden. \hfill $\square$
-    \item[b)] Bei der Approximation der Poissonverteilung durch die Normalverteilung wird das $\lambda$\\ für das $\mu$ und das $\sigma$ einfach übernommen. \hfill $\square$
+    \item[a)] Die hypergeom. Verteilung kann direkt durch die Normalverteilung approximiert werden. \hfill $\square$
+    \item[b)] Bei der Approximation der Poissonverteilung durch die Normalverteilung wird das $\lambda$\\ für das $\mu$ und das $\sigma$ einfach übernommen. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[c)] Die Poissonverteilung darf immer durch die Normalverteilung approximiert werden. \hfill $\square$
     \item[d)] Die hypergeometrische Verteilung H(9,120,40) darf durch die Binomialverteilung \\approximiert werden. \hfill $\square$
 \end{itemize}
@@ -725,8 +785,8 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 \begin{itemize}
     \item[a)] Punktschätzer sind immer richtig und wahrheitsgetreu. \hfill $\square$
     \item[b)] Ein Konfidenzintervall gibt den Bereich vor, in dem der wahre Parameter immer \\zu finden ist. \hfill $\square$
-    \item[c)] Man kann die Länge eines Intervalls variieren, je nach dem mit welcher\\ Wahrscheinlichkeit der wahre Parameter durch das Intervall überdeckt werden soll. \hfill $\square$
-    \item[d)] Die Länge eines Intervalls hängt von $\alpha$, $\sigma^2$, der Verteilung und dem Stichproben-\\umfang ab. \hfill $\square$
+    \item[c)] Man kann die Länge eines Intervalls variieren, je nach dem mit welcher\\ Wahrscheinlichkeit der wahre Parameter durch das Intervall überdeckt werden soll. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Die Länge eines Intervalls hängt von $\alpha$, $\sigma^2$, der Verteilung und dem Stichproben-\\umfang ab. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[e)] Ein 99$\%$-KI besagt, dass zu 99$\%$ mein Schätzer richtig ist. \hfill $\square$
 \end{itemize}
 
@@ -744,41 +804,41 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 \begin{itemize}
     \item[a)] Der p-Wert gibt die Wahrscheinlichkeit an, mit der der beobachtete Wert richtig ist. \hfill $\square$
     \item[b)] Der p-Wert gibt $P(X)$ an. \hfill $\square$
-    \item[c)] Die Hypothese, die man beweisen will befindet sich in der Alternativhypothese $H_1$. \hfill $\square$
-    \item[d)] Wenn der p-Wert kleiner als $\alpha$ ist, dann lehnt man $H_0$ ab. \hfill $\square$
-    \item[e)] Bei einem beidseitigen Test gibt es immer zwei Ablehnbereiche. \hfill $\square$
-    \item[f)] Der p-Wert gibt uns darüber Auskunft, mit welcher Wahrscheinlichkeit unser Wert \\oder ein Wert, der noch weiter von der Nullhypothese entfernt ist, auftritt, unter der\\ Annahme, dass $H_0$ stimmt. \hfill $\square$
+    \item[c)] Die Hypothese, die man nachweisen will befindet sich in der Alternativhypothese $H_1$. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Wenn der p-Wert kleiner als $\alpha$ ist, dann lehnt man $H_0$ ab. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[e)] Bei einem beidseitigen Test gibt es immer zwei Ablehnbereiche. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[f)] Der p-Wert gibt uns darüber Auskunft, mit welcher Wahrscheinlichkeit unser Wert \\oder ein Wert, der noch weiter von der Nullhypothese entfernt ist, auftritt, unter der\\ Annahme, dass $H_0$ stimmt. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen über die Hypothesentests sind wahr?}
 \begin{itemize}
     \item[a)] Mit Hypothesentest kann man entscheiden, ob eine Nullhypothese richtig ist. \hfill $\square$
     \item[b)] Bei einem einfachen t-Test gibt es immer nur einen Ablehnbereich. \hfill $\square$
-    \item[c)] Der Unterschied zwischen dem einfachen Gauss-Test und einfachen t-Test ist die\\ unbekannte (wahre) Varianz beim t-Test. \hfill $\square$
-    \item[d)] Mit dem approximativen einfachen Binomialtest überprüft man, ob ein $\mu$ signifikant\\ von $\mu_0$ abweicht, also im Ablehnbereich liegt oder nicht. \hfill $\square$
-    \item[e)] Die Teststatistik beim Gauss-Test ist im Gegensatz zum t-Test normalverteilt. \hfill $\square$
+    \item[c)] Der Unterschied zwischen dem einfachen Gauss-Test und einfachen t-Test ist die\\ unbekannte (wahre) Varianz beim t-Test. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Die Teststatistik beim Gauss-Test ist im Gegensatz zum t-Test normalverteilt. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen über die Hypothesentests sind wahr? }
 \begin{itemize}
-    \item[a)] Mit dem F-Test kann man das Verhältnis von Varianzen zweier unabhängigen\\ Zufallsvariablen testen. \hfill $\square$
-    \item[b)] Beim doppelten Gauss-Test handelt es sich im Gegensatz zum einfachen Gauss-Test\\ um das Verhältnis der Varianzen zweier unabhängiger, normalverteilter ZV. \hfill $\square$
+    \item[a)] Mit dem F-Test kann man das Verhältnis von Varianzen zweier unabhängigen\\ Zufallsvariablen testen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[b)] Beim doppelten Gauss-Test handelt es sich im Gegensatz zum einfachen Gauss-Test\\ um das Verhältnis der Varianzen zweier unabhängiger, normalverteilter ZV. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[c)] Beim doppelten Gauss-Test sind die Varianzen unbekannt. \hfill $\square$
     \item[d)] Der Unterschied zwischen dem doppelten t-Test und dem Welch-Test ist, dass beim\\ doppelten t-Test die Varianzen bekannt sind und beim Welch-Test diese unbekannt sind. \hfill $\square$
-    \item[e)] Die Besonderheit beim Paired t-Test ist, dass es sich hierbei um einen Test mit zwei\\ abhängigen normalverteilten ZV handelt. \hfill $\square$
+    \item[e)] Die Besonderheit beim Paired t-Test ist, dass es sich hierbei um einen Test mit zwei\\ abhängigen normalverteilten ZV handelt. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[f)] Der F-Test ist immer zweiseitig. \hfill $\square$
  \end{itemize}
     
 \paragraph{4. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
     \item[a)] Mit dem Chi-Quadrat-Anpassungstest kann man testen, ob die Verteilung zweier ZV \\unterschiedlich ist. \hfill $\square$
-    \item[b)] Der Vorteil beim Mann-Whitney-U-Test ist, dass die ZV nicht mehr unbedingt\\ normalverteilt sein müssen. \hfill $\square$
-    \item[c)] Der Kolmogorov-Smirnov-Anpassungstest prüft, ob sich zwei ZV in ihrer Verteilung\\ unterscheiden. \hfill $\square$
-    \item[d)] Beim Chi-Quadrat-Unabhängigkeitstest wird die Unabhängigkeit zweier Merkmale\\ überprüft, indem die beobachteten Häufigkeiten mit den zu erwarteten Häufigkeiten \\ohne Abhängigkeit unter $H_0$ vergleicht.\hfill $\square$
+    \item[b)] Der Vorteil beim Mann-Whitney-U-Test ist, dass die ZV nicht mehr unbedingt\\ normalverteilt sein müssen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Der Kolmogorov-Smirnov-Anpassungstest prüft, ob sich zwei ZV in ihrer Verteilung\\ unterscheiden. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Beim Chi-Quadrat-Unabhängigkeitstest wird die Unabhängigkeit zweier Merkmale\\ überprüft, indem die beobachteten Häufigkeiten mit den zu erwarteten Häufigkeiten \\(ohne Abhängigkeit) verglichen werden.\hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}   
   
  \paragraph{5. Welche Aussagen über die Hypothesentests sind wahr?} \begin{itemize}
-    \item[a)] Der Ablehnbereich ist beim Gauss-Test (bei identischem $\alpha$) größer als beim t-Test. \hfill $\square$
+    \item[a)] Der Ablehnbereich ist beim Gauss-Test (bei identischem $\alpha$) größer als beim t-Test. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[b)] Beim Gauss-Test liegt etwas mehr Unsicherheit zugrunde als beim t-Test. \hfill $\square$
-    \item[c)] Bei größeren Stichproben nähern sich die Ergebnisse des t-Tests und des Gauss-Tests an. \hfill $\square$
+    \item[c)] Bei größeren Stichproben nähern sich die Ergebnisse des t-Tests und des Gauss-Tests an. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[d)] Beim Welch-Test sind wir mit unserer Entscheidung ein wenig sicherer als beim \\doppelten t-Test, da wir nur eine unbekannte Varianz schätzen müssen. \hfill $\square$
  \end{itemize}  
 
@@ -795,34 +855,34 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
 \paragraph{1. Welche Aussagen über die einfache lineare Regression sind wahr?}
 \begin{itemize}
     \item[a)] Der Erwartungswert der Residuen sollte per Annahme gleich 1 sein. \hfill $\square$
-    \item[b)] Homoskedastizität bedeutet konstante Varianz der Fehlertermen. \hfill $\square$
-    \item[c)] In Statistik II trifft man die Annahme, dass die Fehlerterme eine Zufallsvariable sind. \hfill $\square$
-    \item[d)] In Statistik II kann man keine Schlüsse über die Grundgesamtheit ziehen, da\\ schlussendlich alles nur Annahmen sind und nichts sicher ist. \hfill $\square$
+    \item[b)] Homoskedastizität bedeutet konstante Varianz der Fehlertermen. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] In Statistik II trifft man die Annahme, dass die Fehlerterme Zufallsvariablen sind. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] In Statistik II kann man keine Rückschlüsse auf die Grundgesamtheit ziehen, da\\ schlussendlich alles nur Annahmen sind und nichts sicher ist. \hfill $\square$
 \end{itemize}
 
 \paragraph{2. Welche Aussagen über die einfache lineare Regression sind wahr?}
 \begin{itemize}
     \item[a)] Mit steigenden x-Werten, sollte auch die Varianz der Residuen steigen. \hfill $\square$
-    \item[b)] Die angenommene Verteilung der Fehlerterme lautet N(0,$\sigma^2)$. \hfill $\square$
+    \item[b)] Die angenommene Verteilung der Fehlerterme lautet N(0,$\sigma^2)$. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[c)] Bei der Effektkodierung wählt man im Gegensatz zur Dummykodierung keine\\Referenzkategorie. \hfill $\square$
-    \item[d)] Bei der Effektkodierung nehmen bei Vorliegen der Referenzkategorie alle Dummys\\den Wert -1 an. \hfill $\square$
+    \item[d)] Bei der Effektkodierung nehmen bei Vorliegen der Referenzkategorie alle Dummys\\den Wert -1 an. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{3. Welche Aussagen bezüglich der multiplen linearen Regression sind richtig?}
 \begin{itemize}
-    \item[a)] Eine Eigenschaft des KQ-Schätzers ist, dass er erwartungstreu ist. \hfill $\square$
+    \item[a)] Eine Eigenschaft des KQ-Schätzers ist, dass er erwartungstreu ist. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[b)] Bei der Effektkodierung wir eine andere Anzahl an Dummy-Variablen benötigt\\als bei der Dummy-Kodierung. \hfill $\square$
     \item[c)] Im Falle von $y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4}$ hat die $t$-Verteilung für den\\Signifikanztest 5 Freiheitsgrade. \hfill $\square$
-    \item[d)] $y = \beta_0 + \beta_1 \sqrt{x} + \beta_2 x^2 + \beta_3x^{3}$ ist ein lineares Modell. \hfill $\square$
+    \item[d)] $y = \beta_0 + \beta_1 \sqrt{x} + \beta_2 x^2 + \beta_3x^{3}$ ist ein lineares Modell. \hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{4. Welche Aussagen bezüglich des Signifikanztest und der KI-Intervalle sind richtig?}
 \begin{itemize}
     \item[a)] Mit dem Signifikanztest für einen Parameter kann man überprüfen, ob die\\ Nullhypothese signifikant richtig ist. \hfill $\square$
-    \item[b)] Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen\\ hypothetischen Wert bei Berechnung der Teststatistik nicht weiter beachten. \hfill $\square$
-    \item[c)] Das Konfidenzintervall liegt symmetrisch um den Schätzer. \hfill $\square$
-    \item[d)] Wenn $t = -4,8$ ist und $t_{n-p-1),1-\alpha} = 4,5$, dann kann die Nullhypothese\\nicht abgelehnt werden. \hfill $\square$
-    \item[e)] Eine Teststatistik die $t_{194}$-verteilt ist, stammt aus einem Modell mit $n = 200$ und\\6 geschätzten Koeffizienten .\hfill $\square$
+    \item[b)] Da in der Nullhypothese angenommen wird, dass $\beta_j$ gleich 0 ist, muss man diesen\\ hypothetischen Wert bei Berechnung der Teststatistik praktisch nicht weiter beachten. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[c)] Das Konfidenzintervall liegt symmetrisch um den Schätzer. \hfill $\text{\rlap{$\checkmark$}}\square$
+    \item[d)] Wenn $t = -4,8$ ist und $t_{n-p-1),1-\alpha/2} = 4,5$, dann kann die Nullhypothese\\$H_0: \beta_j = 0$ nicht abgelehnt werden. \hfill $\square$
+    \item[e)] Eine Teststatistik die $t_{194}$-verteilt ist, stammt aus einem Modell mit $n = 200$ und\\6 geschätzten Koeffizienten .\hfill $\text{\rlap{$\checkmark$}}\square$
 \end{itemize}
 
 \paragraph{5. Welche Aussagen über das Bestimmtheitsmaß und den Overall F-Test sind richtig?}
@@ -830,7 +890,7 @@ License details: \url{https://creativecommons.org/licenses/by-nc/4.0/}}
     \item[a)] Wenn die Nullhypothese abgelehnt wird, dann haben alle Regressoren einen\\ statistisch signifikanten Erklärungswert für die Zielvariable $Y$. \hfill $\square$
     \item[b)] Bei $R^2=1$ spricht man von einer Nullanpassung. \hfill $\square$
     \item[c)] Bei $R^2=0$ wird die Streuung der Zielgröße vom Regressionsmodell komplett erklärt. \hfill $\square$
-    \item[d)] Ist $R^2=0$, dann wird $H_0$ nicht abgelehnt. \hfill $\square$
+    \item[d)] Ist $R^2=0$, dann wird $H_0$ nicht abgelehnt. \hfill $\text{\rlap{$\checkmark$}}\square$
     \item[e)] Ist mein berechneter Wert $f$ negativ, dann wird $H_0$ abgelehnt. \hfill $\square$
 \end{itemize}
 
